@@ -5,12 +5,12 @@ package vopo;
  *
  * 会计科目信息
  */
-public class VoucherCourse {
+public class VoucherCourseVo {
     String course_id;   //科目编号
     double debit;   //借方金额
     double credit;  //贷方金额
 
-    public VoucherCourse(String course_id, double debit, double credit){
+    public VoucherCourseVo(String course_id, double debit, double credit){
         this.course_id = course_id;
         this.debit = debit;
         this.credit = credit;

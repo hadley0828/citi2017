@@ -1,6 +1,6 @@
 package businesslogicservice;
 
-import vopo.BalanceSheetItem;
+import vopo.BalanceSheetItemVo;
 
 import java.util.ArrayList;
 
@@ -14,5 +14,5 @@ public interface BalanceSheetService {
      * @param phase 时期
      * @return
      */
-    public ArrayList<BalanceSheetItem> getBalanceSheet(String voucher_id, String phase);
+    public ArrayList<BalanceSheetItemVo> getBalanceSheet(String voucher_id, String phase);
 }

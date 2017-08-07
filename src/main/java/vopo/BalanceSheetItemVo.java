@@ -5,13 +5,13 @@ package vopo;
  *
  * 资产负债表的元组
  */
-public class BalanceSheetItem {
+public class BalanceSheetItemVo {
     String property_name;   //资产
     int Line_No;    //行次
     double ending_balance;  //期末余额
     double beginning_balance;   //年初余额
 
-    public BalanceSheetItem(String property_name, int Line_No, double ending_balance, double beginning_balance){
+    public BalanceSheetItemVo(String property_name, int Line_No, double ending_balance, double beginning_balance){
         this.property_name = property_name;
         this.Line_No = Line_No;
         this.ending_balance = ending_balance;
