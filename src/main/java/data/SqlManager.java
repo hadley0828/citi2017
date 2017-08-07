@@ -40,7 +40,7 @@ public class SqlManager {
             USER = prop.getProperty("db_user");
             PASSWORD = prop.getProperty("db_password");
             DB = prop.getProperty("db");
-            URL = "jdbc:mysql://" + IP + "/" + DB + "?useSSL=false";
+            URL = "jdbc:mysql://" + IP + "/" + DB + "?useSSL=false&characterEncoding=utf8";
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
