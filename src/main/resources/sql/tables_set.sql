@@ -61,15 +61,25 @@ CREATE TABLE `voucher` (
   `v_id` varchar(10) NOT NULL,
   `date` date NOT NULL,
   `is_addedreceipts` tinyint(1) NOT NULL,
-  `abstract` varchar(100) NOT NULL,
-  `subject` varchar(20) NOT NULL,
-  `debit_amount` double NOT NULL,
-  `credit_amount` double NOT NULL,
   `voucher_maker` varchar(50) NOT NULL,
   `remark` varchar(200) NOT NULL,
   PRIMARY KEY (`v_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+# Dump of table voucher_amount
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `voucher_amount`;
+
+CREATE TABLE `voucher_amount` (
+  `v_id` varchar(10) NOT NULL,
+  `abstract` varchar(100) NOT NULL,
+  `subject` varchar(20) NOT NULL,
+  `debit_amount` double NOT NULL,
+  `credit_amount` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 # Dump of table voucher_template
@@ -84,6 +94,17 @@ CREATE TABLE `voucher_template` (
   PRIMARY KEY (`template_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+# Dump of table subjects
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `subjects`;
+
+CREATE TABLE `subjects` (
+  `subjects_id` varchar(20) NOT NULL,
+  `subjects_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`subjects_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
