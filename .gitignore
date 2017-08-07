@@ -2,3 +2,6 @@
 .gitignore
 .idea/
 citi2017.iml
+/src/main/resources/citi.properties
+src/test/
+target/
