@@ -1,7 +1,7 @@
 package businesslogicservice;
 
-import vopo.BusinessIncomeVo;
-import vopo.BusinessProfit_And_OtherVo;
+import vo.BusinessIncomeVo;
+import vo.BusinessProfit_And_OtherVo;
 
 /**
  * 

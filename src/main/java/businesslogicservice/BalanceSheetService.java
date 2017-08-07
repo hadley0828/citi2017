@@ -1,6 +1,6 @@
 package businesslogicservice;
 
-import vopo.BalanceSheetItemVo;
+import vo.BalanceSheetItemVo;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package businesslogicservice;
 
-import vopo.CashFlowVo;
+import vo.CashFlowVo;
 
 /**
  * 

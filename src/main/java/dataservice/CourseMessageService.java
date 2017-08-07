@@ -1,6 +1,6 @@
 package dataservice;
 
-import vopo.VoucherCourseVo;
+import po.VoucherAmountPO;
 
 import java.util.ArrayList;
 
@@ -12,5 +12,5 @@ public interface CourseMessageService {
      * 根据凭证id得到其会计科目信息
      * @param voucher_id 凭证id
      */
-    public ArrayList<VoucherCourseVo> CourseMessageService(String voucher_id);
+    public ArrayList<VoucherAmountPO> CourseMessageService(String voucher_id);
 }
