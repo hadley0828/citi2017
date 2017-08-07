@@ -1,8 +1,8 @@
 package businesslogic;
 
 import businesslogicservice.ProfitTableService;
-import vopo.BusinessIncomeVo;
-import vopo.BusinessProfit_And_OtherVo;
+import vo.BusinessIncomeVo;
+import vo.BusinessProfit_And_OtherVo;
 
 public class ProfitTableImpl implements ProfitTableService{
 

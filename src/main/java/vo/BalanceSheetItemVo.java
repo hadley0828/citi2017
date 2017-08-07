@@ -1,4 +1,4 @@
-package vopo;
+package vo;
 
 /**
  * Created by 费慧通 on 2017/8/7.
