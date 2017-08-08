@@ -78,6 +78,7 @@ public class SqlManager {
     public synchronized Connection getConnection(){
         try{
             connection = DriverManager.getConnection(URL,USER,PASSWORD);
+            connection.setAutoCommit(false);
         } catch (SQLException e) {
             System.out.println("数据库连接失败");
             e.printStackTrace();
