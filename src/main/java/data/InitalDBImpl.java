@@ -121,7 +121,7 @@ public class InitalDBImpl implements InitialDB {
         String u = properties.getProperty("db_user");
         String p = properties.getProperty("db_password");
         String ip = properties.getProperty("db_ip");
-        String url =  "jdbc:mysql://" + ip + "/" + "" + "?useSSL=false";
+        String url =  "jdbc:mysql://" + ip + "/" + "" + "?useSSL=false&characterEncoding=utf8";
         con = DriverManager.getConnection(url,u,p);
         return con;
     }

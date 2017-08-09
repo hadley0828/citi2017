@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.17)
 # Database: citi
-# Generation Time: 2017-08-09 10:49:38 +0000
+# Generation Time: 2017-08-09 11:39:27 +0000
 # ************************************************************
 
 
@@ -47,9 +47,8 @@ CREATE TABLE `account_set` (
 DROP TABLE IF EXISTS `receipts`;
 
 CREATE TABLE `receipts` (
-  `receipts_id` varchar(30) NOT NULL,
-  `path` varchar(255) NOT NULL,
-  PRIMARY KEY (`receipts_id`)
+  `v_id` varchar(10) NOT NULL DEFAULT '',
+  `path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -105,7 +104,7 @@ VALUES
 	('1801','长期待摊费用'),
 	('1901','待处理财产损溢'),
 	('2001','短期借款'),
-	('2201','应付票据'),
+	('2201','��付票据'),
 	('2202','应付账款'),
 	('2203','预收账款'),
 	('2211','应付职工薪酬'),
@@ -225,6 +224,19 @@ VALUES
 UNLOCK TABLES;
 
 
+# Dump of table subjects_balance
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `subjects_balance`;
+
+CREATE TABLE `subjects_balance` (
+  `subjects_id` varchar(20) NOT NULL,
+  `balances` double NOT NULL,
+  PRIMARY KEY (`subjects_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
 # Dump of table voucher
 # ------------------------------------------------------------
 
@@ -248,10 +260,12 @@ DROP TABLE IF EXISTS `voucher_amount`;
 
 CREATE TABLE `voucher_amount` (
   `v_id` varchar(10) NOT NULL,
+  `a_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `abstract` varchar(100) NOT NULL,
   `subject` varchar(20) NOT NULL,
   `debit_amount` double NOT NULL,
-  `credit_amount` double NOT NULL
+  `credit_amount` double NOT NULL,
+  PRIMARY KEY (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
