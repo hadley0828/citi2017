@@ -6,4 +6,5 @@ package businesslogicservice;
  */
 public interface VoucherBlService {
 
+
 }

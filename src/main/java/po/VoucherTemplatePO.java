@@ -1,5 +1,7 @@
 package po;
 
+import java.util.ArrayList;
+
 /**
  * Created by loohaze on 2017/8/7.
  *
@@ -15,8 +17,10 @@ public class VoucherTemplatePO {
 
     private String subject;
 
-    public VoucherTemplatePO(){
+    private ArrayList<VoucherAmountPO> templateAmountList;
 
+    public VoucherTemplatePO(){
+        super();
 
     }
 
@@ -43,4 +47,16 @@ public class VoucherTemplatePO {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+    public ArrayList<VoucherAmountPO> getTemplateAmountList() {
+        return templateAmountList;
+    }
+
+    public void setTemplateAmountList(ArrayList<VoucherAmountPO> templateAmountList) {
+        this.templateAmountList = templateAmountList;
+    }
+
+
+
+
 }
