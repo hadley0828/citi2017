@@ -10,7 +10,8 @@ import java.util.ArrayList;
 public interface CourseMessageService {
     /**
      * 根据凭证id得到其会计科目信息
+     * @param period  yyyy-xx 年月
      * @param voucher_id 凭证id
      */
-    public ArrayList<VoucherAmountPO> getCourseMessageById(String voucher_id);
+    public ArrayList<VoucherAmountPO> getCourseMessageById(String period, String voucher_id);
 }

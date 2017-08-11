@@ -6,16 +6,18 @@ package vo;
  * 资产负债表的元组
  */
 public class BalanceSheetItemVo {
-    String property_name;   //资产
+    String property_name;   //资产名称
     int Line_No;    //行次
     double ending_balance;  //期末余额
     double beginning_balance;   //年初余额
+//    String law;     //公式
 
     public BalanceSheetItemVo(String property_name, int Line_No, double ending_balance, double beginning_balance){
         this.property_name = property_name;
         this.Line_No = Line_No;
         this.ending_balance = ending_balance;
         this.beginning_balance = beginning_balance;
+//        this.law = law;
     }
 
     public String getProperty_name(){
@@ -49,4 +51,12 @@ public class BalanceSheetItemVo {
     public void setBeginning_balance(double beginning_balance){
         this.beginning_balance = beginning_balance;
     }
+
+//    public String getLaw() {
+//        return law;
+//    }
+//
+//    public void setLaw(String law) {
+//        this.law = law;
+//    }
 }

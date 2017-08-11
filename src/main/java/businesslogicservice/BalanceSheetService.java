@@ -3,6 +3,7 @@ package businesslogicservice;
 import vo.BalanceSheetItemVo;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by 费慧通 on 2017/8/7.
@@ -14,5 +15,5 @@ public interface BalanceSheetService {
      * @param phase 时期
      * @return
      */
-    public ArrayList<BalanceSheetItemVo> getBalanceSheet(String voucher_id, String phase);
+    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String voucher_id, String phase);
 }
