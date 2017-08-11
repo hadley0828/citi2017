@@ -15,7 +15,7 @@ public class CourseMessageServiceImpl implements CourseMessageService{
     SqlManager sqlManager = SqlManager.getSqlManager();
 
     @Override
-    public ArrayList<VoucherAmountPO> getCourseMessageById(String voucher_id) {
+    public ArrayList<VoucherAmountPO> getCourseMessageById(String period,String voucher_id) {
 
         sqlManager.getConnection();
 

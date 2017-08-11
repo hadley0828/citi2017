@@ -23,7 +23,7 @@ public class CourseMessageServiceImplTest {
     @Test
     public void testGetCourseMessageById(){
         String id = "转-1";
-        ArrayList<VoucherAmountPO> list = courseMessageService.getCourseMessageById(id);
+        ArrayList<VoucherAmountPO> list = courseMessageService.getCourseMessageById("2012-08",id);
 
         for(VoucherAmountPO po : list){
             System.out.println(po.getId());
