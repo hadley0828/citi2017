@@ -12,9 +12,16 @@ import java.util.Arrays;
  * Management_expenses管理费用(其中：开办费；业务招待费；研究费用)
  * Financial_expenses财务费用(其中：利息费用)
  * investment_proceeds投资收益
+ * 
+ *  operating_profit 营业利润
+ *  Non_operating_income 营业外收入(其中：政府补助)
+ *  Non_operating_expenses营业外支出(其中：1.坏账损失2.无法收回的长期债券投资损失3.无法收回的长期股权投资4.自然灾害等不可抗因素造成的损失5.税收滞纳金)
+ *  Total_profit 利润总额
+ *  Income_tax_expense所得税费用
+ *  Net_profit 净利润
  */
 
-public class BusinessIncomeVo {
+public class ProfitTableVo {
 	private double business_income;
 	private double business_costs;
 	private double[] Business_Taxes_and_Surcharges;
@@ -23,7 +30,15 @@ public class BusinessIncomeVo {
 	private double[] Financial_expenses;
 	private double investment_proceeds;
 	
-	public BusinessIncomeVo(double bi,double bc,double[] bt,double[] se,double[] me,double[] fe,double ip){
+	private double operating_profit;
+	private double[] Non_operating_income;
+	private double[] Non_operating_expenses;
+	private double Total_profit;
+	private double Income_tax_expense;
+	private double Net_profit;
+	
+	public ProfitTableVo(double bi,double bc,double[] bt,double[] se,double[] me,double[] fe,double ip,
+			double op,double []noi,double []noe,double tp,double ite,double np){
 		this.business_income=bi;
 		this.business_costs=bc;
 		this.Business_Taxes_and_Surcharges=Arrays.copyOf(bt, bt.length);
@@ -31,6 +46,13 @@ public class BusinessIncomeVo {
 		this.Management_expenses=Arrays.copyOf(me, me.length);
 		this.Financial_expenses=Arrays.copyOf(fe, fe.length);
 		this.investment_proceeds=ip;
+		
+		this.operating_profit=op;
+		this.Non_operating_income=Arrays.copyOf(noi, noi.length);
+		this.Non_operating_expenses=Arrays.copyOf(noe, noe.length);
+		this.Total_profit=tp;
+		this.Income_tax_expense=ite;
+		this.Net_profit=np;
 		
 	}
 
@@ -90,4 +112,51 @@ public class BusinessIncomeVo {
 		this.investment_proceeds = investment_proceeds;
 	}
 	
+	public double getOperating_profit() {
+		return operating_profit;
+	}
+
+	public void setOperating_profit(double operating_profit) {
+		this.operating_profit = operating_profit;
+	}
+
+	public double[] getNon_operating_income() {
+		return Non_operating_income;
+	}
+
+	public void setNon_operating_income(double[] non_operating_income) {
+		Non_operating_income = non_operating_income;
+	}
+
+	public double[] getNon_operating_expenses() {
+		return Non_operating_expenses;
+	}
+
+	public void setNon_operating_expenses(double[] non_operating_expenses) {
+		Non_operating_expenses = non_operating_expenses;
+	}
+
+	public double getTotal_profit() {
+		return Total_profit;
+	}
+
+	public void setTotal_profit(double total_profit) {
+		Total_profit = total_profit;
+	}
+
+	public double getIncome_tax_expense() {
+		return Income_tax_expense;
+	}
+
+	public void setIncome_tax_expense(double income_tax_expense) {
+		Income_tax_expense = income_tax_expense;
+	}
+
+	public double getNet_profit() {
+		return Net_profit;
+	}
+
+	public void setNet_profit(double net_profit) {
+		Net_profit = net_profit;
+	}
 }

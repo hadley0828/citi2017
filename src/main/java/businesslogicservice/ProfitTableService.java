@@ -1,6 +1,6 @@
 package businesslogicservice;
 
-import vo.BusinessIncomeVo;
+import vo.ProfitTableVo;
 import vo.BusinessProfit_And_OtherVo;
 
 /**
@@ -14,14 +14,14 @@ public interface ProfitTableService {
 	 * @param time 某年某期 yyyy-xx
 	 * @return 返回该期的营业收入相关数据
 	 */
-	public BusinessIncomeVo BusinessIncome_period(String time);
+	public ProfitTableVo BusinessIncome_period(String time);
 	
 	/**
 	 * 
 	 * @param time 年份 yyyy
 	 * @return 返回该年的营业收入相关数据
 	 */
-	public BusinessIncomeVo BusinessIncome_year(String time);
+	public ProfitTableVo BusinessIncome_year(String time);
 	
 	/**
 	 * @param time 某年某期 yyyy-xx
