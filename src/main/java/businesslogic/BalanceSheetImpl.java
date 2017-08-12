@@ -25,8 +25,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
      */
     public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String voucher_id, String phase) {
         CourseMessageService service = new CourseMessageServiceImpl();
-        ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageById(phase, voucher_id);
-        ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageById(getBeginningOfYear(phase), voucher_id);
+        ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageByTime(phase);
+        ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageByTime(getBeginningOfYear(phase));
 
         Map<String, ArrayList<BalanceSheetItemVo>> result = new HashMap<String, ArrayList<BalanceSheetItemVo>>();
 
