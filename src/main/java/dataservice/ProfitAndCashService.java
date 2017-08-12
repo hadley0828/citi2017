@@ -25,5 +25,5 @@ public interface ProfitAndCashService {
 	 * @param accounting_id 会计科目id
 	 * @return 获得该年份指定期的对应会计科目id所有的信息
 	 */
-	public List<VoucherAmountPO> getVourchersByPeriod(String year,String accounting_id);
+	public List<VoucherAmountPO> getVourchersByPeriod(String period,String accounting_id);
 }
