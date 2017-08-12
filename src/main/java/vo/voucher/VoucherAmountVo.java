@@ -1,4 +1,4 @@
-package vo;
+package vo.voucher;
 
 import po.VoucherAmountPO;
 

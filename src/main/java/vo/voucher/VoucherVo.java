@@ -1,4 +1,4 @@
-package vo;
+package vo.voucher;
 
 import java.util.ArrayList;
 
@@ -13,11 +13,11 @@ public class VoucherVo {
     private String voucherMaker;    //制单人
     private String remark;          //备注
     private ArrayList<VoucherAmountVo> amountList;  //凭证金额的列表
+    private AmountTotalVo amountTotalVo;
 
     public VoucherVo(){
         super();
     }
-
 
     @Override
     public String toString() {
@@ -28,6 +28,7 @@ public class VoucherVo {
                 ", voucherMaker='" + voucherMaker + '\'' +
                 ", remark='" + remark + '\'' +
                 ", amountList=" + amountList +
+                ", amountTotalVo=" + amountTotalVo +
                 '}';
     }
 
@@ -79,7 +80,12 @@ public class VoucherVo {
         this.amountList = amountList;
     }
 
+    public AmountTotalVo getAmountTotalVo() {
+        return amountTotalVo;
+    }
 
-
+    public void setAmountTotalVo(AmountTotalVo amountTotalVo) {
+        this.amountTotalVo = amountTotalVo;
+    }
 
 }
