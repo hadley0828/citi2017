@@ -55,7 +55,7 @@ public interface VoucherBlService {
     public double getNewSubjectBalance(double beforeNumber,double changeNumber);
 
     /**
-     * 改变会计科目的余额 在保存凭证的时候需要调用
+     * 改变会计科目的余额 在保存凭证的时候需要调用!
      * @param subjectId
      * @param newNumber
      * @return
@@ -81,6 +81,13 @@ public interface VoucherBlService {
      * @return
      */
     public ArrayList<VoucherVo> getCurrentPeriodAllVoucher();
+
+    /**
+     * 根据凭证编号获得对应的凭证信息
+     * @param voucherId
+     * @return
+     */
+    public VoucherVo getOneVoucher(String voucherId);
 
     /**
      * 获得按条件筛选后的全部的凭证信息

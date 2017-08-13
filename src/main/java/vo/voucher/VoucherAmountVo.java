@@ -1,6 +1,8 @@
 package vo.voucher;
 
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import po.VoucherAmountPO;
+import po.VoucherTemplateAmountPO;
 
 /**
  * Created by zhangzy on 2017/8/11 下午11:36
@@ -8,7 +10,7 @@ import po.VoucherAmountPO;
 public class VoucherAmountVo {
 
     private String voucherId;   //凭证编号
-    private int amountId;       //金额编号
+    private String amountId;    //金额编号
     private String abstracts;   //摘要
     private String subject;     //会计科目
     private double debitAmount; //借方金额
@@ -39,11 +41,11 @@ public class VoucherAmountVo {
         this.voucherId = voucherId;
     }
 
-    public int getAmountId() {
+    public String getAmountId() {
         return amountId;
     }
 
-    public void setAmountId(int amountId) {
+    public void setAmountId(String amountId) {
         this.amountId = amountId;
     }
 

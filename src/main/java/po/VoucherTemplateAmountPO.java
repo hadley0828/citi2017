@@ -16,8 +16,6 @@ public class VoucherTemplateAmountPO {
 
     private String a_id;
 
-
-
     private String digest;
 
     private String subject;

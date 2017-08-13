@@ -10,7 +10,7 @@ public class VoucherTemplateVo {
     private String templateId;  //模板编号
     private String category;    //类别
     private String templateName;//模板名称
-    private ArrayList<VoucherAmountVo> amountList;  //金额列表
+    private ArrayList<VoucherTemplateAmountVo> amountList;  //金额列表
 
     public VoucherTemplateVo(){
         super();
@@ -50,11 +50,11 @@ public class VoucherTemplateVo {
         this.templateName = templateName;
     }
 
-    public ArrayList<VoucherAmountVo> getAmountList() {
+    public ArrayList<VoucherTemplateAmountVo> getAmountList() {
         return amountList;
     }
 
-    public void setAmountList(ArrayList<VoucherAmountVo> amountList) {
+    public void setAmountList(ArrayList<VoucherTemplateAmountVo> amountList) {
         this.amountList = amountList;
     }
 

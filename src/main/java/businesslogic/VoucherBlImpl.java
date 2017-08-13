@@ -3,9 +3,14 @@ package businesslogic;
 import businesslogicservice.VoucherBlService;
 import data.VoucherDataServiceImpl;
 import dataservice.VoucherDataService;
+import po.VoucherAmountPO;
 import po.VoucherPO;
+import po.VoucherTemplateAmountPO;
+import po.VoucherTemplatePO;
+import util.NumberToCN;
 import vo.voucher.*;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -23,36 +28,106 @@ public class VoucherBlImpl implements VoucherBlService {
     public boolean saveOneVoucher(VoucherVo voucherVo) {
         VoucherPO voucherPO=new VoucherPO();
 
+        voucherPO.setId(voucherVo.getVoucherId());
+        voucherPO.setDate(Date.valueOf(voucherVo.getDate()));
+        voucherPO.setAddReceipts(voucherVo.isAddedReceipts());
+        voucherPO.setVoucher_maker(voucherVo.getVoucherMaker());
+        voucherPO.setRemark(voucherVo.getRemark());
 
+        ArrayList<VoucherAmountVo> amountVoList=voucherVo.getAmountList();
+        ArrayList<VoucherAmountPO> amountPoList=new ArrayList<>();
 
+        if(amountVoList.size()!=0){
+            for(int count=0;count<amountVoList.size();count++){
+                VoucherAmountVo voucherAmountVo=amountVoList.get(count);
+                VoucherAmountPO voucherAmountPO=new VoucherAmountPO(voucherAmountVo);
+                amountPoList.add(voucherAmountPO);
+            }
+        }
 
+        boolean result=true;
 
-        return false;
+        boolean result1=voucherDataService.addVoucher(voucherPO);
+        boolean result2=voucherDataService.addOneVoucherAllAmount(voucherPO.getId(),amountPoList);
+
+        result=result&result1&result2;
+
+        return result;
     }
 
     @Override
     public AmountTotalVo getVoucherTotal(ArrayList<VoucherAmountVo> amountVoArrayList) {
-        return null;
+        AmountTotalVo resultVo=new AmountTotalVo();
+
+        String chineseTotal;
+        double debitTotal=0.0;
+        double creditTotal=0.0;
+
+        if(amountVoArrayList.size()!=0){
+            for(int count=0;count<amountVoArrayList.size();count++){
+                VoucherAmountVo vo=amountVoArrayList.get(count);
+                debitTotal=debitTotal+vo.getDebitAmount();
+                creditTotal=creditTotal+vo.getCreditAmount();
+
+            }
+        }
+
+        if(debitTotal==creditTotal){
+            chineseTotal=NumberToCN.number2CNMontrayUnit(creditTotal);
+        }else {
+            chineseTotal="借款金额和贷款金额不相同";
+        }
+
+        resultVo.setChineseTotal(chineseTotal);
+        resultVo.setDebitAmount(debitTotal);
+        resultVo.setCreditAmount(creditTotal);
+
+        return resultVo;
     }
 
     @Override
     public double getOneSubjectBalance(String subjectId) {
-        return 0;
+        return voucherDataService.findOneSubjectBalance(subjectId);
     }
 
     @Override
     public double getNewSubjectBalance(double beforeNumber, double changeNumber) {
-        return 0;
+        return beforeNumber+changeNumber;
     }
 
     @Override
     public boolean changeSubjectBalance(String subjectId, double newNumber) {
-        return false;
+        boolean result=true;
+
+        boolean result1=voucherDataService.modifyOneSubjectBalance(subjectId, newNumber);
+        result=result&result1;
+
+        return result;
     }
 
     @Override
     public VoucherTemplateVo getOneTemplate(String templateId) {
-        return null;
+        VoucherTemplatePO po=voucherDataService.getOneTemplate(templateId);
+        ArrayList<VoucherTemplateAmountPO> amountPOArrayList=voucherDataService.getOneTemplateAllAmount(templateId);
+
+        VoucherTemplateVo resultVo=new VoucherTemplateVo();
+        resultVo.setTemplateId(po.getTemplateId());
+        resultVo.setCategory(po.getCatagory());
+        resultVo.setTemplateName(po.getTemplateName());
+
+        ArrayList<VoucherTemplateAmountVo> amountVoList=new ArrayList<>();
+
+        if(amountPOArrayList.size()!=0){
+            for(int count=0;count<amountPOArrayList.size();count++){
+                VoucherTemplateAmountPO amountPO=amountPOArrayList.get(count);
+                VoucherTemplateAmountVo amountVo=new VoucherTemplateAmountVo(amountPO);
+                amountVoList.add(amountVo);
+            }
+        }
+
+        resultVo.setAmountList(amountVoList);
+
+        return resultVo;
     }
 
     @Override
@@ -62,6 +137,11 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public ArrayList<VoucherVo> getCurrentPeriodAllVoucher() {
+        return null;
+    }
+
+    @Override
+    public VoucherVo getOneVoucher(String voucherId) {
         return null;
     }
 

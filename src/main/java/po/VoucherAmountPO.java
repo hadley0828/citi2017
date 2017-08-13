@@ -1,5 +1,7 @@
 package po;
 
+import vo.voucher.VoucherAmountVo;
+
 /**
  * Created by loohaze on 2017/8/7.
  *
@@ -25,7 +27,20 @@ public class VoucherAmountPO {
     private double creditAmount;
 
     public VoucherAmountPO(){
+        super();
+    }
 
+    public VoucherAmountPO(VoucherAmountVo vo){
+        try {
+            this.v_id=vo.getVoucherId();
+            this.a_id=vo.getAmountId();
+            this.digest=vo.getAbstracts();
+            this.subject=vo.getSubject();
+            this.debitAmount=vo.getDebitAmount();
+            this.creditAmount=vo.getCreditAmount();
+        }catch (Exception e){
+            System.out.println("the voucherAmountVo is not complete");
+        }
     }
 
     public String getV_id() {
