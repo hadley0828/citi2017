@@ -289,10 +289,12 @@ DROP TABLE IF EXISTS `voucher_template_amount`;
 
 CREATE TABLE `voucher_template_amount` (
   `template_id` varchar(10) NOT NULL,
+	`a_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `abstract` varchar(100) NOT NULL,
   `subject` varchar(20) NOT NULL,
   `debit_amount` double DEFAULT NULL,
-  `credit_amount` double DEFAULT NULL
+  `credit_amount` double DEFAULT NULL,
+	PRIMARY KEY (`a_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

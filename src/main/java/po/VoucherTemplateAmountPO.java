@@ -4,6 +4,7 @@ package po;
  * Created by loohaze on 2017/8/12.
  *
  * templateId --> 模板ID
+ * a_id --> amount编号
  * digest --> 摘要
  * subject --> 会计科目
  * debitAmount --> 借方金额
@@ -12,6 +13,10 @@ package po;
 public class VoucherTemplateAmountPO {
 
     private String templateId;
+
+    private String a_id;
+
+
 
     private String digest;
 
@@ -31,6 +36,14 @@ public class VoucherTemplateAmountPO {
 
     public void setTemplateId(String templateId) {
         this.templateId = templateId;
+    }
+
+    public String getA_id() {
+        return a_id;
+    }
+
+    public void setA_id(String a_id) {
+        this.a_id = a_id;
     }
 
     public String getDigest() {
