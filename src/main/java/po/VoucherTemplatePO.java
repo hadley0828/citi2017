@@ -4,8 +4,8 @@ package po;
  * Created by loohaze on 2017/8/7.
  *
  * templateId --> 模板ID
- * digest --> 摘要
- * subject --> 会计科目
+ * catagory --> 类别
+ * templateName --> 模板名称
  */
 public class VoucherTemplatePO {
 
