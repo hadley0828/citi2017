@@ -2,6 +2,8 @@ package dataservice;
 
 import po.VoucherAmountPO;
 import po.VoucherPO;
+import po.VoucherTemplateAmountPO;
+import po.VoucherTemplatePO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -155,6 +157,89 @@ public interface VoucherDataService {
      */
     public double findOneSubjectBalance(String subjectId);
 
-    //TODO 关于凭证模板的接口
+    /**
+     * 添加一个新的凭证模板
+     * @param voucherTemplatePO
+     * @return
+     */
+    public boolean addOneTemplate(VoucherTemplatePO voucherTemplatePO);
+
+    /**
+     * 根据模板编号和模板金额的列表添加这个模板的全部金额
+     * @param templateId
+     * @param templateAmountPOArrayList
+     * @return
+     */
+    public boolean addOneTemplateAmounts(String templateId, ArrayList<VoucherTemplateAmountPO> templateAmountPOArrayList);
+
+    /**
+     * 根据模板编号删除一个模板
+     * @param templateId 模板编号
+     * @return
+     */
+    public boolean deleteOneTemplate(String templateId);
+
+    /**
+     * 根据模板编号删除一个模板的全部金额
+     * @param templateId
+     * @return
+     */
+    public boolean deleteOneTemplateAmounts(String templateId);
+
+    /**
+     * 根据模板编号和模板信息改变一个模板的基本信息
+     * @param templateId
+     * @param voucherTemplatePO
+     * @return
+     */
+    public boolean modifyOneTemplate(String templateId,VoucherTemplatePO voucherTemplatePO);
+
+    /**
+     * 新添加一个模板金额
+     * @param templateAmountPO
+     * @return
+     */
+    public boolean addOneTemplateAmount(VoucherTemplateAmountPO templateAmountPO);
+
+    /**
+     * 修改一个模板金额
+     * @param templateAmountPO
+     * @return
+     */
+    public boolean modifyTemplateAmount(VoucherTemplateAmountPO templateAmountPO);
+
+    /**
+     * 根据模板编号获得对应的模板信息
+     * @param templateId
+     * @return
+     */
+    public VoucherTemplatePO getOneTemplate(String templateId);
+
+    /**
+     * 获得全部的模板信息
+     * @return
+     */
+    public ArrayList<VoucherTemplatePO> getAllTemplate();
+    /**
+     * 删除一个模板金额
+     * @param amountId 模板金额编号
+     * @return
+     */
+    public boolean deleteTemplateAmount(String amountId);
+
+    /**
+     * 获得一个模板金额
+     * @param amountId
+     * @return
+     */
+    public VoucherTemplateAmountPO getOneTemplateAmount(String amountId);
+
+    /**
+     * 获得一个模板的全部模板金额
+     * @param templateId
+     * @return
+     */
+    public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId);
+
 
 }

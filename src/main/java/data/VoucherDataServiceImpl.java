@@ -3,6 +3,8 @@ package data;
 import dataservice.VoucherDataService;
 import po.VoucherAmountPO;
 import po.VoucherPO;
+import po.VoucherTemplateAmountPO;
+import po.VoucherTemplatePO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -109,5 +111,65 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     @Override
     public double findOneSubjectBalance(String subjectId) {
         return 0;
+    }
+
+    @Override
+    public boolean addOneTemplate(VoucherTemplatePO voucherTemplatePO) {
+        return false;
+    }
+
+    @Override
+    public boolean addOneTemplateAmounts(String templateId, ArrayList<VoucherTemplateAmountPO> templateAmountPOArrayList) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteOneTemplate(String templateId) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteOneTemplateAmounts(String templateId) {
+        return false;
+    }
+
+    @Override
+    public boolean modifyOneTemplate(String templateId, VoucherTemplatePO voucherTemplatePO) {
+        return false;
+    }
+
+    @Override
+    public boolean addOneTemplateAmount(VoucherTemplateAmountPO templateAmountPO) {
+        return false;
+    }
+
+    @Override
+    public boolean modifyTemplateAmount(VoucherTemplateAmountPO templateAmountPO) {
+        return false;
+    }
+
+    @Override
+    public VoucherTemplatePO getOneTemplate(String templateId) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<VoucherTemplatePO> getAllTemplate() {
+        return null;
+    }
+
+    @Override
+    public boolean deleteTemplateAmount(String amountId) {
+        return false;
+    }
+
+    @Override
+    public VoucherTemplateAmountPO getOneTemplateAmount(String amountId) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId) {
+        return null;
     }
 }

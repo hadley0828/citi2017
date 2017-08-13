@@ -119,7 +119,7 @@ public class NumberToCN {
     }
 
     public static void main(String[] args) {
-        double money = 10000;
+        double money = 12345.5;
         System.out.println(NumberToCN.number2CNMontrayUnit(money));
     }
 }
