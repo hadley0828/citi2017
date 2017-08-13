@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.17)
 # Database: citi
-# Generation Time: 2017-08-09 11:39:27 +0000
+# Generation Time: 2017-08-13 05:09:04 +0000
 # ************************************************************
 
 
@@ -20,10 +20,10 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
+
 #Dump of database citi
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`@@@dbName@@@` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `@@@dbName@@@`;
-
 
 # Dump of table account_set
 # ------------------------------------------------------------
@@ -103,7 +103,7 @@ VALUES
 	('1801','长期待摊费用'),
 	('1901','待处理财产损溢'),
 	('2001','短期借款'),
-	('2201','��付票据'),
+	('2201','应付票据'),
 	('2202','应付账款'),
 	('2203','预收账款'),
 	('2211','应付职工薪酬'),
@@ -198,7 +198,7 @@ VALUES
 	('5602006','管理费用-差旅费'),
 	('5602007','管理费用-折旧费'),
 	('5602008','管理费用-摊销费'),
-	('5602009','管理费用-开办费'),
+	('5602009','管理费用-开办���'),
 	('5602010','管理费用-研究费用'),
 	('5602011','管理费用-咨询费'),
 	('5602012','管理费用-长期待摊费用摊销'),
@@ -251,7 +251,6 @@ CREATE TABLE `voucher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
 # Dump of table voucher_amount
 # ------------------------------------------------------------
 
@@ -291,7 +290,9 @@ DROP TABLE IF EXISTS `voucher_template_amount`;
 CREATE TABLE `voucher_template_amount` (
   `template_id` varchar(10) NOT NULL,
   `abstract` varchar(100) NOT NULL,
-  `subject` varchar(20) NOT NULL
+  `subject` varchar(20) NOT NULL,
+  `debit_amount` double DEFAULT NULL,
+  `credit_amount` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
