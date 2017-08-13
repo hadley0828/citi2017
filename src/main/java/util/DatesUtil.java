@@ -23,6 +23,8 @@ public class DatesUtil {
         return map;
     }
 
+
+
     public static void main(String[] args) {
         Map<String,String> map = DatesUtil.datesParser("2018-12");
         System.out.println(map.get("year"));
