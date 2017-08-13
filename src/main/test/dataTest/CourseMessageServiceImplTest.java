@@ -23,10 +23,20 @@ public class CourseMessageServiceImplTest {
     @Test
     public void testGetCourseMessageById(){
         String id = "转-1";
-        ArrayList<VoucherAmountPO> list = courseMessageService.getCourseMessageById("2012-08",id);
+        ArrayList<VoucherAmountPO> list = courseMessageService.getCourseMessageById(id);
+        for (VoucherAmountPO po : list){
+            System.out.println(po.getV_id());
+            System.out.println(po.getA_id());
+        }
 
-        for(VoucherAmountPO po : list){
-            System.out.println(po.getId());
+    }
+
+    @Test
+    public void testGetCourseMessageByTime(){
+        String period = "2012-02";
+        ArrayList<VoucherAmountPO> list = courseMessageService.getCourseMessageByTime(period);
+        for (VoucherAmountPO po : list){
+            System.out.println(po.getA_id() + " "+ po.getSubject() + " "+  String.valueOf(po.getDebitAmount()) +" "+  String.valueOf(po.getCreditAmount()));
         }
     }
 }

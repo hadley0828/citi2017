@@ -1,20 +1,17 @@
 package po;
 
 /**
- * Created by loohaze on 2017/8/7.
+ * Created by loohaze on 2017/8/12.
  *
- * v_id --> 凭证编号
- * a_id --> amount编号
+ * templateId --> 模板ID
  * digest --> 摘要
- * subject --> 会计科目编号
+ * subject --> 会计科目
  * debitAmount --> 借方金额
  * creditAmount --> 贷方金额
  */
-public class VoucherAmountPO {
+public class VoucherTemplateAmountPO {
 
-    private String v_id;
-
-    private String a_id;
+    private String templateId;
 
     private String digest;
 
@@ -24,24 +21,16 @@ public class VoucherAmountPO {
 
     private double creditAmount;
 
-    public VoucherAmountPO(){
+    public VoucherTemplateAmountPO(){
 
     }
 
-    public String getV_id() {
-        return v_id;
+    public String getTemplateId() {
+        return templateId;
     }
 
-    public void setV_id(String v_id) {
-        this.v_id = v_id;
-    }
-
-    public String getA_id() {
-        return a_id;
-    }
-
-    public void setA_id(String a_id) {
-        this.a_id = a_id;
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
     }
 
     public String getDigest() {

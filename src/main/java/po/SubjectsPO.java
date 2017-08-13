@@ -5,6 +5,7 @@ package po;
  *
  * id --> 会计科目编号
  * name --> 会计科目名称
+ * balances --> 余额
  */
 public class SubjectsPO {
 
@@ -12,13 +13,25 @@ public class SubjectsPO {
 
     private String name;
 
+    private double balances;
+
+
     public SubjectsPO(){
 
     }
 
-    public SubjectsPO(String id, String name){
+    public SubjectsPO(String id, String name, double balances) {
         this.id = id;
         this.name = name;
+        this.balances = balances;
+    }
+
+    public double getBalances() {
+        return balances;
+    }
+
+    public void setBalances(double balances) {
+        this.balances = balances;
     }
 
     public String getId() {

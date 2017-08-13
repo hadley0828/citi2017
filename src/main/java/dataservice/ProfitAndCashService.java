@@ -1,8 +1,8 @@
 package dataservice;
 
-import java.util.List;
-
 import po.VoucherAmountPO;
+
+import java.util.List;
 
 /**
  * 
@@ -21,7 +21,7 @@ public interface ProfitAndCashService {
 	
 	/**
 	 * 
-	 * @param year   yyyy-xx 年月
+	 * @param period   yyyy-xx 年月
 	 * @param accounting_id 会计科目id
 	 * @return 获得该年份指定期的对应会计科目id所有的信息
 	 */
