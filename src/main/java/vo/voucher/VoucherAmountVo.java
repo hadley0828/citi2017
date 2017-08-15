@@ -21,6 +21,20 @@ public class VoucherAmountVo {
         super();
     }
 
+    public VoucherAmountVo(VoucherAmountPO po){
+        try{
+            this.voucherId=po.getV_id();
+            this.amountId=po.getA_id();
+            this.abstracts=po.getDigest();
+            this.subject=po.getSubject();
+            this.debitAmount=po.getDebitAmount();
+            this.creditAmount=po.getCreditAmount();
+        }catch (Exception e){
+            System.out.println("po is not complete");
+        }
+    }
+
+
     @Override
     public String toString() {
         return "VoucherAmountVo{" +

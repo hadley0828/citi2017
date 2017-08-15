@@ -1,5 +1,7 @@
 package po;
 
+import vo.voucher.VoucherTemplateVo;
+
 /**
  * Created by loohaze on 2017/8/7.
  *
@@ -18,6 +20,17 @@ public class VoucherTemplatePO {
     public VoucherTemplatePO(){
 
     }
+
+    public VoucherTemplatePO(VoucherTemplateVo vo){
+        try{
+            this.templateId=vo.getTemplateId();
+            this.catagory=vo.getCategory();
+            this.templateName=vo.getTemplateName();
+        }catch (Exception e){
+            System.out.println("vo is not complete");
+        }
+    }
+
 
     public String getTemplateId() {
         return templateId;

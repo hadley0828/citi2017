@@ -1,5 +1,7 @@
 package vo.voucher;
 
+import po.VoucherPO;
+
 import java.util.ArrayList;
 
 /**
@@ -18,6 +20,19 @@ public class VoucherVo {
     public VoucherVo(){
         super();
     }
+
+    public VoucherVo(VoucherPO po){
+        try{
+            this.voucherId=po.getId();
+            this.date=String.valueOf(po.getDate());
+            this.isAddedReceipts=po.isAddReceipts();
+            this.voucherMaker=po.getVoucher_maker();
+            this.remark=po.getRemark();
+        }catch(Exception e){
+            System.out.println("po is not complete");
+        }
+    }
+
 
     @Override
     public String toString() {
