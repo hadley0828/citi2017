@@ -11,6 +11,15 @@ import java.util.List;
  */
 
 public interface ProfitAndCashService {
+	
+	/**
+	 * 
+	 * @param period yyyy-xx 年月
+	 * @param accounting_id 会计科目id
+	 * @return 获取该时间（包括该期）之前的所有对应会计科目id的信息
+	 */
+	public List<VoucherAmountPO> getVourchersBefore(String period,String accounting_id);
+	
 	/**
 	 * 
 	 * @param year   yyyy年份
