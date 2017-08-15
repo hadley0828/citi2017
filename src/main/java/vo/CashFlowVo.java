@@ -16,14 +16,14 @@ public class CashFlowVo {
 	private double[] Investment_activities;
 	private double[] Financing_activities;
 	private double[] Net_cash_increase;
-	private double[] Final_cash_balance;
+	private double Final_cash_balance;
 	
-	public CashFlowVo(double[] oa,double[] ia,double[] fa,double[] nci,double[] fcb){
+	public CashFlowVo(double[] oa,double[] ia,double[] fa,double[] nci,double fcb){
 		this.operating_activities=Arrays.copyOf(oa, oa.length);
 		this.Investment_activities=Arrays.copyOf(ia, ia.length);
 		this.Financing_activities=Arrays.copyOf(fa, fa.length);
 		this.Net_cash_increase=Arrays.copyOf(nci, nci.length);
-		this.Final_cash_balance=Arrays.copyOf(fcb, fcb.length);
+		this.Final_cash_balance=fcb;
 	}
 
 	public double[] getOperating_activities() {
@@ -58,11 +58,11 @@ public class CashFlowVo {
 		Net_cash_increase = net_cash_increase;
 	}
 
-	public double[] getFinal_cash_balance() {
+	public double getFinal_cash_balance() {
 		return Final_cash_balance;
 	}
 
-	public void setFinal_cash_balance(double[] final_cash_balance) {
+	public void setFinal_cash_balance(double final_cash_balance) {
 		Final_cash_balance = final_cash_balance;
 	}
 	

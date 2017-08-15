@@ -36,5 +36,29 @@ public class TableCalHelper {
 		}
 		return res;
 	}
+
+	public double Cal(List<VoucherAmountPO> list) {
+		return CreditCal(list)-DebitCal(list);
+	}
 	
+	public double Calbalance(List<VoucherAmountPO> list) {
+		return Math.abs(CreditCal(list)-DebitCal(list));
+	}
+	
+	public String lastTime(String time){
+		String temp[]=time.split("-");
+		int year=Integer.parseInt(temp[0]);
+		int month=Integer.parseInt(temp[1]);
+		if(month!=1)
+			month--;
+		else{
+			year--;
+			month=12;
+		}
+		if(month<10)
+			return String.valueOf(year)+"-0"+String.valueOf(month);
+		else
+			return String.valueOf(year)+"-"+String.valueOf(month);
+		
+	}
 }

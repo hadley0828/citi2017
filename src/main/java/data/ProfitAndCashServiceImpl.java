@@ -54,4 +54,9 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return po;
     }
 
+	public List<VoucherAmountPO> getVourchersBefore(String period, String accounting_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
