@@ -1,0 +1,21 @@
+#bigPane{
+    -fx-background-color: rgb(242,242,242);
+}
+#innerPane{
+    -fx-background-color: white;
+}
+#print,#out,#workpaper,#add_form,#confirm_form,#cancel_form,#add_form2,#cancel_form2,#confirm_form2{
+    -fx-background-color: rgb(255,135,98);
+}
+HBox{
+    -fx-border-color: rgb(204,204,204);
+    -fx-border-radius: 0;
+}
+#property_item,#debt_item,#yearbegin_item,#yearbegin_itemm,#row_item,#row_itemm,#endbalance_item,#endbalance_itemm,#end_item,#begin_item,#operate_item,#formsign_item,#termname_item,#num_regulation_item,#year_cur__item,#month_cur_item,#termname_item2,#num_regulation_item2,#formsign_item2,#operate_item2{
+    -fx-background-color: rgb(239,239,239);
+    -fx-pref-height: 42;
+}
+ChoiceBox{
+    -fx-background-color: rgb(255,255,255);
+    -fx-border-color: rgb(226,231,235);
+}

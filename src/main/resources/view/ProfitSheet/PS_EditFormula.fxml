@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <Pane id="bigPane" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css">
+            <children>
+                <Pane prefHeight="60.0" prefWidth="1180.0">
+                    <children>
+                        <Label layoutX="556.0" layoutY="16.0" text="利润表" textAlignment="CENTER" textFill="#808087">
+                            <font>
+                                <Font size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane id="innerPane" layoutX="98.0" layoutY="69.0" prefHeight="500.0" prefWidth="984.0" stylesheets="@../../css/BalanceSheet.css">
+                    <children>
+                        <Button fx:id="confirm_form2" layoutX="109.0" layoutY="432.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" stylesheets="@../../css/BalanceSheet.css" text="确定" textFill="WHITE">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="cancel_form2" layoutX="196.0" layoutY="432.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" text="取消" textFill="WHITE">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <TableView fx:id="formula_table2" layoutX="109.0" layoutY="130.0" prefHeight="286.0" prefWidth="766.0">
+                            <columns>
+                                <TableColumn fx:id="termname_item2" prefWidth="181.0" resizable="false" text="科目名称" />
+                                <TableColumn fx:id="formsign_item2" minWidth="0.0" prefWidth="65.0" resizable="false" text="运算符号" />
+                                <TableColumn fx:id="num_regulation_item2" minWidth="0.0" prefWidth="113.0" resizable="false" text="取数规则" />
+                                <TableColumn fx:id="month_cur_item" prefWidth="149.0" resizable="false" text="本月累计" />
+                                <TableColumn fx:id="year_cur__item" prefWidth="147.0" text="本年累计" />
+                                <TableColumn fx:id="operate_item2" prefWidth="110.0" text="操作" />
+                            </columns>
+                        </TableView>
+                        <Button fx:id="add_form2" layoutX="859.0" layoutY="70.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="58.0" text="添加" textFill="WHITE">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="405.0" layoutY="24.0" prefHeight="17.0" prefWidth="87.0" text="编辑公式 - " textFill="GREY">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="formula_name2" layoutX="492.0" layoutY="24.0" text="减：营业成本bala" textFill="GREY">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                        <Label layoutX="65.0" layoutY="77.0" text="科目名称：">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="394.0" layoutY="78.0" text="运算符号：" />
+                        <Label layoutX="595.0" layoutY="77.0" text="取数规则：">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ChoiceBox fx:id="term_name2" layoutX="158.0" layoutY="71.0" prefHeight="32.0" prefWidth="162.0" />
+                        <ChoiceBox fx:id="form_sign2" layoutX="470.0" layoutY="71.0" prefHeight="32.0" prefWidth="67.0" />
+                        <ChoiceBox fx:id="num_regulation2" layoutX="688.0" layoutY="70.0" prefHeight="32.0" prefWidth="91.0" />
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+    </content>
+</ScrollPane>
