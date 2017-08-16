@@ -6,3 +6,5 @@ citi2017.iml
 /citiCup.iml
 /.project
 
+!/citiCup.iml
+src/test/

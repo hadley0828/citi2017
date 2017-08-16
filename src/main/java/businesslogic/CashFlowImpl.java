@@ -60,7 +60,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		temp2=helper.Cal(DATA.getVourchersByPeriod(time, "222100101"));//“应交税费-应交增值税-进项税额”	
 		operating_activities[4]=temp1-temp2;//“支付的税费”的本月金额
 		
-		temp1=
+//		temp1=
 		
 		double[] Investment_activities=new double[6];
 		double[] Financing_activities=new double[6];
