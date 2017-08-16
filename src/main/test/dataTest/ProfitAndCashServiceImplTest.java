@@ -40,4 +40,14 @@ public class ProfitAndCashServiceImplTest {
             System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
         }
     }
+
+    @Test
+    public void testGetVourchersBefore(){
+        String period = "2012-07";
+        String account_id = "1001";
+        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersBefore(period,account_id);
+        for (VoucherAmountPO po : list){
+            System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
+        }
+    }
 }

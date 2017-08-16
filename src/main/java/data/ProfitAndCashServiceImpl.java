@@ -4,6 +4,7 @@ import dataservice.ProfitAndCashService;
 import po.VoucherAmountPO;
 import util.DatesUtil;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,21 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 	    return list;
 	}
 
+    public List<VoucherAmountPO> getVourchersBefore(String period, String accounting_id) {
+	    sqlManager.getConnection();
+
+	    ArrayList<VoucherAmountPO> list = new ArrayList<>();
+	    String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE date<=?) AND subject=?";
+//        System.out.println(fillDate(period));
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{Date.valueOf(fillDate(period)),accounting_id});
+        for(Map<String,Object> map : datalist){
+            list.add(getVoucherAmountPO(map));
+        }
+
+	    sqlManager.releaseAll();
+	    return list;
+    }
+
     private VoucherAmountPO getVoucherAmountPO(Map<String,Object> map){
 
         VoucherAmountPO po = new VoucherAmountPO();
@@ -54,9 +70,25 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return po;
     }
 
-	public List<VoucherAmountPO> getVourchersBefore(String period, String accounting_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    private String fillDate(String period){
+        String[] date = period.split("-");
+        String year = date[0];
+        String month = date[1];
+
+        switch (month){
+            case "01":case "03":case "05":case "07":case "08":case "10":case "12":
+                return year+"-"+month+"-31";
+            case "04":case "06":case "09":case "11":
+                return year+"-"+month+"-30";
+            case "02":
+                if((Integer.valueOf(year)%4==0&&Integer.valueOf(year)%100!=0)||Integer.valueOf(year)%400==0){
+                    return year+"-"+month+"-29";
+                }else{
+                    return year+"-"+month+"-28";
+                }
+        }
+        return null;
+    }
+
 
 }
