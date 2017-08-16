@@ -37,10 +37,29 @@ public class TableCalHelper {
 		return res;
 	}
 
+	/**
+	 * 
+	 * @param list
+	 * @return 贷-借
+	 */
 	public double Cal(List<VoucherAmountPO> list) {
 		return CreditCal(list)-DebitCal(list);
 	}
 	
+	/**
+	 * 
+	 * @param list
+	 * @return 借-贷
+	 */
+	public double Cal2(List<VoucherAmountPO> list) {
+		return -CreditCal(list)+DebitCal(list);
+	}
+	
+	/**
+	 * 
+	 * @param list
+	 * @return 发生额
+	 */
 	public double Calbalance(List<VoucherAmountPO> list) {
 		return Math.abs(CreditCal(list)-DebitCal(list));
 	}
