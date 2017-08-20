@@ -78,8 +78,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
                 + getMoneyByCourseId(polist2, "4403", true);
         current_asset.add(new BalanceSheetItemVo("存货", 9, ending_balance1_9, beginning_balance1_9));
         //1.10其他流动资产
-        double ending_balance1_10 = getMoneyByCourseId(polist1, "1901", true);
-        double beginning_balance1_10 = getMoneyByCourseId(polist2, "1901", true);
+        double ending_balance1_10 = getMoneyByCourseId(polist1, "6000", true);
+        double beginning_balance1_10 = getMoneyByCourseId(polist2, "6000", true);
         current_asset.add(new BalanceSheetItemVo("其他流动资产", 14, ending_balance1_10, beginning_balance1_10));
         //1.11流动资产合计=货币资金+短期投资+应收票据+应收账款+预付账款+应收股利+应收利息+其他应收款+存货+其他流动资产
         double ending_balance1_11 = ending_balance1_1 + ending_balance1_2 + ending_balance1_3 + ending_balance1_4 + ending_balance1_5 + ending_balance1_6 + ending_balance1_7 + ending_balance1_8 + ending_balance1_9 + ending_balance1_10;
@@ -139,8 +139,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
         double beginning_balance2_12 = getMoneyByCourseId(polist2, "1801", true);
         no_current_asset.add(new BalanceSheetItemVo("长期待摊费用", 27, ending_balance2_12, beginning_balance2_12));
         //2.13其他非流动资产
-        double ending_balance2_13 = 0.0;
-        double beginning_balance2_13 = 0.0;
+        double ending_balance2_13 = getMoneyByCourseId(polist1, "6001", true);
+        double beginning_balance2_13 = getMoneyByCourseId(polist2, "6001", true);
         no_current_asset.add(new BalanceSheetItemVo("其他非流动资产", 28, ending_balance2_13, beginning_balance2_13));
         //2.14非流动资产合计=长期股权投资+长期债券投资+固定资产账面价值+工程物资+在建工程+固定资产清理+生产性生物资产+开发支出+无形资产+长期待摊费用+其他非流动资产
         double ending_balance2_14 = ending_balance2_1 + ending_balance2_2 + ending_balance2_3 + ending_balance2_4 + ending_balance2_5 + ending_balance2_6 + ending_balance2_7 + ending_balance2_8 + ending_balance2_9 + ending_balance2_10 + ending_balance2_11 + ending_balance2_12 + ending_balance2_13;
@@ -198,8 +198,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
         double beginning_balance4_9 = getMoneyByCourseId(polist2, "2241", false) + getMoneyByCourseId(polist2, "1221", false);
         current_liabilities.add(new BalanceSheetItemVo("其他应付款", 39, ending_balance4_9, beginning_balance4_9));
         //4.10其他流动负债
-        double ending_balance4_10 = 0.0;
-        double beginning_balance4_10 = 0.0;
+        double ending_balance4_10 = getMoneyByCourseId(polist1,"8000", false);
+        double beginning_balance4_10 = getMoneyByCourseId(polist2, "8000", false);
         current_liabilities.add(new BalanceSheetItemVo("其他流动负债", 40, ending_balance4_10, beginning_balance4_10));
         //4.11流动负债合计=短期借款+应付票据+应付账款+预收账款+应付职工薪酬+应交税费+应付利息+其他应付款+应付利润+其他流动负债
         double ending_balance4_11 = ending_balance4_1+ending_balance4_2+ending_balance4_3+ending_balance4_4+ending_balance4_5+ending_balance4_6+ending_balance4_7+ending_balance4_8+ending_balance4_9+ending_balance4_10;
@@ -224,8 +224,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
         double beginning_balance5_3 = getMoneyByCourseId(polist2, "2401", false);
         no_current_liabilities.add(new BalanceSheetItemVo("递延收益", 44, ending_balance5_3, beginning_balance5_3));
         //5.4其他非流动负债
-        double ending_balance5_4 = 0.0;
-        double beginning_balance5_4 = 0.0;
+        double ending_balance5_4 = getMoneyByCourseId(polist1, "8001", false);
+        double beginning_balance5_4 = getMoneyByCourseId(polist2, "8001", false);
         no_current_liabilities.add(new BalanceSheetItemVo("其他非流动负债", 45, ending_balance5_4, beginning_balance5_4));
         //5.5非流动负债合计
         double ending_balance5_5 = ending_balance5_1+ending_balance5_2+ending_balance5_3+ending_balance5_4;
@@ -308,7 +308,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @return
      */
     private String getBeginningOfYear(String phase) {
-        return "";
+        return phase.substring(0,5)+"01";
     }
 
     /**
@@ -343,9 +343,5 @@ public class BalanceSheetImpl implements BalanceSheetService {
             result = result + getMoneyByCourseId(polist, idlist[i], IsDebit);
         }
         return result;
-    }
-
-    public static void main(String[] args){
-        BalanceSheetImpl balanceSheet = new BalanceSheetImpl();
     }
 }

@@ -20,4 +20,11 @@ public interface CourseMessageService {
      * @return
      */
     public ArrayList<VoucherAmountPO> getCourseMessageByTime(String period);
+
+    /**
+     *  根据科目id得到科目名称
+     * @param id
+     * @return
+     */
+    public String getCourseNameById(String id);
 }
