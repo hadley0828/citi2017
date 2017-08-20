@@ -39,4 +39,10 @@ public class CourseMessageServiceImplTest {
             System.out.println(po.getA_id() + " "+ po.getSubject() + " "+  String.valueOf(po.getDebitAmount()) +" "+  String.valueOf(po.getCreditAmount()));
         }
     }
+
+    @Test
+    public void testGetCourseNameById(){
+        String id = "1122";
+        System.out.println(courseMessageService.getCourseNameById(id));
+    }
 }

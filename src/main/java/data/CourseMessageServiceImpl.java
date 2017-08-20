@@ -48,6 +48,16 @@ public class CourseMessageServiceImpl implements CourseMessageService{
         return list;
     }
 
+    @Override
+    public String getCourseNameById(String id) {
+        sqlManager.getConnection();
+
+        String sql = "SELECT subjects_name FROM subjects WHERE subjects_id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
+        sqlManager.releaseAll();
+        return map.get("subjects_name").toString();
+    }
+
     /**
      * 根据 yyyy-mm 时间格式获得 凭证id
      * @param period
