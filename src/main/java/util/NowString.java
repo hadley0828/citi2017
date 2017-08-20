@@ -2,6 +2,7 @@ package util;
 
 /**
  * Created by zhangzy on 2017/8/15 下午11:37
+ * 获得当前的月数
  */
 import java.util.Date;
 import java.text.SimpleDateFormat;

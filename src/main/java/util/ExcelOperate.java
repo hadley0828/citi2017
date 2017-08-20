@@ -20,10 +20,10 @@ public class ExcelOperate {
 
     public static void main(String[] args) {
         // 创建Excel表格
-        createExcel(getStudent());
+        createExcel(getStudent(),"/Users/zhangzy/Downloads/students.xls");
 
         // 读取Excel表格
-        List<Student> list = readExcel();
+        List<Student> list = readExcel("/Users/zhangzy/Downloads/students.xls");
         System.out.println(list.toString());
     }
 
@@ -49,7 +49,7 @@ public class ExcelOperate {
      * @param list
      *            数据
      */
-    private static void createExcel(List<Student> list) {
+    private static void createExcel(List<Student> list,String filePath)  {
         // 创建一个Excel文件
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 创建一个工作表
@@ -94,7 +94,8 @@ public class ExcelOperate {
 
         // 保存Excel文件
         try {
-            OutputStream outputStream = new FileOutputStream("/Users/zhangzy/Downloads/students.xls");
+            OutputStream outputStream = new FileOutputStream(filePath);
+            //"/Users/zhangzy/Downloads/students.xls"
             workbook.write(outputStream);
             outputStream.close();
         } catch (Exception e) {
@@ -107,13 +108,14 @@ public class ExcelOperate {
      *
      * @return 数据集合
      */
-    private static List<Student> readExcel() {
+    private static List<Student> readExcel(String filePath) {
         List<Student> list = new ArrayList<Student>();
         HSSFWorkbook workbook = null;
 
         try {
             // 读取Excel文件
-            InputStream inputStream = new FileInputStream("/Users/zhangzy/Downloads/students.xls");
+            InputStream inputStream = new FileInputStream(filePath);
+            //"/Users/zhangzy/Downloads/students.xls"
             workbook = new HSSFWorkbook(inputStream);
             inputStream.close();
         } catch (Exception e) {

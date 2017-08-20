@@ -1,5 +1,7 @@
 package po;
 
+import vo.voucher.VoucherVo;
+
 import java.sql.Date;
 
 /**
@@ -27,6 +29,19 @@ public class VoucherPO {
     public VoucherPO(){
 
     }
+
+    public VoucherPO(VoucherVo vo){
+        try {
+            this.id=vo.getVoucherId();
+            this.date=Date.valueOf(vo.getDate());
+            this.isAddReceipts=vo.isAddedReceipts();
+            this.voucher_maker=vo.getVoucherMaker();
+            this.remark=vo.getRemark();
+        }catch (Exception e){
+            System.out.println("vo is not complete");
+        }
+    }
+
 
     public String getId() {
         return id;

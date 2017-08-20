@@ -312,7 +312,32 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean amendOneVoucher(String voucherId, VoucherVo voucherVo) { return false;
+    public boolean amendOneVoucher(String voucherId, VoucherVo voucherVo) {
+        String afterVoucherId=voucherVo.getVoucherId();
+
+        HashSet<String> allVoucherIdSet=new HashSet<>();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        for(int count=0;count<allPoList.size();count++){
+            allVoucherIdSet.add(allPoList.get(count).getId());
+        }
+
+        //修改了凭证的编号 并且 修改后的编号在数据库已经存在
+        if((!voucherId.equals(afterVoucherId))&&allVoucherIdSet.contains(afterVoucherId)){
+            return false;
+        }else{
+
+            VoucherPO voucherPO=new VoucherPO(voucherVo);
+
+            ArrayList<VoucherAmountPO> amountPOArrayList=new ArrayList<>();
+            ArrayList<VoucherAmountVo> amountVoArrayList=voucherVo.getAmountList();
+
+            //先删除再添加!
+
+
+        }
+
+
+        return false;
     }
 
     @Override
