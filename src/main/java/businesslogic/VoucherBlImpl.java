@@ -49,6 +49,7 @@ public class VoucherBlImpl implements VoucherBlService {
                 VoucherAmountPO voucherAmountPO=new VoucherAmountPO(voucherAmountVo);
                 String subjectId=voucherAmountVo.getSubject();
                 double beforeBalance=voucherDataService.findOneSubjectBalance(subjectId);
+                //实现修改一个会计科目的余额的功能
                 voucherDataService.modifyOneSubjectBalance(subjectId,beforeBalance+voucherAmountVo.getDebitAmount()-voucherAmountVo.getCreditAmount());
 
                 amountPoList.add(voucherAmountPO);
@@ -283,6 +284,30 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo) {
+        ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
+        ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher();
+        HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=voucherDataService.findAllVoucherAllAmount();
+
+        if(allVoucherPoList.size()==0){
+            return null;
+        }else{
+            for(int count=0;count<allVoucherPoList.size();count++){
+                VoucherPO voucherPO=allVoucherPoList.get(count);
+                String voucherId=voucherPO.getId();
+
+                if(!allVoucherMap.containsKey(voucherId)){
+                    break;
+                }else{
+                    ArrayList<VoucherAmountPO> amountPOList=allVoucherMap.get(voucherId);
+                    //对voucherPO和amountPOList进行处理
+
+
+
+                }
+            }
+        }
+
+
         return null;
     }
 
