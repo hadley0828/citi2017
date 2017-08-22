@@ -280,6 +280,23 @@ public class BalanceSheetImpl implements BalanceSheetService {
     }
 
     /**
+     * 根据时间得到资产负债表的货币资产
+     * @param time
+     * @return
+     */
+    public double[] getDollarAssent(String time){
+        CourseMessageService service = new CourseMessageServiceImpl();
+        ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageByTime(time);
+        ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageByTime(getBeginningOfYear(time));
+        //期末余额
+        double ending_balance = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
+        //年初余额
+        double beginning_balance = getMoneyByCourseId(polist2, "1012", true) + getMoneyByCourseId(polist2, "1001", true) + getMoneyByCourseId(polist2, "1002", true);
+        double[] result = {ending_balance, beginning_balance};
+        return result;
+    }
+
+    /**
      * 根据科目编号已经是否借方得到科目金额
      *
      * @param polist    会计科目信息
