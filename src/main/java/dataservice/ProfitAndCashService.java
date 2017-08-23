@@ -14,6 +14,24 @@ public interface ProfitAndCashService {
 	
 	/**
 	 * 
+	 * @param time yyyy-xx 年月
+	 * @param id1 借方
+	 * @param id2 贷方
+	 * @return 获取凭证中借方含有科目ID=id1，贷方含有科目ID=id2的项目，取该两个科目对应金额中的较小值
+	 */
+	public List<Double> getGivenVourchers(String time,String id1,String id2);
+	
+	/**
+	 * 
+	 * @param time yyyy 年
+	 * @param id1 借方
+	 * @param id2 贷方
+	 * @return 获取凭证中借方含有科目ID=id1，贷方含有科目ID=id2的项目，取该两个科目对应金额中的较小值
+	 */
+	public List<Double> getGivenVourchersByYear(String time,String id1,String id2);
+	
+	/**
+	 * 
 	 * @param period yyyy-xx 年月
 	 * @param accounting_id 会计科目id
 	 * @return 获取该时间（包括该期）之前的所有对应会计科目id的信息

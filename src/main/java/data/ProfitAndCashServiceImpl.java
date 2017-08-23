@@ -90,5 +90,15 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return null;
     }
 
+	public List<Double> getGivenVourchers(String time, String id1, String id2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<Double> getGivenVourchersByYear(String time, String id1, String id2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
