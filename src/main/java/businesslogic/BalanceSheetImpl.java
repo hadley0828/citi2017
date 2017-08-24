@@ -18,12 +18,10 @@ import java.util.Map;
 public class BalanceSheetImpl implements BalanceSheetService {
     /**
      * 得到资产负债表数据
-     *
-     * @param voucher_id 凭证id
      * @param phase      时期
      * @return
      */
-    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String voucher_id, String phase) {
+    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String phase) {
         CourseMessageService service = new CourseMessageServiceImpl();
         ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageByTime(phase);
         ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageByTime(getBeginningOfYear(phase));

@@ -11,9 +11,8 @@ import java.util.Map;
 public interface BalanceSheetService {
     /**
      * 得到资产负债表数据
-     * @param voucher_id 凭证id
      * @param phase 时期
      * @return
      */
-    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String voucher_id, String phase);
+    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String phase);
 }
