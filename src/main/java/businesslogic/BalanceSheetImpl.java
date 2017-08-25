@@ -287,6 +287,25 @@ public class BalanceSheetImpl implements BalanceSheetService {
     }
 
     /**
+     * 得到凭证最早时间
+     * @return
+     */
+    public String getEarliestTime(){
+        CourseMessageService service = new CourseMessageServiceImpl();
+        return service.getEarliestTime();
+    }
+
+    /**
+     * 得到凭证最晚时间
+     * @return
+     */
+    public String getLatestTime(){
+        CourseMessageService service = new CourseMessageServiceImpl();
+        return service.getLatestTime();
+    }
+
+
+    /**
      * 根据时间得到资产负债表的货币资产
      * @param time
      * @return

@@ -33,4 +33,16 @@ public interface CourseMessageService {
      * @return
      */
     public int getVoucherNumber();
+
+    /**
+     * 得到凭证最早时间
+     * @return
+     */
+    public String getEarliestTime();
+
+    /**
+     * 得到凭证最晚时间
+     * @return
+     */
+    public String getLatestTime();
 }
