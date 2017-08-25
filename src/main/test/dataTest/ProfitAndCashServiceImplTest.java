@@ -7,6 +7,7 @@ import org.junit.Test;
 import po.VoucherAmountPO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by loohaze on 2017/8/13.
@@ -48,6 +49,28 @@ public class ProfitAndCashServiceImplTest {
         ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersBefore(period,account_id);
         for (VoucherAmountPO po : list){
             System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
+        }
+    }
+
+    @Test
+    public void testGetGivenVourchers(){
+        String time = "2012-04";
+        String id1 = "1001";
+        String id2 = "1002";
+        List<Double> list = profitAndCashService.getGivenVourchers(time,id1,id2);
+        for (double minNum : list){
+            System.out.println(minNum);
+        }
+    }
+
+    @Test
+    public void testGetGivenVourchersByYear(){
+        String time = "2012";
+        String id1 = "1001";
+        String id2 = "1002";
+        List<Double> list = profitAndCashService.getGivenVourchersByYear(time,id1,id2);
+        for (double minNum : list){
+            System.out.println(minNum);
         }
     }
 }
