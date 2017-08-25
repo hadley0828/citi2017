@@ -278,6 +278,15 @@ public class BalanceSheetImpl implements BalanceSheetService {
     }
 
     /**
+     * 得到所有凭证数量
+     * @return
+     */
+    public int getVoucherNumber(){
+        CourseMessageService service = new CourseMessageServiceImpl();
+        return service.getVoucherNumber();
+    }
+
+    /**
      * 根据时间得到资产负债表的货币资产
      * @param time
      * @return

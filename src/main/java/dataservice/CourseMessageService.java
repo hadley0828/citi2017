@@ -27,4 +27,10 @@ public interface CourseMessageService {
      * @return
      */
     public String getCourseNameById(String id);
+
+    /**
+     * 得到所有凭证数量
+     * @return
+     */
+    public int getVoucherNumber();
 }

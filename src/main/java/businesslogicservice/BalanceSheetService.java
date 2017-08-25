@@ -15,4 +15,10 @@ public interface BalanceSheetService {
      * @return
      */
     public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String phase);
+
+    /**
+     * 得到所有凭证数量
+     * @return
+     */
+    public int getVoucherNumber();
 }
