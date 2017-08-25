@@ -58,6 +58,42 @@ public class CourseMessageServiceImpl implements CourseMessageService{
         return map.get("subjects_name").toString();
     }
 
+    @Override
+    public int getVoucherNumber() {
+        sqlManager.getConnection();
+
+        String sql = "SELECT count(v_id) as num from voucher";
+        Map<String, Object> map = sqlManager.querySimple(sql,new Object[]{});
+        int result = Integer.parseInt(map.get("num").toString());
+        sqlManager.releaseAll();
+
+        return result;
+    }
+
+    @Override
+    public String getEarliestTime() {
+        sqlManager.getConnection();
+
+        String sql = "SELECT min(date) as earlytime from voucher";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{});
+        String[] time = map.get("earlytime").toString().split("-");
+        String result = time[0]+ "-" + time[1];
+        sqlManager.releaseAll();
+        return result;
+    }
+
+    @Override
+    public String getLatestTime() {
+        sqlManager.getConnection();
+
+        String sql = "SELECT max(date) as latetime from voucher";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{});
+        String[] time = map.get("latetime").toString().split("-");
+        String result = time[0]+ "-" + time[1];
+        sqlManager.releaseAll();
+        return result;
+    }
+
     /**
      * 根据 yyyy-mm 时间格式获得 凭证id
      * @param period

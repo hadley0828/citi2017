@@ -45,4 +45,19 @@ public class CourseMessageServiceImplTest {
         String id = "1122";
         System.out.println(courseMessageService.getCourseNameById(id));
     }
+
+    @Test
+    public void testGetVoucherNumber(){
+        System.out.println(courseMessageService.getVoucherNumber());
+    }
+
+    @Test
+    public void testGetEarliestTime(){
+        System.out.println(courseMessageService.getEarliestTime());
+    }
+
+    @Test
+    public void testGetLatestTime(){
+        System.out.println(courseMessageService.getLatestTime());
+    }
 }
