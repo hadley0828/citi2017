@@ -91,6 +91,7 @@ public interface VoucherBlService {
 
     /**
      * 获得按条件筛选后的全部的凭证信息
+     * ps:加入搜索的vo中的一个String用户没有填写 则传入的是"" double传入的是-1.0 int传入的是-1 !!!
      * @param voucherSearchVo
      * @return
      */

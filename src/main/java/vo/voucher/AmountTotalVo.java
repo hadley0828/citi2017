@@ -1,5 +1,11 @@
 package vo.voucher;
 
+import po.VoucherAmountPO;
+import po.VoucherPO;
+import util.NumberToCN;
+
+import java.util.ArrayList;
+
 /**
  * Created by zhangzy on 2017/8/13 上午12:19
  */
@@ -11,6 +17,26 @@ public class AmountTotalVo {
 
     public AmountTotalVo(){
         super();
+    }
+
+    public AmountTotalVo(ArrayList<VoucherAmountPO> amountPOArrayList){
+        if(amountPOArrayList.size()!=0){
+            double debitNumber=0.0;
+            double creditNumber=0.0;
+
+            for(int count=0;count<amountPOArrayList.size();count++){
+                VoucherAmountPO onePo=amountPOArrayList.get(count);
+                debitNumber=debitNumber+onePo.getDebitAmount();
+                creditNumber=creditNumber+onePo.getCreditAmount();
+
+            }
+
+            this.chineseTotal=NumberToCN.number2CNMontrayUnit(creditNumber);
+            this.debitAmount=debitNumber;
+            this.creditAmount=creditNumber;
+
+        }
+
     }
 
     @Override

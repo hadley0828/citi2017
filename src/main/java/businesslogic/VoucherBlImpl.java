@@ -8,6 +8,7 @@ import po.VoucherAmountPO;
 import po.VoucherPO;
 import po.VoucherTemplateAmountPO;
 import po.VoucherTemplatePO;
+import util.DateConvert;
 import util.NowString;
 import util.NumberToCN;
 import vo.voucher.*;
@@ -288,6 +289,9 @@ public class VoucherBlImpl implements VoucherBlService {
         ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher();
         HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=voucherDataService.findAllVoucherAllAmount();
 
+        ArrayList<VoucherVo> resultVoList=new ArrayList<>();
+
+        //先获取数据库中所有存在的凭证信息
         if(allVoucherPoList.size()==0){
             return null;
         }else{
@@ -300,12 +304,38 @@ public class VoucherBlImpl implements VoucherBlService {
                 }else{
                     ArrayList<VoucherAmountPO> amountPOList=allVoucherMap.get(voucherId);
                     //对voucherPO和amountPOList进行处理
+                    VoucherVo oneVoucherVo=new VoucherVo(voucherPO);
+                    ArrayList<VoucherAmountVo> amountVoArrayList=new ArrayList<>();
 
+                    for(int index=0;index<amountPOList.size();index++){
+                        amountVoArrayList.add(new VoucherAmountVo(amountPOList.get(index)));
+                    }
+                    AmountTotalVo amountTotalVo=new AmountTotalVo(amountPOList);
+
+                    oneVoucherVo.setAmountList(amountVoArrayList);
+                    oneVoucherVo.setAmountTotalVo(amountTotalVo);
+
+                    allVoucherVoList.add(oneVoucherVo);
 
 
                 }
             }
         }
+
+        //用户输入的搜索信息 voucherSearchVo
+
+        //对全部的凭证信息根据搜索的vo进行筛选 voucherSearchVo
+        for(int count=0;count<allVoucherVoList.size();count++){
+            VoucherVo thisVo=allVoucherVoList.get(count);
+            if(isOneVoucherVoSearched(voucherSearchVo,thisVo)==true){
+                resultVoList.add(thisVo);
+            }
+        }
+
+        //按照用户输入的排序方式来进行排序  1是凭证号排序 2是凭证日期排序
+
+
+
 
 
         return null;
@@ -327,12 +357,13 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public boolean exportToExcel(ArrayList<String> voucherIdList) {
-
+        //TODO
         return false;
     }
 
     @Override
     public ArrayList<VoucherVo> importFromExcel(String filePath) {
+        //TODO
         return null;
     }
 
@@ -356,7 +387,7 @@ public class VoucherBlImpl implements VoucherBlService {
             ArrayList<VoucherAmountPO> amountPOArrayList=new ArrayList<>();
             ArrayList<VoucherAmountVo> amountVoArrayList=voucherVo.getAmountList();
 
-            //先删除再添加!
+            //先删除再添加! TODO
 
 
         }
@@ -383,5 +414,155 @@ public class VoucherBlImpl implements VoucherBlService {
     @Override
     public int getCurrentNumber(String voucherCharacter) {
         return 0;
+    }
+
+    /**
+     * 用来判断一个VoucherVo是否符合搜索条件
+     * @param searchVo
+     * @param vo
+     * @return
+     */
+    private boolean isOneVoucherVoSearched(VoucherSearchVo searchVo,VoucherVo vo){
+        boolean result=true;
+
+        //有一个条件不满足就返回false 全部满足才能返回true
+
+        //处理会计期间
+        if(searchVo.getStartPeriod().equals(searchVo.getEndPeriod())){
+            String period=searchVo.getStartPeriod();
+            String oneMonth= DateConvert.periodToMonth(period);
+
+            //月份不包含搜索的月就直接返回false
+            if(!vo.getDate().contains(oneMonth)){
+                return false;
+            }
+        }else{
+            String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
+            String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
+            HashSet<String> betweenMonthSet=DateConvert.getBetweenMonth(startMonth,endMonth);
+
+            String currentMonth=vo.getDate().substring(0,vo.getDate().lastIndexOf("-"));
+
+            if(!betweenMonthSet.contains(currentMonth)){
+                return false;
+            }
+        }
+
+        //处理凭证字
+        String searchCharacter=searchVo.getCharacter();
+        if(!searchCharacter.equals("全部")){
+            if(!searchCharacter.equals(vo.getVoucherId().split("-")[0])){
+                return false;
+            }
+        }
+
+        //处理制单人
+        String searchMaker=searchVo.getMaker();
+        if(!searchMaker.equals("全部")){
+            if(!searchMaker.equals(vo.getVoucherMaker())){
+                return false;
+            }
+        }
+
+        //处理摘要和科目id 摘要和科目id都是包含的关系
+        String searchAbstract=searchVo.getAbstracts();
+        String searchSubject=searchVo.getSubjectId();
+
+        ArrayList<VoucherAmountVo> amountVoArrayList=vo.getAmountList();
+
+        //每一行都没有摘要 每一行都没有科目id才返回false
+
+        //需要分别处理摘要和科目id
+
+        boolean abstractResult=false;
+        if(!(searchAbstract==null||searchAbstract.length()<=0)){
+            for(int count=0;count<amountVoArrayList.size();count++){
+                VoucherAmountVo oneAmountVo=amountVoArrayList.get(count);
+                boolean result1;
+                String oneAbstract=oneAmountVo.getAbstracts();
+
+                if(searchAbstract.indexOf(oneAbstract)!=-1||oneAbstract.indexOf(searchAbstract)!=-1){
+                    result1=true;
+                }else{
+                    result1=false;
+                }
+
+                abstractResult=abstractResult||result1;
+            }
+
+            if(abstractResult==false){
+                return false;
+            }
+        }
+
+        boolean subjectResult=false;
+        if(!(searchSubject==null||searchSubject.length()<=0)){
+            for(int count=0;count<amountVoArrayList.size();count++){
+                VoucherAmountVo oneAmountVo=amountVoArrayList.get(count);
+                boolean result2;
+                String oneSubject=oneAmountVo.getSubject();
+
+                if(searchSubject.indexOf(oneSubject)!=-1||oneSubject.indexOf(searchSubject)!=-1){
+                    result2=true;
+                }else{
+                    result2=false;
+                }
+
+                subjectResult=subjectResult||result2;
+            }
+
+            if(subjectResult==false){
+                return false;
+            }
+        }
+
+        //处理金额
+        double searchLowPrice=searchVo.getLowPrice();
+        double searchHighPrice=searchVo.getHighPrice();
+
+        if(!(searchLowPrice==-1.0&&searchHighPrice==-1.0)){
+            double currentPrice=vo.getAmountTotalVo().getCreditAmount();
+            if(searchLowPrice==-1.0){
+                if(currentPrice>searchHighPrice){
+                    return false;
+                }
+            }else if(searchHighPrice==-1.0){
+                if(currentPrice<searchLowPrice){
+                    return false;
+                }
+
+
+            }else{
+                if(currentPrice<searchLowPrice||currentPrice>searchHighPrice){
+                    return false;
+                }
+            }
+        }
+
+        //处理凭证号
+        int searchLowNumber=searchVo.getLowVoucherNumber();
+        int searchHighNumber=searchVo.getHighVoucherNumber();
+
+        if(!(searchLowNumber==-1&&searchHighNumber==-1)){
+            int currentNumber=Integer.valueOf(vo.getVoucherId().split("-")[1]);
+            if(searchLowNumber==-1){
+                if(currentNumber>searchHighNumber){
+                    return false;
+                }
+            }else if(searchHighNumber==-1){
+
+                if(currentNumber<searchLowNumber){
+                    return false;
+                }
+
+            }else{
+                if(currentNumber<searchLowNumber||currentNumber>searchHighNumber){
+                    return false;
+                }
+            }
+        }
+
+
+        return result;
     }
 }
