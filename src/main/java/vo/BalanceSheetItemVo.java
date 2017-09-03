@@ -1,5 +1,7 @@
 package vo;
 
+import javafx.beans.property.*;
+
 /**
  * Created by 费慧通 on 2017/8/7.
  *
@@ -28,12 +30,20 @@ public class BalanceSheetItemVo {
         this.property_name = property_name;
     }
 
+    public StringProperty getProperty_nameProperty(){
+        return new SimpleStringProperty(property_name);
+    }
+
     public int getLine_No(){
         return Line_No;
     }
 
     public void setLine_No(int Line_No){
         this.Line_No = Line_No;
+    }
+
+    public IntegerProperty getLine_NoProperty(){
+        return new SimpleIntegerProperty(Line_No);
     }
 
     public double getEnding_balance(){
@@ -44,12 +54,20 @@ public class BalanceSheetItemVo {
         this.ending_balance = ending_balance;
     }
 
+    public DoubleProperty getEnding_balanceProperty(){
+        return new SimpleDoubleProperty(ending_balance);
+    }
+
     public double getBeginning_balance(){
         return beginning_balance;
     }
 
     public void setBeginning_balance(double beginning_balance){
         this.beginning_balance = beginning_balance;
+    }
+
+    public DoubleProperty getBeginning_balanceProperty(){
+        return new SimpleDoubleProperty(beginning_balance);
     }
 
 //    public String getLaw() {

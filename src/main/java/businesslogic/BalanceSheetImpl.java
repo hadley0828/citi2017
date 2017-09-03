@@ -31,6 +31,9 @@ public class BalanceSheetImpl implements BalanceSheetService {
         //1流动资产
         ArrayList<BalanceSheetItemVo> current_asset = new ArrayList<BalanceSheetItemVo>();
 
+        //标题
+        current_asset.add(new BalanceSheetItemVo("流动资产",0,0,0));
+
         //1.1货币资金=其他货币资金+库存现金+银行存款
         double ending_balance1_1 = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
         double beginning_balance1_1 = getMoneyByCourseId(polist2, "1012", true) + getMoneyByCourseId(polist2, "1001", true) + getMoneyByCourseId(polist2, "1002", true);
@@ -88,6 +91,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         //非流动资产
         ArrayList<BalanceSheetItemVo> no_current_asset = new ArrayList<BalanceSheetItemVo>();
+
+        //标题
+        no_current_asset.add(new BalanceSheetItemVo("非流动资产",0,0,0));
+
         //2.1长期债券投资
         double ending_balance2_1 = getMoneyByCourseId(polist1, "1501", true);
         double beginning_balance2_1 = getMoneyByCourseId(polist2, "1501", true);
@@ -159,6 +166,9 @@ public class BalanceSheetImpl implements BalanceSheetService {
         //4流动负债
         ArrayList<BalanceSheetItemVo> current_liabilities = new ArrayList<BalanceSheetItemVo>();
 
+        //标题
+        current_liabilities.add(new BalanceSheetItemVo("流动负债",0,0,0));
+
         //4.1短期借款
         double ending_balance4_1 = getMoneyByCourseId(polist1, "2001", false);
         double beginning_balance4_1 = getMoneyByCourseId(polist2, "2001", false);
@@ -209,6 +219,9 @@ public class BalanceSheetImpl implements BalanceSheetService {
         //5非流动负债
         ArrayList<BalanceSheetItemVo> no_current_liabilities = new ArrayList<BalanceSheetItemVo>();
 
+        //标题
+        no_current_liabilities.add(new BalanceSheetItemVo("非流动负债",0,0,0));
+
         //5.1长期借款
         double ending_balance5_1 = getMoneyByCourseId(polist1, "2501", false);
         double beginning_balance5_1 = getMoneyByCourseId(polist2, "2501", false);
@@ -243,6 +256,9 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         //所有者权益（或股东权益）
         ArrayList<BalanceSheetItemVo> owners_equity = new ArrayList<BalanceSheetItemVo>();
+
+        //标题
+        owners_equity.add(new BalanceSheetItemVo("所有者权益",0,0,0));
 
         //7.1实收资本（或股本）
         double ending_balance7_1 = getMoneyByCourseId(polist1, "3001", false);
