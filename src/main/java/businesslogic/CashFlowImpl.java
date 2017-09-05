@@ -47,7 +47,6 @@ public class CashFlowImpl implements CashFlowTableService{
 		operating_activities[2]=temp1*(1+0.17)+temp2+temp3+temp4;//1.3“购买原材料、商品、接受劳务支付的现金”的本月金额
 		
 		temp1=helper.DebitCal(DATA.getVourchersByPeriod(time, "2211"));//“应付职工薪酬”科目本期借方发生额累计数
-		//“应付职工薪酬”科目本期借方发生额中非现金支付的部分??????待定
 		operating_activities[3]=temp1;//“支付的职工薪酬”的本月金额 
 		
 		temp1=helper.DebitCal(DATA.getVourchersByPeriod(time, "2221"));//“应交税费”各明细账户本期借方发生额累计数
@@ -94,7 +93,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		else temp3-=temp5;
 		Investment_activities[3]=temp1+temp2+temp3;//2.4“短期投资、长期债券投资和长期股权投资支付的现金”
 		
-		temp1=tool.get("在建工程期")[1]-tool.get("在建工程期")[0];//（在建工程期末数－在建工程期初数）（当期初数＜期末数时）
+		temp1=tool.get("在建工程")[1]-tool.get("在建工程")[0];//（在建工程期末数－在建工程期初数）（当期初数＜期末数时）
 		if(temp1<0)temp1=0;
 		temp2=tool.get("固定资产")[1]-tool.get("固定资产")[0];//（固定资产期末数－固定资产期初数）（当期初数＜期末数时）
 		if(temp2<0)temp2=0;
@@ -131,7 +130,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		
 	    double Final_cash_balance=Net_cash_increase[0]+Net_cash_increase[1];//“五、期末现金余额”
 			
-		operating_activities[6]=Net_cash_increase[0]-Investment_activities[6]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
+		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
 		operating_activities[1]=operating_activities[6]-operating_activities[0]+operating_activities[2]+
 				operating_activities[3]+operating_activities[4]+operating_activities[5];
 	    
@@ -160,7 +159,6 @@ public class CashFlowImpl implements CashFlowTableService{
 		operating_activities[2]=temp1*(1+0.17)+temp2+temp3+temp4;//1.3“购买原材料、商品、接受劳务支付的现金”的本月金额
 		
 		temp1=helper.DebitCal(DATA.getVourchersByYear(time, "2211"));//“应付职工薪酬”科目本期借方发生额累计数
-		//“应付职工薪酬”科目本期借方发生额中非现金支付的部分??????待定
 		operating_activities[3]=temp1;//“支付的职工薪酬”的本月金额 
 		
 		temp1=helper.DebitCal(DATA.getVourchersByYear(time, "2221"));//“应交税费”各明细账户本期借方发生额累计数
@@ -207,7 +205,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		else temp3-=temp5;
 		Investment_activities[3]=temp1+temp2+temp3;//2.4“短期投资、长期债券投资和长期股权投资支付的现金”
 		
-		temp1=tool.get("在建工程期")[1]-tool.get("在建工程期")[2];//（在建工程期末数－在建工程期初数）（当期初数＜期末数时）
+		temp1=tool.get("在建工程")[1]-tool.get("在建工程")[2];//（在建工程期末数－在建工程期初数）（当期初数＜期末数时）
 		if(temp1<0)temp1=0;
 		temp2=tool.get("固定资产")[1]-tool.get("固定资产")[2];//（固定资产期末数－固定资产期初数）（当期初数＜期末数时）
 		if(temp2<0)temp2=0;
@@ -244,7 +242,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		
 	    double Final_cash_balance=Net_cash_increase[0]+Net_cash_increase[1];//“五、期末现金余额”
 			
-		operating_activities[6]=Net_cash_increase[0]-Investment_activities[6]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
+		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
 		operating_activities[1]=operating_activities[6]-operating_activities[0]+operating_activities[2]+
 				operating_activities[3]+operating_activities[4]+operating_activities[5];
 	    
