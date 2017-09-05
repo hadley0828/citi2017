@@ -108,4 +108,5 @@ public class DistributorListPO extends InventoryListSuperClass{
     public void setBalanceAccount(int balanceAccount) {
         this.balanceAccount = balanceAccount;
     }
+
 }
