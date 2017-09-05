@@ -15,8 +15,10 @@ public class CourseMessageServiceImplTest {
 
     private CourseMessageService courseMessageService;
 
+
     @Before
     public void setUp() throws Exception{
+
         courseMessageService = new CourseMessageServiceImpl();
     }
 
