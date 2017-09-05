@@ -301,7 +301,12 @@ public class SqlManager {
     }
 
     public static void main(String[] args) throws SQLException{
-        SqlManager.getSqlManager().getConnection();
-        System.out.println("success!");
+        try{
+            SqlManager.getSqlManager().getConnection();
+            System.out.println("success!");
+        }catch (Exception e){
+            System.out.println("fail!");
+        }
+
     }
 }

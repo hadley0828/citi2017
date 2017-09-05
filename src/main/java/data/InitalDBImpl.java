@@ -30,7 +30,7 @@ public class InitalDBImpl implements InitialDB {
         Statement stmt = null;
         boolean success = false;
 
-        String dbName = "citi";
+        String dbName = "nd";
         try{
             List<String> sqlList = new ArrayList<String>();
             try{
