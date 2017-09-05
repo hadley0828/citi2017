@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import presentation.componentController.Datebar?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.BalanceSheetController">
+<ScrollPane hbarPolicy="NEVER" maxHeight="2000.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.BalanceSheetController">
    <content>
-      <Pane id="bigPane" prefHeight="1000.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css">
+      <Pane id="bigPane" maxHeight="1.7976931348623157E308" prefHeight="1420.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css">
          <children>
             <Pane prefHeight="60.0" prefWidth="1180.0">
                <children>
@@ -25,7 +25,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane id="innerPane" layoutX="90.0" layoutY="60.0" prefHeight="800.0" prefWidth="1000.0" stylesheets="@../../css/BalanceSheet.css">
+            <Pane id="innerPane" layoutX="90.0" layoutY="60.0" prefHeight="1420.0" prefWidth="1000.0" stylesheets="@../../css/BalanceSheet.css">
                <children>
                   <Button id="print" fx:id="print" layoutX="826.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" stylesheets="@../../css/BalanceSheet.css" text="    打印" textFill="WHITE">
                      <font>
@@ -37,20 +37,23 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <TableView id="propertyTable" layoutX="28.0" layoutY="68.0" prefHeight="629.0" prefWidth="475.0">
+                  <TableView fx:id="propertyTable" layoutX="28.0" layoutY="68.0" prefHeight="1250.0" prefWidth="475.0">
                     <columns>
-                      <TableColumn fx:id="property_item" prefWidth="195.0" resizable="false" text="资产" />
-                      <TableColumn fx:id="row_item" minWidth="0.0" prefWidth="46.0" resizable="false" text="行次" />
-                        <TableColumn fx:id="endbalance_item" prefWidth="111.0" resizable="false" text="期末余额" />
-                        <TableColumn fx:id="yearbegin_item" prefWidth="122.0" resizable="false" text="年初余额" />
+                      <TableColumn fx:id="property_item" editable="false" prefWidth="195.0" resizable="false" sortable="false" text="资产" />
+                      <TableColumn fx:id="row_item" editable="false" minWidth="0.0" prefWidth="46.0" resizable="false" sortable="false" text="行次" />
+                        <TableColumn fx:id="endbalance_item" editable="false" prefWidth="111.0" resizable="false" sortable="false" text="期末余额" />
+                        <TableColumn fx:id="yearbegin_item" editable="false" prefWidth="122.0" resizable="false" sortable="false" text="年初余额" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
-                  <TableView id="debtTable" layoutX="502.0" layoutY="68.0" prefHeight="629.0" prefWidth="474.0" stylesheets="@../../css/BalanceSheet.css">
+                  <TableView fx:id="debtTable" layoutX="502.0" layoutY="68.0" prefHeight="1250.0" prefWidth="474.0" stylesheets="@../../css/BalanceSheet.css">
                      <columns>
-                        <TableColumn fx:id="debt_item" prefWidth="195.0" resizable="false" text="负债和所有者权益" />
-                        <TableColumn fx:id="row_itemm" minWidth="0.0" prefWidth="46.0" resizable="false" text="行次" />
-                        <TableColumn fx:id="endbalance_itemm" prefWidth="111.0" resizable="false" text="期末余额" />
-                        <TableColumn fx:id="yearbegin_itemm" prefWidth="121.0" resizable="false" text="年初余额" />
+                        <TableColumn fx:id="debt_item" editable="false" prefWidth="195.0" resizable="false" sortable="false" text="负债和所有者权益" />
+                        <TableColumn fx:id="row_itemm" editable="false" minWidth="0.0" prefWidth="46.0" resizable="false" sortable="false" text="行次" />
+                        <TableColumn fx:id="endbalance_itemm" editable="false" prefWidth="111.0" resizable="false" sortable="false" text="期末余额" />
+                        <TableColumn fx:id="yearbegin_itemm" editable="false" prefWidth="121.0" resizable="false" sortable="false" text="年初余额" />
                      </columns>
                   </TableView>
                    <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="913.0" layoutY="27.0">
@@ -65,7 +68,7 @@
                 </ImageView>
                    <HBox layoutX="28.0" layoutY="21.0" prefHeight="36.0" prefWidth="162.0">
                        <children>
-                           <Datebar />
+                           <Datebar fx:id="bar" />
                        </children>
                    </HBox>
                </children>
