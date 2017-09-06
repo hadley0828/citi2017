@@ -12,14 +12,14 @@ public class BalanceSheetItemVo {
     private int Line_No;    //行次
     private double ending_balance;  //期末余额
     private double beginning_balance;   //年初余额
-//    String law;     //公式
+    String law;     //公式
 
-    public BalanceSheetItemVo(String property_name, int Line_No, double ending_balance, double beginning_balance){
+    public BalanceSheetItemVo(String property_name, int Line_No, double ending_balance, double beginning_balance, String law){
         this.property_name = property_name;
         this.Line_No = Line_No;
         this.ending_balance = ending_balance;
         this.beginning_balance = beginning_balance;
-//        this.law = law;
+        this.law = law;
     }
 
     public String getProperty_name(){
@@ -70,11 +70,15 @@ public class BalanceSheetItemVo {
         return new SimpleDoubleProperty(beginning_balance);
     }
 
-//    public String getLaw() {
-//        return law;
-//    }
-//
-//    public void setLaw(String law) {
-//        this.law = law;
-//    }
+    public String getLaw() {
+        return law;
+    }
+
+    public void setLaw(String law) {
+        this.law = law;
+    }
+
+    public StringProperty getLawProperty(){
+        return new SimpleStringProperty(law);
+    }
 }
