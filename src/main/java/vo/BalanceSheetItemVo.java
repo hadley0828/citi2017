@@ -8,10 +8,10 @@ import javafx.beans.property.*;
  * 资产负债表的元组
  */
 public class BalanceSheetItemVo {
-    String property_name;   //资产名称
-    int Line_No;    //行次
-    double ending_balance;  //期末余额
-    double beginning_balance;   //年初余额
+    private String property_name;   //资产名称
+    private int Line_No;    //行次
+    private double ending_balance;  //期末余额
+    private double beginning_balance;   //年初余额
 //    String law;     //公式
 
     public BalanceSheetItemVo(String property_name, int Line_No, double ending_balance, double beginning_balance){

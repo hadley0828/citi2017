@@ -11,7 +11,7 @@ HBox{
     -fx-border-color: rgb(204,204,204);
     -fx-border-radius: 0;
 }
-#property_item,#debt_item,#yearbegin_item,#yearbegin_itemm,#row_item,#row_itemm,#endbalance_item,#endbalance_itemm,#end_item,#begin_item,#operate_item,#formsign_item,#termname_item,#num_regulation_item,#year_cur__item,#month_cur_item,#termname_item2,#num_regulation_item2,#formsign_item2,#operate_item2{
+#project_item,#yearcul_item,#month_item,#l_item,#property_item,#debt_item,#yearbegin_item,#yearbegin_itemm,#row_item,#row_itemm,#line_item,#endbalance_item,#endbalance_itemm,#end_item,#begin_item,#operate_item,#formsign_item,#termname_item,#num_regulation_item,#year_cur__item,#month_cur_item,#termname_item2,#num_regulation_item2,#formsign_item2,#operate_item2{
     -fx-background-color: rgb(239,239,239);
     -fx-pref-height: 42;
 }
@@ -19,3 +19,26 @@ ChoiceBox{
     -fx-background-color: rgb(255,255,255);
     -fx-border-color: rgb(226,231,235);
 }
+TableView{
+    -fx-border-color: rgb(212,212,212);
+    -fx-border-width: 1px 1px 0 0;
+}
+TableView:focused{
+    -fx-border-width: 0;
+}
+TableView .table-column{
+    -fx-alignment: CENTER;
+    /*-fx-background-color: rgb(245,255,246);*/
+}
+TableView .table-cell{
+    -fx-border-color: rgb(212,212,212);
+    -fx-border-width: 1px 1px 0 0;
+}
+TableView .table-cell:hover {
+    -fx-background-color: rgb(255,250,208);
+}
+TableView .table-cell:selected {
+    -fx-background-color: rgb(255,250,208);
+}
+/*rgb(245,255,246)*/
+
