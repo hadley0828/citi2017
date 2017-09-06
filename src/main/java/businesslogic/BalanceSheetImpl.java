@@ -257,6 +257,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
         //所有者权益（或股东权益）
         ArrayList<BalanceSheetItemVo> owners_equity = new ArrayList<BalanceSheetItemVo>();
 
+        owners_equity.add(new BalanceSheetItemVo("",0,0,0));
+        owners_equity.add(new BalanceSheetItemVo("",0,0,0));
         //标题
         owners_equity.add(new BalanceSheetItemVo("所有者权益",0,0,0));
 

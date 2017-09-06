@@ -5,10 +5,10 @@ import businesslogicservice.BalanceSheetService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import vo.BalanceSheetItemVo;
 
@@ -56,6 +56,7 @@ public class BalanceSheetController {
     private void initialize(){
         setBalanceTable();
         dropzero();
+        setCell();
     }
 //    private String date=bar.getDate();
 
@@ -135,6 +136,157 @@ public class BalanceSheetController {
             if(vo.getLine_No()==0){
             }
         }
+    }
+
+    public void setCell(){
+       endbalance_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Double>, TableCell<BalanceSheetItemVo,Double>>() {
+           @Override
+           public TableCell<BalanceSheetItemVo,Double> call(TableColumn<BalanceSheetItemVo,Double> param) {
+               return new TextFieldTableCell<BalanceSheetItemVo,Double>(){
+                   public void updateItem(Double d,boolean isEmpty){
+                       super.updateItem(d,isEmpty);
+                       if(!isEmpty){
+                           BalanceSheetItemVo vo=getTableView().getItems().get(getTableRow().getIndex());
+                           if(vo.getEnding_balance()==0){
+                               setStyle("-fx-text-fill: transparent;");
+                           }else if(vo.getEnding_balance()<0){
+                               setStyle("-fx-text-fill: red;");
+                           }
+                           Tooltip tip=new Tooltip("123");
+                           setTooltip(tip);
+
+                       }
+                   }
+               };
+           }
+       });
+        endbalance_itemm.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Double>, TableCell<BalanceSheetItemVo,Double>>() {
+            @Override
+            public TableCell<BalanceSheetItemVo,Double> call(TableColumn<BalanceSheetItemVo,Double> param) {
+                return new TextFieldTableCell<BalanceSheetItemVo,Double>(){
+                    public void updateItem(Double d,boolean isEmpty){
+                        super.updateItem(d,isEmpty);
+                        if(!isEmpty){
+                            BalanceSheetItemVo vo=getTableView().getItems().get(getTableRow().getIndex());
+                            if(vo.getEnding_balance()==0){
+                                setStyle("-fx-text-fill: transparent;");
+                            }else if(vo.getEnding_balance()<0){
+                                setStyle("-fx-text-fill: red;");
+                            }
+                            Tooltip tip=new Tooltip("123");
+                            setTooltip(tip);
+
+                        }
+                    }
+                };
+            }
+        });
+       property_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,String>, TableCell<BalanceSheetItemVo,String>>() {
+           @Override
+           public TableCell<BalanceSheetItemVo,String> call(TableColumn<BalanceSheetItemVo,String> param) {
+               return new TextFieldTableCell<BalanceSheetItemVo,String>(){
+                   public void updateItem(String string,boolean isEmpty){
+                       super.updateItem(string,isEmpty);
+                       if(!isEmpty){
+                           BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
+                           if(v.getLine_No()==0||v.getLine_No()==30){
+                               setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
+                           }
+                       }
+                   }
+               };
+           }
+       });
+        debt_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,String>, TableCell<BalanceSheetItemVo,String>>() {
+            @Override
+            public TableCell<BalanceSheetItemVo,String> call(TableColumn<BalanceSheetItemVo,String> param) {
+                return new TextFieldTableCell<BalanceSheetItemVo,String>(){
+                    public void updateItem(String string,boolean isEmpty){
+                        super.updateItem(string,isEmpty);
+                        if(!isEmpty){
+                            BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
+                            if(v.getLine_No()==0||v.getLine_No()==47||v.getLine_No()==53){
+                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
+                            }
+                        }
+                    }
+                };
+            }
+        });
+       row_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Integer>, TableCell<BalanceSheetItemVo,Integer>>() {
+           @Override
+           public TableCell<BalanceSheetItemVo,Integer> call(TableColumn<BalanceSheetItemVo,Integer> param) {
+               return new TextFieldTableCell<BalanceSheetItemVo,Integer>(){
+                   public void updateItem(Integer i,boolean isEmpty){
+                       super.updateItem(i,isEmpty);
+                       if(!isEmpty){
+                           BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
+                           if(v.getLine_No()==0){
+                               setStyle("-fx-text-fill: transparent;");
+                           }
+                       }
+                   }
+               };
+           }
+       });
+       yearbegin_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Double>, TableCell<BalanceSheetItemVo,Double>>() {
+            @Override
+            public TableCell<BalanceSheetItemVo,Double> call(TableColumn<BalanceSheetItemVo,Double> param) {
+                return new TextFieldTableCell<BalanceSheetItemVo,Double>(){
+                    public void updateItem(Double d,boolean isEmpty){
+                        super.updateItem(d,isEmpty);
+                        if(!isEmpty){
+                            BalanceSheetItemVo vo=getTableView().getItems().get(getTableRow().getIndex());
+                            if(vo.getBeginning_balance()==0){
+                                setStyle("-fx-text-fill: transparent;");
+                            }else if(vo.getBeginning_balance()<0){
+                                setStyle("-fx-text-fill: red;");
+                            }
+                            Tooltip tip=new Tooltip("123");
+                            setTooltip(tip);
+
+                        }
+                    }
+                };
+            }
+        });
+        row_itemm.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Integer>, TableCell<BalanceSheetItemVo,Integer>>() {
+            @Override
+            public TableCell<BalanceSheetItemVo,Integer> call(TableColumn<BalanceSheetItemVo,Integer> param) {
+                return new TextFieldTableCell<BalanceSheetItemVo,Integer>(){
+                    public void updateItem(Integer i,boolean isEmpty){
+                        super.updateItem(i,isEmpty);
+                        if(!isEmpty){
+                            BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
+                            if(v.getLine_No()==0){
+                                setStyle("-fx-text-fill: transparent;");
+                            }
+                        }
+                    }
+                };
+            }
+        });
+        yearbegin_itemm.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,Double>, TableCell<BalanceSheetItemVo,Double>>() {
+            @Override
+            public TableCell<BalanceSheetItemVo,Double> call(TableColumn<BalanceSheetItemVo,Double> param) {
+                return new TextFieldTableCell<BalanceSheetItemVo,Double>(){
+                    public void updateItem(Double d,boolean isEmpty){
+                        super.updateItem(d,isEmpty);
+                        if(!isEmpty){
+                            BalanceSheetItemVo vo=getTableView().getItems().get(getTableRow().getIndex());
+                            if(vo.getBeginning_balance()==0){
+                                setStyle("-fx-text-fill: transparent;");
+                            }else if(vo.getBeginning_balance()<0){
+                                setStyle("-fx-text-fill: red;");
+                            }
+                            Tooltip tip=new Tooltip("123");
+                            setTooltip(tip);
+
+                        }
+                    }
+                };
+            }
+        });
     }
 
 }

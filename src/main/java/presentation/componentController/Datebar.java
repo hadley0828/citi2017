@@ -17,6 +17,7 @@ import presentation.viewController.BalanceSheetController;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -88,5 +89,24 @@ public class Datebar extends HBox{
     public String getDate(){
 //        System.out.print(getYear());
         return getYear()+"-"+getMonth();
+    }
+
+    public void setDateBar(){
+        if (voucher_num!=0){
+            String theEarly=balanceSheetService.getEarliestTime();
+            String theLate=balanceSheetService.getLatestTime();
+
+
+        }
+    }
+
+    public String dateFormat="yyyy-MM";
+    public SimpleDateFormat format=new SimpleDateFormat(dateFormat);
+    public ArrayList days(String date1,String date2){
+        ArrayList list=new ArrayList();
+        list.add(date1);
+
+        return list;
+
     }
 }

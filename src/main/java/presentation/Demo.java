@@ -17,7 +17,7 @@ public class Demo extends Application {
     public void start(Stage primaryStage){
         try{
             FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
             ScrollPane root=loader.load();
 
             primaryStage.setScene(new Scene(root));
