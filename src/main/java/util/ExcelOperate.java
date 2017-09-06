@@ -43,6 +43,19 @@ public class ExcelOperate {
         return list;
     }
 
+    public static List<Voucher> getVoucher(){
+        List<Voucher> list=new ArrayList<>();
+        Voucher voucher1=new Voucher("2017-08-01","记-1","借款","1001",1000,0);
+        Voucher voucher2=new Voucher("2017-08-01","记-1","借款","1002",0,1000);
+        Voucher voucher3=new Voucher("2017-08-02","记-2","发工资","1001",2000,0);
+        Voucher voucher4=new Voucher("2017-08-02","记-2","发工资","1003",0,2000);
+        list.add(voucher1);
+        list.add(voucher2);
+        list.add(voucher3);
+        list.add(voucher4);
+        return list;
+    }
+
     /**
      * 创建Excel
      *
@@ -53,7 +66,7 @@ public class ExcelOperate {
         // 创建一个Excel文件
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 创建一个工作表
-        HSSFSheet sheet = workbook.createSheet("学生表一");
+        HSSFSheet sheet = workbook.createSheet("导出的凭证");
         // 添加表头行
         HSSFRow hssfRow = sheet.createRow(0);
         // 设置单元格格式居中

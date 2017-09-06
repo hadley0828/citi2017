@@ -327,15 +327,15 @@ public class VoucherBlImpl implements VoucherBlService {
         //对全部的凭证信息根据搜索的vo进行筛选 voucherSearchVo
         for(int count=0;count<allVoucherVoList.size();count++){
             VoucherVo thisVo=allVoucherVoList.get(count);
-            if(isOneVoucherVoSearched(voucherSearchVo,thisVo)==true){
+            if(isOneVoucherVoSearched(voucherSearchVo,thisVo)){
                 resultVoList.add(thisVo);
             }
         }
 
-        //按照用户输入的排序方式来进行排序  1是凭证号排序 2是凭证日期排序
+        //按照用户输入的排序方式来进行排序  1是凭证号排序 2是凭证日期排序 把每一期的都分开来
+        //resultVoList是没有排序之前的列表
 
-
-
+        //TODO
 
 
         return null;
@@ -357,7 +357,13 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public boolean exportToExcel(ArrayList<String> voucherIdList) {
-        //TODO
+        if(voucherIdList.size()==0){
+            return false;
+        }else{
+
+
+
+        }
         return false;
     }
 
