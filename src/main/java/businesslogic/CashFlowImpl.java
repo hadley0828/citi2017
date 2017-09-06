@@ -119,10 +119,13 @@ public class CashFlowImpl implements CashFlowTableService{
 		temp1=tool.get("短期借款")[0]-tool.get("短期借款")[1];//（短期借款期初数－短期借款期末数）
 		temp2=tool.get("长期借款")[0]-tool.get("长期借款")[1];//（长期借款期初数－长期借款期末数）
 		temp3=Financing_activities[3];
-		Financing_activities[2]=temp1+temp2-temp3;//3.3“偿还借款本金支付的现金”		
+		Financing_activities[2]=temp1+temp2-temp3;//3.3“偿还借款本金支付的现金”
 		
-		Financing_activities[4]=Financing_activities[0]+Financing_activities[1]-Financing_activities[2]-
-				Financing_activities[3];//筹资活动产生的现金流量净额
+		Financing_activities[4]=helper.sumList(DATA.getGivenVourchers(time, "3104005", "1001"))
+				+helper.sumList(DATA.getGivenVourchers(time,"3104005", "1002"));//3.5“分配利润支付的现金”
+		
+		Financing_activities[5]=Financing_activities[0]+Financing_activities[1]-Financing_activities[2]-
+				Financing_activities[3]-Financing_activities[4];//筹资活动产生的现金流量净额
 		
 		double[] Net_cash_increase=new double[2];
 		Net_cash_increase[0]=tool.get("货币资金")[1]-tool.get("货币资金")[0];//“四、现金净增加额”
@@ -130,7 +133,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		
 	    double Final_cash_balance=Net_cash_increase[0]+Net_cash_increase[1];//“五、期末现金余额”
 			
-		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
+		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[5];//1.7“经营活动产生的现金流量净额”
 		operating_activities[1]=operating_activities[6]-operating_activities[0]+operating_activities[2]+
 				operating_activities[3]+operating_activities[4]+operating_activities[5];
 	    
@@ -233,8 +236,11 @@ public class CashFlowImpl implements CashFlowTableService{
 		temp3=Financing_activities[3];
 		Financing_activities[2]=temp1+temp2-temp3;//3.3“偿还借款本金支付的现金”		
 		
-		Financing_activities[4]=Financing_activities[0]+Financing_activities[1]-Financing_activities[2]-
-				Financing_activities[3];//筹资活动产生的现金流量净额
+		Financing_activities[4]=helper.sumList(DATA.getGivenVourchersByYear(time, "3104005", "1001"))
+				+helper.sumList(DATA.getGivenVourchersByYear(time,"3104005", "1002"));//3.5“分配利润支付的现金”
+		
+		Financing_activities[5]=Financing_activities[0]+Financing_activities[1]-Financing_activities[2]-
+				Financing_activities[3]-Financing_activities[4];//筹资活动产生的现金流量净额
 		
 		double[] Net_cash_increase=new double[2];
 		Net_cash_increase[0]=tool.get("货币资金")[1]-tool.get("货币资金")[2];//“四、现金净增加额”
@@ -242,7 +248,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		
 	    double Final_cash_balance=Net_cash_increase[0]+Net_cash_increase[1];//“五、期末现金余额”
 			
-		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[4];//1.7“经营活动产生的现金流量净额”
+		operating_activities[6]=Net_cash_increase[0]-Investment_activities[5]-Financing_activities[5];//1.7“经营活动产生的现金流量净额”
 		operating_activities[1]=operating_activities[6]-operating_activities[0]+operating_activities[2]+
 				operating_activities[3]+operating_activities[4]+operating_activities[5];
 	    
