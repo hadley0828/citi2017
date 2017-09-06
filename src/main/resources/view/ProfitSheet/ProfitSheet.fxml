@@ -39,8 +39,8 @@
                         </Button>
                         <TableView fx:id="profitTable" layoutX="28.0" layoutY="68.0" prefHeight="610.0" prefWidth="948.0">
                             <columns>
-                                <TableColumn fx:id="project_item" editable="false" prefWidth="307.0" resizable="false" sortable="false" text="项目" />
-                                <TableColumn fx:id="l_item" editable="false" prefWidth="64.0" resizable="false" sortable="false" text="行次" />
+                                <TableColumn fx:id="project_item" editable="false" prefWidth="320.0" resizable="false" sortable="false" text="项目" />
+                                <TableColumn fx:id="l_item" editable="false" prefWidth="51.0" resizable="false" sortable="false" text="行次" />
                                 <TableColumn fx:id="yearcul_item" editable="false" prefWidth="288.0" resizable="false" sortable="false" text="本年累计余额" />
                                 <TableColumn fx:id="month_item" editable="false" prefWidth="432.0" sortable="false" text="本期余额" />
                             </columns>

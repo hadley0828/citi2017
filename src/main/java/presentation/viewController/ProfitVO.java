@@ -10,12 +10,14 @@ public class ProfitVO {
     int line_no;
     double year;
     double period;
+    String formula;
 
-    public ProfitVO(String project,int line_no,double year,double period){
+    public ProfitVO(String project,int line_no,double year,double period,String formula){
         this.project=project;
         this.line_no=line_no;
         this.year=year;
         this.period=period;
+        this.formula=formula;
     }
 
     public String getProject(){
@@ -56,6 +58,16 @@ public class ProfitVO {
     }
     public DoubleProperty getPeriodProperty(){
         return new SimpleDoubleProperty(period);
+    }
+
+    public String getFormula(){
+        return formula;
+    }
+    public void setFormula(String formula){
+        this.formula = formula;
+    }
+    public StringProperty getFormulaProperty(){
+        return new SimpleStringProperty(formula);
     }
 
 }

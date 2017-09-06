@@ -152,8 +152,10 @@ public class BalanceSheetController {
                            }else if(vo.getEnding_balance()<0){
                                setStyle("-fx-text-fill: red;");
                            }
-                           Tooltip tip=new Tooltip("123");
-                           setTooltip(tip);
+                           if(vo.getLine_No()!=0) {
+                               Tooltip tip = new Tooltip(vo.getLaw());
+                               setTooltip(tip);
+                           }
 
                        }
                    }
@@ -173,8 +175,10 @@ public class BalanceSheetController {
                             }else if(vo.getEnding_balance()<0){
                                 setStyle("-fx-text-fill: red;");
                             }
-                            Tooltip tip=new Tooltip("123");
-                            setTooltip(tip);
+                            if(vo.getLine_No()!=0) {
+                                Tooltip tip = new Tooltip(vo.getLaw());
+                                setTooltip(tip);
+                            }
 
                         }
                     }
@@ -242,8 +246,10 @@ public class BalanceSheetController {
                             }else if(vo.getBeginning_balance()<0){
                                 setStyle("-fx-text-fill: red;");
                             }
-                            Tooltip tip=new Tooltip("123");
-                            setTooltip(tip);
+                            if(vo.getLine_No()!=0) {
+                                Tooltip tip = new Tooltip(vo.getLaw());
+                                setTooltip(tip);
+                            }
 
                         }
                     }
@@ -279,8 +285,10 @@ public class BalanceSheetController {
                             }else if(vo.getBeginning_balance()<0){
                                 setStyle("-fx-text-fill: red;");
                             }
-                            Tooltip tip=new Tooltip("123");
-                            setTooltip(tip);
+                            if(vo.getLine_No()!=0) {
+                                Tooltip tip = new Tooltip(vo.getLaw());
+                                setTooltip(tip);
+                            }
 
                         }
                     }

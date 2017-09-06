@@ -104,7 +104,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		Investment_activities[5]=Investment_activities[0]+Investment_activities[1]+Investment_activities[2]-
 				Investment_activities[3]-Investment_activities[4];//“投资活动产生的现金流量净额”
 		
-		double[] Financing_activities=new double[5];//三、筹资活动产生的现金流量
+		double[] Financing_activities=new double[6];//三、筹资活动产生的现金流量
 		
 		temp1=helper.Cal(DATA.getVourchersByPeriod(time, "2001"));//短期借款
 		temp2=helper.Cal(DATA.getVourchersByPeriod(time, "2501"));//长期借款
@@ -219,7 +219,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		Investment_activities[5]=Investment_activities[0]+Investment_activities[1]+Investment_activities[2]-
 				Investment_activities[3]-Investment_activities[4];//“投资活动产生的现金流量净额”
 		
-		double[] Financing_activities=new double[5];//三、筹资活动产生的现金流量
+		double[] Financing_activities=new double[6];//三、筹资活动产生的现金流量
 		
 		temp1=helper.Cal(DATA.getVourchersByYear(time, "2001"));//短期借款
 		temp2=helper.Cal(DATA.getVourchersByYear(time, "2501"));//长期借款
