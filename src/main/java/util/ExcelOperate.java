@@ -7,7 +7,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -25,6 +27,7 @@ public class ExcelOperate {
         // 读取Excel表格
         List<Voucher> list = readExcel("/Users/zhangzy/Downloads/vouchers.xls");
         System.out.println(list.toString());
+
     }
 
     /**
