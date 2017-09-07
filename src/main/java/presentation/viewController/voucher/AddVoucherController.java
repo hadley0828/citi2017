@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation.viewController.voucher;
 
 import javafx.fxml.Initializable;
 import presentation.screenController.ControlledScreen;
