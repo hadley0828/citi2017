@@ -174,7 +174,8 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testfindAllVoucherAllAmount(){
-
+        ArrayList<VoucherAmountPO> list = voucherDataService.findAllVoucherAllAmount();
+        System.out.println(list.size());
     }
 
 

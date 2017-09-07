@@ -301,6 +301,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
     @Override
     public ArrayList<VoucherAmountPO> findAllVoucherAllAmount() {
+        sqlManager.getConnection();
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
 
         String sql = "SELECT * FROM voucher_amount";
@@ -308,7 +309,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         for (Map<String,Object> map : maps){
             list.add(getVoucherAmountPOByMap(map));
         }
-
+        sqlManager.releaseAll();
         return list;
     }
 
