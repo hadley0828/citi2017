@@ -3,6 +3,7 @@ package businesslogic;
 import businesslogicservice.BalanceSheetService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
+import javafx.beans.property.IntegerProperty;
 import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 
@@ -398,6 +399,41 @@ public class BalanceSheetImpl implements BalanceSheetService {
         return service.getLatestTime();
     }
 
+    /**
+     * 得到最早及最晚时间之间的所有月份
+     * @param date1 最早时间
+     * @param date2 最晚时间
+     * @return
+     */
+    public ArrayList<String> getMiddleMonth(String date1 , String date2){
+        String[] time1 = date1.split("-");
+        String[] time2 = date2.split("-");
+        int year1 = Integer.valueOf(time1[0]);
+        int year2 = Integer.valueOf(time2[0]);
+        int month1 = Integer.valueOf(time1[1]);
+        int month2 = Integer.valueOf(time2[1]);
+
+        ArrayList<String> result = new ArrayList<>();
+
+        if(year1<year2){
+            for(int i=month1;i<=12;i++){
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
+            }
+            for(int i=year1+1;i<year2;i++){
+                for(int j=1;j<=12;j++){
+                    result.add(String.valueOf(i)+"-"+String.valueOf(j));
+                }
+            }
+            for(int i=1;i<=month2;i++){
+                result.add(String.valueOf(year2)+"-"+String.valueOf(i));
+            }
+        }else{
+            for(int i=month1;i<=month2;i++){
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
+            }
+        }
+        return result;
+    }
 
     /**
      * 根据时间得到资产负债表的货币资产

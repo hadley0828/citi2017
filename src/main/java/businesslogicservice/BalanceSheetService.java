@@ -33,4 +33,12 @@ public interface BalanceSheetService {
      * @return
      */
     public String getLatestTime();
+
+    /**
+     * 得到最早及最晚时间之间的所有月份
+     * @param date1 最早时间
+     * @param date2 最晚时间
+     * @return
+     */
+    public ArrayList<String> getMiddleMonth(String date1 , String date2);
 }
