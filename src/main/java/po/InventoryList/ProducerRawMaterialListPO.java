@@ -21,17 +21,17 @@ public class ProducerRawMaterialListPO extends  InventoryListSuperClass{
 
     private int inputNum;
 
-    private int inputAccount;
+    private double inputAccount;
 
     private int usedNum;
 
-    private int usedAccount;
+    private double usedAccount;
 
     private int balanceNum;
 
-    private int balanceAccount;
+    private double balanceAccount;
 
-    public ProducerRawMaterialListPO(String prID, String rawMaterialVariety, int inputNum, int inputAccount, int usedNum, int usedAccount, int balanceNum, int balanceAccount) {
+    public ProducerRawMaterialListPO(String prID, String rawMaterialVariety, int inputNum, double inputAccount, int usedNum, double usedAccount, int balanceNum, double balanceAccount) {
         this.prID = prID;
         this.rawMaterialVariety = rawMaterialVariety;
         this.inputNum = inputNum;
@@ -69,11 +69,11 @@ public class ProducerRawMaterialListPO extends  InventoryListSuperClass{
         this.inputNum = inputNum;
     }
 
-    public int getInputAccount() {
+    public double getInputAccount() {
         return inputAccount;
     }
 
-    public void setInputAccount(int inputAccount) {
+    public void setInputAccount(double inputAccount) {
         this.inputAccount = inputAccount;
     }
 
@@ -85,11 +85,11 @@ public class ProducerRawMaterialListPO extends  InventoryListSuperClass{
         this.usedNum = usedNum;
     }
 
-    public int getUsedAccount() {
+    public double getUsedAccount() {
         return usedAccount;
     }
 
-    public void setUsedAccount(int usedAccount) {
+    public void setUsedAccount(double usedAccount) {
         this.usedAccount = usedAccount;
     }
 
@@ -101,11 +101,11 @@ public class ProducerRawMaterialListPO extends  InventoryListSuperClass{
         this.balanceNum = balanceNum;
     }
 
-    public int getBalanceAccount() {
+    public double getBalanceAccount() {
         return balanceAccount;
     }
 
-    public void setBalanceAccount(int balanceAccount) {
+    public void setBalanceAccount(double balanceAccount) {
         this.balanceAccount = balanceAccount;
     }
 }

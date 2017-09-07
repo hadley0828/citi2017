@@ -3,6 +3,7 @@ package businesslogic;
 import businesslogicservice.BalanceSheetService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
+import javafx.beans.property.IntegerProperty;
 import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 
@@ -87,6 +88,33 @@ public class BalanceSheetImpl implements BalanceSheetService {
                 + getMoneyByCourseId(polist2, "4403", true);
         String law1_9 = "公式：\n在途物资\n+材料采购\n+原材料\n+材料成本差异\n+库存商品\n-商品进销差价\n+委托加工物资\n+周转材料\n+消耗性生物资产\n+生产成本\n+制造费用\n+工程施工\n+机械作业";
         current_asset.add(new BalanceSheetItemVo("存货", 9, ending_balance1_9, beginning_balance1_9, law1_9));
+
+        //1.9.1.1原材料
+        double ending_balance1_9_1 = getMoneyByCourseId(polist1, "1403", true);
+        double beginning_balance1_9_1 = getMoneyByCourseId(polist2, "1403", true);
+        String law1_9_1 = "公式：\n原材料";
+        current_asset.add(new BalanceSheetItemVo("原材料", 10, ending_balance1_9_1, beginning_balance1_9_1, law1_9_1));
+
+        //1.9.1.2在产品=生产成本+制造费用+工程施工+机械作业
+        double ending_balance1_9_2 = getMoneyByCourseId(polist1, "4001", true)+getMoneyByCourseId(polist1, "4101", true)
+                +getMoneyByCourseId(polist1, "4401", true)+getMoneyByCourseId(polist1, "4403", true);
+        double beginning_balance1_9_2 = getMoneyByCourseId(polist2, "4001", true)+getMoneyByCourseId(polist2, "4101", true)
+                +getMoneyByCourseId(polist2, "4401", true)+getMoneyByCourseId(polist2, "4403", true);
+        String law1_9_2 = "公式：\n生产成本\n+制造费用\n+工程施工\n+机械作业";
+        current_asset.add(new BalanceSheetItemVo("在产品",11,ending_balance1_9_2, beginning_balance1_9_2, law1_9_2));
+
+        //1.9.1.3库存商品
+        double ending_balance1_9_3 = getMoneyByCourseId(polist1, "1405", true);
+        double beginning_balance1_9_3 = getMoneyByCourseId(polist2, "1405", true);
+        String law1_9_3 = "公式：\n库存商品";
+        current_asset.add(new BalanceSheetItemVo("库存商品", 12, ending_balance1_9_3, beginning_balance1_9_3, law1_9_3));
+
+        //1.9.1.4周转材料
+        double ending_balance1_9_4 = getMoneyByCourseId(polist1, "1411", true);
+        double beginning_balance1_9_4 = getMoneyByCourseId(polist2, "1411", true);
+        String law1_9_4 = "公式：\n周转材料";
+        current_asset.add(new BalanceSheetItemVo("周转材料", 13,ending_balance1_9_4, beginning_balance1_9_4, law1_9_4));
+
         //1.10其他流动资产
         double ending_balance1_10 = getMoneyByCourseId(polist1, "6000", true);
         double beginning_balance1_10 = getMoneyByCourseId(polist2, "6000", true);
@@ -371,6 +399,41 @@ public class BalanceSheetImpl implements BalanceSheetService {
         return service.getLatestTime();
     }
 
+    /**
+     * 得到最早及最晚时间之间的所有月份
+     * @param date1 最早时间
+     * @param date2 最晚时间
+     * @return
+     */
+    public ArrayList<String> getMiddleMonth(String date1 , String date2){
+        String[] time1 = date1.split("-");
+        String[] time2 = date2.split("-");
+        int year1 = Integer.valueOf(time1[0]);
+        int year2 = Integer.valueOf(time2[0]);
+        int month1 = Integer.valueOf(time1[1]);
+        int month2 = Integer.valueOf(time2[1]);
+
+        ArrayList<String> result = new ArrayList<>();
+
+        if(year1<year2){
+            for(int i=month1;i<=12;i++){
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
+            }
+            for(int i=year1+1;i<year2;i++){
+                for(int j=1;j<=12;j++){
+                    result.add(String.valueOf(i)+"-"+String.valueOf(j));
+                }
+            }
+            for(int i=1;i<=month2;i++){
+                result.add(String.valueOf(year2)+"-"+String.valueOf(i));
+            }
+        }else{
+            for(int i=month1;i<=month2;i++){
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
+            }
+        }
+        return result;
+    }
 
     /**
      * 根据时间得到资产负债表的货币资产

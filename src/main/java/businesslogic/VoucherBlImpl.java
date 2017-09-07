@@ -1,19 +1,17 @@
 package businesslogic;
 
 import businesslogicservice.VoucherBlService;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.VoucherDataServiceImpl;
 import dataservice.VoucherDataService;
 import po.VoucherAmountPO;
 import po.VoucherPO;
 import po.VoucherTemplateAmountPO;
 import po.VoucherTemplatePO;
-import util.DateConvert;
-import util.NowString;
-import util.NumberToCN;
+import util.*;
 import vo.voucher.*;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -194,7 +192,22 @@ public class VoucherBlImpl implements VoucherBlService {
         //全部的凭证信息
         ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
         //全屏的凭证金额信息
-        HashMap<String,ArrayList<VoucherAmountPO>> voucherToAmountMap=voucherDataService.findAllVoucherAllAmount();
+
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        HashMap<String,ArrayList<VoucherAmountPO>> voucherToAmountMap=new HashMap<>();
+
+        for(int count=0;count<allAmountPoList.size();count++){
+            String oneVoucherId=allAmountPoList.get(count).getV_id();
+
+            if(voucherToAmountMap.containsKey(oneVoucherId)){
+                voucherToAmountMap.get(oneVoucherId).add(allAmountPoList.get(count));
+            }else{
+                ArrayList<VoucherAmountPO> newAmountPoList=new ArrayList<>();
+                newAmountPoList.add(allAmountPoList.get(count));
+                voucherToAmountMap.put(oneVoucherId,newAmountPoList);
+            }
+        }
+
 
         ArrayList<VoucherVo> resultList=new ArrayList<>();
 
@@ -287,7 +300,24 @@ public class VoucherBlImpl implements VoucherBlService {
     public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo) {
         ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
         ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher();
-        HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=voucherDataService.findAllVoucherAllAmount();
+
+
+
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=new HashMap<>();
+
+        for(int count=0;count<allAmountPoList.size();count++){
+            String oneVoucherId=allAmountPoList.get(count).getV_id();
+
+            if(allVoucherMap.containsKey(oneVoucherId)){
+                allVoucherMap.get(oneVoucherId).add(allAmountPoList.get(count));
+            }else{
+
+                ArrayList<VoucherAmountPO> newAmountPoList=new ArrayList<>();
+                newAmountPoList.add(allAmountPoList.get(count));
+                allVoucherMap.put(oneVoucherId,newAmountPoList);
+            }
+        }
 
         ArrayList<VoucherVo> resultVoList=new ArrayList<>();
 
@@ -335,10 +365,12 @@ public class VoucherBlImpl implements VoucherBlService {
         //按照用户输入的排序方式来进行排序  1是凭证号排序 2是凭证日期排序 把每一期的都分开来
         //resultVoList是没有排序之前的列表
 
-        //TODO
-
-
-        return null;
+        if(voucherSearchVo.getSortOrder()==1){
+            resultVoList= SortHelper.getVoucherNumberSort(resultVoList);
+        }else if(voucherSearchVo.getSortOrder()==2){
+            resultVoList=SortHelper.getVoucherDateSort(resultVoList);
+        }
+        return resultVoList;
     }
 
     @Override
@@ -356,27 +388,165 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean exportToExcel(ArrayList<String> voucherIdList) {
+    public boolean exportToExcel(ArrayList<String> voucherIdList,String path) {
+        ArrayList<Voucher> voucherList=new ArrayList<>();
+
         if(voucherIdList.size()==0){
             return false;
         }else{
 
 
+            HashMap<String,String> idToDateMap=new HashMap<>();
+            ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+            for(int count=0;count<allPoList.size();count++){
+                idToDateMap.put(allPoList.get(count).getId(),String.valueOf(allPoList.get(count).getDate()));
+            }
+
+
+            HashMap<String,ArrayList<VoucherAmountPO>> allVoucherAmountMap=voucherDataService.findSeveralVoucherAllAmount(voucherIdList);
+
+            for(int count=0;count<voucherIdList.size();count++){
+                String oneId=voucherIdList.get(count);
+
+                if(!allVoucherAmountMap.containsKey(oneId)){
+                    continue;
+                }else if(!idToDateMap.containsKey(oneId)){
+                    continue;
+                }else{
+                    ArrayList<VoucherAmountPO> onePoList=allVoucherAmountMap.get(oneId);
+
+                    for(int index=0;index<onePoList.size();index++){
+                        VoucherAmountPO onePo=onePoList.get(index);
+                        Voucher oneVoucher=new Voucher(onePo,idToDateMap.get(oneId));
+                        voucherList.add(oneVoucher);
+
+                    }
+
+
+                }
+            }
+
+
 
         }
-        return false;
+        ExcelOperate.createExcel(voucherList,path);
+
+        return true;
+    }
+
+    @Override
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path) {
+        ArrayList<Voucher> voucherList=new ArrayList<>();
+
+        if(amountVoArrayList.size()==0){
+            return false;
+        }else{
+            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+            String date=format.format(new java.util.Date());
+
+            if(amountVoArrayList.size()!=0){
+                for (int count=0;count<amountVoArrayList.size();count++){
+                    Voucher oneVoucher=new Voucher(amountVoArrayList.get(count),date);
+                    voucherList.add(oneVoucher);
+
+                }
+            }
+        }
+
+        ExcelOperate.createExcel(voucherList,path);
+
+        return true;
     }
 
     @Override
     public ArrayList<VoucherVo> importFromExcel(String filePath) {
-        //TODO
-        return null;
+
+        ArrayList<Voucher> voucherList= (ArrayList<Voucher>) ExcelOperate.readExcel(filePath);
+
+        ArrayList<VoucherVo> resultVoList=new ArrayList<>();
+
+        if(voucherList.size()==0){
+            return resultVoList;
+        }else{
+            //对voucherList进行操作
+            //把一个voucherId的voucher都筛选出来
+
+            HashMap<String,ArrayList<Voucher>> idToVoucherListMap=new HashMap<>();
+
+            //用来存储全部的凭证编号
+            ArrayList<String> allVoucherIdList=new ArrayList<>();
+            for(int count=0;count<voucherList.size();count++){
+                String oneId=voucherList.get(count).getVoucherId();
+                if(allVoucherIdList.contains(oneId)){
+                    continue;
+                }else{
+                    allVoucherIdList.add(oneId);
+                    ArrayList<Voucher> newVoucherList=new ArrayList<>();
+                    idToVoucherListMap.put(oneId,newVoucherList);
+                }
+            }
+
+            for(int count=0;count<voucherList.size();count++){
+                String thisId=voucherList.get(count).getVoucherId();
+                if(!idToVoucherListMap.containsKey(thisId)){
+                    continue;
+                }else{
+                    idToVoucherListMap.get(thisId).add(voucherList.get(count));
+                }
+
+            }
+
+            for(int count=0;count<allVoucherIdList.size();count++){
+                String oneVoucherId=allVoucherIdList.get(count);
+                ArrayList<Voucher> thisIdAllVoucher=idToVoucherListMap.get(oneVoucherId);
+
+                VoucherVo oneVoucherVO=new VoucherVo();
+                ArrayList<VoucherAmountVo> amountVoList=new ArrayList<>();
+                AmountTotalVo amountTotalVo=new AmountTotalVo();
+
+
+                if(thisIdAllVoucher.size()!=0){
+                    oneVoucherVO.setVoucherId(thisIdAllVoucher.get(0).getVoucherId());
+                    oneVoucherVO.setDate(thisIdAllVoucher.get(0).getDate());
+
+                    double debitTotal=0.0;
+                    double creditTotal=0.0;
+
+                    for(int index=0;index<thisIdAllVoucher.size();index++){
+                        VoucherAmountVo oneAmountVo=new VoucherAmountVo(thisIdAllVoucher.get(index));
+                        amountVoList.add(oneAmountVo);
+                        debitTotal=debitTotal+thisIdAllVoucher.get(index).getDebitCurrency();
+                        creditTotal=creditTotal+thisIdAllVoucher.get(index).getCreditCurrency();
+                    }
+
+                    if(debitTotal!=creditTotal){
+                        continue;
+                    }else{
+                        amountTotalVo.setChineseTotal(NumberToCN.number2CNMontrayUnit(creditTotal));
+                        amountTotalVo.setDebitAmount(debitTotal);
+                        amountTotalVo.setCreditAmount(creditTotal);
+                    }
+
+                }
+
+                oneVoucherVO.setAmountList(amountVoList);
+                oneVoucherVO.setAmountTotalVo(amountTotalVo);
+
+                resultVoList.add(oneVoucherVO);
+
+            }
+        }
+
+        return resultVoList;
     }
 
     @Override
     public boolean amendOneVoucher(String voucherId, VoucherVo voucherVo) {
+        boolean result=true;
+
         String afterVoucherId=voucherVo.getVoucherId();
 
+        //数据库中存在的全部的凭证编号
         HashSet<String> allVoucherIdSet=new HashSet<>();
         ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
         for(int count=0;count<allPoList.size();count++){
@@ -393,29 +563,56 @@ public class VoucherBlImpl implements VoucherBlService {
             ArrayList<VoucherAmountPO> amountPOArrayList=new ArrayList<>();
             ArrayList<VoucherAmountVo> amountVoArrayList=voucherVo.getAmountList();
 
-            //先删除再添加! TODO
+
+            //删除的是voucherId对应的凭证  添加的是afterVoucherId
+            //先删除再添加!
+            boolean result1=deleteOneVoucher(voucherId);
+            boolean result2=saveOneVoucher(voucherVo);
+            result=result1&&result2&&result;
 
 
         }
-
-
-        return false;
+        return result;
     }
 
     @Override
     public boolean deleteOneVoucher(String voucherId) {
-        return false;
+        boolean result=true;
+
+        HashSet<String> allVoucherIdSet=new HashSet<>();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        for(int count=0;count<allPoList.size();count++){
+            allVoucherIdSet.add(allPoList.get(count).getId());
+        }
+
+        if(!allVoucherIdSet.contains(voucherId)){
+            return false;
+        }else{
+            ArrayList<VoucherAmountPO> amountPoList=voucherDataService.findOneVoucherAllAmount(voucherId);
+            if(amountPoList.size()!=0){
+                for(int count=0;count<amountPoList.size();count++){
+                    VoucherAmountPO oneAmountPo=amountPoList.get(count);
+                    String subjectId=oneAmountPo.getSubject();
+                    double beforePrice=voucherDataService.findOneSubjectBalance(subjectId);
+                    voucherDataService.modifyOneSubjectBalance(subjectId,beforePrice-oneAmountPo.getDebitAmount()+oneAmountPo.getCreditAmount());
+
+                }
+            }
+
+
+            boolean result1=voucherDataService.deleteOneVoucher(voucherId);
+            boolean result2=voucherDataService.deleteOneVoucherAllAmount(voucherId);
+            result=result&&result1&&result2;
+
+        }
+        return result;
     }
 
     @Override
     public VoucherVo copyOneVoucher(String voucherId) {
-        return null;
+        return getOneVoucher(voucherId);
     }
 
-    @Override
-    public boolean addOneSubject() {
-        return false;
-    }
 
     @Override
     public int getCurrentNumber(String voucherCharacter) {

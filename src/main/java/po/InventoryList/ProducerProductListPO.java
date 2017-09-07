@@ -21,17 +21,17 @@ public class ProducerProductListPO extends InventoryListSuperClass{
 
     private int produceNum;
 
-    private int produceAccount;
+    private double produceAccount;
 
     private int outputNum;
 
-    private int outputAccount;
+    private double outputAccount;
 
     private int balanceNum;
 
-    private int balanceAccount;
+    private double balanceAccount;
 
-    public ProducerProductListPO(String ppID, String productVariety, int produceNum, int produceAccount, int outputNum, int outputAccount, int balanceNum, int balanceAccount) {
+    public ProducerProductListPO(String ppID, String productVariety, int produceNum, double produceAccount, int outputNum, double outputAccount, int balanceNum, double balanceAccount) {
         this.ppID = ppID;
         this.productVariety = productVariety;
         this.produceNum = produceNum;
@@ -69,11 +69,11 @@ public class ProducerProductListPO extends InventoryListSuperClass{
         this.produceNum = produceNum;
     }
 
-    public int getProduceAccount() {
+    public double getProduceAccount() {
         return produceAccount;
     }
 
-    public void setProduceAccount(int produceAccount) {
+    public void setProduceAccount(double produceAccount) {
         this.produceAccount = produceAccount;
     }
 
@@ -85,11 +85,11 @@ public class ProducerProductListPO extends InventoryListSuperClass{
         this.outputNum = outputNum;
     }
 
-    public int getOutputAccount() {
+    public double getOutputAccount() {
         return outputAccount;
     }
 
-    public void setOutputAccount(int outputAccount) {
+    public void setOutputAccount(double outputAccount) {
         this.outputAccount = outputAccount;
     }
 
@@ -101,11 +101,11 @@ public class ProducerProductListPO extends InventoryListSuperClass{
         this.balanceNum = balanceNum;
     }
 
-    public int getBalanceAccount() {
+    public double getBalanceAccount() {
         return balanceAccount;
     }
 
-    public void setBalanceAccount(int balanceAccount) {
+    public void setBalanceAccount(double balanceAccount) {
         this.balanceAccount = balanceAccount;
     }
 }

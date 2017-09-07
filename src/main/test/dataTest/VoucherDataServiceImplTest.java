@@ -174,9 +174,8 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testfindAllVoucherAllAmount(){
-        HashMap<String,ArrayList<VoucherAmountPO>> map = voucherDataService.findAllVoucherAllAmount();
-        System.out.println(map.size());
-        System.out.println(map.get("借-1").size());
+        ArrayList<VoucherAmountPO> list = voucherDataService.findAllVoucherAllAmount();
+        System.out.println(list.size());
     }
 
 
@@ -299,6 +298,11 @@ public class VoucherDataServiceImplTest {
         for (VoucherTemplateAmountPO po : list){
             print(po);
         }
+    }
+
+    @Test
+    public void testIntialSubjectsBalance(){
+        voucherDataService.intialSubjectsBalance();
     }
 
     private void print(VoucherPO po){

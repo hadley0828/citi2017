@@ -7,7 +7,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -20,11 +22,12 @@ public class ExcelOperate {
 
     public static void main(String[] args) {
         // 创建Excel表格
-        createExcel(getStudent(),"/Users/zhangzy/Downloads/students.xls");
+        createExcel(getVoucher(),"/Users/zhangzy/Downloads/vouchers.xls");
 
         // 读取Excel表格
-        List<Student> list = readExcel("/Users/zhangzy/Downloads/students.xls");
+        List<Voucher> list = readExcel("/Users/zhangzy/Downloads/vouchers.xls");
         System.out.println(list.toString());
+
     }
 
     /**
@@ -32,17 +35,6 @@ public class ExcelOperate {
      *
      * @return 数据
      */
-    private static List<Student> getStudent() {
-        List<Student> list = new ArrayList<Student>();
-        Student student1 = new Student("小明", 8, "二年级");
-        Student student2 = new Student("小光", 9, "三年级");
-        Student student3 = new Student("小花", 10, "四年级");
-        list.add(student1);
-        list.add(student2);
-        list.add(student3);
-        return list;
-    }
-
     public static List<Voucher> getVoucher(){
         List<Voucher> list=new ArrayList<>();
         Voucher voucher1=new Voucher("2017-08-01","记-1","借款","1001",1000,0);
@@ -62,7 +54,7 @@ public class ExcelOperate {
      * @param list
      *            数据
      */
-    private static void createExcel(List<Student> list,String filePath)  {
+    public static void createExcel(List<Voucher> list,String filePath)  {
         // 创建一个Excel文件
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 创建一个工作表
@@ -75,34 +67,62 @@ public class ExcelOperate {
 
         // 添加表头内容
         HSSFCell headCell = hssfRow.createCell(0);
-        headCell.setCellValue("姓名");
+        headCell.setCellValue("日期");
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(1);
-        headCell.setCellValue("年龄");
+        headCell.setCellValue("凭证号");
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(2);
-        headCell.setCellValue("年级");
+        headCell.setCellValue("摘要");
         headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(3);
+        headCell.setCellValue("科目编码");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(4);
+        headCell.setCellValue("借方本币");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(5);
+        headCell.setCellValue("贷方本币");
+        headCell.setCellStyle(cellStyle);
+
+
+
 
         // 添加数据内容
         for (int i = 0; i < list.size(); i++) {
             hssfRow = sheet.createRow((int) i + 1);
-            Student student = list.get(i);
+            Voucher voucher = list.get(i);
 
             // 创建单元格，并设置值
             HSSFCell cell = hssfRow.createCell(0);
-            cell.setCellValue(student.getName());
+            cell.setCellValue(voucher.getDate());
             cell.setCellStyle(cellStyle);
 
             cell = hssfRow.createCell(1);
-            cell.setCellValue(student.getAge());
+            cell.setCellValue(voucher.getVoucherId());
             cell.setCellStyle(cellStyle);
 
             cell = hssfRow.createCell(2);
-            cell.setCellValue(student.getGrade());
+            cell.setCellValue(voucher.getAbstracts());
             cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(3);
+            cell.setCellValue(voucher.getSubjectId());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(4);
+            cell.setCellValue(voucher.getDebitCurrency());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(5);
+            cell.setCellValue(voucher.getCreditCurrency());
+            cell.setCellStyle(cellStyle);
+
         }
 
         // 保存Excel文件
@@ -121,8 +141,8 @@ public class ExcelOperate {
      *
      * @return 数据集合
      */
-    private static List<Student> readExcel(String filePath) {
-        List<Student> list = new ArrayList<Student>();
+    public static List<Voucher> readExcel(String filePath) {
+        List<Voucher> list = new ArrayList<>();
         HSSFWorkbook workbook = null;
 
         try {
@@ -149,27 +169,46 @@ public class ExcelOperate {
                 }
 
                 // 将单元格中的内容存入集合
-                Student student = new Student();
+                Voucher voucher=new Voucher();
 
                 HSSFCell cell = hssfRow.getCell(0);
                 if (cell == null) {
                     continue;
                 }
-                student.setName(cell.getStringCellValue());
+                voucher.setDate(cell.getStringCellValue());
 
                 cell = hssfRow.getCell(1);
                 if (cell == null) {
                     continue;
                 }
-                student.setAge((int) cell.getNumericCellValue());
+                voucher.setVoucherId(cell.getStringCellValue());
 
                 cell = hssfRow.getCell(2);
                 if (cell == null) {
                     continue;
                 }
-                student.setGrade(cell.getStringCellValue());
+                voucher.setAbstracts(cell.getStringCellValue());
 
-                list.add(student);
+                cell=hssfRow.getCell(3);
+                if(cell==null){
+                    continue;
+                }
+                voucher.setSubjectId(cell.getStringCellValue());
+
+                cell=hssfRow.getCell(4);
+                if(cell==null){
+                    continue;
+                }
+                voucher.setDebitCurrency(cell.getNumericCellValue());
+
+                cell=hssfRow.getCell(5);
+                if(cell==null){
+                    continue;
+                }
+                voucher.setCreditCurrency(cell.getNumericCellValue());
+
+
+                list.add(voucher);
             }
         }
         return list;

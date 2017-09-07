@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import po.VoucherPO;
 import vo.voucher.*;
 
@@ -107,12 +108,21 @@ public interface VoucherBlService {
     /**
      * 导出所选的凭证
      * @param voucherIdList
+     * @param path
      * @return
      */
-    public boolean exportToExcel(ArrayList<String> voucherIdList);
+    public boolean exportToExcel(ArrayList<String> voucherIdList,String path);
+
+    /**
+     * 根据界面的凭证金额的导出所选的凭证
+     * @param amountVoArrayList
+     * @return
+     */
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path);
 
     /**
      * 根据文件的路径把需要的凭证导入到系统中
+     * ps:没法生成amountId
      * @param filePath
      * @return
      */
@@ -141,12 +151,6 @@ public interface VoucherBlService {
     public VoucherVo copyOneVoucher(String voucherId);
 
     /**
-     * 添加一个新的会计科目
-     * @return
-     */
-    public boolean addOneSubject();
-
-    /**
      * 根据输入的凭证字获得当前的凭证号 按照数字的顺序
      * @param voucherCharacter
      * @return
@@ -154,6 +158,6 @@ public interface VoucherBlService {
     public int getCurrentNumber(String voucherCharacter);
 
 
-    //TODO 打印凭证并且对打印进行设置    对一条凭证进行处理 修改!!!  删除  复制  插入(未实现)    可以新增一条会计科目
-
+    //打印凭证并且对打印进行设置    对一条凭证进行处理 修改!!!  删除  复制  插入(未实现)
+    //对单条凭证金额的处理可以转换为对凭证的处理
 }

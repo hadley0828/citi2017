@@ -124,7 +124,7 @@ public interface VoucherDataService {
      * 获取全部凭证id对应的金额信息
      * @return
      */
-    public HashMap<String,ArrayList<VoucherAmountPO>> findAllVoucherAllAmount();
+    public ArrayList<VoucherAmountPO> findAllVoucherAllAmount();
 
     /**
      * 新增一个会计科目的余额信息
@@ -242,4 +242,8 @@ public interface VoucherDataService {
     public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId);
 
 
+    /**
+     * 初始化科目余额表
+     */
+    public void intialSubjectsBalance();
 }

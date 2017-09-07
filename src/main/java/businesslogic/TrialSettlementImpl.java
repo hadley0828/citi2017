@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class TrialSettlementImpl implements TrialSettlementService {
     /**
      * 根据凭证id和时期得到试算表的数据
-     * @param vocher_id 凭证id
+     * @param voucher_id 凭证id
      * @param time 时期
      * @return
      */
-    public ArrayList<TrialTableItemVo> getTrialTable(String vocher_id, String time){
+    public ArrayList<TrialTableItemVo> getTrialTable(String voucher_id, String time){
         CourseMessageService service = new CourseMessageServiceImpl();
         ArrayList<VoucherAmountPO> polist = service.getCourseMessageByTime(time);
-        ArrayList<TrialTableItemVo> result = new ArrayList<TrialTableItemVo>();
+        ArrayList<TrialTableItemVo> result = new ArrayList<>();
         for(int i=0;i<polist.size();i++){
             VoucherAmountPO po = polist.get(i);
             String id = po.getSubject();

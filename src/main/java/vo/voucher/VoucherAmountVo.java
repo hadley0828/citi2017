@@ -3,6 +3,8 @@ package vo.voucher;
 import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import po.VoucherAmountPO;
 import po.VoucherTemplateAmountPO;
+import util.ExcelOperate;
+import util.Voucher;
 
 /**
  * Created by zhangzy on 2017/8/11 下午11:36
@@ -31,6 +33,19 @@ public class VoucherAmountVo {
             this.creditAmount=po.getCreditAmount();
         }catch (Exception e){
             System.out.println("po is not complete");
+        }
+    }
+
+    public VoucherAmountVo(Voucher voucher){
+        try{
+            this.voucherId=voucher.getVoucherId();
+            this.abstracts=voucher.getAbstracts();
+            this.subject=voucher.getSubjectId();
+            this.debitAmount=voucher.getDebitCurrency();
+            this.creditAmount=voucher.getCreditCurrency();
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

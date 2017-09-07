@@ -32,6 +32,9 @@ public class RawMaterialInventoryItemVo {
         this.balance_account = balance_account;
     }
 
+    public RawMaterialInventoryItemVo() {
+    }
+
     public String getId() {
         return id;
     }
