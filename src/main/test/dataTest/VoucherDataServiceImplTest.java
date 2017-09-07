@@ -174,9 +174,7 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testfindAllVoucherAllAmount(){
-        HashMap<String,ArrayList<VoucherAmountPO>> map = voucherDataService.findAllVoucherAllAmount();
-        System.out.println(map.size());
-        System.out.println(map.get("借-1").size());
+
     }
 
 

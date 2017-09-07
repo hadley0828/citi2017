@@ -4,10 +4,7 @@ import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
 import org.junit.Before;
 import org.junit.Test;
-import vo.voucher.VoucherAmountVo;
-import vo.voucher.VoucherTemplateAmountVo;
-import vo.voucher.VoucherTemplateVo;
-import vo.voucher.VoucherVo;
+import vo.voucher.*;
 
 import java.util.ArrayList;
 
@@ -148,6 +145,37 @@ public class VoucherBlServiceImplTest {
     @Test
     public void testGetOneVoucher(){
         System.out.println(voucherBlService.getOneVoucher("记-10"));
+    }
+
+    @Test
+    public void testGetSearchedVoucher(){
+        VoucherSearchVo searchVo=new VoucherSearchVo();
+        searchVo.setStartPeriod("2017年第4期");
+        searchVo.setEndPeriod("2017年第9期");
+        searchVo.setCharacter("全部");
+        searchVo.setMaker("全部");
+
+        searchVo.setLowPrice(-1.0);
+        searchVo.setHighPrice(-1.0);
+        searchVo.setLowVoucherNumber(-1);
+        searchVo.setHighVoucherNumber(-1);
+
+        searchVo.setSortOrder(1);
+
+        ArrayList<VoucherVo> resultList=voucherBlService.getSearchedVoucher(searchVo);
+
+        for(int count=0;count<resultList.size();count++){
+            System.out.println(resultList.get(count).toString());
+        }
+    }
+
+    @Test
+    public void testDeleteSelectedVoucher(){
+        ArrayList<String> voucherIdList=new ArrayList<>();
+        voucherIdList.add("记-20");
+        voucherIdList.add("记-21");
+
+        voucherBlService.deleteSelectedVoucher(voucherIdList);
     }
 
 }

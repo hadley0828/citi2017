@@ -191,7 +191,22 @@ public class VoucherBlImpl implements VoucherBlService {
         //全部的凭证信息
         ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
         //全屏的凭证金额信息
-        HashMap<String,ArrayList<VoucherAmountPO>> voucherToAmountMap=voucherDataService.findAllVoucherAllAmount();
+
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        HashMap<String,ArrayList<VoucherAmountPO>> voucherToAmountMap=new HashMap<>();
+
+        for(int count=0;count<allAmountPoList.size();count++){
+            String oneVoucherId=allAmountPoList.get(count).getV_id();
+
+            if(voucherToAmountMap.containsKey(oneVoucherId)){
+                voucherToAmountMap.get(oneVoucherId).add(allAmountPoList.get(count));
+            }else{
+                ArrayList<VoucherAmountPO> newAmountPoList=new ArrayList<>();
+                newAmountPoList.add(allAmountPoList.get(count));
+                voucherToAmountMap.put(oneVoucherId,newAmountPoList);
+            }
+        }
+
 
         ArrayList<VoucherVo> resultList=new ArrayList<>();
 
@@ -284,7 +299,24 @@ public class VoucherBlImpl implements VoucherBlService {
     public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo) {
         ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
         ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher();
-        HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=voucherDataService.findAllVoucherAllAmount();
+
+
+
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=new HashMap<>();
+
+        for(int count=0;count<allAmountPoList.size();count++){
+            String oneVoucherId=allAmountPoList.get(count).getV_id();
+
+            if(allVoucherMap.containsKey(oneVoucherId)){
+                allVoucherMap.get(oneVoucherId).add(allAmountPoList.get(count));
+            }else{
+
+                ArrayList<VoucherAmountPO> newAmountPoList=new ArrayList<>();
+                newAmountPoList.add(allAmountPoList.get(count));
+                allVoucherMap.put(oneVoucherId,newAmountPoList);
+            }
+        }
 
         ArrayList<VoucherVo> resultVoList=new ArrayList<>();
 
