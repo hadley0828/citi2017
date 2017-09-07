@@ -28,6 +28,8 @@ public class RootLayoutController implements Initializable {
     private Button subject_balance;
     @FXML
     private Button subject_summary;
+    @FXML
+    private Button pro_debt;
 
     @FXML
     private StackPane missionPane;
@@ -45,6 +47,7 @@ public class RootLayoutController implements Initializable {
         myController.loadScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN, ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN_FXML);
         myController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
 
+        myController.loadScreen(ScreensFramework.PRO_DEBT_SCREEN,ScreensFramework.PRO_DEBT_SCREEN_FXML);
         missionPane.getChildren().add(myController);
     }
 
@@ -62,6 +65,9 @@ public class RootLayoutController implements Initializable {
             myController.setScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN);
         else if (event.getSource().equals(subject_summary))
             myController.setScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN);
+        else if (event.getSource().equals(pro_debt))
+            myController.setScreen(ScreensFramework.PRO_DEBT_SCREEN);
+
     }
 
 }

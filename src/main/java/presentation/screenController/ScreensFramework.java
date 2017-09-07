@@ -40,4 +40,7 @@ public interface ScreensFramework {
     String SUBJECT_SUMMARY_SHEET_SCREEN = "SubjectSummarySheet";
     String SUBJECT_SUMMARY_SHEET_SCREEN_FXML = "/view/Bill/SubjectSummarySheet.fxml";
 
+    String PRO_DEBT_SCREEN="Pro_debt";
+    String PRO_DEBT_SCREEN_FXML="/view/BalanceSheet/BalanceSheet.fxml";
+
 }

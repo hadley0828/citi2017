@@ -4,14 +4,18 @@ import businesslogic.BalanceSheetImpl;
 import businesslogicservice.BalanceSheetService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.BalanceSheetItemVo;
 
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -20,7 +24,7 @@ import java.util.Map;
 /**
  * Created by YZ on 2017/8/11.
  */
-public class BalanceSheetController {
+public class BalanceSheetController implements ControlledScreen{
     @FXML
     private Button print;
     @FXML
@@ -66,7 +70,6 @@ public class BalanceSheetController {
 
     //为资产表添加数据
     public void setBalanceTable(){
-//        System.out.print(bar.getDate());
         bs_data=balanceSheetService.getBalanceSheet(bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
@@ -193,14 +196,28 @@ public class BalanceSheetController {
                        super.updateItem(string,isEmpty);
                        if(!isEmpty){
                            BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
+
                            if(v.getLine_No()==0||v.getLine_No()==30){
                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
                            }
+                           if(v.getLine_No()==9){
+                               setStyle("-fx-background-image: url('images/down.png');-fx-background-position: left;-fx-background-repeat: no-repeat;-fx-background-size: 28 28;");
+                               setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+                                   @Override
+                                   public void handle(javafx.scene.input.MouseEvent event) {
+//                                       getTableView().getItems().add(new BalanceSheetItemVo("  其中：原材料",10,0,0,"公式：\n原材料"));
+                                       
+                                   }
+                               });
+
+                           }
+
                        }
                    }
                };
            }
        });
+
         debt_item.setCellFactory(new Callback<TableColumn<BalanceSheetItemVo,String>, TableCell<BalanceSheetItemVo,String>>() {
             @Override
             public TableCell<BalanceSheetItemVo,String> call(TableColumn<BalanceSheetItemVo,String> param) {
@@ -295,6 +312,11 @@ public class BalanceSheetController {
                 };
             }
         });
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
     }
 
 }
