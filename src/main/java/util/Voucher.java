@@ -1,5 +1,7 @@
 package util;
 
+import po.VoucherAmountPO;
+
 /**
  * 用作excel操作的凭证类
  * Created by zhangzy on 2017/9/3 下午12:44
@@ -26,6 +28,20 @@ public class Voucher {
 
     public Voucher(){
 
+    }
+
+    public Voucher(VoucherAmountPO po,String date){
+        super();
+        try{
+            this.date=date;
+            this.voucherId=po.getV_id();
+            this.abstracts=po.getDigest();
+            this.subjectId=po.getSubject();
+            this.debitCurrency=po.getDebitAmount();
+            this.creditCurrency=po.getCreditAmount();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public Voucher(String date,String voucherId,String abstracts,String subjectId,double debitCurrency,double creditCurrency){
