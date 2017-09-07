@@ -281,8 +281,6 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             for (Map<String,Object> map : maplist){
                 list.add(getVoucherAmountPOByMap(map));
             }
-            sqlManager.releaseAll();
-
         }catch (Exception e){
         }
         return list;
@@ -302,14 +300,16 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public HashMap<String, ArrayList<VoucherAmountPO>> findAllVoucherAllAmount() {
-        HashMap<String,ArrayList<VoucherAmountPO>> map = new HashMap<>();
-        try {
-            ArrayList<String> vidList = getVIdList();
-            map = findSeveralVoucherAllAmount(vidList);
-        }catch (Exception e){
+    public ArrayList<VoucherAmountPO> findAllVoucherAllAmount() {
+        ArrayList<VoucherAmountPO> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM voucher_amount";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        for (Map<String,Object> map : maps){
+            list.add(getVoucherAmountPOByMap(map));
         }
-        return map;
+
+        return list;
     }
 
     @Override
@@ -584,6 +584,29 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         }
     }
 
+    public void intialSubjectsBalance(){
+        sqlManager.getConnection();
+
+        ArrayList<String> idList = new ArrayList<>();
+
+        String sql = "SELECT * FROM subjects";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        for (Map<String,Object> map : maps){
+            idList.add(map.get("subjects_id").toString());
+        }
+
+        for (String s : idList){
+            List<Object> params = new ArrayList<>();
+            params.add(s);
+            params.add(0);
+            String sql2 = sqlManager.appendSQL( "INSERT INTO subjects_balance VALUES",params.size());
+            sqlManager.executeUpdateByList(sql2,params);
+        }
+
+        sqlManager.commit();
+        sqlManager.releaseAll();
+    }
+
     @Override
     public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId) {
         ArrayList<VoucherTemplateAmountPO> list = new ArrayList<>();
@@ -611,7 +634,6 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         for(Map<String,Object> map : vidRawList){
             vidList.add(map.get("v_id").toString());
         }
-        sqlManager.releaseAll();
         return vidList;
     }
 

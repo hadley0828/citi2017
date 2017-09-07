@@ -21,17 +21,17 @@ public class DistributorListPO extends InventoryListSuperClass{
 
     private int inputNum;
 
-    private int inputAccount;
+    private double inputAccount;
 
     private int outputNum;
 
-    private int outputAccount;
+    private double outputAccount;
 
     private int balanceNum;
 
-    private int balanceAccount;
+    private double balanceAccount;
 
-    public DistributorListPO(String dID, String productVariety, int inputNum, int inputAccount, int outputNum, int outputAccount, int balanceNum, int balanceAccount) {
+    public DistributorListPO(String dID, String productVariety, int inputNum, double inputAccount, int outputNum, double outputAccount, int balanceNum, double balanceAccount) {
         this.dID = dID;
         this.productVariety = productVariety;
         this.inputNum = inputNum;
@@ -69,11 +69,11 @@ public class DistributorListPO extends InventoryListSuperClass{
         this.inputNum = inputNum;
     }
 
-    public int getInputAccount() {
+    public double getInputAccount() {
         return inputAccount;
     }
 
-    public void setInputAccount(int inputAccount) {
+    public void setInputAccount(double inputAccount) {
         this.inputAccount = inputAccount;
     }
 
@@ -85,11 +85,11 @@ public class DistributorListPO extends InventoryListSuperClass{
         this.outputNum = outputNum;
     }
 
-    public int getOutputAccount() {
+    public double getOutputAccount() {
         return outputAccount;
     }
 
-    public void setOutputAccount(int outputAccount) {
+    public void setOutputAccount(double outputAccount) {
         this.outputAccount = outputAccount;
     }
 
@@ -101,11 +101,11 @@ public class DistributorListPO extends InventoryListSuperClass{
         this.balanceNum = balanceNum;
     }
 
-    public int getBalanceAccount() {
+    public double getBalanceAccount() {
         return balanceAccount;
     }
 
-    public void setBalanceAccount(int balanceAccount) {
+    public void setBalanceAccount(double balanceAccount) {
         this.balanceAccount = balanceAccount;
     }
 

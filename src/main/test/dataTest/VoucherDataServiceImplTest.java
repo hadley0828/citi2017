@@ -301,6 +301,11 @@ public class VoucherDataServiceImplTest {
         }
     }
 
+    @Test
+    public void testIntialSubjectsBalance(){
+        voucherDataService.intialSubjectsBalance();
+    }
+
     private void print(VoucherPO po){
         if(po == null){
             System.out.println("NULL");

@@ -10,12 +10,11 @@ import java.util.ArrayList;
 public interface InventoryService {
     /**
      * 保存供应商库存情况信息录入
-     * @param id 表格id
      * @param emiter 发出方
      * @param receiver 收入方
      * @param list 表格输入数据
      */
-    public void SaveSupplierInformationEntry(String id, String emiter, String receiver, ArrayList<RawMaterialInventoryItemVo> list);
+    public void SaveSupplierInformationEntry(String emiter, String receiver, ArrayList<RawMaterialInventoryItemVo> list);
 
     /**
      * 获取t时期供应商i的原材料的库存
