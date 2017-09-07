@@ -11,6 +11,7 @@ import util.*;
 import vo.voucher.*;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -428,6 +429,30 @@ public class VoucherBlImpl implements VoucherBlService {
 
 
         }
+        ExcelOperate.createExcel(voucherList,path);
+
+        return true;
+    }
+
+    @Override
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path) {
+        ArrayList<Voucher> voucherList=new ArrayList<>();
+
+        if(amountVoArrayList.size()==0){
+            return false;
+        }else{
+            SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+            String date=format.format(new java.util.Date());
+
+            if(amountVoArrayList.size()!=0){
+                for (int count=0;count<amountVoArrayList.size();count++){
+                    Voucher oneVoucher=new Voucher(amountVoArrayList.get(count),date);
+                    voucherList.add(oneVoucher);
+
+                }
+            }
+        }
+
         ExcelOperate.createExcel(voucherList,path);
 
         return true;

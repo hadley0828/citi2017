@@ -1,5 +1,6 @@
 package businesslogicservice;
 
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import po.VoucherPO;
 import vo.voucher.*;
 
@@ -111,6 +112,13 @@ public interface VoucherBlService {
      * @return
      */
     public boolean exportToExcel(ArrayList<String> voucherIdList,String path);
+
+    /**
+     * 根据界面的凭证金额的导出所选的凭证
+     * @param amountVoArrayList
+     * @return
+     */
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path);
 
     /**
      * 根据文件的路径把需要的凭证导入到系统中
