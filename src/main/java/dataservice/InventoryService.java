@@ -9,35 +9,63 @@ import java.util.ArrayList;
  */
 public interface InventoryService {
     /**
-     * 保存供应商库存情况信息录入
-     * @param emiter 发出方
-     * @param receiver 收入方
-     * @param list 表格输入数据
-     */
-    public void SaveSupplierInformationEntry(String emiter, String receiver, ArrayList<RawMaterialInventoryItemVo> list);
-
-    /**
-     * 获取t时期供应商i的原材料的库存
-     * @param time 时间
+     * 获取当前时间某供应商的原材料的库存
      * @param name 供应商名称
      * @return
      */
-    public int getMit(String time, String name);
+    public int getRawInventoryBySupplier(String name);
 
     /**
-     * 获取t时期被运进供应商i的原材料的数量
-     * @param time 时间
+     * 更新供应商的原材料库存
      * @param name 供应商名称
+     * @param inventory 库存量
      * @return
      */
-    public int getVit(String time, String name);
-
+    public boolean setSupplierRawInventory(String name, int inventory);
 
     /**
-     * 获取t时期从供应商i运送到其他所有生产商的原材料的数量
-     * @param time 时间
-     * @param name 供应商名称
+     * 获取当前时间某生产商的原材料库存
+     * @param name 生产商名称
      * @return
      */
-    public int getVijt(String time, String name);
+    public int getRawInventoryByProducer(String name);
+
+    /**
+     * 更新生产商的原材料库存
+     * @param name 生产商名称
+     * @param inventory 库存量
+     * @return
+     */
+    public boolean setProducerRawInventory(String name, int inventory);
+
+    /**
+     * 获取当前时间某生产商的产品库存
+     * @param name 生产商名称
+     * @return
+     */
+    public int getProductInventoryByProducer(String name);
+
+    /**
+     * 更新生产商的产品库存
+     * @param name 生产商名称
+     * @param inventory 库存量
+     * @return
+     */
+    public boolean setProducterProductInventory(String name, int inventory);
+
+    /**
+     * 获取当前时间某分销商的产品库存
+     * @param name 分销商名称
+     * @return
+     */
+    public int getProductInventoryByDistributor(String name);
+
+    /**
+     * 更新分销商的产品库存
+     * @param name 分销商名称
+     * @param inventory 库存量
+     * @return
+     */
+    public boolean setDistributorProductInventory(String name, int inventory);
+
 }
