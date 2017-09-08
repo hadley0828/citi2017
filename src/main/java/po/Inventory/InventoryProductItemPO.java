@@ -7,9 +7,9 @@ import java.sql.Timestamp;
  */
 public class InventoryProductItemPO {
 
-    private String sheetID;  //表id
+    private int sheetID;  //表id
 
-    private String listID; // 条目id
+    private int listID; // 条目id
 
     private String companyID; // 公司id
 
@@ -41,7 +41,7 @@ public class InventoryProductItemPO {
 
     }
 
-    public InventoryProductItemPO(String sheetID, String listID, String companyID, String variety, String voucherID, Timestamp date, boolean isDeliveryOntime, boolean isReturn, int inputNum, double inputUnitPrice, double inputTotalPrice, int outputNum, double outputUnitPrice, double outputTotalPrice, int remainNum) {
+    public InventoryProductItemPO(int sheetID, int listID, String companyID, String variety, String voucherID, Timestamp date, boolean isDeliveryOntime, boolean isReturn, int inputNum, double inputUnitPrice, double inputTotalPrice, int outputNum, double outputUnitPrice, double outputTotalPrice, int remainNum) {
         this.sheetID = sheetID;
         this.listID = listID;
         this.companyID = companyID;
@@ -59,19 +59,19 @@ public class InventoryProductItemPO {
         this.remainNum = remainNum;
     }
 
-    public String getSheetID() {
+    public int getSheetID() {
         return sheetID;
     }
 
-    public void setSheetID(String sheetID) {
+    public void setSheetID(int sheetID) {
         this.sheetID = sheetID;
     }
 
-    public String getListID() {
+    public int getListID() {
         return listID;
     }
 
-    public void setListID(String listID) {
+    public void setListID(int listID) {
         this.listID = listID;
     }
 

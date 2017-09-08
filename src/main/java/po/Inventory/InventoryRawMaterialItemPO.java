@@ -7,9 +7,9 @@ import java.sql.Timestamp;
  */
 public class InventoryRawMaterialItemPO {
 
-    private String sheetID;  //表id
+    private int sheetID;  //表id
 
-    private String listID; // 条目id
+    private int listID; // 条目id
 
     private String companyID; // 公司id
 
@@ -40,7 +40,7 @@ public class InventoryRawMaterialItemPO {
     public InventoryRawMaterialItemPO() {
     }
 
-    public InventoryRawMaterialItemPO(String sheetID, String listID, String companyID, String variety, String voucherID, Timestamp date, boolean isDeliveryOntime, boolean isReturn, int inputNum, double inputUnitPrice, double inputTotalPrice, int outputNum, double outputUnitPrice, double outputTotalPrice, int remainNum) {
+    public InventoryRawMaterialItemPO(int sheetID, int listID, String companyID, String variety, String voucherID, Timestamp date, boolean isDeliveryOntime, boolean isReturn, int inputNum, double inputUnitPrice, double inputTotalPrice, int outputNum, double outputUnitPrice, double outputTotalPrice, int remainNum) {
         this.sheetID = sheetID;
         this.listID = listID;
         this.companyID = companyID;
@@ -58,19 +58,19 @@ public class InventoryRawMaterialItemPO {
         this.remainNum = remainNum;
     }
 
-    public String getSheetID() {
+    public int getSheetID() {
         return sheetID;
     }
 
-    public void setSheetID(String sheetID) {
+    public void setSheetID(int sheetID) {
         this.sheetID = sheetID;
     }
 
-    public String getListID() {
+    public int getListID() {
         return listID;
     }
 
-    public void setListID(String listID) {
+    public void setListID(int listID) {
         this.listID = listID;
     }
 
