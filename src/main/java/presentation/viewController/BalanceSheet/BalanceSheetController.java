@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation.viewController.BalanceSheet;
 
 import businesslogic.BalanceSheetImpl;
 import businesslogicservice.BalanceSheetService;

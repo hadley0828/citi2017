@@ -1,18 +1,18 @@
-package presentation.viewController;
+package presentation.viewController.CashSheet;
 
 import javafx.beans.property.*;
 
 /**
- * Created by YZ on 2017/9/4.
+ * Created by YZ on 2017/9/5.
  */
-public class ProfitVO {
+public class CashVO {
     String project;
     int line_no;
     double year;
     double period;
     String formula;
 
-    public ProfitVO(String project,int line_no,double year,double period,String formula){
+    public CashVO(String project,int line_no,double year,double period,String formula){
         this.project=project;
         this.line_no=line_no;
         this.year=year;
@@ -32,7 +32,7 @@ public class ProfitVO {
 
     public int getline_no(){
         return line_no;
-}
+    }
     public void setline_no(int line_no){
         this.line_no=line_no;
     }
@@ -69,6 +69,4 @@ public class ProfitVO {
     public StringProperty getFormulaProperty(){
         return new SimpleStringProperty(formula);
     }
-
 }
-

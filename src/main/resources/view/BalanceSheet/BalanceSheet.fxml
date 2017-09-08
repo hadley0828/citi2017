@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import presentation.componentController.Datebar?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="2000.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.BalanceSheetController">
+<ScrollPane hbarPolicy="NEVER" maxHeight="2000.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" vbarPolicy="NEVER" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.BalanceSheet.BalanceSheetController">
    <content>
       <Pane id="bigPane" maxHeight="1.7976931348623157E308" prefHeight="1600.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css">
          <children>
