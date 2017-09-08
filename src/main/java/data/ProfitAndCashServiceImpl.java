@@ -17,7 +17,7 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 
     SqlManager sqlManager = SqlManager.getSqlManager();
 
-	public List<VoucherAmountPO> getVourchersByYear(String year, String accounting_id) {
+	public List<VoucherAmountPO> getVourchersByYear(String year, String accounting_id,String company_id) {
 
 	    sqlManager.getConnection();
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
@@ -31,7 +31,7 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 		return list;
 	}
 
-	public List<VoucherAmountPO> getVourchersByPeriod(String period, String accounting_id) {
+	public List<VoucherAmountPO> getVourchersByPeriod(String period, String accounting_id,String company_id) {
 
 	    sqlManager.getConnection();
 	    ArrayList<VoucherAmountPO> list = new ArrayList<>();
@@ -46,7 +46,7 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 	    return list;
 	}
 
-    public List<VoucherAmountPO> getVourchersBefore(String period, String accounting_id) {
+    public List<VoucherAmountPO> getVourchersBefore(String period, String accounting_id,String company_id) {
 	    sqlManager.getConnection();
 
 	    ArrayList<VoucherAmountPO> list = new ArrayList<>();
@@ -61,7 +61,7 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 	    return list;
     }
 
-    public List<Double> getGivenVourchers(String time, String id1, String id2) {
+    public List<Double> getGivenVourchers(String time, String id1, String id2,String company_id) {
 	    sqlManager.getConnection();
 
         Map<String,String> dateMap = DatesUtil.datesParser(time);
@@ -99,7 +99,7 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return result;
     }
 
-    public List<Double> getGivenVourchersByYear(String time, String id1, String id2) {
+    public List<Double> getGivenVourchersByYear(String time, String id1, String id2,String company_id) {
 
 	    sqlManager.getConnection();
 

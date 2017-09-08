@@ -1,7 +1,6 @@
 package dataservice;
 
 import po.SubjectsPO;
-import po.VoucherAmountPO;
 
 import java.util.ArrayList;
 
@@ -10,18 +9,6 @@ import java.util.ArrayList;
  *
  */
 public interface CourseMessageService {
-    /**
-     * 根据凭证id得到其会计科目信息
-     * @param voucher_id 凭证id
-     */
-    public ArrayList<VoucherAmountPO> getCourseMessageById(String voucher_id);
-
-    /**
-     * 根据时间（类似于2017-01这样）获得所有会计科目信息
-     * @param period
-     * @return
-     */
-    public ArrayList<VoucherAmountPO> getCourseMessageByTime(String period);
 
     /**
      * 得到公司当前会计科目信息
@@ -37,6 +24,21 @@ public interface CourseMessageService {
      * @return
      */
     public ArrayList<SubjectsPO> getYearEndCourseMessage(String company_id, String year);
+
+    /**
+     * 判断公司是否有某一年的会计科目信息
+     * @param company_id 公司id
+     * @param year 年份
+     * @return
+     */
+    public boolean HasYear(String company_id, String year);
+
+    /**
+     * 得到公司最开始的会计科目信息
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<SubjectsPO> getBeginCourseMessage(String company_id);
 
     /**
      *  根据科目id得到科目名称

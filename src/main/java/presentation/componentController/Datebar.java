@@ -2,7 +2,6 @@ package presentation.componentController;
 
 import businesslogic.BalanceSheetImpl;
 import businesslogicservice.BalanceSheetService;
-import javafx.beans.binding.StringExpression;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,12 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import presentation.viewController.BalanceSheetController;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 

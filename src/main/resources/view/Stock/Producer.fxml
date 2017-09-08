@@ -31,10 +31,10 @@
                      <children>
                           <TableView layoutX="-1.0" prefHeight="446.0" prefWidth="911.0">
                               <columns>
-                                  <TableColumn prefWidth="224.0" text="原材料种类" />
-                                  <TableColumn prefWidth="219.0" text="库存量" />
-                                  <TableColumn minWidth="5.0" prefWidth="217.0" text="安全库存量" />
-                                  <TableColumn prefWidth="250.0" text="准时交货率" />
+                                  <TableColumn prefWidth="231.0" text="原材料种类" />
+                                  <TableColumn prefWidth="220.0" text="库存量" />
+                                  <TableColumn minWidth="5.0" prefWidth="220.0" text="安全库存量" />
+                                  <TableColumn prefWidth="239.0" text="准时交货率" />
                               </columns>
                           </TableView>
                      </children>
@@ -43,7 +43,18 @@
           </Tab>
           <Tab text="产品库存">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="811.0">
+                    <children>
+                        <TableView layoutX="-1.0" prefHeight="446.0" prefWidth="911.0">
+                            <columns>
+                                <TableColumn prefWidth="231.0" text="产品种类" />
+                                <TableColumn prefWidth="220.0" text="库存量" />
+                                <TableColumn minWidth="5.0" prefWidth="220.0" text="安全库存量" />
+                                <TableColumn prefWidth="239.0" text="退货率" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
             </content>
           </Tab>
         </tabs>
