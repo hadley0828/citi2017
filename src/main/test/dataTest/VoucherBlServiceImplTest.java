@@ -76,6 +76,7 @@ public class VoucherBlServiceImplTest {
     public void testGetOneSubjectBalance(){
         String subjectId="1002";
         System.out.println(voucherBlService.getOneSubjectBalance(subjectId,"001"));
+
     }
 
     @Test
