@@ -93,7 +93,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
         double ending_balance1_9_1 = getMoneyByCourseId(polist1, "1403", true);
         double beginning_balance1_9_1 = getMoneyByCourseId(polist2, "1403", true);
         String law1_9_1 = "公式：\n原材料";
-        current_asset.add(new BalanceSheetItemVo("原材料", 10, ending_balance1_9_1, beginning_balance1_9_1, law1_9_1));
+        current_asset.add(new BalanceSheetItemVo("其中:原材料", 10, ending_balance1_9_1, beginning_balance1_9_1, law1_9_1));
 
         //1.9.1.2在产品=生产成本+制造费用+工程施工+机械作业
         double ending_balance1_9_2 = getMoneyByCourseId(polist1, "4001", true)+getMoneyByCourseId(polist1, "4101", true)
@@ -279,6 +279,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
         String law4_11 = "公式：\n短期借款\n+应付票据\n+应付账款\n+预收账款\n+应付职工薪酬\n+应交税费\n+应付利息\n+其他应付款\n+应付利润\n+其他流动负债";
         current_liabilities.add(new BalanceSheetItemVo("流动负债统计", 41, ending_balance4_11, beginning_balance4_11, law4_11));
 
+        current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
+        current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
+//        current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
+
         result.put("流动负债", current_liabilities);
 
         //5非流动负债
@@ -330,6 +334,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
         owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
+//        owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
         //标题
         owners_equity.add(new BalanceSheetItemVo("所有者权益",0,0,0,""));
 
@@ -359,6 +364,8 @@ public class BalanceSheetImpl implements BalanceSheetService {
         String law7_5 = "公式：\n实收资本\n+资本公积\n+盈余公积\n+未分配利润";
         owners_equity.add(new BalanceSheetItemVo("所有者权益合计", 52, ending_balance7_5, beginning_balance7_5, law7_5));
 
+        owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
+        owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
         result.put("所有者权益", owners_equity);
 
         //8负债和所有者权益（或股东权益）合计=负债合计+所有者权益合计

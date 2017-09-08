@@ -28,6 +28,7 @@ ChoiceBox{
     -fx-border-color: rgb(226,231,235);
 }
 TableView{
+    overflow: hidden;
     -fx-border-color: rgb(212,212,212);
     -fx-border-width: 1px 1px 0 0;
 
@@ -42,10 +43,11 @@ TableView .table-column{
     /*-fx-background-color: rgb(245,255,246);*/
 }
 TableView .table-cell{
-    overflow: hidden;
+    /*overflow: hidden;*/
     -fx-border-color: rgb(212,212,212);
     -fx-border-width: 1px 1px 0 0;
 }
+
 .column-header{
     -fx-pref-height: 42;
 }

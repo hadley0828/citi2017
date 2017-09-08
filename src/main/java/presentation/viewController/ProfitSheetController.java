@@ -4,10 +4,12 @@ import businesslogic.ProfitTableImpl;
 import businesslogicservice.ProfitTableService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import vo.BalanceSheetItemVo;
@@ -44,7 +46,32 @@ public class ProfitSheetController {
     public void initialize(){
         setProfitTable();
         setCell();
+        setTab();
 
+    }
+    public void setTab(){
+        bar.getLast().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent event) {
+                if(bar.getMidMonths().indexOf(bar.getDate())>0) {
+                    bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
+                    bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
+                    bar.changePro();
+                }
+                setProfitTable();
+            }
+        });
+        bar.getLater().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent event) {
+                if(bar.getMidMonths().indexOf(bar.getDate())<bar.getMidMonths().size()-1) {
+                    bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).substring(0,4));
+                    bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).split("-")[1]);
+                    bar.changePro();
+                }
+                setProfitTable();
+            }
+        });
     }
 
     public void setProfitTable(){
@@ -153,7 +180,7 @@ public class ProfitSheetController {
                         if(!isEmpty){
                             ProfitVO v=getTableView().getItems().get(getTableRow().getIndex());
                             if(v.getline_no()==1||v.getline_no()==21||v.getline_no()==30||v.getline_no()==32){
-                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
+                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-alignment: center-left");
                             }
                         }
                     }

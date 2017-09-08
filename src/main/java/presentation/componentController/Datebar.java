@@ -90,6 +90,10 @@ public class Datebar extends HBox{
         monthProperty.setValue(m);
         month.setText(m+"");
     }
+    public void changePro(){
+        yearProperty.setValue(Integer.parseInt(year.getText()));
+        monthProperty.setValue(Integer.parseInt(month.getText()));
+    }
 
     public int getYear(){
         return yearProperty.getValue();
@@ -148,26 +152,49 @@ public class Datebar extends HBox{
                 later_month.setEffect(null);
             }
         });
-        last_month.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                if(months.indexOf(getDate())>0) {
-//                    System.out.print(months.get(curr_index - 1).substring(0,4));
-                    year.setText(months.get(months.indexOf(getDate()) - 1).substring(0,4));
-                    month.setText(months.get(months.indexOf(getDate()) - 1).split("-")[1]);
-                }
-            }
-        });
-        later_month.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
-            @Override
-            public void handle(javafx.scene.input.MouseEvent event) {
-                if(months.indexOf(getDate())<months.size()-1) {
-                    year.setText(months.get(months.indexOf(getDate()) + 1).substring(4));
-                    month.setText(months.get(months.indexOf(getDate()) + 1).split("-")[1]);
-                }
-            }
-        });
+//        last_month.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+//            @Override
+//            public void handle(javafx.scene.input.MouseEvent event) {
+//                if(months.indexOf(getDate())>0) {
+//                    year.setText(months.get(months.indexOf(getDate()) - 1).substring(0,4));
+//                    month.setText(months.get(months.indexOf(getDate()) - 1).split("-")[1]);
+//                    changePro();
+//                }
+//            }
+//        });
+//        later_month.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+//            @Override
+//            public void handle(javafx.scene.input.MouseEvent event) {
+//                if(months.indexOf(getDate())<months.size()-1) {
+//                    year.setText(months.get(months.indexOf(getDate()) + 1).substring(0,4));
+//                    month.setText(months.get(months.indexOf(getDate()) + 1).split("-")[1]);
+//                    changePro();
+//                }
+//            }
+//        });
 
+        if (months.indexOf(getDate())<months.size()-1){
+            later_month.setStyle("");
+        }
+        if (months.indexOf(getDate())>0){
+            last_month.setStyle("-fx-stroke: rgb(255,135,98)");
+        }
+
+    }
+    public ArrayList<String> getMidMonths(){
+        return months;
+    }
+    public ImageView getLast(){
+        return last_month;
+    }
+    public ImageView getLater(){
+        return later_month;
+    }
+    public Label getYL(){
+        return year;
+    }
+    public Label getML(){
+        return month;
     }
 
 
