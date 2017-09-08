@@ -8,6 +8,8 @@ import po.SubjectsPO;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by loohaze on 2017/8/9.
  */
@@ -31,6 +33,19 @@ public class CourseMessageServiceImplTest {
 
     @Test
     public void testGetYearEndCourseMessage(){
+        ArrayList<SubjectsPO> list = courseMessageService.getYearEndCourseMessage("001","1991");
+        System.out.println(list.size());
+    }
+
+    @Test
+    public void testHasYear(){
+        assertEquals(true,courseMessageService.HasYear("001","1991"));
+        assertEquals(false,courseMessageService.HasYear("001","1992"));
+
+    }
+
+    @Test
+    public void testgetBeginCourseMessage(){
 
     }
 

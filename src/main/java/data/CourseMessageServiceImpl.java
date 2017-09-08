@@ -30,12 +30,57 @@ public class CourseMessageServiceImpl implements CourseMessageService{
             list.add(getSubjectsPO(map));
         }
 
+        sqlManager.releaseAll();
         return list;
     }
 
     @Override
     public ArrayList<SubjectsPO> getYearEndCourseMessage(String company_id, String year) {
-        return null;
+        sqlManager.getConnection();
+
+        ArrayList<SubjectsPO> list = new ArrayList<>();
+        String sql = "SELECT t1.subjects_name,t2.* FROM subjects as t1,subjects_balance as t2 WHERE t1.subjects_id = t2.subjects_id AND company_id =? AND date IN(SELECT MAX(date) FROM subjects_balance WHERE subjects_id = t1.subjects_id AND year(date) =?)";
+
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id,year});
+
+        for (Map<String,Object> map : maps){
+            list.add(getSubjectsPO(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
+    }
+
+    @Override
+    public boolean HasYear(String company_id, String year) {
+        sqlManager.getConnection();
+
+        String sql = "SELECT date FROM subjects_balance WHERE year(date)=? AND company_id=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{year,company_id});
+
+        sqlManager.releaseAll();
+
+        if (maps.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    @Override
+    public ArrayList<SubjectsPO> getBeginCourseMessage(String company_id) {
+        sqlManager.getConnection();
+
+        ArrayList<SubjectsPO> list = new ArrayList<>();
+        String sql = "SELECT t1.subjects_name,t2.* FROM subjects as t1,subjects_balance as t2 WHERE t1.subjects_id = t2.subjects_id AND company_id =? AND date IN(SELECT min(date) FROM subjects_balance WHERE subjects_id = t1.subjects_id)";
+
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id});
+        for (Map<String,Object> map : maps){
+            list.add(getSubjectsPO(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
     }
 
     @Override
