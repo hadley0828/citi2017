@@ -34,18 +34,18 @@ public class VoucherDataServiceImplTest {
         po.setVoucher_maker("loohaze");
         po.setRemark("TEST");
 
-        voucherDataService.addVoucher(po);
+        voucherDataService.addVoucher(po,"001");
     }
 
     @Test
     public void testDeleteOneVoucher(){
         String v_id = "借-2";
-        voucherDataService.deleteOneVoucher(v_id);
+        voucherDataService.deleteOneVoucher(v_id,"001");
     }
 
     @Test
     public void testDeleteAllVoucher(){
-        voucherDataService.deleteAllVoucher();
+        voucherDataService.deleteAllVoucher("001");
     }
 
     @Test
@@ -58,13 +58,13 @@ public class VoucherDataServiceImplTest {
         po.setVoucher_maker("loohaze");
         po.setRemark("TEST");
 
-        System.out.println(voucherDataService.modifyOneVoucher(vid,po));
+        System.out.println(voucherDataService.modifyOneVoucher(vid,po,"001"));
     }
 
     @Test
     public void testFindOneVoucher(){
         String id = "转-1";
-        VoucherPO po = voucherDataService.findOneVoucher(id);
+        VoucherPO po = voucherDataService.findOneVoucher(id,"001");
         print(po);
     }
 
@@ -77,7 +77,7 @@ public class VoucherDataServiceImplTest {
         idlist.add("借-3");
         idlist.add("转-4");
 
-        ArrayList<VoucherPO> polist = voucherDataService.findSeveralVoucher(idlist);
+        ArrayList<VoucherPO> polist = voucherDataService.findSeveralVoucher(idlist,"001");
         for (VoucherPO po : polist){
             print(po);
         }
@@ -85,7 +85,7 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testFindAllVoucher(){
-       ArrayList<VoucherPO> list = voucherDataService.findAllVoucher();
+       ArrayList<VoucherPO> list = voucherDataService.findAllVoucher("001");
        for (VoucherPO po : list){
            print(po);
        }
@@ -112,19 +112,19 @@ public class VoucherDataServiceImplTest {
         list.add(po1);
         list.add(po2);
 
-        System.out.println(voucherDataService.addOneVoucherAllAmount(v_id,list));
+        System.out.println(voucherDataService.addOneVoucherAllAmount(v_id,list,"001"));
     }
 
     @Test
     public void testDeleteOneVoucherAllAmount(){
         String v_id = "借-3";
-        System.out.println(voucherDataService.deleteOneVoucherAllAmount(v_id));
+        System.out.println(voucherDataService.deleteOneVoucherAllAmount(v_id,"001"));
     }
 
     @Test
     public void testDeleteOneAmount(){
         String a_id = "16";
-        System.out.println(voucherDataService.deleteOneAmount(a_id));
+        System.out.println(voucherDataService.deleteOneAmount(a_id,"001"));
     }
 
     @Test
@@ -132,14 +132,14 @@ public class VoucherDataServiceImplTest {
         ArrayList<String> vidlist = new ArrayList<>();
         vidlist.add("转-1");
         vidlist.add("借-1");
-        System.out.println(voucherDataService.deleteSeveralVoucherAllAmount(vidlist));
+        System.out.println(voucherDataService.deleteSeveralVoucherAllAmount(vidlist,"001"));
 
     }
 
 
     @Test
     public void testDeleteAllAmount(){
-        System.out.println(voucherDataService.deleteAllAmount());
+        System.out.println(voucherDataService.deleteAllAmount("001"));
     }
 
     @Test
@@ -150,13 +150,13 @@ public class VoucherDataServiceImplTest {
         po.setDigest("MODIFY TEST");
         po.setDebitAmount(100);
         po.setSubject("1001");
-        System.out.println(voucherDataService.modifyOneAmount(a_id,po));
+        System.out.println(voucherDataService.modifyOneAmount(a_id,po,"001"));
     }
 
     @Test
     public void testFindOneVoucherAllAmount(){
         String v_id = "转-2";
-        ArrayList<VoucherAmountPO> list = voucherDataService.findOneVoucherAllAmount(v_id);
+        ArrayList<VoucherAmountPO> list = voucherDataService.findOneVoucherAllAmount(v_id,"001");
         for (VoucherAmountPO po : list){
             print(po);
         }
@@ -168,13 +168,13 @@ public class VoucherDataServiceImplTest {
         list.add("转-2");
         list.add("转-3");
 
-        HashMap<String,ArrayList<VoucherAmountPO>> map = voucherDataService.findSeveralVoucherAllAmount(list);
+        HashMap<String,ArrayList<VoucherAmountPO>> map = voucherDataService.findSeveralVoucherAllAmount(list,"001");
         System.out.println(map.size());
     }
 
     @Test
     public void testfindAllVoucherAllAmount(){
-        ArrayList<VoucherAmountPO> list = voucherDataService.findAllVoucherAllAmount();
+        ArrayList<VoucherAmountPO> list = voucherDataService.findAllVoucherAllAmount("001");
         System.out.println(list.size());
     }
 
@@ -183,27 +183,27 @@ public class VoucherDataServiceImplTest {
     public void testAddOneSubjectBalance(){
         String s_id = "1001";
         double num = 1000;
-        System.out.println(voucherDataService.addOneSubjectBalance(s_id,num));
+        System.out.println(voucherDataService.addOneSubjectBalance(s_id,num,"001"));
     }
 
     @Test
     public void testDeleteOneSubjectBalance(){
         String s_id = "1001";
-        System.out.println(voucherDataService.deleteOneSubjectBalance(s_id));
+        System.out.println(voucherDataService.deleteOneSubjectBalance(s_id,"001"));
     }
 
     @Test
     public void testModifyOneSubjectBalance(){
         String s_id = "1001";
         double num = 2000;
-        System.out.println(voucherDataService.modifyOneSubjectBalance(s_id,num));
+        System.out.println(voucherDataService.modifyOneSubjectBalance(s_id,num,"001"));
     }
 
 
     @Test
     public void testFindOneSubjectBalance(){
         String s_id = "1001";
-        double balances = voucherDataService.findOneSubjectBalance(s_id);
+        double balances = voucherDataService.findOneSubjectBalance(s_id,"001");
         System.out.println(balances);
     }
 
@@ -213,7 +213,7 @@ public class VoucherDataServiceImplTest {
         po.setTemplateId("t001");
         po.setCatagory("TEST");
         po.setTemplateName("TEST NAME");
-        System.out.println(voucherDataService.addOneTemplate(po));
+        System.out.println(voucherDataService.addOneTemplate(po,"001"));
     }
 
     @Test
@@ -223,20 +223,20 @@ public class VoucherDataServiceImplTest {
         po.setDigest(" ");
         po.setSubject("1001");
         po.setCreditAmount(1000);
-        System.out.println(voucherDataService.addOneTemplateAmount(po));
+        System.out.println(voucherDataService.addOneTemplateAmount(po,"001"));
 
     }
 
     @Test
     public void testDeleteOneTemplate(){
         String t_id = "t001";
-        System.out.println(voucherDataService.deleteOneTemplate(t_id));
+        System.out.println(voucherDataService.deleteOneTemplate(t_id,"001"));
     }
 
     @Test
     public void testDeleteOneTemplateAmounts(){
         String t_id = "t001";
-        System.out.println(voucherDataService.deleteOneTemplateAmounts(t_id));
+        System.out.println(voucherDataService.deleteOneTemplateAmounts(t_id,"001"));
     }
 
 
@@ -247,7 +247,7 @@ public class VoucherDataServiceImplTest {
         po.setTemplateId("t001");
         po.setCatagory("TEST");
         po.setTemplateName("TEST NAME");
-        System.out.println(voucherDataService.modifyOneTemplate(t_id,po));
+        System.out.println(voucherDataService.modifyOneTemplate(t_id,po,"001"));
     }
 
     @Test
@@ -259,18 +259,18 @@ public class VoucherDataServiceImplTest {
         po.setSubject("1001");
         po.setCreditAmount(1223);
         po.setDebitAmount(99);
-        System.out.println(voucherDataService.modifyTemplateAmount(po));
+        System.out.println(voucherDataService.modifyTemplateAmount(po,"001"));
     }
 
     @Test
     public void testGetOneTemplate(){
-        VoucherTemplatePO po = voucherDataService.getOneTemplate("t001");
+        VoucherTemplatePO po = voucherDataService.getOneTemplate("t001","001");
         print(po);
     }
 
     @Test
     public void testGetAllTemplate(){
-        ArrayList<VoucherTemplatePO> list = voucherDataService.getAllTemplate();
+        ArrayList<VoucherTemplatePO> list = voucherDataService.getAllTemplate("001");
         for (VoucherTemplatePO po : list){
             print(po);
         }
@@ -279,14 +279,14 @@ public class VoucherDataServiceImplTest {
     @Test
     public void testDeleteTemplateAmount(){
         String a_id = "3";
-        System.out.println(voucherDataService.deleteTemplateAmount(a_id));
+        System.out.println(voucherDataService.deleteTemplateAmount(a_id,"001"));
 
     }
 
     @Test
     public void testGetOneTemplateAmount(){
         String a_id = "4";
-        VoucherTemplateAmountPO po = voucherDataService.getOneTemplateAmount(a_id);
+        VoucherTemplateAmountPO po = voucherDataService.getOneTemplateAmount(a_id,"001");
 
         print(po);
     }
@@ -294,7 +294,7 @@ public class VoucherDataServiceImplTest {
     @Test
     public void testGetOneTemplateAllAmount(){
         String t_id = "t002";
-        ArrayList<VoucherTemplateAmountPO> list = voucherDataService.getOneTemplateAllAmount(t_id);
+        ArrayList<VoucherTemplateAmountPO> list = voucherDataService.getOneTemplateAllAmount(t_id,"001");
         for (VoucherTemplateAmountPO po : list){
             print(po);
         }
@@ -302,7 +302,7 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testIntialSubjectsBalance(){
-        voucherDataService.intialSubjectsBalance();
+        voucherDataService.intialSubjectsBalance("001");
     }
 
     private void print(VoucherPO po){
