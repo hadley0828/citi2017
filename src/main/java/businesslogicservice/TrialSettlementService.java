@@ -10,9 +10,8 @@ import java.util.ArrayList;
 public interface TrialSettlementService {
     /**
      * 根据凭证id和时期得到试算表的数据
-     * @param voucher_id 凭证id
-     * @param time 时期
+     * @param company_id 公司id
      * @return
      */
-    public ArrayList<TrialTableItemVo> getTrialTable(String voucher_id, String time);
+    public ArrayList<TrialTableItemVo> getTrialTable(String company_id);
 }

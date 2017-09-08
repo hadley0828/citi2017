@@ -4,6 +4,7 @@ import businesslogicservice.BalanceSheetService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
 import javafx.beans.property.IntegerProperty;
+import po.SubjectsPO;
 import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 
@@ -22,10 +23,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param phase      时期
      * @return
      */
-    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String phase) {
+    public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String company_id, String phase) {
         CourseMessageService service = new CourseMessageServiceImpl();
-        ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageByTime(phase);
-        ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageByTime(getBeginningOfYear(phase));
+        ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
+        ArrayList<SubjectsPO> polist2 = service.getYearEndCourseMessage(company_id, getLastYear(phase));
 
         Map<String, ArrayList<BalanceSheetItemVo>> result = new HashMap<>();
 
@@ -381,29 +382,32 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
     /**
      * 得到所有凭证数量
+     * @param company_id 公司id
      * @return
      */
-    public int getVoucherNumber(){
+    public int getVoucherNumber(String company_id){
         CourseMessageService service = new CourseMessageServiceImpl();
-        return service.getVoucherNumber();
+        return service.getVoucherNumber(company_id);
     }
 
     /**
      * 得到凭证最早时间
+     * @param company_id 公司id
      * @return
      */
-    public String getEarliestTime(){
+    public String getEarliestTime(String company_id){
         CourseMessageService service = new CourseMessageServiceImpl();
-        return service.getEarliestTime();
+        return service.getEarliestTime(company_id);
     }
 
     /**
      * 得到凭证最晚时间
+     * @param company_id 公司id
      * @return
      */
-    public String getLatestTime(){
+    public String getLatestTime(String company_id){
         CourseMessageService service = new CourseMessageServiceImpl();
-        return service.getLatestTime();
+        return service.getLatestTime(company_id);
     }
 
     /**
@@ -447,10 +451,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param time
      * @return
      */
-    public double[] getDollarAssent(String time){
+    public double[] getDollarAssent(String company_id, String time){
         CourseMessageService service = new CourseMessageServiceImpl();
-        ArrayList<VoucherAmountPO> polist1 = service.getCourseMessageByTime(time);
-        ArrayList<VoucherAmountPO> polist2 = service.getCourseMessageByTime(getBeginningOfYear(time));
+        ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
+        ArrayList<SubjectsPO> polist2 = service.getYearEndCourseMessage(company_id, getLastYear(time));
         //期末余额
         double ending_balance = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
         //年初余额
@@ -467,10 +471,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param IsDebit   是否借方
      * @return
      */
-    private double getMoneyByCourseId(ArrayList<VoucherAmountPO> polist, String course_id, boolean IsDebit) {
+    private double getMoneyByCourseId(ArrayList<SubjectsPO> polist, String course_id, boolean IsDebit) {
         for (int i = 0; i < polist.size(); i++) {
-            VoucherAmountPO po = polist.get(i);
-            if (po.getSubject().equals(course_id)) {
+            SubjectsPO po = polist.get(i);
+            if (po.getId().equals(course_id)) {
                 if (IsDebit) {
                     return po.getDebitAmount();
                 } else {
@@ -487,8 +491,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param phase 阶段
      * @return
      */
-    private String getBeginningOfYear(String phase) {
-        return phase.substring(0,5)+"1";
+    private String getLastYear(String phase) {
+        int now = Integer.valueOf(phase.substring(0,4));
+        String last = String.valueOf(now-1);
+        return last;
     }
 
     /**
@@ -498,7 +504,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param IsDebit 是否借方
      * @return
      */
-    private double getTotalTax(ArrayList<VoucherAmountPO> polist, boolean IsDebit){
+    private double getTotalTax(ArrayList<SubjectsPO> polist, boolean IsDebit){
         String[] idlist ={"222100101", "222100102", "222100103", "222100104", "222100105", "222100106", "222100107", "222100108", "222100109", "222100110",
                 "2221002", "2221003", "2221004", "2221005", "2221006", "2221007", "2221008", "2221009", "2221010", "2221011", "2221012", "2221013", "2221014",
                 "2221015", "2221016", "2221017", "2221018", "2221019", "2221020", "2221021", "2221022", "2221023", "2221024", "2221025"};
@@ -516,7 +522,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @param IsDebit 是否借方
      * @return
      */
-    private double getTotalProfit(ArrayList<VoucherAmountPO> polist, boolean IsDebit){
+    private double getTotalProfit(ArrayList<SubjectsPO> polist, boolean IsDebit){
         String[] idlist = {"3104001", "3104002", "3104003", "3104004", "3104005", "3104006"};
         double result = 0.0;
         for(int i=0;i<idlist.length;i++){

@@ -40,26 +40,29 @@ public interface CourseMessageService {
 
     /**
      *  根据科目id得到科目名称
-     * @param id
+     * @param id 科目编号
      * @return
      */
     public String getCourseNameById(String id);
 
     /**
      * 得到所有凭证数量
+     * @param company_id 公司id
      * @return
      */
-    public int getVoucherNumber();
+    public int getVoucherNumber(String company_id);
 
     /**
      * 得到凭证最早时间
+     * @param company_id 公司id
      * @return
      */
-    public String getEarliestTime();
+    public String getEarliestTime(String company_id);
 
     /**
      * 得到凭证最晚时间
+     * @param company_id 公司id
      * @return
      */
-    public String getLatestTime();
+    public String getLatestTime(String company_id);
 }
