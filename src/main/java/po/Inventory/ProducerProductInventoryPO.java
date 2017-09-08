@@ -6,15 +6,26 @@ package po.Inventory;
  * 生产商产品库存PO
  * ppID -->
  */
-public class ProducerProductInventoryPO extends InventorySuperClass{
+public class ProducerProductInventoryPO{
 
     private String ppID;
 
-    public ProducerProductInventoryPO(String ppID) {
+    private String companyID;
+
+    public ProducerProductInventoryPO(String ppID, String companyID) {
         this.ppID = ppID;
+        this.companyID = companyID;
     }
 
     public ProducerProductInventoryPO() {
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
     public String getPpID() {

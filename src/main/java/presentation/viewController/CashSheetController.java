@@ -75,8 +75,8 @@ public class CashSheetController {
     private CashFlowVo year;
 
     public void setCashTable(){
-        period=cashService.CashFlowTable_month(bar.getDate());
-        year=cashService.CashFlowTable_year(bar.getDate());
+        period=cashService.CashFlowTable_month(bar.getDate(),"");
+        year=cashService.CashFlowTable_year(bar.getDate(),"");
 /**
  *
  * @author hyf

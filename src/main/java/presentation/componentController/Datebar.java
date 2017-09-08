@@ -54,7 +54,7 @@ public class Datebar extends HBox{
 
     private BalanceSheetService balanceSheetService=new BalanceSheetImpl();
 
-    private int voucher_num=balanceSheetService.getVoucherNumber();
+    private int voucher_num=balanceSheetService.getVoucherNumber("");
 
     private IntegerProperty yearProperty=new SimpleIntegerProperty();
     private IntegerProperty monthProperty=new SimpleIntegerProperty();
@@ -64,8 +64,8 @@ public class Datebar extends HBox{
     int this_year=calendar.get(Calendar.YEAR);
     int this_month=calendar.get(Calendar.MONTH)+1;
 
-    String theEarly=balanceSheetService.getEarliestTime();
-    String theLate=balanceSheetService.getLatestTime();
+    String theEarly=balanceSheetService.getEarliestTime("");
+    String theLate=balanceSheetService.getLatestTime("");
 
     public ArrayList<String> months=balanceSheetService.getMiddleMonth(theEarly,theLate);
 
@@ -78,7 +78,7 @@ public class Datebar extends HBox{
             setListener();
         }else{
 //            System.out.print(balanceSheetService.getLatestTime());
-            setDate(Integer.parseInt(balanceSheetService.getLatestTime().substring(0,4)),Integer.parseInt(balanceSheetService.getLatestTime().split("-")[1]));
+            setDate(Integer.parseInt(balanceSheetService.getLatestTime("").substring(0,4)),Integer.parseInt(balanceSheetService.getLatestTime("").split("-")[1]));
             setListener();
         }
 

@@ -18,9 +18,10 @@ public class Demo extends Application {
         try{
             FXMLLoader loader=new FXMLLoader();
 //            loader.setLocation(Demo.class.getResource("../view/CashFlow/CashFlow.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
 //              loader.setLocation(Demo.class.getResource("../view/BalanceSheet/TestTree.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/Stock/Distributor.fxml"));
             ScrollPane root=loader.load();
 
 
