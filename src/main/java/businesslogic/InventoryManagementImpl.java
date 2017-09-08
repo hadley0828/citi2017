@@ -89,6 +89,8 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<RawMaterialInventoryMonitorItemVo> getRawMaterialInventoryMonitorItem(String company_id, String time){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItem(company_id, time);
         return null;
     }
 

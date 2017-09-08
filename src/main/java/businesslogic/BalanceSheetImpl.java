@@ -26,7 +26,14 @@ public class BalanceSheetImpl implements BalanceSheetService {
     public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String company_id, String phase) {
         CourseMessageService service = new CourseMessageServiceImpl();
         ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
-        ArrayList<SubjectsPO> polist2 = service.getYearEndCourseMessage(company_id, getLastYear(phase));
+        ArrayList<SubjectsPO> polist2 = new ArrayList<>();
+        String last_year = getLastYear(phase);
+        boolean has_this_year = service.HasYear(company_id, last_year);
+        if(has_this_year){
+            polist2 = service.getYearEndCourseMessage(company_id, last_year);
+        }else {
+            polist2 = service.getBeginCourseMessage(company_id);
+        }
 
         Map<String, ArrayList<BalanceSheetItemVo>> result = new HashMap<>();
 
@@ -282,7 +289,6 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
         current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
-//        current_liabilities.add(new BalanceSheetItemVo("",0,0,0,""));
 
         result.put("流动负债", current_liabilities);
 
@@ -335,7 +341,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
         owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
-//        owners_equity.add(new BalanceSheetItemVo("",0,0,0,""));
+
         //标题
         owners_equity.add(new BalanceSheetItemVo("所有者权益",0,0,0,""));
 
@@ -454,7 +460,14 @@ public class BalanceSheetImpl implements BalanceSheetService {
     public double[] getDollarAssent(String company_id, String time){
         CourseMessageService service = new CourseMessageServiceImpl();
         ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
-        ArrayList<SubjectsPO> polist2 = service.getYearEndCourseMessage(company_id, getLastYear(time));
+        ArrayList<SubjectsPO> polist2 = new ArrayList<>();
+        String last_year = getLastYear(time);
+        boolean has_this_year = service.HasYear(company_id, last_year);
+        if(has_this_year){
+            polist2 = service.getYearEndCourseMessage(company_id, last_year);
+        }else {
+            polist2 = service.getBeginCourseMessage(company_id);
+        }
         //期末余额
         double ending_balance = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
         //年初余额
