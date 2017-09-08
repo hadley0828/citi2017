@@ -86,12 +86,12 @@ public class TableCalHelper {
 	 * @param time
 	 * @return 期末，期初，年初，第一个月的期末
 	 */
-	public Map<String,double[]> tempCal(String time){
+	public Map<String,double[]> tempCal(String time,String id){
 		BalanceSheetImpl bs=new BalanceSheetImpl();
 		
-		Map<String, ArrayList<BalanceSheetItemVo>> s1=bs.getBalanceSheet(lastTime(time));
-		Map<String, ArrayList<BalanceSheetItemVo>> s2=bs.getBalanceSheet(time);
-		Map<String, ArrayList<BalanceSheetItemVo>> s3=bs.getBalanceSheet(FirstMonth(time));
+		Map<String, ArrayList<BalanceSheetItemVo>> s1=bs.getBalanceSheet(id,lastTime(time));
+		Map<String, ArrayList<BalanceSheetItemVo>> s2=bs.getBalanceSheet(id,time);
+		Map<String, ArrayList<BalanceSheetItemVo>> s3=bs.getBalanceSheet(id,FirstMonth(time));
 		
 		Map<String,double[]> res=new HashMap<String,double[]>();
 		ArrayList<BalanceSheetItemVo> temp1=s1.get("流动资产");
