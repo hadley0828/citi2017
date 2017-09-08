@@ -34,7 +34,7 @@ public class RootLayoutController implements Initializable {
     @FXML
     private StackPane missionPane;
 
-    private ScreensController myController = ScreensController.getInstance();
+    private ScreensController myController = new ScreensController();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,7 +47,7 @@ public class RootLayoutController implements Initializable {
         myController.loadScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN, ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN_FXML);
         myController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
 
-        myController.loadScreen(ScreensFramework.PRO_DEBT_SCREEN,ScreensFramework.PRO_DEBT_SCREEN_FXML);
+        //myController.loadScreen(ScreensFramework.PRO_DEBT_SCREEN,ScreensFramework.PRO_DEBT_SCREEN_FXML);
         missionPane.getChildren().add(myController);
     }
 

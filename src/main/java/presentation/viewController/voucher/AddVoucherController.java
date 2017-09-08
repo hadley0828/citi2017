@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
  */
 public class AddVoucherController implements Initializable, ControlledScreen {
 
+    private ScreensController myController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -20,6 +22,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-
+        myController = screenPage;
     }
+
+
 }
