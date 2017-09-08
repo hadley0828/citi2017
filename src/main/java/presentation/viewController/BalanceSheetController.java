@@ -61,6 +61,7 @@ public class BalanceSheetController implements ControlledScreen{
         setBalanceTable();
         dropzero();
         setCell();
+        setTab();
     }
 //    private String date=bar.getDate();
 
@@ -68,8 +69,33 @@ public class BalanceSheetController implements ControlledScreen{
     //如果有凭证的话，显示最近的一月
     //为什么不直接放在bar里
 
+    public void setTab(){
+        bar.getLast().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent event) {
+                if(bar.getMidMonths().indexOf(bar.getDate())>0) {
+                    bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
+                    bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
+                    bar.changePro();
+                }
+                setBalanceTable();
+            }
+        });
+        bar.getLater().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+            @Override
+            public void handle(javafx.scene.input.MouseEvent event) {
+                if(bar.getMidMonths().indexOf(bar.getDate())<bar.getMidMonths().size()-1) {
+                    bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).substring(0,4));
+                    bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).split("-")[1]);
+                    bar.changePro();
+                }
+                setBalanceTable();
+            }
+        });
+    }
     //为资产表添加数据
     public void setBalanceTable(){
+//        System.out.print(bar.getDate());
         bs_data=balanceSheetService.getBalanceSheet(bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
@@ -198,19 +224,22 @@ public class BalanceSheetController implements ControlledScreen{
                            BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
 
                            if(v.getLine_No()==0||v.getLine_No()==30){
-                               setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
+                               setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-alignment: center-left");
                            }
-                           if(v.getLine_No()==9){
-                               setStyle("-fx-background-image: url('images/down.png');-fx-background-position: left;-fx-background-repeat: no-repeat;-fx-background-size: 28 28;");
-                               setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
-                                   @Override
-                                   public void handle(javafx.scene.input.MouseEvent event) {
-//                                       getTableView().getItems().add(new BalanceSheetItemVo("  其中：原材料",10,0,0,"公式：\n原材料"));
-                                       
-                                   }
-                               });
-
-                           }
+//                           if(v.getLine_No()==10||v.getLine_No()==11||v.getLine_No()==12||v.getLine_No()==13){
+//                               setStyle("-fx-alignment: center-right");
+//                           }
+//                           if(v.getLine_No()==9){
+//                               setStyle("-fx-background-image: url('images/down.png');-fx-background-position: left;-fx-background-repeat: no-repeat;-fx-background-size: 28 28;");
+//                               setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+//                                   @Override
+//                                   public void handle(javafx.scene.input.MouseEvent event) {
+////                                       getTableView().getItems().add(new BalanceSheetItemVo("  其中：原材料",10,0,0,"公式：\n原材料"));
+//
+//                                   }
+//                               });
+//
+//                           }
 
                        }
                    }
@@ -227,8 +256,10 @@ public class BalanceSheetController implements ControlledScreen{
                         if(!isEmpty){
                             BalanceSheetItemVo v=getTableView().getItems().get(getTableRow().getIndex());
                             if(v.getLine_No()==0||v.getLine_No()==47||v.getLine_No()==53){
-                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-text-alignment: left");
+                                setStyle("-fx-font-size: 19;-fx-font-weight: bold;-fx-alignment: center-left");
                             }
+
+
                         }
                     }
                 };
