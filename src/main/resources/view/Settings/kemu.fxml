@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.Kemu">
+   <children>
+      <Label layoutX="393.0" layoutY="21.0" prefHeight="20.0" prefWidth="119.0" text="科目管理">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="-2.0" layoutY="88.0" prefHeight="512.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
+        <columns>
+          <TableColumn prefWidth="140.0" text="科目编码" />
+          <TableColumn prefWidth="143.0" text="科目名称" />
+            <TableColumn prefWidth="173.0" text="助记码" />
+            <TableColumn prefWidth="163.0" text="余额方向" />
+            <TableColumn prefWidth="157.0" text="状态" />
+            <TableColumn prefWidth="107.0" text="属性" />
+            <TableColumn prefWidth="113.0" text="操作" />
+        </columns>
+      </TableView>
+      <Button layoutY="58.0" mnemonicParsing="false" text="资产" />
+      <Button layoutX="50.0" layoutY="58.0" mnemonicParsing="false" text="负债" />
+      <Button layoutX="100.0" layoutY="58.0" mnemonicParsing="false" text="净资产" />
+      <Button layoutX="165.0" layoutY="58.0" mnemonicParsing="false" text="收入" />
+      <Button layoutX="215.0" layoutY="58.0" mnemonicParsing="false" text="费用" />
+   </children>
+</AnchorPane>
