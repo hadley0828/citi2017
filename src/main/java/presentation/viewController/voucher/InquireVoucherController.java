@@ -5,7 +5,7 @@ import businesslogicservice.VoucherBlService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
-import presentation.componentController.VoucherCard;
+import presentation.componentController.VoucherCardController;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.voucher.VoucherVo;
@@ -18,14 +18,14 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     @FXML
     private AnchorPane rootPane;
 
-    private VoucherCard voucherCard;
+    private VoucherCardController voucherCard;
     private VoucherBlService voucherBl;
     private ArrayList<VoucherVo> voucherList;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         voucherBl = new VoucherBlImpl();
-        voucherList = voucherBl.getCurrentPeriodAllVoucher();
-        voucherCard = new VoucherCard(voucherList.get(0).getAmountList());
+        voucherList = voucherBl.getCurrentPeriodAllVoucher("001");
+        voucherCard = new VoucherCardController(voucherList.get(0).getAmountList());
         rootPane.getChildren().add(voucherCard);
     }
 

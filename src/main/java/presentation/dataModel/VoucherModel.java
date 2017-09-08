@@ -3,14 +3,13 @@ package presentation.dataModel;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class voucherModel {
-
+public class VoucherModel {
     private final SimpleStringProperty abstracts;
     private final SimpleStringProperty subject;
     private final SimpleDoubleProperty debit;
     private final SimpleDoubleProperty credit;
 
-    public voucherModel(String abstracts, String subject, double debit, double credit) {
+    public VoucherModel(String abstracts, String subject, double debit, double credit) {
         this.abstracts = new SimpleStringProperty(abstracts);
         this.subject = new SimpleStringProperty(subject);
         this.debit = new SimpleDoubleProperty(credit);

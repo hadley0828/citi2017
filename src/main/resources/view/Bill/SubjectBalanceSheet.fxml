@@ -4,9 +4,32 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.SubjectBalanceSheetController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="617.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.SubjectBalanceSheetController">
     <children>
-        <Label layoutX="173.0" layoutY="164.0" text="Subject Balance" />
+        <Label layoutX="46.0" layoutY="26.0" text="Subject Balance" />
+      <TableView fx:id="billTable" layoutX="9.0" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
+         <columns>
+            <TableColumn fx:id="idCol" prefWidth="75.0" text="科目编码" />
+            <TableColumn fx:id="subjectCol" prefWidth="75.0" text="科目名称" />
+            <TableColumn prefWidth="75.0" text="期初余额">
+               <columns>
+                  <TableColumn fx:id="beginningDebitCol" prefWidth="75.0" text="借方" />
+                  <TableColumn fx:id="beginningCreditCol" prefWidth="75.0" text="贷方" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="abstractsCol" prefWidth="75.0" text="本期发生额">
+               <columns>
+                  <TableColumn fx:id="occurredDebitCol" prefWidth="75.0" text="借方" />
+                  <TableColumn fx:id="occurredCreditCol" prefWidth="75.0" text="贷方" />
+               </columns>
+            </TableColumn>
+            <TableColumn fx:id="debitCol" prefWidth="75.0" text="期末余额">
+               <columns>
+                  <TableColumn fx:id="endingDebitCol" prefWidth="75.0" text="借方" />
+                  <TableColumn fx:id="endingCreditCol" prefWidth="75.0" text="贷方" />
+               </columns>
+            </TableColumn>
+         </columns>
+      </TableView>
     </children>
 </AnchorPane>
