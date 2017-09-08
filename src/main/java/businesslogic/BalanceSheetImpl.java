@@ -488,7 +488,7 @@ public class BalanceSheetImpl implements BalanceSheetService {
      * @return
      */
     private String getBeginningOfYear(String phase) {
-        return phase.substring(0,5)+"01";
+        return phase.substring(0,5)+"1";
     }
 
     /**

@@ -1,11 +1,17 @@
 package po;
 
+
+import java.sql.Date;
+
 /**
  * Created by loohaze on 2017/8/7.
  *
  * id --> 会计科目编号
  * name --> 会计科目名称
  * balances --> 余额
+ * date --> 日期
+ * debitAmount --> 借方金额
+ * creditAmount --> 贷方金额
  */
 public class SubjectsPO {
 
@@ -13,19 +19,52 @@ public class SubjectsPO {
 
     private String name;
 
+    private Date date;
+
     private double balances;
+
+    private double debitAmount;
+
+    private double creditAmount;
+
 
 
     public SubjectsPO(){
 
     }
 
-    public SubjectsPO(String id, String name, double balances) {
+    public SubjectsPO(String id, String name, Date date, double balances, double debitAmount, double creditAmount) {
         this.id = id;
         this.name = name;
+        this.date = date;
         this.balances = balances;
+        this.debitAmount = debitAmount;
+        this.creditAmount = creditAmount;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public double getDebitAmount() {
+        return debitAmount;
+    }
+
+    public void setDebitAmount(double debitAmount) {
+        this.debitAmount = debitAmount;
+    }
+
+    public double getCreditAmount() {
+        return creditAmount;
+    }
+
+    public void setCreditAmount(double creditAmount) {
+        this.creditAmount = creditAmount;
+    }
     public double getBalances() {
         return balances;
     }

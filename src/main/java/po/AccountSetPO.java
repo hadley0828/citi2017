@@ -12,6 +12,8 @@ import java.sql.Date;
  */
 public class AccountSetPO {
 
+    private String companyId;
+
     private String companyName;
 
     private String location;
@@ -20,7 +22,8 @@ public class AccountSetPO {
 
     private Date startDate;
 
-    public AccountSetPO(String companyName, String location, String industry, Date startDate) {
+    public AccountSetPO(String companyId, String companyName, String location, String industry, Date startDate) {
+        this.companyId = companyId;
         this.companyName = companyName;
         this.location = location;
         this.industry = industry;
@@ -28,6 +31,14 @@ public class AccountSetPO {
     }
 
     public AccountSetPO() {
+    }
+
+    public String getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
     public String getCompanyName() {
