@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+       <Pane prefHeight="1200.0" prefWidth="1180.0">
+           <children>
+               <Label layoutX="36.0" layoutY="29.0" text="供应商的信息录入">
+                   <font>
+                       <Font size="16.0" />
+                   </font>
+               </Label>
+               <TableView layoutX="36.0" layoutY="60.0" prefHeight="203.0" prefWidth="1097.0">
+                   <columns>
+                       <TableColumn editable="false" prefWidth="132.0" sortable="false" text="原材料种类" />
+                       <TableColumn editable="false" prefWidth="79.0" sortable="false" text="凭证编号" />
+                       <TableColumn editable="false" prefWidth="137.0" sortable="false" text="时间" />
+                       <TableColumn editable="false" prefWidth="87.0" sortable="false" text="是否准时发货" />
+                       <TableColumn editable="false" prefWidth="89.0" sortable="false" text="是否属于退货" />
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="收入">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="67.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="71.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="72.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="发出">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="68.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="69.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="150.0" sortable="false" text="结存量" />
+                   </columns>
+               </TableView>
+           </children>
+           <children>
+               <Label layoutX="36.0" layoutY="320.0" text="生产商原材料的信息录入">
+                   <font>
+                       <Font size="16.0" />
+                   </font>
+               </Label>
+               <TableView layoutX="36.0" layoutY="352.0" prefHeight="225.0" prefWidth="1097.0">
+                   <columns>
+                       <TableColumn editable="false" prefWidth="132.0" sortable="false" text="原材料种类" />
+                       <TableColumn editable="false" prefWidth="79.0" sortable="false" text="凭证编号" />
+                       <TableColumn editable="false" prefWidth="137.0" sortable="false" text="时间" />
+                       <TableColumn editable="false" prefWidth="87.0" sortable="false" text="是否准时发货" />
+                       <TableColumn editable="false" prefWidth="89.0" sortable="false" text="是否属于退货" />
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="收入">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="67.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="71.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="72.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="发出">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="68.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="69.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="150.0" sortable="false" text="结存量" />
+                   </columns>
+               </TableView>
+           </children>
+           <children>
+               <Label layoutX="36.0" layoutY="611.0" text="生产商产品的信息录入">
+                   <font>
+                       <Font size="16.0" />
+                   </font>
+               </Label>
+               <TableView layoutX="36.0" layoutY="643.0" prefHeight="225.0" prefWidth="1097.0">
+                   <columns>
+                       <TableColumn editable="false" prefWidth="132.0" sortable="false" text="产品种类" />
+                       <TableColumn editable="false" prefWidth="79.0" sortable="false" text="凭证编号" />
+                       <TableColumn editable="false" prefWidth="137.0" sortable="false" text="时间" />
+                       <TableColumn editable="false" prefWidth="87.0" sortable="false" text="是否准时发货" />
+                       <TableColumn editable="false" prefWidth="89.0" sortable="false" text="是否属于退货" />
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="收入">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="67.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="71.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="72.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="发出">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="68.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="69.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="150.0" sortable="false" text="结存量" />
+                   </columns>
+               </TableView>
+           </children>
+           <children>
+               <Label layoutX="36.0" layoutY="902.0" text="分销商产品的信息录入">
+                   <font>
+                       <Font size="16.0" />
+                   </font>
+               </Label>
+               <TableView layoutX="36.0" layoutY="934.0" prefHeight="225.0" prefWidth="1097.0">
+                   <columns>
+                       <TableColumn editable="false" prefWidth="132.0" sortable="false" text="产品种类" />
+                       <TableColumn editable="false" prefWidth="79.0" sortable="false" text="凭证编号" />
+                       <TableColumn editable="false" prefWidth="137.0" sortable="false" text="时间" />
+                       <TableColumn editable="false" prefWidth="87.0" sortable="false" text="是否准时发货" />
+                       <TableColumn editable="false" prefWidth="89.0" sortable="false" text="是否属于退货" />
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="收入">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="67.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="71.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="72.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="225.0" sortable="false" text="发出">
+                           <columns>
+                               <TableColumn editable="false" prefWidth="68.0" sortable="false" text="数量" />
+                               <TableColumn editable="false" prefWidth="69.0" sortable="false" text="单价" />
+                               <TableColumn editable="false" prefWidth="75.0" sortable="false" text="金额" />
+                           </columns>
+                       </TableColumn>
+                       <TableColumn editable="false" prefWidth="150.0" sortable="false" text="结存量" />
+                   </columns>
+               </TableView>
+           </children>
+       </Pane>
+   </content>
+</ScrollPane>

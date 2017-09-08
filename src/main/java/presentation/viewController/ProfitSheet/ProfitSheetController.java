@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation.viewController.ProfitSheet;
 
 import businesslogic.ProfitTableImpl;
 import businesslogicservice.ProfitTableService;
@@ -12,11 +12,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
-import vo.BalanceSheetItemVo;
+import presentation.viewController.ProfitSheet.ProfitVO;
 import vo.ProfitTableVo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Created by YZ on 2017/9/4.
