@@ -3,6 +3,7 @@ package businesslogic;
 import businesslogicservice.TrialSettlementService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
+import po.SubjectsPO;
 import po.VoucherAmountPO;
 import vo.TrialTableItemVo;
 
@@ -14,19 +15,16 @@ import java.util.ArrayList;
 public class TrialSettlementImpl implements TrialSettlementService {
     /**
      * 根据凭证id和时期得到试算表的数据
-     * @param voucher_id 凭证id
-     * @param time 时期
+     * @param company_id 公司id
      * @return
      */
-    public ArrayList<TrialTableItemVo> getTrialTable(String voucher_id, String time){
+    public ArrayList<TrialTableItemVo> getTrialTable(String company_id){
         CourseMessageService service = new CourseMessageServiceImpl();
-        ArrayList<VoucherAmountPO> polist = service.getCourseMessageByTime(time);
+        ArrayList<SubjectsPO> polist = service.getCurrentCouseMessage(company_id);
         ArrayList<TrialTableItemVo> result = new ArrayList<>();
         for(int i=0;i<polist.size();i++){
-            VoucherAmountPO po = polist.get(i);
-            String id = po.getSubject();
-            String name = service.getCourseNameById(id);
-            result.add(new TrialTableItemVo(id, name, po.getDebitAmount(), po.getCreditAmount()));
+            SubjectsPO po = polist.get(i);
+            result.add(new TrialTableItemVo(po.getId(), po.getName(), po.getDebitAmount(), po.getCreditAmount()));
         }
         return result;
     }
