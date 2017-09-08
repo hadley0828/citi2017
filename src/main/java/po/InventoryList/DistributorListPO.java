@@ -5,13 +5,14 @@ package po.InventoryList;
  *
  * 分销商产品库存详细条目PO
  * dID --> DistributorInventoryPO.dID
- * productVariety --> 原材料种类
+ * productVariety --> 产品种类
  * inputNum --> 收入数量
+ * inputUnitPrice --> 收入单价
  * inputAccount --> 收入金额
  * outputNum --> 发出数量
+ * outputUnitPrice --> 发出单价
  * outputAccount --> 发出金额
  * balanceNum --> 结存数量
- * balanceAccount --> 结存金额
  */
 public class DistributorListPO extends InventoryListSuperClass{
 
@@ -21,25 +22,29 @@ public class DistributorListPO extends InventoryListSuperClass{
 
     private int inputNum;
 
+    private double inputUnitPrice;
+
     private double inputAccount;
 
     private int outputNum;
+
+    private double outputUnitPrice;
 
     private double outputAccount;
 
     private int balanceNum;
 
-    private double balanceAccount;
 
-    public DistributorListPO(String dID, String productVariety, int inputNum, double inputAccount, int outputNum, double outputAccount, int balanceNum, double balanceAccount) {
+    public DistributorListPO(String dID, String productVariety, int inputNum, double inputUnitPrice, double inputAccount, int outputNum, double outputUnitPrice, double outputAccount, int balanceNum) {
         this.dID = dID;
         this.productVariety = productVariety;
         this.inputNum = inputNum;
+        this.inputUnitPrice = inputUnitPrice;
         this.inputAccount = inputAccount;
         this.outputNum = outputNum;
+        this.outputUnitPrice = outputUnitPrice;
         this.outputAccount = outputAccount;
         this.balanceNum = balanceNum;
-        this.balanceAccount = balanceAccount;
     }
 
     public DistributorListPO() {
@@ -101,12 +106,19 @@ public class DistributorListPO extends InventoryListSuperClass{
         this.balanceNum = balanceNum;
     }
 
-    public double getBalanceAccount() {
-        return balanceAccount;
+    public double getInputUnitPrice() {
+        return inputUnitPrice;
     }
 
-    public void setBalanceAccount(double balanceAccount) {
-        this.balanceAccount = balanceAccount;
+    public void setInputUnitPrice(double inputUnitPrice) {
+        this.inputUnitPrice = inputUnitPrice;
     }
 
+    public double getOutputUnitPrice() {
+        return outputUnitPrice;
+    }
+
+    public void setOutputUnitPrice(double outputUnitPrice) {
+        this.outputUnitPrice = outputUnitPrice;
+    }
 }

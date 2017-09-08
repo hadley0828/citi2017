@@ -7,15 +7,26 @@ package po.Inventory;
  *
  * prID -->
  */
-public class ProducerRawMaterialInventoryPO extends InventorySuperClass{
+public class ProducerRawMaterialInventoryPO{
 
     private String prID;
 
-    public ProducerRawMaterialInventoryPO(String prID) {
+    private String companyID;
+
+    public ProducerRawMaterialInventoryPO(String prID, String companyID) {
         this.prID = prID;
+        this.companyID = companyID;
     }
 
     public ProducerRawMaterialInventoryPO() {
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
     public String getPrID() {

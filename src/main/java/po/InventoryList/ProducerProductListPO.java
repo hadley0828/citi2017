@@ -5,13 +5,14 @@ package po.InventoryList;
  *
  * 生产商产品库存详细条目PO
  * ppID --> ProducerProductInventoryPO.ppID
- * rawMaterialVariety --> 原材料种类
- * produceNum --> 收入数量
- * produceAccount --> 收入金额
+ * productVariety --> 产品种类
+ * produceNum --> 生产数量
+ * produceUnitPrice --> 生产单价
+ * produceAccount --> 生产金额
  * outputNum --> 发出数量
+ * outputUnitPrice --> 发出单价
  * outputAccount --> 发出金额
  * balanceNum --> 结存数量
- * balanceAccount --> 结存金额
  */
 public class ProducerProductListPO extends InventoryListSuperClass{
 
@@ -21,25 +22,28 @@ public class ProducerProductListPO extends InventoryListSuperClass{
 
     private int produceNum;
 
+    private double produceUnitPrice;
+
     private double produceAccount;
 
     private int outputNum;
+
+    private double outputUnitPrice;
 
     private double outputAccount;
 
     private int balanceNum;
 
-    private double balanceAccount;
-
-    public ProducerProductListPO(String ppID, String productVariety, int produceNum, double produceAccount, int outputNum, double outputAccount, int balanceNum, double balanceAccount) {
+    public ProducerProductListPO(String ppID, String productVariety, int produceNum, double produceUnitPrice, double produceAccount, int outputNum, double outputUnitPrice, double outputAccount, int balanceNum) {
         this.ppID = ppID;
         this.productVariety = productVariety;
         this.produceNum = produceNum;
+        this.produceUnitPrice = produceUnitPrice;
         this.produceAccount = produceAccount;
         this.outputNum = outputNum;
+        this.outputUnitPrice = outputUnitPrice;
         this.outputAccount = outputAccount;
         this.balanceNum = balanceNum;
-        this.balanceAccount = balanceAccount;
     }
 
     public ProducerProductListPO() {
@@ -101,12 +105,20 @@ public class ProducerProductListPO extends InventoryListSuperClass{
         this.balanceNum = balanceNum;
     }
 
-    public double getBalanceAccount() {
-        return balanceAccount;
+    public double getProduceUnitPrice() {
+        return produceUnitPrice;
     }
 
-    public void setBalanceAccount(double balanceAccount) {
-        this.balanceAccount = balanceAccount;
+    public void setProduceUnitPrice(double produceUnitPrice) {
+        this.produceUnitPrice = produceUnitPrice;
+    }
+
+    public double getOutputUnitPrice() {
+        return outputUnitPrice;
+    }
+
+    public void setOutputUnitPrice(double outputUnitPrice) {
+        this.outputUnitPrice = outputUnitPrice;
     }
 }
 
