@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="162.0" type="HBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="162.0" type="HBox" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="last_month" fitHeight="34.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,7 +17,7 @@
       <Label fx:id="year" prefHeight="35.0" prefWidth="38.0" />
       <Region prefHeight="28.0" prefWidth="11.0" />
       <Label prefHeight="36.0" prefWidth="23.0" text="年" />
-      <Label fx:id="month" prefHeight="35.0" prefWidth="19.0" />
+      <Label fx:id="month" prefHeight="35.0" prefWidth="23.0" />
       <Region prefHeight="28.0" prefWidth="12.0" />
       <Label prefHeight="36.0" prefWidth="24.0" text="期" />
       <ImageView fx:id="later_month" fitHeight="34.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
