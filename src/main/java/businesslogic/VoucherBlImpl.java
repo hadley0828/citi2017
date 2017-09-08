@@ -28,7 +28,7 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean saveOneVoucher(VoucherVo voucherVo) {
+    public boolean saveOneVoucher(VoucherVo voucherVo,String factoryId) {
         VoucherPO voucherPO=new VoucherPO();
 
         voucherPO.setId(voucherVo.getVoucherId());
@@ -47,9 +47,9 @@ public class VoucherBlImpl implements VoucherBlService {
                 VoucherAmountVo voucherAmountVo=amountVoList.get(count);
                 VoucherAmountPO voucherAmountPO=new VoucherAmountPO(voucherAmountVo);
                 String subjectId=voucherAmountVo.getSubject();
-                double beforeBalance=voucherDataService.findOneSubjectBalance(subjectId);
+                double beforeBalance=voucherDataService.findOneSubjectBalance(subjectId,factoryId);
                 //实现修改一个会计科目的余额的功能
-                voucherDataService.modifyOneSubjectBalance(subjectId,beforeBalance+voucherAmountVo.getDebitAmount()-voucherAmountVo.getCreditAmount());
+                voucherDataService.modifyOneSubjectBalance(subjectId,beforeBalance+voucherAmountVo.getDebitAmount()-voucherAmountVo.getCreditAmount(),factoryId);
 
                 amountPoList.add(voucherAmountPO);
             }
@@ -58,8 +58,8 @@ public class VoucherBlImpl implements VoucherBlService {
         boolean result=true;
 
         //调用两个数据层的方法可能会出现一部分完成一部分出错的情况
-        boolean result1=voucherDataService.addVoucher(voucherPO);
-        boolean result2=voucherDataService.addOneVoucherAllAmount(voucherPO.getId(),amountPoList);
+        boolean result1=voucherDataService.addVoucher(voucherPO,factoryId);
+        boolean result2=voucherDataService.addOneVoucherAllAmount(voucherPO.getId(),amountPoList,factoryId);
 
         result=result&result1&result2;
 
@@ -68,7 +68,7 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public AmountTotalVo getVoucherTotal(ArrayList<VoucherAmountVo> amountVoArrayList) {
+    public AmountTotalVo getVoucherTotal(ArrayList<VoucherAmountVo> amountVoArrayList,String factoryId) {
         AmountTotalVo resultVo=new AmountTotalVo();
 
         String chineseTotal;
@@ -98,29 +98,29 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public double getOneSubjectBalance(String subjectId) {
-        return voucherDataService.findOneSubjectBalance(subjectId);
+    public double getOneSubjectBalance(String subjectId,String factoryId) {
+        return voucherDataService.findOneSubjectBalance(subjectId,factoryId);
     }
 
     @Override
-    public double getNewSubjectBalance(double beforeNumber, double changeNumber) {
+    public double getNewSubjectBalance(double beforeNumber, double changeNumber,String factoryId) {
         return beforeNumber+changeNumber;
     }
 
     @Override
-    public boolean changeSubjectBalance(String subjectId, double newNumber) {
+    public boolean changeSubjectBalance(String subjectId, double newNumber,String factoryId) {
         boolean result=true;
 
-        boolean result1=voucherDataService.modifyOneSubjectBalance(subjectId, newNumber);
+        boolean result1=voucherDataService.modifyOneSubjectBalance(subjectId, newNumber,factoryId);
         result=result&result1;
 
         return result;
     }
 
     @Override
-    public VoucherTemplateVo getOneTemplate(String templateId) {
-        VoucherTemplatePO po=voucherDataService.getOneTemplate(templateId);
-        ArrayList<VoucherTemplateAmountPO> amountPOArrayList=voucherDataService.getOneTemplateAllAmount(templateId);
+    public VoucherTemplateVo getOneTemplate(String templateId,String factoryId) {
+        VoucherTemplatePO po=voucherDataService.getOneTemplate(templateId,factoryId);
+        ArrayList<VoucherTemplateAmountPO> amountPOArrayList=voucherDataService.getOneTemplateAllAmount(templateId,factoryId);
 
         VoucherTemplateVo resultVo=new VoucherTemplateVo();
         resultVo.setTemplateId(po.getTemplateId());
@@ -143,8 +143,8 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean addOneTemplate(VoucherTemplateVo voucherTemplateVo) {
-        ArrayList<VoucherTemplatePO> poList=voucherDataService.getAllTemplate();
+    public boolean addOneTemplate(VoucherTemplateVo voucherTemplateVo,String factoryId) {
+        ArrayList<VoucherTemplatePO> poList=voucherDataService.getAllTemplate(factoryId);
 
         HashSet<String> allTemplateIdSet=new HashSet<>();
         if(poList.size()!=0){
@@ -175,8 +175,8 @@ public class VoucherBlImpl implements VoucherBlService {
                 }
             }
 
-            boolean result1=voucherDataService.addOneTemplate(voucherTemplatePO);
-            boolean result2=voucherDataService.addOneTemplateAmounts(voucherTemplateVo.getTemplateId(),amountPOArrayList);
+            boolean result1=voucherDataService.addOneTemplate(voucherTemplatePO,factoryId);
+            boolean result2=voucherDataService.addOneTemplateAmounts(voucherTemplateVo.getTemplateId(),amountPOArrayList,factoryId);
             result=result1&result2;
         }
 
@@ -185,15 +185,15 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public ArrayList<VoucherVo> getCurrentPeriodAllVoucher() {
+    public ArrayList<VoucherVo> getCurrentPeriodAllVoucher(String factoryId) {
 
         String currentMonth= NowString.getNowMonth();
 
         //全部的凭证信息
-        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher(factoryId);
         //全屏的凭证金额信息
 
-        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount(factoryId);
         HashMap<String,ArrayList<VoucherAmountPO>> voucherToAmountMap=new HashMap<>();
 
         for(int count=0;count<allAmountPoList.size();count++){
@@ -253,9 +253,9 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public VoucherVo getOneVoucher(String voucherId) {
+    public VoucherVo getOneVoucher(String voucherId,String factoryId) {
 
-        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher(factoryId);
         HashSet<String> allVoucherIdSet=new HashSet<>();
 
         for(int count=0;count<allPoList.size();count++){
@@ -266,9 +266,9 @@ public class VoucherBlImpl implements VoucherBlService {
             return null;
         }else{
             //凭证信息
-            VoucherPO voucherPO=voucherDataService.findOneVoucher(voucherId);
+            VoucherPO voucherPO=voucherDataService.findOneVoucher(voucherId,factoryId);
             //凭证的全部金额
-            ArrayList<VoucherAmountPO> amountPOArrayList=voucherDataService.findOneVoucherAllAmount(voucherId);
+            ArrayList<VoucherAmountPO> amountPOArrayList=voucherDataService.findOneVoucherAllAmount(voucherId,factoryId);
 
             VoucherVo resultVo=new VoucherVo(voucherPO);
 
@@ -297,13 +297,13 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo) {
+    public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo,String factoryId) {
         ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
-        ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher();
+        ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher(factoryId);
 
 
 
-        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount();
+        ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount(factoryId);
         HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=new HashMap<>();
 
         for(int count=0;count<allAmountPoList.size();count++){
@@ -374,21 +374,21 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean deleteSelectedVoucher(ArrayList<String> voucherIdList) {
+    public boolean deleteSelectedVoucher(ArrayList<String> voucherIdList,String factoryId) {
         boolean result=true;
 
         for(int count=0;count<voucherIdList.size();count++){
             String voucherId=voucherIdList.get(count);
 
-            boolean result1=voucherDataService.deleteOneVoucher(voucherId);
-            boolean result2=voucherDataService.deleteOneVoucherAllAmount(voucherId);
+            boolean result1=voucherDataService.deleteOneVoucher(voucherId,factoryId);
+            boolean result2=voucherDataService.deleteOneVoucherAllAmount(voucherId,factoryId);
             result=result&result1&result2;
         }
         return result;
     }
 
     @Override
-    public boolean exportToExcel(ArrayList<String> voucherIdList,String path) {
+    public boolean exportToExcel(ArrayList<String> voucherIdList,String path,String factoryId) {
         ArrayList<Voucher> voucherList=new ArrayList<>();
 
         if(voucherIdList.size()==0){
@@ -397,13 +397,13 @@ public class VoucherBlImpl implements VoucherBlService {
 
 
             HashMap<String,String> idToDateMap=new HashMap<>();
-            ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+            ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher(factoryId);
             for(int count=0;count<allPoList.size();count++){
                 idToDateMap.put(allPoList.get(count).getId(),String.valueOf(allPoList.get(count).getDate()));
             }
 
 
-            HashMap<String,ArrayList<VoucherAmountPO>> allVoucherAmountMap=voucherDataService.findSeveralVoucherAllAmount(voucherIdList);
+            HashMap<String,ArrayList<VoucherAmountPO>> allVoucherAmountMap=voucherDataService.findSeveralVoucherAllAmount(voucherIdList,factoryId);
 
             for(int count=0;count<voucherIdList.size();count++){
                 String oneId=voucherIdList.get(count);
@@ -435,7 +435,7 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path) {
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path,String factoryId) {
         ArrayList<Voucher> voucherList=new ArrayList<>();
 
         if(amountVoArrayList.size()==0){
@@ -459,7 +459,7 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public ArrayList<VoucherVo> importFromExcel(String filePath) {
+    public ArrayList<VoucherVo> importFromExcel(String filePath,String factoryId) {
 
         ArrayList<Voucher> voucherList= (ArrayList<Voucher>) ExcelOperate.readExcel(filePath);
 
@@ -541,14 +541,14 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean amendOneVoucher(String voucherId, VoucherVo voucherVo) {
+    public boolean amendOneVoucher(String voucherId, VoucherVo voucherVo,String factoryId) {
         boolean result=true;
 
         String afterVoucherId=voucherVo.getVoucherId();
 
         //数据库中存在的全部的凭证编号
         HashSet<String> allVoucherIdSet=new HashSet<>();
-        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher(factoryId);
         for(int count=0;count<allPoList.size();count++){
             allVoucherIdSet.add(allPoList.get(count).getId());
         }
@@ -566,8 +566,8 @@ public class VoucherBlImpl implements VoucherBlService {
 
             //删除的是voucherId对应的凭证  添加的是afterVoucherId
             //先删除再添加!
-            boolean result1=deleteOneVoucher(voucherId);
-            boolean result2=saveOneVoucher(voucherVo);
+            boolean result1=deleteOneVoucher(voucherId,factoryId);
+            boolean result2=saveOneVoucher(voucherVo,factoryId);
             result=result1&&result2&&result;
 
 
@@ -576,11 +576,11 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public boolean deleteOneVoucher(String voucherId) {
+    public boolean deleteOneVoucher(String voucherId,String factoryId) {
         boolean result=true;
 
         HashSet<String> allVoucherIdSet=new HashSet<>();
-        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher();
+        ArrayList<VoucherPO> allPoList=voucherDataService.findAllVoucher(factoryId);
         for(int count=0;count<allPoList.size();count++){
             allVoucherIdSet.add(allPoList.get(count).getId());
         }
@@ -588,20 +588,20 @@ public class VoucherBlImpl implements VoucherBlService {
         if(!allVoucherIdSet.contains(voucherId)){
             return false;
         }else{
-            ArrayList<VoucherAmountPO> amountPoList=voucherDataService.findOneVoucherAllAmount(voucherId);
+            ArrayList<VoucherAmountPO> amountPoList=voucherDataService.findOneVoucherAllAmount(voucherId,factoryId);
             if(amountPoList.size()!=0){
                 for(int count=0;count<amountPoList.size();count++){
                     VoucherAmountPO oneAmountPo=amountPoList.get(count);
                     String subjectId=oneAmountPo.getSubject();
-                    double beforePrice=voucherDataService.findOneSubjectBalance(subjectId);
-                    voucherDataService.modifyOneSubjectBalance(subjectId,beforePrice-oneAmountPo.getDebitAmount()+oneAmountPo.getCreditAmount());
+                    double beforePrice=voucherDataService.findOneSubjectBalance(subjectId,factoryId);
+                    voucherDataService.modifyOneSubjectBalance(subjectId,beforePrice-oneAmountPo.getDebitAmount()+oneAmountPo.getCreditAmount(),factoryId);
 
                 }
             }
 
 
-            boolean result1=voucherDataService.deleteOneVoucher(voucherId);
-            boolean result2=voucherDataService.deleteOneVoucherAllAmount(voucherId);
+            boolean result1=voucherDataService.deleteOneVoucher(voucherId,factoryId);
+            boolean result2=voucherDataService.deleteOneVoucherAllAmount(voucherId,factoryId);
             result=result&&result1&&result2;
 
         }
@@ -609,13 +609,13 @@ public class VoucherBlImpl implements VoucherBlService {
     }
 
     @Override
-    public VoucherVo copyOneVoucher(String voucherId) {
-        return getOneVoucher(voucherId);
+    public VoucherVo copyOneVoucher(String voucherId,String factoryId) {
+        return getOneVoucher(voucherId,factoryId);
     }
 
 
     @Override
-    public int getCurrentNumber(String voucherCharacter) {
+    public int getCurrentNumber(String voucherCharacter,String factoryId) {
         return 0;
     }
 
