@@ -1,9 +1,11 @@
 package data;
 
 import dataservice.CourseMessageService;
+import po.SubjectsPO;
 import po.VoucherAmountPO;
 import util.DatesUtil;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -15,37 +17,25 @@ public class CourseMessageServiceImpl implements CourseMessageService{
 
     SqlManager sqlManager = SqlManager.getSqlManager();
 
+
     @Override
-    public ArrayList<VoucherAmountPO> getCourseMessageById(String voucher_id) {
-
+    public ArrayList<SubjectsPO> getCurrentCouseMessage(String company_id) {
         sqlManager.getConnection();
-        String sql = "SELECT * FROM voucher_amount WHERE v_id=?";
-        List<Map<String,Object>> dataList = sqlManager.queryMulti(sql,new Object[]{voucher_id});
 
-        ArrayList<VoucherAmountPO> list = new ArrayList<>();
+        ArrayList<SubjectsPO> list = new ArrayList<>();
+        String sql = "SELECT t1.subjects_name,t2.* FROM subjects as t1,subjects_balance as t2 WHERE t1.subjects_id = t2.subjects_id AND company_id =? AND date IN(SELECT MAX(date) FROM subjects_balance WHERE subjects_id = t1.subjects_id)";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id});
 
-        for(Map<String,Object> map : dataList){
-            list.add(getVoucherAmountPO(map));
+        for (Map<String,Object> map : maps){
+            list.add(getSubjectsPO(map));
         }
 
-        sqlManager.releaseAll();
         return list;
     }
 
     @Override
-    public ArrayList<VoucherAmountPO> getCourseMessageByTime(String period) {
-        sqlManager.getConnection();
-
-        ArrayList<VoucherAmountPO> list = new ArrayList<>();
-        Map<String,String> datemap = DatesUtil.datesParser(period);
-        String sql = "SELECT * FROM voucher_amount where v_id IN (SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=?)";
-        List<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{datemap.get("year"),datemap.get("month")});
-        for(Map<String,Object> map : datalist){
-            list.add(getVoucherAmountPO(map));
-        }
-
-        sqlManager.releaseAll();
-        return list;
+    public ArrayList<SubjectsPO> getYearEndCourseMessage(String company_id, String year) {
+        return null;
     }
 
     @Override
@@ -59,11 +49,11 @@ public class CourseMessageServiceImpl implements CourseMessageService{
     }
 
     @Override
-    public int getVoucherNumber() {
+    public int getVoucherNumber(String company_id) {
         sqlManager.getConnection();
 
-        String sql = "SELECT count(v_id) as num from voucher";
-        Map<String, Object> map = sqlManager.querySimple(sql,new Object[]{});
+        String sql = "SELECT count(v_id) as num from voucher WHERE company_id=?";
+        Map<String, Object> map = sqlManager.querySimple(sql,new Object[]{company_id});
         int result = Integer.parseInt(map.get("num").toString());
         sqlManager.releaseAll();
 
@@ -71,11 +61,11 @@ public class CourseMessageServiceImpl implements CourseMessageService{
     }
 
     @Override
-    public String getEarliestTime() {
+    public String getEarliestTime(String company_id) {
         sqlManager.getConnection();
 
-        String sql = "SELECT min(date) as earlytime from voucher";
-        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{});
+        String sql = "SELECT min(date) as earlytime from voucher WHERE company_id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id});
         String[] time = map.get("earlytime").toString().split("-");
         String result = time[0]+ "-" + time[1];
         sqlManager.releaseAll();
@@ -83,11 +73,11 @@ public class CourseMessageServiceImpl implements CourseMessageService{
     }
 
     @Override
-    public String getLatestTime() {
+    public String getLatestTime(String company_id) {
         sqlManager.getConnection();
 
-        String sql = "SELECT max(date) as latetime from voucher";
-        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{});
+        String sql = "SELECT max(date) as latetime from voucher WHERE company_id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id});
         String[] time = map.get("latetime").toString().split("-");
         String result = time[0]+ "-" + time[1];
         sqlManager.releaseAll();
@@ -125,4 +115,18 @@ public class CourseMessageServiceImpl implements CourseMessageService{
 
         return po;
     }
+
+
+    private SubjectsPO getSubjectsPO(Map<String,Object> map){
+        SubjectsPO po = new SubjectsPO();
+        po.setId(map.get("subjects_id").toString());
+        po.setName(map.get("subjects_name").toString());
+        po.setDate(Date.valueOf(map.get("date").toString()));
+        po.setDebitAmount(Double.parseDouble(map.get("debit_amount").toString()));
+        po.setCreditAmount(Double.parseDouble(map.get("credit_amount").toString()));
+        po.setBalances(Double.parseDouble(map.get("balance").toString()));
+
+        return po;
+    }
+
 }
