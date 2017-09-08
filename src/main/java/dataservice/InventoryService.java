@@ -1,11 +1,9 @@
 package dataservice;
 
-import vo.RawMaterialInventoryItemVo;
-
-import java.util.ArrayList;
 
 /**
  * Created by 费慧通 on 2017/9/5.
+ *
  */
 public interface InventoryService {
     /**
