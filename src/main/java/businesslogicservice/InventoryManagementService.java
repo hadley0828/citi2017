@@ -1,7 +1,9 @@
 package businesslogicservice;
 
 import vo.ProductInventoryItemVo;
+import vo.ProductInventoryMonitorItemVo;
 import vo.RawMaterialInventoryItemVo;
+import vo.RawMaterialInventoryMonitorItemVo;
 
 import java.util.ArrayList;
 
@@ -12,38 +14,52 @@ import java.util.ArrayList;
 public interface InventoryManagementService {
 
     /**
-     * 根据录入记录得到表格末尾的结存数量
-     * @param name 供应商名称
+     * 根据录入记录得到表格末尾的原材料结存数量
+     * @param company_id 公司id
+     * @param voucher_id 凭证id
+     * @param raw_material_name 原材料种类
      * @param change 发出量/收入量（发出量为负）
      * @return
      */
-    public int getSupplierRawInventory(String name, int change);
+    public int getRawInventory(String company_id, String voucher_id, String  raw_material_name, int change);
 
     /**
-     * 供应商库存情况信息录入
-     * @param supplier 供应商
+     * 公司原材料库存情况信息录入
+     * @param company_id 公司id
      * @param list 表格输入数据
      */
-    public void SupplierInformationEntry(String supplier, ArrayList<RawMaterialInventoryItemVo> list);
+    public void SupplierInformationEntry(String company_id, ArrayList<RawMaterialInventoryItemVo> list);
 
     /**
-     * 生产商原材料库存情况信息录入
-     * @param producer 生产商
-     * @param list 表格输入数据
+     * 根据录入记录得到表格末尾的产品结存数量
+     * @param company_id 公司id
+     * @param voucher_id 凭证id
+     * @param product_name 产品名称
+     * @param change 发出量/收入量（发出量为负）
+     * @return
      */
-    public void ProducerRawMaterialInformationEntry(String producer, ArrayList<RawMaterialInventoryItemVo> list);
+    public int getProductInventory(String company_id, String voucher_id, String product_name, int change);
 
     /**
-     * 生产商产品库存情况信息录入
-     * @param producer 生产商
+     * 公司产品库存情况信息录入
+     * @param company_id 公司id
      * @param list 表格输入数据
      */
-    public void ProducerProductInformationEntry(String producer, ArrayList<ProductInventoryItemVo> list);
+    public void ProducerProductInformationEntry(String company_id, ArrayList<ProductInventoryItemVo> list);
 
     /**
-     * 分销商库存情况信息录入
-     * @param distributor 分销商
-     * @param list 表格输入数据
+     * 得到公司截至某一时间原材料库存监控信息
+     * @param company_id 公司id
+     * @param time 最后时间
+     * @return
      */
-    public void DistributorInformationEntry(String distributor, ArrayList<ProductInventoryItemVo> list);
+    public ArrayList<RawMaterialInventoryMonitorItemVo> getRawMaterialInventoryMonitorItem(String company_id, String time);
+
+    /**
+     * 得到公司截至某一时间产品库存监控信息
+     * @param company_id 公司id
+     * @param time 最后时间
+     * @return
+     */
+    public ArrayList<ProductInventoryMonitorItemVo> getProductInventoryMonitorItem(String company_id, String time);
 }

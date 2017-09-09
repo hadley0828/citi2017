@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Stock.Supplier"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <DatePicker layoutX="308.0" layoutY="108.0" prefHeight="39.0" prefWidth="163.0" />
+      <Label layoutX="454.0" layoutY="40.0" prefHeight="50.0" prefWidth="273.0" text="供应商原材料库存监控表">
+         <font>
+            <Font name="Heiti SC Light" size="24.0" />
+         </font></Label>
+      <Label layoutX="186.0" layoutY="108.0" prefHeight="39.0" prefWidth="99.0" text="截止日期:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TableView layoutX="169.0" layoutY="168.0" prefHeight="462.0" prefWidth="820.0">
+        <columns>
+          <TableColumn prefWidth="171.0" text="原材料种类" />
+            <TableColumn prefWidth="144.0" text="库存量" />
+            <TableColumn minWidth="5.0" prefWidth="160.0" text="安全库存量" />
+            <TableColumn prefWidth="176.0" text="准时交货率" />
+          <TableColumn prefWidth="168.0" text="退货率" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>

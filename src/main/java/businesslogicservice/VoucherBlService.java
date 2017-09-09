@@ -31,21 +31,21 @@ public interface VoucherBlService {
      * @param voucherVo
      * @return
      */
-    public boolean saveOneVoucher(VoucherVo voucherVo);
+    public boolean saveOneVoucher(VoucherVo voucherVo,String factoryId);
 
     /**
      * 获得当前凭证的合计一行的数据
      * @param amountVoArrayList
      * @return
      */
-    public AmountTotalVo getVoucherTotal(ArrayList<VoucherAmountVo> amountVoArrayList);
+    public AmountTotalVo getVoucherTotal(ArrayList<VoucherAmountVo> amountVoArrayList,String factoryId);
 
     /**
      * 获得当前会计科目的余额
      * @param subjectId
      * @return
      */
-    public double getOneSubjectBalance(String subjectId);
+    public double getOneSubjectBalance(String subjectId,String factoryId);
 
     /**
      * 根据原来的余额和借方金额/贷方金额实时改变科目的余额的显示
@@ -53,7 +53,7 @@ public interface VoucherBlService {
      * @param changeNumber
      * @return
      */
-    public double getNewSubjectBalance(double beforeNumber,double changeNumber);
+    public double getNewSubjectBalance(double beforeNumber,double changeNumber,String factoryId);
 
     /**
      * 改变会计科目的余额 在保存凭证的时候需要调用!
@@ -61,34 +61,34 @@ public interface VoucherBlService {
      * @param newNumber
      * @return
      */
-    public boolean changeSubjectBalance(String subjectId,double newNumber);
+    public boolean changeSubjectBalance(String subjectId,double newNumber,String factoryId);
 
     /**
      * 根据模板编号获得相对应的凭证模板
      * @param templateId
      * @return
      */
-    public VoucherTemplateVo getOneTemplate(String templateId);
+    public VoucherTemplateVo getOneTemplate(String templateId,String factoryId);
 
     /**
      * 添加一个新的凭证模板   需要判断相同名称的模板是否存在
      * @param voucherTemplateVo
      * @return
      */
-    public boolean addOneTemplate(VoucherTemplateVo voucherTemplateVo);
+    public boolean addOneTemplate(VoucherTemplateVo voucherTemplateVo,String factoryId);
 
     /**
      * 获得当前的时期的全部凭证信息
      * @return
      */
-    public ArrayList<VoucherVo> getCurrentPeriodAllVoucher();
+    public ArrayList<VoucherVo> getCurrentPeriodAllVoucher(String factoryId);
 
     /**
      * 根据凭证编号获得对应的凭证信息
      * @param voucherId
      * @return
      */
-    public VoucherVo getOneVoucher(String voucherId);
+    public VoucherVo getOneVoucher(String voucherId,String factoryId);
 
     /**
      * 获得按条件筛选后的全部的凭证信息
@@ -96,14 +96,14 @@ public interface VoucherBlService {
      * @param voucherSearchVo
      * @return
      */
-    public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo);
+    public ArrayList<VoucherVo> getSearchedVoucher(VoucherSearchVo voucherSearchVo,String factoryId);
 
     /**
      * 删除所选择的全部凭证信息
      * @param voucherIdList
      * @return
      */
-    public boolean deleteSelectedVoucher(ArrayList<String> voucherIdList);
+    public boolean deleteSelectedVoucher(ArrayList<String> voucherIdList,String factoryId);
 
     /**
      * 导出所选的凭证
@@ -111,14 +111,14 @@ public interface VoucherBlService {
      * @param path
      * @return
      */
-    public boolean exportToExcel(ArrayList<String> voucherIdList,String path);
+    public boolean exportToExcel(ArrayList<String> voucherIdList,String path,String factoryId);
 
     /**
      * 根据界面的凭证金额的导出所选的凭证
      * @param amountVoArrayList
      * @return
      */
-    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path);
+    public boolean exportToExcelByAmountVo(ArrayList<VoucherAmountVo> amountVoArrayList,String path,String factoryId);
 
     /**
      * 根据文件的路径把需要的凭证导入到系统中
@@ -126,7 +126,7 @@ public interface VoucherBlService {
      * @param filePath
      * @return
      */
-    public ArrayList<VoucherVo> importFromExcel(String filePath);
+    public ArrayList<VoucherVo> importFromExcel(String filePath,String factoryId);
 
     /**
      * 修改一条凭证信息 需要判断凭证编号是否发生改变 改变的话需要判断是否在数据库中已经存在该编号
@@ -134,28 +134,28 @@ public interface VoucherBlService {
      * @param voucherVo 修改之后的凭证信息
      * @return
      */
-    public boolean amendOneVoucher(String voucherId,VoucherVo voucherVo);
+    public boolean amendOneVoucher(String voucherId,VoucherVo voucherVo,String factoryId);
 
     /**
      * 删除指定的凭证信息
      * @param voucherId 需要删除的凭证编号
      * @return
      */
-    public boolean deleteOneVoucher(String voucherId);
+    public boolean deleteOneVoucher(String voucherId,String factoryId);
 
     /**
      * 复制选定的凭证信息
      * @param voucherId
      * @return
      */
-    public VoucherVo copyOneVoucher(String voucherId);
+    public VoucherVo copyOneVoucher(String voucherId,String factoryId);
 
     /**
      * 根据输入的凭证字获得当前的凭证号 按照数字的顺序
      * @param voucherCharacter
      * @return
      */
-    public int getCurrentNumber(String voucherCharacter);
+    public int getCurrentNumber(String voucherCharacter,String factoryId);
 
 
     //打印凭证并且对打印进行设置    对一条凭证进行处理 修改!!!  删除  复制  插入(未实现)

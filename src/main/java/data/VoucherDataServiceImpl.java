@@ -20,7 +20,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     SqlManager sqlManager = SqlManager.getSqlManager();
 
     @Override
-    public boolean addVoucher(VoucherPO voucherPO) {
+    public boolean addVoucher(VoucherPO voucherPO,String factoryId) {
         if(voucherPO == null){
             return false;
         }
@@ -47,7 +47,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteOneVoucher(String voucherId) {
+    public boolean deleteOneVoucher(String voucherId,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -66,7 +66,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteAllVoucher() {
+    public boolean deleteAllVoucher(String factoryId) {
         try{
             sqlManager.getConnection();
             String sql = "DELETE FROM voucher";
@@ -81,11 +81,11 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean modifyOneVoucher(String voucherId, VoucherPO voucherPO) {
+    public boolean modifyOneVoucher(String voucherId, VoucherPO voucherPO,String factoryId) {
         try{
             ArrayList<String> vidList = getVIdList();
             if(!vidList.contains(voucherId)){
-                addVoucher(voucherPO);
+                addVoucher(voucherPO,factoryId);
                 return true;
             }else if(voucherId.equals(voucherPO.getId())){
                 sqlManager.getConnection();
@@ -111,7 +111,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public VoucherPO findOneVoucher(String voucherId) {
+    public VoucherPO findOneVoucher(String voucherId,String factoryId) {
         try{
             ArrayList<String> vidList = getVIdList();
             if(!vidList.contains(voucherId)){
@@ -132,12 +132,12 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherPO> findSeveralVoucher(ArrayList<String> idList) {
+    public ArrayList<VoucherPO> findSeveralVoucher(ArrayList<String> idList,String factoryId) {
         ArrayList<VoucherPO> list = new ArrayList<>();
         VoucherPO po = new VoucherPO();
         for (String id : idList){
             try {
-                po = findOneVoucher(id);
+                po = findOneVoucher(id,factoryId);
             }catch (Exception e){
                 System.out.println("Fing SeveralVoucher Fail");
             }
@@ -147,7 +147,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherPO> findAllVoucher() {
+    public ArrayList<VoucherPO> findAllVoucher(String factoryId) {
         ArrayList<VoucherPO> list = new ArrayList<>();
         try{
             sqlManager.getConnection();
@@ -164,7 +164,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean addOneVoucherAllAmount(String voucherId, ArrayList<VoucherAmountPO> amountList) {
+    public boolean addOneVoucherAllAmount(String voucherId, ArrayList<VoucherAmountPO> amountList,String factoryId) {
         try{
             sqlManager.getConnection();
             for (VoucherAmountPO po : amountList){
@@ -182,7 +182,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteOneVoucherAllAmount(String voucherId) {
+    public boolean deleteOneVoucherAllAmount(String voucherId,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -200,7 +200,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteOneAmount(String amountId) {
+    public boolean deleteOneAmount(String amountId,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -218,10 +218,10 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteSeveralVoucherAllAmount(ArrayList<String> voucherIdList) {
+    public boolean deleteSeveralVoucherAllAmount(ArrayList<String> voucherIdList,String factoryId) {
         try{
             for (String id : voucherIdList){
-                deleteOneVoucherAllAmount(id);
+                deleteOneVoucherAllAmount(id,factoryId);
             }
             return true;
         }catch (Exception e){
@@ -230,7 +230,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteAllAmount() {
+    public boolean deleteAllAmount(String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -245,7 +245,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean modifyOneAmount(String amountId, VoucherAmountPO voucherAmountPO) {
+    public boolean modifyOneAmount(String amountId, VoucherAmountPO voucherAmountPO,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -268,7 +268,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherAmountPO> findOneVoucherAllAmount(String voucherId) {
+    public ArrayList<VoucherAmountPO> findOneVoucherAllAmount(String voucherId,String factoryId) {
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
 
         try{
@@ -287,11 +287,11 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public HashMap<String, ArrayList<VoucherAmountPO>> findSeveralVoucherAllAmount(ArrayList<String> voucherIdList) {
+    public HashMap<String, ArrayList<VoucherAmountPO>> findSeveralVoucherAllAmount(ArrayList<String> voucherIdList,String factoryId) {
         HashMap<String,ArrayList<VoucherAmountPO>> map = new HashMap<>();
         try{
             for (String vid : voucherIdList){
-                ArrayList<VoucherAmountPO> list = findOneVoucherAllAmount(vid);
+                ArrayList<VoucherAmountPO> list = findOneVoucherAllAmount(vid,factoryId);
                 map.put(vid,list);
             }
         }catch (Exception e){
@@ -300,7 +300,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherAmountPO> findAllVoucherAllAmount() {
+    public ArrayList<VoucherAmountPO> findAllVoucherAllAmount(String factoryId) {
         sqlManager.getConnection();
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
 
@@ -314,7 +314,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean addOneSubjectBalance(String subjectId, double number) {
+    public boolean addOneSubjectBalance(String subjectId, double number,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -333,7 +333,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteOneSubjectBalance(String subjectId) {
+    public boolean deleteOneSubjectBalance(String subjectId,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -351,7 +351,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean modifyOneSubjectBalance(String subjectId, double number) {
+    public boolean modifyOneSubjectBalance(String subjectId, double number,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -370,7 +370,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public double findOneSubjectBalance(String subjectId) {
+    public double findOneSubjectBalance(String subjectId,String factoryId) {
         try{
             sqlManager.getConnection();
 
@@ -385,7 +385,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean addOneTemplate(VoucherTemplatePO voucherTemplatePO) {
+    public boolean addOneTemplate(VoucherTemplatePO voucherTemplatePO,String factoryId) {
         if(voucherTemplatePO == null){
             return false;
         }
@@ -409,7 +409,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
 
     @Override
-    public boolean deleteOneTemplate(String templateId) {
+    public boolean deleteOneTemplate(String templateId,String factoryId) {
         try {
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
@@ -425,7 +425,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean deleteOneTemplateAmounts(String templateId) {
+    public boolean deleteOneTemplateAmounts(String templateId,String factoryId) {
         try {
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
@@ -441,7 +441,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean modifyOneTemplate(String templateId, VoucherTemplatePO voucherTemplatePO) {
+    public boolean modifyOneTemplate(String templateId, VoucherTemplatePO voucherTemplatePO,String factoryId) {
         if(!templateId.equals(voucherTemplatePO.getTemplateId())){
             return false;
         }
@@ -464,7 +464,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean addOneTemplateAmount(VoucherTemplateAmountPO templateAmountPO) {
+    public boolean addOneTemplateAmount(VoucherTemplateAmountPO templateAmountPO,String factoryId) {
         if (templateAmountPO == null){
             return false;
         }
@@ -489,11 +489,11 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean addOneTemplateAmounts(String templateId, ArrayList<VoucherTemplateAmountPO> templateAmountPOArrayList) {
+    public boolean addOneTemplateAmounts(String templateId, ArrayList<VoucherTemplateAmountPO> templateAmountPOArrayList,String factoryId) {
         try{
             for (VoucherTemplateAmountPO po : templateAmountPOArrayList){
                 if(templateId.equals(po.getTemplateId())){
-                    addOneTemplateAmount(po);
+                    addOneTemplateAmount(po,factoryId);
                 }else{
                     return false;
                 }
@@ -505,7 +505,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public boolean modifyTemplateAmount(VoucherTemplateAmountPO templateAmountPO) {
+    public boolean modifyTemplateAmount(VoucherTemplateAmountPO templateAmountPO,String factoryId) {
         try {
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
@@ -526,7 +526,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public VoucherTemplatePO getOneTemplate(String templateId) {
+    public VoucherTemplatePO getOneTemplate(String templateId,String factoryId) {
         try{
             VoucherTemplatePO po = new VoucherTemplatePO();
             sqlManager.getConnection();
@@ -542,17 +542,17 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherTemplatePO> getAllTemplate() {
+    public ArrayList<VoucherTemplatePO> getAllTemplate(String factoryId) {
         ArrayList<String> tidList = getTemplateIdList();
         ArrayList<VoucherTemplatePO> list = new ArrayList<>();
         for (String tid : tidList){
-            list.add(getOneTemplate(tid));
+            list.add(getOneTemplate(tid,factoryId));
         }
         return list;
     }
 
     @Override
-    public boolean deleteTemplateAmount(String amountId) {
+    public boolean deleteTemplateAmount(String amountId,String factoryId) {
         try {
             sqlManager.getConnection();
 
@@ -569,7 +569,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public VoucherTemplateAmountPO getOneTemplateAmount(String amountId) {
+    public VoucherTemplateAmountPO getOneTemplateAmount(String amountId,String factoryId) {
 
         try{
             VoucherTemplateAmountPO po = new VoucherTemplateAmountPO();
@@ -585,7 +585,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         }
     }
 
-    public void intialSubjectsBalance(){
+    public void intialSubjectsBalance(String factoryId){
         sqlManager.getConnection();
 
         ArrayList<String> idList = new ArrayList<>();
@@ -609,7 +609,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     }
 
     @Override
-    public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId) {
+    public ArrayList<VoucherTemplateAmountPO> getOneTemplateAllAmount(String templateId,String factoryId) {
         ArrayList<VoucherTemplateAmountPO> list = new ArrayList<>();
         sqlManager.getConnection();
 

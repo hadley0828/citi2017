@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation.viewController.CashSheet;
 
 import businesslogic.CashFlowImpl;
 import businesslogicservice.CashFlowTableService;
@@ -12,7 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
-import vo.BalanceSheetItemVo;
 import vo.CashFlowVo;
 
 import java.util.ArrayList;
@@ -75,8 +74,8 @@ public class CashSheetController {
     private CashFlowVo year;
 
     public void setCashTable(){
-        period=cashService.CashFlowTable_month(bar.getDate());
-        year=cashService.CashFlowTable_year(bar.getDate());
+        period=cashService.CashFlowTable_month(bar.getDate(),"");
+        year=cashService.CashFlowTable_year(bar.getDate(),"");
 /**
  *
  * @author hyf

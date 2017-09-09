@@ -41,7 +41,7 @@ public class VoucherBlServiceImplTest {
 
         vo.setAmountList(amountVoArrayList);
 
-        voucherBlService.saveOneVoucher(vo);
+        voucherBlService.saveOneVoucher(vo,"001");
 
 
     }
@@ -69,25 +69,26 @@ public class VoucherBlServiceImplTest {
         amountVoList.add(vo1);
         amountVoList.add(vo2);
 
-        System.out.println(voucherBlService.getVoucherTotal(amountVoList).toString());
+        System.out.println(voucherBlService.getVoucherTotal(amountVoList,"001").toString());
     }
 
     @Test
     public void testGetOneSubjectBalance(){
         String subjectId="1002";
-        System.out.println(voucherBlService.getOneSubjectBalance(subjectId));
+        System.out.println(voucherBlService.getOneSubjectBalance(subjectId,"001"));
+
     }
 
     @Test
     public void testGetNewSubjectBalance(){
         double beforeNumber=123;
         double changeNumber=-50;
-        System.out.println(voucherBlService.getNewSubjectBalance(beforeNumber,changeNumber));
+        System.out.println(voucherBlService.getNewSubjectBalance(beforeNumber,changeNumber,"001"));
     }
 
     @Test
     public void testChangeSubjectBalance(){
-        System.out.println(voucherBlService.changeSubjectBalance("1001",12345));
+        System.out.println(voucherBlService.changeSubjectBalance("1001",12345,"001"));
     }
 
     /**
@@ -95,7 +96,7 @@ public class VoucherBlServiceImplTest {
      */
     @Test
     public void testGetOneTemplate(){
-        System.out.println(voucherBlService.getOneTemplate("1").toString());
+        System.out.println(voucherBlService.getOneTemplate("1","001").toString());
     }
 
     @Test
@@ -129,13 +130,13 @@ public class VoucherBlServiceImplTest {
         oneVo.setAmountList(amountVoList);
 
 
-        System.out.println(voucherBlService.addOneTemplate(oneVo));
+        System.out.println(voucherBlService.addOneTemplate(oneVo,"001"));
 
     }
 
     @Test
     public void testGetCurrentPeriodAllVoucher(){
-        ArrayList<VoucherVo> resultList=voucherBlService.getCurrentPeriodAllVoucher();
+        ArrayList<VoucherVo> resultList=voucherBlService.getCurrentPeriodAllVoucher("001");
 
         for(int count=0;count<resultList.size();count++){
             System.out.println(resultList.get(count).toString());
@@ -144,7 +145,7 @@ public class VoucherBlServiceImplTest {
 
     @Test
     public void testGetOneVoucher(){
-        System.out.println(voucherBlService.getOneVoucher("记-10"));
+        System.out.println(voucherBlService.getOneVoucher("记-10","001").toString());
     }
 
     @Test
@@ -162,7 +163,7 @@ public class VoucherBlServiceImplTest {
 
         searchVo.setSortOrder(1);
 
-        ArrayList<VoucherVo> resultList=voucherBlService.getSearchedVoucher(searchVo);
+        ArrayList<VoucherVo> resultList=voucherBlService.getSearchedVoucher(searchVo,"001");
 
         for(int count=0;count<resultList.size();count++){
             System.out.println(resultList.get(count).toString());
@@ -175,7 +176,7 @@ public class VoucherBlServiceImplTest {
         voucherIdList.add("记-20");
         voucherIdList.add("记-21");
 
-        voucherBlService.deleteSelectedVoucher(voucherIdList);
+        voucherBlService.deleteSelectedVoucher(voucherIdList,"001");
     }
 
     @Test

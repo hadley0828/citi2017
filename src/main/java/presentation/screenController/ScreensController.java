@@ -21,6 +21,10 @@ public class ScreensController extends StackPane {
 
     private HashMap<String, Node> screens = new HashMap<>();
 
+    public ScreensController() {
+    }
+
+    /*
     private static volatile ScreensController INSTANCE = null;
 
     private ScreensController() {
@@ -38,6 +42,7 @@ public class ScreensController extends StackPane {
 
         return INSTANCE;
     }
+    */
 
     public void addScreen(String name, Node screen) {
         screens.put(name, screen);

@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation.viewController.BalanceSheet;
 
 import businesslogic.BalanceSheetImpl;
 import businesslogicservice.BalanceSheetService;
@@ -96,7 +96,7 @@ public class BalanceSheetController implements ControlledScreen{
     //为资产表添加数据
     public void setBalanceTable(){
 //        System.out.print(bar.getDate());
-        bs_data=balanceSheetService.getBalanceSheet(bar.getDate());
+        bs_data=balanceSheetService.getBalanceSheet("",bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
         ArrayList<BalanceSheetItemVo> p3=bs_data.get("资产合计");

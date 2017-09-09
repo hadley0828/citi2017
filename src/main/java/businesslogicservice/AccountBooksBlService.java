@@ -5,4 +5,7 @@ package businesslogicservice;
  * 处理和账簿相关功能的逻辑层接口
  */
 public interface AccountBooksBlService {
+
+    
+
 }

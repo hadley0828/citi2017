@@ -4,9 +4,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.DetailBillController">
    <children>
-      <Label layoutX="173.0" layoutY="164.0" text="DetailBill" />
+      <Label layoutX="33.0" layoutY="14.0" text="DetailBill" />
+      <TableView fx:id="billTable" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="dateCol" prefWidth="75.0" text="日期" />
+          <TableColumn fx:id="idCol" prefWidth="75.0" text="凭证号" />
+            <TableColumn fx:id="subjectCol" prefWidth="75.0" text="科目" />
+            <TableColumn fx:id="abstractsCol" prefWidth="75.0" text="摘要" />
+            <TableColumn fx:id="debitCol" prefWidth="75.0" text="借方" />
+            <TableColumn fx:id="creditCol" prefWidth="75.0" text="贷方" />
+            <TableColumn fx:id="directionCol" prefWidth="75.0" text="方向" />
+            <TableColumn fx:id="balanceCol" prefWidth="75.0" text="余额" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

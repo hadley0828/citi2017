@@ -1,14 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.Stock.Producer"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <DatePicker layoutX="308.0" layoutY="108.0" prefHeight="39.0" prefWidth="163.0" />
+        <Label layoutX="410.0" layoutY="42.0" prefHeight="50.0" prefWidth="339.0" text="生产商原材料及产品库存监控表">
+            <font>
+                <Font name="Heiti SC Light" size="24.0" />
+            </font></Label>
+        <Label layoutX="186.0" layoutY="108.0" prefHeight="39.0" prefWidth="99.0" text="截止日期:">
+            <font>
+                <Font size="19.0" />
+            </font>
+        </Label>
+      <TabPane layoutX="124.0" layoutY="172.0" prefHeight="479.0" prefWidth="911.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="原材料库存">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="811.0">
+                     <children>
+                          <TableView layoutX="-1.0" prefHeight="446.0" prefWidth="911.0">
+                              <columns>
+                                  <TableColumn prefWidth="231.0" text="原材料种类" />
+                                  <TableColumn prefWidth="220.0" text="库存量" />
+                                  <TableColumn minWidth="5.0" prefWidth="220.0" text="安全库存量" />
+                                  <TableColumn prefWidth="239.0" text="准时交货率" />
+                              </columns>
+                          </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="产品库存">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="811.0">
+                    <children>
+                        <TableView layoutX="-1.0" prefHeight="446.0" prefWidth="911.0">
+                            <columns>
+                                <TableColumn prefWidth="231.0" text="产品种类" />
+                                <TableColumn prefWidth="220.0" text="库存量" />
+                                <TableColumn minWidth="5.0" prefWidth="220.0" text="安全库存量" />
+                                <TableColumn prefWidth="239.0" text="退货率" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
 </AnchorPane>
