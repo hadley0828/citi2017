@@ -86,11 +86,6 @@ public class VoucherBlServiceImplTest {
         System.out.println(voucherBlService.getNewSubjectBalance(beforeNumber,changeNumber,"001"));
     }
 
-    @Test
-    public void testChangeSubjectBalance(){
-        System.out.println(voucherBlService.changeSubjectBalance("1001",12345,"001"));
-    }
-
     /**
      * 14s左右
      */

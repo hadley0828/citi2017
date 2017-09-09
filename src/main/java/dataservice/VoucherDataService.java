@@ -127,37 +127,6 @@ public interface VoucherDataService {
     public ArrayList<VoucherAmountPO> findAllVoucherAllAmount(String factoryId);
 
     /**
-     * 新增一个会计科目的余额信息
-     * @param subjectId 会计科目的编号
-     * @param number 初始的余额
-     * @return
-     */
-    public boolean addOneSubjectBalance(String subjectId,double number,String factoryId);
-
-    /**
-     * 删除一个会计科目的余额信息
-     * @param subjectId 会计科目的编号
-     * @return
-     */
-    public boolean deleteOneSubjectBalance(String subjectId,String factoryId);
-
-    /**
-     * 修改一个会计科目的余额信息
-     * @param subjectId 会计科目的编号
-     * @param number 修改后的余额数量
-     * @return
-     */
-    public boolean modifyOneSubjectBalance(String subjectId,double number,String factoryId);
-
-
-    /**
-     * 根据会计科目的id获取对应的余额
-     * @param subjectId
-     * @return
-     */
-    public double findOneSubjectBalance(String subjectId,String factoryId);
-
-    /**
      * 添加一个新的凭证模板
      * @param voucherTemplatePO
      * @return

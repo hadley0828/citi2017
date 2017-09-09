@@ -1,12 +1,11 @@
 package businesslogic;
 
 import businesslogicservice.VoucherBlService;
+import data.SubjectDataServiceImpl;
 import data.VoucherDataServiceImpl;
+import dataservice.SubjectDataService;
 import dataservice.VoucherDataService;
-import po.VoucherAmountPO;
-import po.VoucherPO;
-import po.VoucherTemplateAmountPO;
-import po.VoucherTemplatePO;
+import po.*;
 import util.*;
 import vo.voucher.*;
 
@@ -22,9 +21,12 @@ import java.util.HashSet;
 public class VoucherBlImpl implements VoucherBlService {
 
     private VoucherDataService voucherDataService;
+    private SubjectDataService subjectDataService;
 
     public VoucherBlImpl(){
+
         voucherDataService=new VoucherDataServiceImpl();
+        subjectDataService=new SubjectDataServiceImpl();
     }
 
     @Override
@@ -40,16 +42,30 @@ public class VoucherBlImpl implements VoucherBlService {
         ArrayList<VoucherAmountVo> amountVoList=voucherVo.getAmountList();
         ArrayList<VoucherAmountPO> amountPoList=new ArrayList<>();
 
-
+        HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap(factoryId);
 
         if(amountVoList.size()!=0){
             for(int count=0;count<amountVoList.size();count++){
                 VoucherAmountVo voucherAmountVo=amountVoList.get(count);
                 VoucherAmountPO voucherAmountPO=new VoucherAmountPO(voucherAmountVo);
                 String subjectId=voucherAmountVo.getSubject();
-                double beforeBalance=voucherDataService.findOneSubjectBalance(subjectId,factoryId);
-                //实现修改一个会计科目的余额的功能
-                voucherDataService.modifyOneSubjectBalance(subjectId,beforeBalance+voucherAmountVo.getDebitAmount()-voucherAmountVo.getCreditAmount(),factoryId);
+
+                SubjectNumberPO beforeNumber=subjectDataService.getNewestSubjectBalance(subjectId,factoryId);
+
+                SubjectsPO newSubject=new SubjectsPO();
+                double debitAmount=voucherAmountVo.getDebitAmount();
+                double creditAmount=voucherAmountVo.getCreditAmount();
+                double newBalance=beforeNumber.getBalance()+SubjectBalanceHelper.getDirection(subjectId)*(debitAmount-creditAmount);
+
+                newSubject.setId(subjectId);
+                newSubject.setName(subjectIdToNameMap.get(subjectId));
+                newSubject.setDate(Date.valueOf(voucherVo.getDate()));
+                newSubject.setVoucher_id(voucherVo.getVoucherId());
+                newSubject.setDebitAmount(debitAmount);
+                newSubject.setCreditAmount(creditAmount);
+                newSubject.setBalances(newBalance);
+
+                subjectDataService.addOneSubject(newSubject,factoryId);
 
                 amountPoList.add(voucherAmountPO);
             }
@@ -99,22 +115,12 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public double getOneSubjectBalance(String subjectId,String factoryId) {
-        return voucherDataService.findOneSubjectBalance(subjectId,factoryId);
+        return subjectDataService.getNewestSubjectBalance(subjectId,factoryId).getBalance();
     }
 
     @Override
     public double getNewSubjectBalance(double beforeNumber, double changeNumber,String factoryId) {
         return beforeNumber+changeNumber;
-    }
-
-    @Override
-    public boolean changeSubjectBalance(String subjectId, double newNumber,String factoryId) {
-        boolean result=true;
-
-        boolean result1=voucherDataService.modifyOneSubjectBalance(subjectId, newNumber,factoryId);
-        result=result&result1;
-
-        return result;
     }
 
     @Override
@@ -585,16 +591,39 @@ public class VoucherBlImpl implements VoucherBlService {
             allVoucherIdSet.add(allPoList.get(count).getId());
         }
 
+
+
         if(!allVoucherIdSet.contains(voucherId)){
             return false;
         }else{
             ArrayList<VoucherAmountPO> amountPoList=voucherDataService.findOneVoucherAllAmount(voucherId,factoryId);
             if(amountPoList.size()!=0){
+
+                HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap(factoryId);
+
                 for(int count=0;count<amountPoList.size();count++){
                     VoucherAmountPO oneAmountPo=amountPoList.get(count);
                     String subjectId=oneAmountPo.getSubject();
-                    double beforePrice=voucherDataService.findOneSubjectBalance(subjectId,factoryId);
-                    voucherDataService.modifyOneSubjectBalance(subjectId,beforePrice-oneAmountPo.getDebitAmount()+oneAmountPo.getCreditAmount(),factoryId);
+
+                    SubjectNumberPO beforeNumber=subjectDataService.getNewestSubjectBalance(subjectId,factoryId);
+
+                    SubjectsPO newSubject=new SubjectsPO();
+                    double debitAmount=-oneAmountPo.getDebitAmount();
+                    double creditAmount=-oneAmountPo.getCreditAmount();
+                    double newBalance=beforeNumber.getBalance()+SubjectBalanceHelper.getDirection(subjectId)*(debitAmount-creditAmount);
+                    newSubject.setId(subjectId);
+                    newSubject.setName(subjectIdToNameMap.get(subjectId));
+                    newSubject.setDate(Date.valueOf(DateConvert.getCurrentMonth()));
+                    newSubject.setVoucher_id("删"+voucherId);
+                    newSubject.setDebitAmount(debitAmount);
+                    newSubject.setCreditAmount(creditAmount);
+                    newSubject.setBalances(newBalance);
+
+                    subjectDataService.addOneSubject(newSubject,factoryId);
+
+
+//                    double beforePrice=voucherDataService.findOneSubjectBalance(subjectId,factoryId);
+//                    voucherDataService.modifyOneSubjectBalance(subjectId,beforePrice-oneAmountPo.getDebitAmount()+oneAmountPo.getCreditAmount(),factoryId);
 
                 }
             }

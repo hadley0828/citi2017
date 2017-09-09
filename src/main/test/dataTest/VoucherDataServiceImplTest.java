@@ -180,35 +180,6 @@ public class VoucherDataServiceImplTest {
         }
     }
 
-
-    @Test
-    public void testAddOneSubjectBalance(){
-        String s_id = "1001";
-        double num = 1000;
-        System.out.println(voucherDataService.addOneSubjectBalance(s_id,num,"001"));
-    }
-
-    @Test
-    public void testDeleteOneSubjectBalance(){
-        String s_id = "1001";
-        System.out.println(voucherDataService.deleteOneSubjectBalance(s_id,"001"));
-    }
-
-    @Test
-    public void testModifyOneSubjectBalance(){
-        String s_id = "1001";
-        double num = 2000;
-        System.out.println(voucherDataService.modifyOneSubjectBalance(s_id,num,"001"));
-    }
-
-
-    @Test
-    public void testFindOneSubjectBalance(){
-        String s_id = "1001";
-        double balances = voucherDataService.findOneSubjectBalance(s_id,"001");
-        System.out.println(balances);
-    }
-
     @Test
     public void testAddOneTemplate(){
         VoucherTemplatePO po = new VoucherTemplatePO();
