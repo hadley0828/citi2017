@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sun.plugin.javascript.navig.Anchor;
 
 
 import java.io.IOException;
@@ -22,8 +24,8 @@ public class Demo extends Application {
 //            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
 //              loader.setLocation(Demo.class.getResource("../view/BalanceSheet/TestTree.fxml"));
             loader.setLocation(Demo.class.getResource("../view/Stock/Supplier.fxml"));
-            ScrollPane root=loader.load();
-
+//            ScrollPane root=loader.load();
+            AnchorPane root=loader.load();
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
