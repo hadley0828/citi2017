@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.Pingzhengzi">
+   <children>
+      <Label layoutX="434.0" layoutY="14.0" text="凭证字设置">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="-1.0" layoutY="44.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="65.0" text="新增" AnchorPane.leftAnchor="-0.0" />
+      <TableView layoutY="76.0" prefHeight="524.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn prefWidth="283.0" text="凭证字" />
+          <TableColumn prefWidth="273.0" text="打印标题" />
+            <TableColumn prefWidth="257.0" text="是否默认" />
+            <TableColumn prefWidth="186.0" text="操作" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
