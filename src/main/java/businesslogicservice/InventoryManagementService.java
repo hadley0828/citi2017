@@ -145,17 +145,15 @@ public interface InventoryManagementService {
     /**
      * 原材料库存量与安全库存量的关系
      * @param company_id 公司id
-     * @param raw_material_variety 产品种类
      * @return
      */
-    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id, String raw_material_variety);
+    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id);
 
     /**
      * 产品库存量与安全库存量的关系
      * @param company_id 公司id
-     * @param product_variety 产品种类
      * @return
      */
-    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id, String product_variety);
+    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id);
 
 }

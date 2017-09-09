@@ -144,4 +144,20 @@ public interface InventoryService {
      */
     public ArrayList<ProductSafeInventoryPo> getAllProductSafeInventory(String company_id);
 
+    /**
+     * 得到公司的一种原材料当前的库存量
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @return
+     */
+    public int getRawInventory(String company_id, String raw_material_variety);
+
+    /**
+     * 得到公司的一种产品当前的库存量(如果没有找到则为0)
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @return
+     */
+    public int getProductInventory(String company_id, String product_variety);
+
 }
