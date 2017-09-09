@@ -98,64 +98,64 @@ public class TableCalHelper {
 		ArrayList<BalanceSheetItemVo> temp2=s2.get("流动资产");
 		ArrayList<BalanceSheetItemVo> temp3=s3.get("流动资产");
 				
-		res.put("货币资金", new double[]{temp1.get(0).getEnding_balance(),temp2.get(0).getEnding_balance()
-				,temp2.get(0).getBeginning_balance(),temp3.get(0).getEnding_balance()});
-		res.put("短期投资", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
+		res.put("货币资金", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
 				,temp2.get(1).getBeginning_balance(),temp3.get(1).getEnding_balance()});
-		res.put("应收票据", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
+		res.put("短期投资", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
 				,temp2.get(2).getBeginning_balance(),temp3.get(2).getEnding_balance()});
-		res.put("应收账款", new double[]{temp1.get(3).getEnding_balance(),temp2.get(3).getEnding_balance()
+		res.put("应收票据", new double[]{temp1.get(3).getEnding_balance(),temp2.get(3).getEnding_balance()
 				,temp2.get(3).getBeginning_balance(),temp3.get(3).getEnding_balance()});
-		res.put("预付账款", new double[]{temp1.get(4).getEnding_balance(),temp2.get(4).getEnding_balance()
+		res.put("应收账款", new double[]{temp1.get(4).getEnding_balance(),temp2.get(4).getEnding_balance()
 				,temp2.get(4).getBeginning_balance(),temp3.get(4).getEnding_balance()});
-		res.put("应收股利", new double[]{temp1.get(5).getEnding_balance(),temp2.get(5).getEnding_balance()
+		res.put("预付账款", new double[]{temp1.get(5).getEnding_balance(),temp2.get(5).getEnding_balance()
 				,temp2.get(5).getBeginning_balance(),temp3.get(5).getEnding_balance()});
-		res.put("应收利息", new double[]{temp1.get(6).getEnding_balance(),temp2.get(6).getEnding_balance()
+		res.put("应收股利", new double[]{temp1.get(6).getEnding_balance(),temp2.get(6).getEnding_balance()
 				,temp2.get(6).getBeginning_balance(),temp3.get(6).getEnding_balance()});
+		res.put("应收利息", new double[]{temp1.get(7).getEnding_balance(),temp2.get(7).getEnding_balance()
+				,temp2.get(7).getBeginning_balance(),temp3.get(7).getEnding_balance()});
 		
 		
 		temp1=s1.get("流动负债");
 		temp2=s2.get("流动负债");
 		temp3=s3.get("流动负债");
 		
-		res.put("短期借款", new double[]{temp1.get(0).getEnding_balance(),temp2.get(0).getEnding_balance()
-				,temp2.get(0).getBeginning_balance(),temp3.get(0).getEnding_balance()});
-		res.put("应付票据", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
+		res.put("短期借款", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
 				,temp2.get(1).getBeginning_balance(),temp3.get(1).getEnding_balance()});
-		res.put("应付账款", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
+		res.put("应付票据", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
 				,temp2.get(2).getBeginning_balance(),temp3.get(2).getEnding_balance()});
-		res.put("预收账款", new double[]{temp1.get(3).getEnding_balance(),temp2.get(3).getEnding_balance()
+		res.put("应付账款", new double[]{temp1.get(3).getEnding_balance(),temp2.get(3).getEnding_balance()
 				,temp2.get(3).getBeginning_balance(),temp3.get(3).getEnding_balance()});
+		res.put("预收账款", new double[]{temp1.get(4).getEnding_balance(),temp2.get(4).getEnding_balance()
+				,temp2.get(4).getBeginning_balance(),temp3.get(4).getEnding_balance()});
 		
 			
 		temp1=s1.get("非流动资产");
 		temp2=s2.get("非流动资产");
 		temp3=s3.get("非流动资产");
 		
-		res.put("固定资产", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
-				,temp2.get(2).getBeginning_balance(),temp3.get(2).getEnding_balance()});
-		res.put("长期债券投资", new double[]{temp1.get(0).getEnding_balance(),temp2.get(0).getEnding_balance()
-				,temp2.get(0).getBeginning_balance(),temp3.get(0).getEnding_balance()});
-		res.put("长期股权投资", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
+		res.put("固定资产", new double[]{temp1.get(3).getEnding_balance(),temp2.get(3).getEnding_balance()
+				,temp2.get(3).getBeginning_balance(),temp3.get(3).getEnding_balance()});
+		res.put("长期债券投资", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
 				,temp2.get(1).getBeginning_balance(),temp3.get(1).getEnding_balance()});
-		res.put("无形资产", new double[]{temp1.get(9).getEnding_balance(),temp2.get(9).getEnding_balance()
-				,temp2.get(9).getBeginning_balance(),temp3.get(9).getEnding_balance()});
-		res.put("在建工程", new double[]{temp1.get(5).getEnding_balance(),temp2.get(5).getEnding_balance()
-				,temp2.get(5).getBeginning_balance(),temp3.get(5).getEnding_balance()});
+		res.put("长期股权投资", new double[]{temp1.get(2).getEnding_balance(),temp2.get(2).getEnding_balance()
+				,temp2.get(2).getBeginning_balance(),temp3.get(2).getEnding_balance()});
+		res.put("无形资产", new double[]{temp1.get(10).getEnding_balance(),temp2.get(10).getEnding_balance()
+				,temp2.get(10).getBeginning_balance(),temp3.get(10).getEnding_balance()});
+		res.put("在建工程", new double[]{temp1.get(6).getEnding_balance(),temp2.get(6).getEnding_balance()
+				,temp2.get(6).getBeginning_balance(),temp3.get(6).getEnding_balance()});
 		
 		
 		temp1=s1.get("非流动负债");
 		temp2=s2.get("非流动负债");
 		temp3=s3.get("非流动负债");
 		
-		res.put("长期借款", new double[]{temp1.get(0).getEnding_balance(),temp2.get(0).getEnding_balance()
-				,temp2.get(0).getBeginning_balance(),temp3.get(0).getEnding_balance()});
+		res.put("长期借款", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
+				,temp2.get(1).getBeginning_balance(),temp3.get(1).getEnding_balance()});
 		
 		temp1=s1.get("所有者权益");
 		temp2=s2.get("所有者权益");
 		temp3=s3.get("所有者权益");
-		res.put("实收资本", new double[]{temp1.get(0).getEnding_balance(),temp2.get(0).getEnding_balance()
-				,temp2.get(0).getBeginning_balance(),temp3.get(0).getEnding_balance()});
+		res.put("实收资本", new double[]{temp1.get(1).getEnding_balance(),temp2.get(1).getEnding_balance()
+				,temp2.get(1).getBeginning_balance(),temp3.get(1).getEnding_balance()});
 		return res;
 	}
 	
