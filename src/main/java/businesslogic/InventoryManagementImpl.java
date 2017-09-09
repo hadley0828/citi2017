@@ -12,6 +12,7 @@ import vo.Inventory.*;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by 费慧通 on 2017/9/4.
@@ -539,8 +540,10 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     private String getYearAndMonth(Timestamp timestamp){
-        int year = timestamp.getYear()+1900;
-        int month = timestamp.getMonth()+1;
+        Calendar c = Calendar.getInstance();
+        c.setTime(timestamp);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH)+1;
         return year+"-"+month;
     }
 }
