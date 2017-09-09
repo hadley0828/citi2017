@@ -3,6 +3,8 @@ package data;
 import dataservice.InventoryService;
 import po.Inventory.InventoryProductItemPO;
 import po.Inventory.InventoryRawMaterialItemPO;
+import po.Inventory.ProductSafeInventoryPo;
+import po.Inventory.RawMaterialSafeInventoryPo;
 
 import java.util.ArrayList;
 
@@ -56,6 +58,36 @@ public class InventoryServiceImpl implements InventoryService{
 
     @Override
     public ArrayList<InventoryProductItemPO> getProductInventoryItem(String company_id, String time) {
+        return null;
+    }
+
+    @Override
+    public void SaveRawMaterialSafeInventory(ArrayList<RawMaterialSafeInventoryPo> list) {
+
+    }
+
+    @Override
+    public void SaveProductSafeInventory(ArrayList<ProductSafeInventoryPo> list) {
+
+    }
+
+    @Override
+    public ArrayList<String> getAllRawMaterialVariety(String company_id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllProductVariety(String company_id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<RawMaterialSafeInventoryPo> getAllRawMaterialSafeInventory(String company_id) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<ProductSafeInventoryPo> getAllProductSafeInventory(String company_id) {
         return null;
     }
 }

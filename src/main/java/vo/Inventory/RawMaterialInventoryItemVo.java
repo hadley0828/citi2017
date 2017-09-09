@@ -1,16 +1,14 @@
-package vo;
-
-import org.apache.poi.ss.formula.functions.T;
+package vo.Inventory;
 
 import java.sql.Timestamp;
 
 /**
  * Created by 费慧通 on 2017/9/4.
  *
- * 产品库存录入表格的元祖
+ * 原材料库存录入表格的元祖
  */
-public class ProductInventoryItemVo {
-    private String product_variety;    //原材料种类
+public class RawMaterialInventoryItemVo {
+    private String rawMaterial_variety;    //原材料种类
     private String voucher_id;  //凭证编号
     private Timestamp datetime;    //时间
     private boolean is_delivery_ontime;  //是否准时交货
@@ -23,9 +21,9 @@ public class ProductInventoryItemVo {
     private double out_account; //发出金额
     private int balance_num;    //结存数量
 
-    public ProductInventoryItemVo(String product_variety, String voucher_id, String datetime, boolean is_delivery_ontime, boolean is_return, int input_num,double input_price, double input_account,
+    public RawMaterialInventoryItemVo(String rawMaterial_variety, String voucher_id, String datetime, boolean is_delivery_ontime, boolean is_return, int input_num,double input_price, double input_account,
                                       int out_num, double out_price, double out_account, int balance_num) {
-        this.product_variety = product_variety;
+        this.rawMaterial_variety = rawMaterial_variety;
         this.voucher_id = voucher_id;
         this.datetime = Timestamp.valueOf(datetime);
         this.is_delivery_ontime = is_delivery_ontime;
@@ -39,8 +37,8 @@ public class ProductInventoryItemVo {
         this.balance_num = balance_num;
     }
 
-    public String getProduct_variety() {
-        return product_variety;
+    public String getRawMaterial_variety() {
+        return rawMaterial_variety;
     }
 
     public boolean isIs_delivery_ontime() {
@@ -119,8 +117,8 @@ public class ProductInventoryItemVo {
         this.out_num = out_num;
     }
 
-    public void setProduct_variety(String product_variety) {
-        this.product_variety = product_variety;
+    public void setRawMaterial_variety(String rawMaterial_variety) {
+        this.rawMaterial_variety = rawMaterial_variety;
     }
 
     public void setVoucher_id(String voucher_id) {

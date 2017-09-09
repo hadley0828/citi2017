@@ -8,16 +8,24 @@ package presentation.screenController;
 public interface ScreensFramework {
 
     /*主界面*/
-    String MAIN_SCREEN = "Main";
-    String MAIN_SCREEN_FXML = "Main.fxml";
+    String HOME_LAYOUT_SCREEN = "HomeLayout";
+    String HOME_LAYOUT_SCREEN_FXML = "/view/layout/HomeLayout.fxml";
+
+    /*财务系统界面*/
+    String FINANCIAL_LAYOUT_SCREEN = "FinancialLayout";
+    String FINANCIAL_LAYOUT_SCREEN_FXML = "/view/layout/FinancialLayout.fxml";
+
+    /*供应链界面*/
+    String SUPPLY_LAYOUT_SCREEN = "SupplyLayout";
+    String SUPPLY_LAYOUT_SCREEN_FXML = "/view/layout/SupplyLayout.fxml";
 
     /*新增凭证*/
     String ADD_VOUCHER_SCREEN = "AddVoucher";
-    String ADD_VOUCHER_SCREEN_FXML = "/view/Voucher/AddVoucher.fxml";
+    String ADD_VOUCHER_SCREEN_FXML = "/view/voucher/AddVoucher.fxml";
 
     /*查询凭证*/
     String INQUIRE_VOUCHER_SCREEN = "InquireVoucher";
-    String INQUIRE_VOUCHER_SCREEN_FXML = "/view/Voucher/InquireVoucher.fxml";
+    String INQUIRE_VOUCHER_SCREEN_FXML = "/view/voucher/InquireVoucher.fxml";
 
     /*明细账*/
     String DETAIL_BILL_SCREEN = "DetailBill";
@@ -35,7 +43,11 @@ public interface ScreensFramework {
     String SUBJECT_SUMMARY_SHEET_SCREEN = "SubjectSummarySheet";
     String SUBJECT_SUMMARY_SHEET_SCREEN_FXML = "/view/Bill/SubjectSummarySheet.fxml";
 
-    String PRO_DEBT_SCREEN="Pro_debt";
-    String PRO_DEBT_SCREEN_FXML="/view/BalanceSheet/BalanceSheet.fxml";
+    String PRO_DEBT_SCREEN = "Pro_debt";
+    String PRO_DEBT_SCREEN_FXML = "/view/BalanceSheet/BalanceSheet.fxml";
+
+    /*财务预警*/
+    String FINANCIAL_WARNING_SCREEN = "FinancialWarning";
+    String FINANCIAL_WARNING_SCREEN_FXML = "/view/warning/FinancialWarning.fxml";
 
 }

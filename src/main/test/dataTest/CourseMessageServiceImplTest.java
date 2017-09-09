@@ -45,8 +45,9 @@ public class CourseMessageServiceImplTest {
     }
 
     @Test
-    public void testgetBeginCourseMessage(){
-
+    public void testgetBeginCoureMessage(){
+        ArrayList<SubjectsPO> list = courseMessageService.getBeginCourseMessage("001");
+        System.out.println(list.size());
     }
 
     @Test

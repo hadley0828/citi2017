@@ -5,18 +5,50 @@ import data.InventoryServiceImpl;
 import dataservice.InventoryService;
 import po.Inventory.InventoryProductItemPO;
 import po.Inventory.InventoryRawMaterialItemPO;
-import vo.ProductInventoryItemVo;
-import vo.ProductInventoryMonitorItemVo;
-import vo.RawMaterialInventoryItemVo;
-import vo.RawMaterialInventoryMonitorItemVo;
+import po.Inventory.ProductSafeInventoryPo;
+import po.Inventory.RawMaterialSafeInventoryPo;
+import vo.Inventory.*;
 
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by 费慧通 on 2017/9/4.
  * 
  */
 public class InventoryManagementImpl implements InventoryManagementService {
+
+    /**
+     * 保存公司的原材料安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveRawMaterialSafeInventory(String company_id, ArrayList<RawMaterialSafeInventoryVo> list){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<RawMaterialSafeInventoryPo> result = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            RawMaterialSafeInventoryVo vo = list.get(i);
+            result.add(new RawMaterialSafeInventoryPo(company_id, vo.getRaw_material_variety(), vo.getSafe_inventory()));
+        }
+        service.SaveRawMaterialSafeInventory(result);
+    }
+
+    /**
+     * 保存公司的产品安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveProductSafeInventory(String company_id, ArrayList<ProductSafeInventoryVo> list){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<ProductSafeInventoryPo> result = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            ProductSafeInventoryVo vo = list.get(i);
+            result.add(new ProductSafeInventoryPo(company_id, vo.getProduct_variety(), vo.getSafe_inventory()));
+        }
+        service.SaveProductSafeInventory(result);
+    }
 
     /**
      * 根据录入记录得到表格末尾的原材料结存数量
@@ -91,7 +123,52 @@ public class InventoryManagementImpl implements InventoryManagementService {
     public ArrayList<RawMaterialInventoryMonitorItemVo> getRawMaterialInventoryMonitorItem(String company_id, String time){
         InventoryService service = new InventoryServiceImpl();
         ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItem(company_id, time);
-        return null;
+        ArrayList<RawMaterialSafeInventoryPo> list1 = service.getAllRawMaterialSafeInventory(company_id);
+
+        ArrayList<RawMaterialInventoryMonitorItemVo> result = new ArrayList<>();
+
+        String first_raw_material = list.get(0).getVariety();
+        int trade = 0;  //交易次数
+        int delivery_on_time = 0;  //准时交货次数
+        int back = 0;   //退货次数
+        int inventory = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryRawMaterialItemPO po = list.get(i);
+            String variety = po.getVariety();
+            if(first_raw_material.equals(variety)){
+                trade++;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+                if(po.isReturn()){
+                    back++;
+                }
+                inventory = po.getRemainNum();
+            }else{
+                //准时交货率
+                String punctual_delivery_rate = df.format(delivery_on_time/trade*100)+"%";
+                //退货率
+                String refund_rate = df.format(back/trade*100)+"%";
+                result.add(new RawMaterialInventoryMonitorItemVo(first_raw_material,inventory,getSafeInventory(list1,first_raw_material),punctual_delivery_rate,refund_rate));
+                first_raw_material = variety;
+
+                trade = 1;
+                delivery_on_time = 0;
+                back = 0;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+                if(po.isReturn()){
+                    back++;
+                }
+                inventory = po.getRemainNum();
+            }
+        }
+        String punctual_delivery_rate = df.format(delivery_on_time/trade*100)+"%";
+        String refund_rate = df.format(back/trade*100)+"%";
+        result.add(new RawMaterialInventoryMonitorItemVo(first_raw_material,inventory,getSafeInventory(list1,first_raw_material),punctual_delivery_rate,refund_rate));
+        return result;
     }
 
     /**
@@ -101,6 +178,199 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<ProductInventoryMonitorItemVo> getProductInventoryMonitorItem(String company_id, String time){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryProductItemPO> list = service.getProductInventoryItem(company_id, time);
+        ArrayList<ProductSafeInventoryPo> list1 = service.getAllProductSafeInventory(company_id);
+
+        ArrayList<ProductInventoryMonitorItemVo> result = new ArrayList<>();
+
+        String first_product = list.get(0).getVariety();
+        int trade = 0;  //交易次数
+        int delivery_on_time = 0;  //准时交货次数
+        int back = 0;   //退货次数
+        int inventory = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryProductItemPO po = list.get(i);
+            String variety = po.getVariety();
+            if(first_product.equals(variety)){
+                trade++;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+                if(po.isReturn()){
+                    back++;
+                }
+                inventory = po.getRemainNum();
+            }else{
+                //准时交货率
+                String punctual_delivery_rate = df.format(delivery_on_time/trade*100)+"%";
+                //退货率
+                String refund_rate = df.format(back/trade*100)+"%";
+                result.add(new ProductInventoryMonitorItemVo(first_product,inventory,getProductSafeInventory(list1,first_product),punctual_delivery_rate,refund_rate));
+                first_product = variety;
+
+                trade = 1;
+                delivery_on_time = 0;
+                back = 0;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+                if(po.isReturn()){
+                    back++;
+                }
+                inventory = po.getRemainNum();
+            }
+        }
+        //准时交货率
+        String punctual_delivery_rate = df.format(delivery_on_time/trade*100)+"%";
+        //退货率
+        String refund_rate = df.format(back/trade*100)+"%";
+        result.add(new ProductInventoryMonitorItemVo(first_product,inventory,getProductSafeInventory(list1,first_product),punctual_delivery_rate,refund_rate));
+        return result;
+    }
+
+    /**
+     * 得到公司的所有原材料种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllRawMaterialVariety(String company_id){
+        InventoryService service = new InventoryServiceImpl();
+        return service.getAllRawMaterialVariety(company_id);
+    }
+
+    /**
+     * 得到公司的所有产品种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllProductVariety(String company_id){
+        InventoryService service = new InventoryServiceImpl();
+        return service.getAllProductVariety(company_id);
+    }
+
+    /**
+     * 原材料库存量与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<InventoryChangeVo> getRawInventoryChange(String company_id, String raw_material_variety, String time){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItemByVariety(company_id, time, raw_material_variety);
+        int length = list.size();
+        Calendar c = Calendar.getInstance();
+        c.setTime(list.get(0).getDate());
+        int begin_year = c.get(Calendar.YEAR);
+        int begin_month = c.get(Calendar.MONTH)+1;
+        Timestamp end = list.get(length-1).getDate();
         return null;
+    }
+
+    /**
+     * 产品库存量与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<InventoryChangeVo> getProductInventoryChange(String company_id, String product_variety, String time){
+        return null;
+    }
+
+    /**
+     * 原材料准时交货率与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<PunctualDeliveryRateChangeVo> getRawPunctualDeliveryRateChange(String company_id, String raw_material_variety, String time){
+        return null;
+    }
+
+    /**
+     * 产品准时交货率与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<PunctualDeliveryRateChangeVo> getProductPunctualDeliveryRateChange(String company_id, String product_variety, String time){
+        return null;
+    }
+
+    /**
+     * 原材料退货率与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<RefundRateChangeVo> getRawRefundRateChange(String company_id, String raw_material_variety, String time){
+        return null;
+    }
+
+    /**
+     * 产品退货率与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<RefundRateChangeVo> getProductRefundRateChange(String company_id, String product_variety, String time){
+        return null;
+    }
+
+    /**
+     * 原材料库存量与安全库存量的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 产品种类
+     * @return
+     */
+    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id, String raw_material_variety){
+        return null;
+    }
+
+    /**
+     * 产品库存量与安全库存量的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @return
+     */
+    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id, String product_variety){
+        return null;
+    }
+
+    /**
+     * 得到某一种原材料的安全库存量
+     * @param list 所有原材料安全库存量
+     * @param raw_material_variety 原材料种类
+     * @return
+     */
+    private int getSafeInventory(ArrayList<RawMaterialSafeInventoryPo> list, String raw_material_variety){
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getRaw_material_variety().equals(raw_material_variety)){
+                return list.get(i).getSafe_inventory();
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * 得到某一种产品的安全库存量
+     * @param list 所有产品安全库存量
+     * @param product_variety 产品种类
+     * @return
+     */
+    private int getProductSafeInventory(ArrayList<ProductSafeInventoryPo> list, String product_variety){
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).getProduct_variety().equals(product_variety)){
+                return list.get(i).getSafe_inventory();
+            }
+        }
+        return 0;
     }
 }

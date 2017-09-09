@@ -1,9 +1,6 @@
 package businesslogicservice;
 
-import vo.ProductInventoryItemVo;
-import vo.ProductInventoryMonitorItemVo;
-import vo.RawMaterialInventoryItemVo;
-import vo.RawMaterialInventoryMonitorItemVo;
+import vo.Inventory.*;
 
 import java.util.ArrayList;
 
@@ -12,6 +9,20 @@ import java.util.ArrayList;
  *
  */
 public interface InventoryManagementService {
+
+    /**
+     * 保存公司的原材料安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveRawMaterialSafeInventory(String company_id, ArrayList<RawMaterialSafeInventoryVo> list);
+
+    /**
+     * 保存公司的产品安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveProductSafeInventory(String company_id, ArrayList<ProductSafeInventoryVo> list);
 
     /**
      * 根据录入记录得到表格末尾的原材料结存数量
@@ -62,4 +73,89 @@ public interface InventoryManagementService {
      * @return
      */
     public ArrayList<ProductInventoryMonitorItemVo> getProductInventoryMonitorItem(String company_id, String time);
+
+    /**
+     * 得到公司的所有原材料种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllRawMaterialVariety(String company_id);
+
+    /**
+     * 得到公司的所有产品种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllProductVariety(String company_id);
+
+    /**
+     * 原材料库存量与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<InventoryChangeVo> getRawInventoryChange(String company_id, String raw_material_variety, String time);
+
+    /**
+     * 产品库存量与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<InventoryChangeVo> getProductInventoryChange(String company_id, String product_variety, String time);
+
+    /**
+     * 原材料准时交货率与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<PunctualDeliveryRateChangeVo> getRawPunctualDeliveryRateChange(String company_id, String raw_material_variety, String time);
+
+    /**
+     * 产品准时交货率与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<PunctualDeliveryRateChangeVo> getProductPunctualDeliveryRateChange(String company_id, String product_variety, String time);
+
+    /**
+     * 原材料退货率与时间的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 原材料种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<RefundRateChangeVo> getRawRefundRateChange(String company_id, String raw_material_variety, String time);
+
+    /**
+     * 产品退货率与时间的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @param time 截止时间
+     * @return
+     */
+    public ArrayList<RefundRateChangeVo> getProductRefundRateChange(String company_id, String product_variety, String time);
+
+    /**
+     * 原材料库存量与安全库存量的关系
+     * @param company_id 公司id
+     * @param raw_material_variety 产品种类
+     * @return
+     */
+    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id, String raw_material_variety);
+
+    /**
+     * 产品库存量与安全库存量的关系
+     * @param company_id 公司id
+     * @param product_variety 产品种类
+     * @return
+     */
+    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id, String product_variety);
+
 }
