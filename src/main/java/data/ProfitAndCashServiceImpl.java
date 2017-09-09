@@ -21,8 +21,8 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 
 	    sqlManager.getConnection();
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
-        String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=?) AND subject LIKE ?";
-        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{year,accounting_id+"%"});
+        String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND company_id=?) AND subject LIKE ? AND company_id=?";
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{year,company_id,accounting_id+"%",company_id});
 
         for(Map<String,Object> map : datalist){
             list.add(getVoucherAmountPO(map));
@@ -35,10 +35,10 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 
 	    sqlManager.getConnection();
 	    ArrayList<VoucherAmountPO> list = new ArrayList<>();
-	    String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=?) AND subject LIKE?";
+	    String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=? AND company_id=?) AND subject LIKE? AND company_id=?";
 	    Map<String,String> dateMap = DatesUtil.datesParser(period);
 
-	    ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{dateMap.get("year"),dateMap.get("month"),accounting_id+"%"});
+	    ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{dateMap.get("year"),dateMap.get("month"),company_id,accounting_id+"%",company_id});
 	    for(Map<String,Object> map : datalist){
 	        list.add(getVoucherAmountPO(map));
         }
@@ -50,9 +50,9 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 	    sqlManager.getConnection();
 
 	    ArrayList<VoucherAmountPO> list = new ArrayList<>();
-	    String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE date<=?) AND subject=?";
+	    String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE date<=? AND company_id=? ) AND subject=? AND company_id=?";
 //        System.out.println(fillDate(period));
-        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{Date.valueOf(fillDate(period)),accounting_id});
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{Date.valueOf(fillDate(period)),company_id,accounting_id,company_id});
         for(Map<String,Object> map : datalist){
             list.add(getVoucherAmountPO(map));
         }
@@ -68,10 +68,10 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 
         MultiValueMap<String,Object> amountMap = new LinkedMultiValueMap<>();
 
-	    String sql1 = "SELECT v_id,debit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=?) AND subject=? AND debit_amount<>0";
-        String sql2 = "SELECT v_id,credit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=?) AND subject=? AND credit_amount<>0";
-	    ArrayList<Map<String,Object>> datalist1 = sqlManager.queryMulti(sql1,new Object[]{dateMap.get("year"),dateMap.get("month"),id1});
-	    ArrayList<Map<String,Object>> datalist2 = sqlManager.queryMulti(sql2,new Object[]{dateMap.get("year"),dateMap.get("month"),id2});
+	    String sql1 = "SELECT v_id,debit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=? AND company_id=?) AND subject=? AND debit_amount<>0 AND company_id=?";
+        String sql2 = "SELECT v_id,credit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=? AND company_id=?) AND subject=? AND credit_amount<>0 AND company_id=?";
+	    ArrayList<Map<String,Object>> datalist1 = sqlManager.queryMulti(sql1,new Object[]{dateMap.get("year"),dateMap.get("month"),company_id,id1,company_id});
+	    ArrayList<Map<String,Object>> datalist2 = sqlManager.queryMulti(sql2,new Object[]{dateMap.get("year"),dateMap.get("month"),company_id,id2,company_id});
 
 	    for (Map<String,Object> map : datalist1){
 	        amountMap.add(map.get("v_id").toString(),map.get("debit_amount"));
@@ -105,10 +105,10 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
 
         MultiValueMap<String,Object> amountMap = new LinkedMultiValueMap<>();
 
-        String sql1 = "SELECT v_id,debit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=?) AND subject=? AND debit_amount<>0";
-        String sql2 = "SELECT v_id,credit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=?) AND subject=? AND credit_amount<>0";
-        ArrayList<Map<String,Object>> datalist1 = sqlManager.queryMulti(sql1,new Object[]{time,id1});
-        ArrayList<Map<String,Object>> datalist2 = sqlManager.queryMulti(sql2,new Object[]{time,id2});
+        String sql1 = "SELECT v_id,debit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND company_id=?) AND subject=? AND debit_amount<>0 AND company_id=?";
+        String sql2 = "SELECT v_id,credit_amount FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND company_id=?) AND subject=? AND credit_amount<>0 AND company_id=?";
+        ArrayList<Map<String,Object>> datalist1 = sqlManager.queryMulti(sql1,new Object[]{time,company_id,id1,company_id});
+        ArrayList<Map<String,Object>> datalist2 = sqlManager.queryMulti(sql2,new Object[]{time,company_id,id2,company_id});
 
         for (Map<String,Object> map : datalist1){
             amountMap.add(map.get("v_id").toString(),map.get("debit_amount"));
