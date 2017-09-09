@@ -87,6 +87,18 @@ public interface InventoryService {
     public ArrayList<InventoryProductItemPO> getProductInventoryItem(String company_id, String time);
 
     /**
+     * 保存公司所有原材料的安全库存量
+     * @param list
+     */
+    public void SaveRawMaterialSafeInventory(ArrayList<RawMaterialSafeInventoryPo> list);
+
+    /**
+     * 保存公司所有产品的安全库存量
+     * @param list
+     */
+    public void SaveProductSafeInventory(ArrayList<ProductSafeInventoryPo> list);
+
+    /**
      * 得到公司的所有原材料种类
      * @param company_id 公司id
      * @return
