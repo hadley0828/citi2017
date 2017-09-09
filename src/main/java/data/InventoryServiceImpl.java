@@ -100,4 +100,14 @@ public class InventoryServiceImpl implements InventoryService{
     public ArrayList<ProductSafeInventoryPo> getAllProductSafeInventory(String company_id) {
         return null;
     }
+
+    @Override
+    public int getRawInventory(String company_id, String raw_material_variety) {
+        return 0;
+    }
+
+    @Override
+    public int getProductInventory(String company_id, String product_variety) {
+        return 0;
+    }
 }
