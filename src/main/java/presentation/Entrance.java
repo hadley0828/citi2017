@@ -14,7 +14,7 @@ public class Entrance extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/RootLayout.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/layout/RootLayout.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setMinWidth(900);

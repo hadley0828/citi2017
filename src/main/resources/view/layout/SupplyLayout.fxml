@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.2" prefHeight="725.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.SupplyLayoutController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Button layoutX="91.0" layoutY="89.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="91.0" layoutY="169.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="91.0" layoutY="247.0" mnemonicParsing="false" text="Button" />
+         </children></AnchorPane>
+      <StackPane fx:id="supplyStack" prefHeight="150.0" prefWidth="200.0" />
+  </items>
+</SplitPane>
