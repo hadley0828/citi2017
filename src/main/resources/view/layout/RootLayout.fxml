@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
+  <items>
+    <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
+         <children>
+            <Button fx:id="financial_btn" layoutX="166.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
+            <Button fx:id="supply_btn" layoutX="252.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
+            <Button fx:id="signIn_btn" layoutX="955.0" layoutY="26.0" mnemonicParsing="false" text="登录" />
+            <Button fx:id="signOut_btn" layoutX="1008.0" layoutY="26.0" mnemonicParsing="false" text="登出" />
+            <Button fx:id="settings_btn" layoutX="1114.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
+            <Button fx:id="logo_btn" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="LOGO" />
+         </children></AnchorPane>
+      <StackPane fx:id="rootStack" prefHeight="150.0" prefWidth="200.0" />
+  </items>
+</SplitPane>

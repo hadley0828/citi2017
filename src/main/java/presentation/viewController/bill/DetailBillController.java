@@ -11,6 +11,10 @@ import presentation.screenController.ScreensController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Molloh
+ * @version 2017/9/6
+ */
 public class DetailBillController implements Initializable, ControlledScreen {
     @FXML
     private TableView<DetailBillModel> billTable;

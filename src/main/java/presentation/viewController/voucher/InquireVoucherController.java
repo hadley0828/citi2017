@@ -14,6 +14,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Molloh
+ * @version 2017/9/6
+ */
 public class InquireVoucherController implements Initializable, ControlledScreen {
     @FXML
     private AnchorPane rootPane;
@@ -25,8 +29,8 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     public void initialize(URL location, ResourceBundle resources) {
         voucherBl = new VoucherBlImpl();
         voucherList = voucherBl.getCurrentPeriodAllVoucher("001");
-        voucherCard = new VoucherCardController(voucherList.get(0).getAmountList());
-        rootPane.getChildren().add(voucherCard);
+        //voucherCard = new VoucherCardController(voucherList.get(0).getAmountList());
+        //rootPane.getChildren().add(voucherCard);
     }
 
     @Override
