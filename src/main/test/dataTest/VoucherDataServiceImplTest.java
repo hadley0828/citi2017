@@ -212,10 +212,10 @@ public class VoucherDataServiceImplTest {
     @Test
     public void testAddOneTemplate(){
         VoucherTemplatePO po = new VoucherTemplatePO();
-        po.setTemplateId("t001");
+        po.setTemplateId("t002");
         po.setCatagory("TEST");
         po.setTemplateName("TEST NAME");
-        System.out.println(voucherDataService.addOneTemplate(po,"001"));
+        System.out.println(voucherDataService.addOneTemplate(po,"002"));
     }
 
     @Test
