@@ -29,23 +29,23 @@ public class VoucherDataServiceImplTest {
     public void testAddVoucher(){
         VoucherPO po = new VoucherPO();
         po.setId("借-2");
-        po.setDate(Date.valueOf("2012-04-12"));
+        po.setDate(Date.valueOf("2017-09-08"));
         po.setAddReceipts(false);
         po.setVoucher_maker("loohaze");
         po.setRemark("TEST");
 
-        voucherDataService.addVoucher(po,"001");
+        voucherDataService.addVoucher(po,"003");
     }
 
     @Test
     public void testDeleteOneVoucher(){
-        String v_id = "借-2";
-        voucherDataService.deleteOneVoucher(v_id,"001");
+        String v_id = "借-1";
+        voucherDataService.deleteOneVoucher(v_id,"002");
     }
 
     @Test
     public void testDeleteAllVoucher(){
-        voucherDataService.deleteAllVoucher("001");
+        voucherDataService.deleteAllVoucher("003");
     }
 
     @Test
@@ -53,17 +53,17 @@ public class VoucherDataServiceImplTest {
         String vid = "借-2";
         VoucherPO po = new VoucherPO();
         po.setId("借-2");
-        po.setDate(Date.valueOf("2012-02-07"));
+        po.setDate(Date.valueOf("2017-08-07"));
         po.setAddReceipts(false);
         po.setVoucher_maker("loohaze");
         po.setRemark("TEST");
 
-        System.out.println(voucherDataService.modifyOneVoucher(vid,po,"001"));
+        System.out.println(voucherDataService.modifyOneVoucher(vid,po,"003"));
     }
 
     @Test
     public void testFindOneVoucher(){
-        String id = "转-1";
+        String id = "借-2";
         VoucherPO po = voucherDataService.findOneVoucher(id,"001");
         print(po);
     }
@@ -112,13 +112,13 @@ public class VoucherDataServiceImplTest {
         list.add(po1);
         list.add(po2);
 
-        System.out.println(voucherDataService.addOneVoucherAllAmount(v_id,list,"001"));
+        System.out.println(voucherDataService.addOneVoucherAllAmount(v_id,list,"003"));
     }
 
     @Test
     public void testDeleteOneVoucherAllAmount(){
         String v_id = "借-3";
-        System.out.println(voucherDataService.deleteOneVoucherAllAmount(v_id,"001"));
+        System.out.println(voucherDataService.deleteOneVoucherAllAmount(v_id,"003"));
     }
 
     @Test
@@ -155,7 +155,7 @@ public class VoucherDataServiceImplTest {
 
     @Test
     public void testFindOneVoucherAllAmount(){
-        String v_id = "转-2";
+        String v_id = "转-1";
         ArrayList<VoucherAmountPO> list = voucherDataService.findOneVoucherAllAmount(v_id,"001");
         for (VoucherAmountPO po : list){
             print(po);
@@ -165,8 +165,8 @@ public class VoucherDataServiceImplTest {
     @Test
     public void testFindSeveralVoucherAllAmount(){
         ArrayList<String> list = new ArrayList<>();
-        list.add("转-2");
-        list.add("转-3");
+        list.add("转-1");
+        list.add("借-3");
 
         HashMap<String,ArrayList<VoucherAmountPO>> map = voucherDataService.findSeveralVoucherAllAmount(list,"001");
         System.out.println(map.size());
@@ -175,7 +175,9 @@ public class VoucherDataServiceImplTest {
     @Test
     public void testfindAllVoucherAllAmount(){
         ArrayList<VoucherAmountPO> list = voucherDataService.findAllVoucherAllAmount("001");
-        System.out.println(list.size());
+        for (VoucherAmountPO po : list){
+            print(po);
+        }
     }
 
 
