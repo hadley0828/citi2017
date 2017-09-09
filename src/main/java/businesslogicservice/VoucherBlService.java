@@ -55,13 +55,6 @@ public interface VoucherBlService {
      */
     public double getNewSubjectBalance(double beforeNumber,double changeNumber,String factoryId);
 
-    /**
-     * 改变会计科目的余额 在保存凭证的时候需要调用!
-     * @param subjectId
-     * @param newNumber
-     * @return
-     */
-    public boolean changeSubjectBalance(String subjectId,double newNumber,String factoryId);
 
     /**
      * 根据模板编号获得相对应的凭证模板

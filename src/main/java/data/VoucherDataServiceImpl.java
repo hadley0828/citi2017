@@ -28,12 +28,12 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         try{
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
+            params.add(factoryId);
             params.add(voucherPO.getId());
             params.add(voucherPO.getDate());
             params.add(voucherPO.isAddReceipts());
             params.add(voucherPO.getVoucher_maker());
             params.add(voucherPO.getRemark());
-
             String sql = sqlManager.appendSQL("INSERT INTO voucher VALUES",params.size());
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
@@ -53,8 +53,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
             List<Object> params = new ArrayList<>();
             params.add(voucherId);
-
-            String sql = "DELETE FROM voucher WHERE v_id=?";
+            params.add(factoryId);
+            String sql = "DELETE FROM voucher WHERE v_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
@@ -69,9 +69,12 @@ public class VoucherDataServiceImpl implements VoucherDataService {
     public boolean deleteAllVoucher(String factoryId) {
         try{
             sqlManager.getConnection();
-            String sql = "DELETE FROM voucher";
+            List<Object> params = new ArrayList<>();
+            params.add(factoryId);
 
-            sqlManager.executeUpdate(sql);
+            String sql = "DELETE FROM voucher WHERE company_id=?";
+
+            sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
             return true;
         }catch (Exception e){
@@ -96,8 +99,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
                 params.add(voucherPO.getVoucher_maker());
                 params.add(voucherPO.getRemark());
                 params.add(voucherId);
+                params.add(factoryId);
 
-                String sql = "UPDATE voucher SET v_id=?, date=?, is_addedreceipts=?, voucher_maker=?, remark=? WHERE v_id=?";
+                String sql = "UPDATE voucher SET v_id=?, date=?, is_addedreceipts=?, voucher_maker=?, remark=? WHERE v_id=? AND company_id=?";
                 sqlManager.executeUpdateByList(sql,params);
                 sqlManager.releaseAll();
                 return true;
@@ -119,8 +123,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             }else {
                 sqlManager.getConnection();
                 Map<String,Object> map = new HashMap<>();
-                String sql = "SELECT * FROM voucher WHERE v_id=?";
-                map = sqlManager.querySimple(sql,new Object[]{voucherId});
+                String sql = "SELECT * FROM voucher WHERE v_id=? AND company_id=?";
+                map = sqlManager.querySimple(sql,new Object[]{voucherId,factoryId});
 
                 VoucherPO po = getVoucherPOByMap(map);
                 sqlManager.releaseAll();
@@ -139,7 +143,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             try {
                 po = findOneVoucher(id,factoryId);
             }catch (Exception e){
-                System.out.println("Fing SeveralVoucher Fail");
+                System.out.println("Find SeveralVoucher Fail");
             }
             list.add(po);
         }
@@ -152,8 +156,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         try{
             sqlManager.getConnection();
 
-            String sql = "SELECT * FROM voucher";
-            ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{});
+            String sql = "SELECT * FROM voucher WHERE company_id=?";
+            ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{factoryId});
             for (Map<String,Object> map : maplist){
                 list.add(getVoucherPOByMap(map));
             }
@@ -169,7 +173,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             sqlManager.getConnection();
             for (VoucherAmountPO po : amountList){
                 if(voucherId.equals(po.getV_id())){
-                    addOneVoucherAmount(po);
+                    addOneVoucherAmount(po,factoryId);
                 }else{
                     return false;
                 }
@@ -188,8 +192,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
             List<Object> params = new ArrayList<>();
             params.add(voucherId);
+            params.add(factoryId);
 
-            String sql = "DELETE FROM voucher_amount WHERE v_id=?";
+            String sql = "DELETE FROM voucher_amount WHERE v_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
@@ -206,8 +211,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
             List<Object> params = new ArrayList<>();
             params.add(amountId);
+            params.add(factoryId);
 
-            String sql = "DELETE FROM voucher_amount WHERE a_id=?";
+            String sql = "DELETE FROM voucher_amount WHERE a_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
@@ -234,8 +240,12 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         try{
             sqlManager.getConnection();
 
-            String sql = "DELETE FROM voucher_amount";
-            sqlManager.executeUpdate(sql);
+            List<Object> params = new ArrayList<>();
+            params.add(factoryId);
+
+            String sql = "DELETE FROM voucher_amount WHERE company_id=?";
+            sqlManager.executeUpdateByList(sql,params);
+
             sqlManager.releaseAll();
             return true;
         }catch (Exception e){
@@ -256,8 +266,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             params.add(voucherAmountPO.getDebitAmount());
             params.add(voucherAmountPO.getCreditAmount());
             params.add(amountId);
+            params.add(factoryId);
 
-            String sql = "UPDATE voucher_amount SET v_id=?, abstract=?, subject=?, debit_amount=?, credit_amount=? WHERE a_id=?";
+            String sql = "UPDATE voucher_amount SET v_id=?, abstract=?, subject=?, debit_amount=?, credit_amount=? WHERE a_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
             return true;
@@ -275,9 +286,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             sqlManager.getConnection();
 
 
-            String sql = "SELECT * FROM voucher_amount WHERE v_id=?";
+            String sql = "SELECT * FROM voucher_amount WHERE v_id=? AND company_id=?";
 
-            ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{voucherId});
+            ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{voucherId,factoryId});
             for (Map<String,Object> map : maplist){
                 list.add(getVoucherAmountPOByMap(map));
             }
@@ -304,84 +315,13 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         sqlManager.getConnection();
         ArrayList<VoucherAmountPO> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM voucher_amount";
-        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        String sql = "SELECT * FROM voucher_amount WHERE company_id=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{factoryId});
         for (Map<String,Object> map : maps){
             list.add(getVoucherAmountPOByMap(map));
         }
         sqlManager.releaseAll();
         return list;
-    }
-
-    @Override
-    public boolean addOneSubjectBalance(String subjectId, double number,String factoryId) {
-        try{
-            sqlManager.getConnection();
-
-            List<Object> params = new ArrayList<>();
-            params.add(subjectId);
-            params.add(number);
-
-            String sql = sqlManager.appendSQL("INSERT INTO subjects_balance VALUES",params.size());
-            sqlManager.executeUpdateByList(sql,params);
-            sqlManager.releaseAll();
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-
-    }
-
-    @Override
-    public boolean deleteOneSubjectBalance(String subjectId,String factoryId) {
-        try{
-            sqlManager.getConnection();
-
-            List<Object> params = new ArrayList<>();
-            params.add(subjectId);
-
-            String sql = "DELETE FROM subjects_balance WHERE subjects_id=?";
-            sqlManager.executeUpdateByList(sql,params);
-            sqlManager.releaseAll();
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-
-    }
-
-    @Override
-    public boolean modifyOneSubjectBalance(String subjectId, double number,String factoryId) {
-        try{
-            sqlManager.getConnection();
-
-            List<Object> params = new ArrayList<>();
-            params.add(number);
-            params.add(subjectId);
-
-            String sql = "UPDATE subjects_balance SET balances=? WHERE subjects_id=?";
-            sqlManager.executeUpdateByList(sql,params);
-            sqlManager.releaseAll();
-            return true;
-        }catch (Exception e){
-            return false;
-        }
-
-    }
-
-    @Override
-    public double findOneSubjectBalance(String subjectId,String factoryId) {
-        try{
-            sqlManager.getConnection();
-
-            String sql = "SELECT balances FROM subjects_balance WHERE subjects_id=?";
-            Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{subjectId});
-            double balances = Double.valueOf(map.get("balances").toString());
-            sqlManager.releaseAll();
-            return balances;
-        }catch (Exception e){
-            return 0;
-        }
     }
 
     @Override
@@ -396,6 +336,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             params.add(voucherTemplatePO.getTemplateId());
             params.add(voucherTemplatePO.getCatagory());
             params.add(voucherTemplatePO.getTemplateName());
+            params.add(factoryId);
 
             String sql = sqlManager.appendSQL("INSERT INTO voucher_template VALUES",params.size());
             sqlManager.executeUpdateByList(sql,params);
@@ -414,8 +355,10 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
             params.add(templateId);
+            params.add(factoryId);
 
-            String sql = "DELETE FROM voucher_template WHERE template_id=?";
+
+            String sql = "DELETE FROM voucher_template WHERE template_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
             return true;
@@ -430,8 +373,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             sqlManager.getConnection();
             List<Object> params = new ArrayList<>();
             params.add(templateId);
+            params.add(factoryId);
 
-            String sql = "DELETE FROM voucher_template_amount WHERE template_id=?";
+            String sql = "DELETE FROM voucher_template_amount WHERE template_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
             return true;
@@ -452,8 +396,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             params.add(voucherTemplatePO.getCatagory());
             params.add(voucherTemplatePO.getTemplateName());
             params.add(templateId);
+            params.add(factoryId);
 
-            String sql = "UPDATE voucher_template SET template_id=?, catagory=?, template_name=? WHERE template_id=?";
+            String sql = "UPDATE voucher_template SET template_id=?, catagory=?, template_name=? WHERE template_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
@@ -478,6 +423,7 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             params.add(templateAmountPO.getSubject());
             params.add(templateAmountPO.getDebitAmount());
             params.add(templateAmountPO.getCreditAmount());
+            params.add(factoryId);
 
             String sql = sqlManager.appendSQL("INSERT INTO voucher_template_amount VALUES",params.size());
             sqlManager.executeUpdateByList(sql,params);
@@ -515,7 +461,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             params.add(templateAmountPO.getDebitAmount());
             params.add(templateAmountPO.getCreditAmount());
             params.add(templateAmountPO.getA_id());
-            String sql = "UPDATE voucher_template_amount SET template_id=?, abstract=?, subject=?, debit_amount=?, credit_amount=? WHERE a_id=?";
+            params.add(factoryId);
+
+            String sql = "UPDATE voucher_template_amount SET template_id=?, abstract=?, subject=?, debit_amount=?, credit_amount=? WHERE a_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
@@ -531,8 +479,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             VoucherTemplatePO po = new VoucherTemplatePO();
             sqlManager.getConnection();
 
-            String sql = "SELECT * FROM voucher_template WHERE template_id=?";
-            Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{templateId});
+            String sql = "SELECT * FROM voucher_template WHERE template_id=? AND company_id=?";
+            Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{templateId,factoryId});
             po = getVoucherTemplatePOByMap(map);
             sqlManager.releaseAll();
             return po;
@@ -543,11 +491,16 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
     @Override
     public ArrayList<VoucherTemplatePO> getAllTemplate(String factoryId) {
-        ArrayList<String> tidList = getTemplateIdList();
+        sqlManager.getConnection();
         ArrayList<VoucherTemplatePO> list = new ArrayList<>();
-        for (String tid : tidList){
-            list.add(getOneTemplate(tid,factoryId));
+
+        String sql = "SELECT * FROM voucher_template WHERE company_id=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{factoryId});
+
+        for (Map<String, Object> map : maps){
+            list.add(getVoucherTemplatePOByMap(map));
         }
+        sqlManager.releaseAll();
         return list;
     }
 
@@ -558,8 +511,9 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
             List<Object> params = new ArrayList<>();
             params.add(amountId);
+            params.add(factoryId);
 
-            String sql = "DELETE FROM voucher_template_amount WHERE a_id=?";
+            String sql = "DELETE FROM voucher_template_amount WHERE a_id=? AND company_id=?";
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
             return true;
@@ -575,8 +529,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
             VoucherTemplateAmountPO po = new VoucherTemplateAmountPO();
             sqlManager.getConnection();
 
-            String sql = "SELECT * FROM voucher_template_amount WHERE a_id=?";
-            Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{amountId});
+            String sql = "SELECT * FROM voucher_template_amount WHERE a_id=? AND company_id=?";
+            Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{amountId,factoryId});
             po = getVoucherTemplateAmountPOByMap(map);
             sqlManager.releaseAll();
             return po;
@@ -597,10 +551,12 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         }
 
         for (String s : idList){
+
             List<Object> params = new ArrayList<>();
             params.add(s);
-            params.add(0);
-            String sql2 = sqlManager.appendSQL( "INSERT INTO subjects_balance VALUES",params.size());
+            params.add(factoryId);
+
+            String sql2 = sqlManager.appendSQL("INSERT INTO subjects_balance(subjects_id,company_id) VALUES",params.size());
             sqlManager.executeUpdateByList(sql2,params);
         }
 
@@ -613,8 +569,8 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         ArrayList<VoucherTemplateAmountPO> list = new ArrayList<>();
         sqlManager.getConnection();
 
-        String sql = "SELECT * FROM voucher_template_amount WHERE template_id=?";
-        ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{templateId});
+        String sql = "SELECT * FROM voucher_template_amount WHERE template_id=? AND company_id=?";
+        ArrayList<Map<String,Object>> maplist = sqlManager.queryMulti(sql,new Object[]{templateId,factoryId});
 
         for (Map<String,Object> map : maplist){
             list.add(getVoucherTemplateAmountPOByMap(map));
@@ -638,6 +594,10 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         return vidList;
     }
 
+    /**
+     * 获得所有模板id
+     * @return
+     */
     private ArrayList<String> getTemplateIdList(){
         sqlManager.getConnection();
         ArrayList<String> tidList = new ArrayList<>();
@@ -646,7 +606,6 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         for (Map<String,Object> map : tidRawList){
             tidList.add(map.get("template_id").toString());
         }
-        sqlManager.releaseAll();
         return tidList;
     }
 
@@ -707,16 +666,17 @@ public class VoucherDataServiceImpl implements VoucherDataService {
         Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{t_id});
         po = getVoucherTemplateAmountPOByMap(map);
 
-        sqlManager.releaseAll();
+
         return po;
     }
 
-    private void addOneVoucherAmount(VoucherAmountPO po){
+    private void addOneVoucherAmount(VoucherAmountPO po,String company_id){
         if(po == null){
             return;
         }
         sqlManager.getConnection();
         List<Object> params = new ArrayList<>();
+        params.add(company_id);
         params.add(po.getV_id());
         params.add(po.getA_id());
         params.add(po.getDigest());
@@ -726,7 +686,6 @@ public class VoucherDataServiceImpl implements VoucherDataService {
 
         String sql = sqlManager.appendSQL("INSERT INTO voucher_amount VALUES",params.size());
         sqlManager.executeUpdateByList(sql,params);
-        sqlManager.releaseAll();
-
+        sqlManager.commit();
     }
 }

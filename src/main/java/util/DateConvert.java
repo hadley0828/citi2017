@@ -2,6 +2,7 @@ package util;
 
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -95,13 +96,21 @@ public class DateConvert {
     }
 
 
+    public static String getCurrentMonth(){
+        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(new Date());
+    }
+
+
     public static void main(String[] args) {
 //        System.out.println(monthToPeriod("2017-12"));
 //        System.out.println(periodToMonth("2017年第8期"));
 //        System.out.println(getBetweenMonth("2017-04","2017-09").size());
 
-        String date="2010-04-10";
-        System.out.println(date.substring(0,date.lastIndexOf("-")));
-    }
+//        String date="2010-04-10";
+//        System.out.println(date.substring(0,date.lastIndexOf("-")));
 
+        System.out.println(getCurrentMonth());
+
+    }
 }
