@@ -3,6 +3,8 @@ package dataservice;
 
 import po.Inventory.InventoryProductItemPO;
 import po.Inventory.InventoryRawMaterialItemPO;
+import po.Inventory.ProductSafeInventoryPo;
+import po.Inventory.RawMaterialSafeInventoryPo;
 
 import java.util.ArrayList;
 
@@ -78,10 +80,38 @@ public interface InventoryService {
 
     /**
      * 得到公司截至某一天所有的产品库存录入信息
-     * @param company_id 公司
+     * @param company_id 公司id
      * @param time 最后时间
      * @return
      */
     public ArrayList<InventoryProductItemPO> getProductInventoryItem(String company_id, String time);
+
+    /**
+     * 得到公司的所有原材料种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllRawMaterialVariety(String company_id);
+
+    /**
+     * 得到公司的所有产品种类
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<String> getAllProductVariety(String company_id);
+
+    /**
+     * 得到公司的所有原材料的安全库存量
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<RawMaterialSafeInventoryPo> getAllRawMaterialSafeInventory(String company_id);
+
+    /**
+     * 得到公司的所有产品的安全库存量
+     * @param company_id 公司id
+     * @return
+     */
+    public ArrayList<ProductSafeInventoryPo> getAllProductSafeInventory(String company_id);
 
 }

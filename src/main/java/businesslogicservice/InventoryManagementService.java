@@ -1,9 +1,6 @@
 package businesslogicservice;
 
-import vo.ProductInventoryItemVo;
-import vo.ProductInventoryMonitorItemVo;
-import vo.RawMaterialInventoryItemVo;
-import vo.RawMaterialInventoryMonitorItemVo;
+import vo.Inventory.*;
 
 import java.util.ArrayList;
 
@@ -12,6 +9,20 @@ import java.util.ArrayList;
  *
  */
 public interface InventoryManagementService {
+
+    /**
+     * 保存公司的原材料安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveRawMaterialSafeInventory(String company_id, ArrayList<RawMaterialSafeInventoryVo> list);
+
+    /**
+     * 保存公司的产品安全库存量
+     * @param company_id 公司id
+     * @param list 用户输入数据
+     */
+    public void SaveProductSafeInventory(String company_id, ArrayList<ProductSafeInventoryVo> list);
 
     /**
      * 根据录入记录得到表格末尾的原材料结存数量
