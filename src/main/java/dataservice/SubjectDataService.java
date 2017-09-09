@@ -72,4 +72,11 @@ public interface SubjectDataService {
      * @return
      */
     public ArrayList<SubjectsPO> findOneYearAllSubjects(String year,String factoryId);
+
+    /**
+     * 获得科目数据库所有存在记录的科目编号
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<String> getAllExistedSubjectId(String factoryId);
 }

@@ -51,4 +51,9 @@ public class SubjectDataServiceImpl implements SubjectDataService{
     public ArrayList<SubjectsPO> findOneYearAllSubjects(String year, String factoryId) {
         return null;
     }
+
+    @Override
+    public ArrayList<String> getAllExistedSubjectId(String factoryId) {
+        return null;
+    }
 }
