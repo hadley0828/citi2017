@@ -7,13 +7,23 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import presentation.viewController.StaticFactory;
 import vo.Inventory.ProductInventoryMonitorItemVo;
 import vo.Inventory.RawMaterialInventoryMonitorItemVo;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.sql.Date;
 import java.text.DateFormat;
@@ -58,6 +68,11 @@ public class ProducerController {
     private ArrayList<ProductInventoryMonitorItemVo> product_tabledata=new ArrayList<>();
     ObservableList<RawMaterialInventoryMonitorItemVo> raw_list=FXCollections.observableArrayList();
     ObservableList<ProductInventoryMonitorItemVo> product_list=FXCollections.observableArrayList();
+
+    public String producer_raw_pro;
+    public String producer_product_pro;
+    static Stage producer_raw_chartStage;
+    static Stage producer_product_chartStage;
 
     @FXML
     public void initialize(){
@@ -106,6 +121,88 @@ public class ProducerController {
         product_monitor_table.setItems(product_list);
     }
 
+    public void setCell() {
+        raw_material.setCellFactory(tc->{
+            TableCell<RawMaterialInventoryMonitorItemVo, String> cell=new TableCell<RawMaterialInventoryMonitorItemVo, String>(){
+                @Override
+                protected void updateItem(String item,boolean empty){
+                    super.updateItem(item,empty);
+                    setText(empty?null:item);
+                }
+            };
+            cell.setOnMouseClicked(e->{
+                if(!cell.isEmpty()){
+                    producer_raw_pro=cell.getItem();
+                    StaticFactory.setProducer_Raw_material(producer_raw_pro);
 
+                    try {
+                        drawProducer_raw();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+            cell.setOnMouseEntered(e->{
+                cell.setStyle("-fx-text-fill: rgb(255,135,98);");
+                cell.setCursor(Cursor.HAND);
+            });
+            cell.setOnMouseExited(e->{
+                cell.setStyle("-fx-text-fill: black");
+                cell.setCursor(Cursor.DEFAULT);
+            });
+            return cell;
+        });
+
+        product.setCellFactory(tc->{
+            TableCell<ProductInventoryMonitorItemVo, String> cell=new TableCell<ProductInventoryMonitorItemVo, String>(){
+                @Override
+                protected void updateItem(String item,boolean empty){
+                    super.updateItem(item,empty);
+                    setText(empty?null:item);
+                }
+            };
+            cell.setOnMouseClicked(e->{
+                if(!cell.isEmpty()){
+                    producer_product_pro=cell.getItem();
+                    StaticFactory.setProducer_product(producer_product_pro);
+
+                    try {
+                        drawProducer_product();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+            cell.setOnMouseEntered(e->{
+                cell.setStyle("-fx-text-fill: rgb(255,135,98);");
+                cell.setCursor(Cursor.HAND);
+            });
+            cell.setOnMouseExited(e->{
+                cell.setStyle("-fx-text-fill: black");
+                cell.setCursor(Cursor.DEFAULT);
+            });
+            return cell;
+        });
+    }
+
+    public void drawProducer_raw() throws IOException{
+        Parent root= FXMLLoader.load(getClass().getResource("../../../view/Stock/ProducerRawChart.fxml"));
+        producer_raw_chartStage=new Stage();
+        Scene scene=new Scene(root,800,600);
+        producer_raw_chartStage.setScene(scene);
+        producer_raw_chartStage.initStyle(StageStyle.TRANSPARENT);
+        producer_raw_chartStage.initModality(Modality.APPLICATION_MODAL);
+        producer_raw_chartStage.show();
+    }
+
+    public void drawProducer_product() throws IOException{
+        Parent root= FXMLLoader.load(getClass().getResource("../../../view/Stock/ProducerProductChart.fxml"));
+        producer_product_chartStage=new Stage();
+        Scene scene=new Scene(root,800,600);
+        producer_product_chartStage.setScene(scene);
+        producer_product_chartStage.initStyle(StageStyle.TRANSPARENT);
+        producer_product_chartStage.initModality(Modality.APPLICATION_MODAL);
+        producer_product_chartStage.show();
+    }
 
 }

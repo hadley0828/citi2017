@@ -166,7 +166,7 @@ public class SupplierController {
 //    }
 
     public void draw() throws  IOException{
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/Stock/LineChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../view/Stock/SupplierChart.fxml"));
         chartStage=new Stage();
         Scene scene=new Scene(root,800,600);
         chartStage.setScene(scene);
@@ -177,7 +177,7 @@ public class SupplierController {
 
 
     public ArrayList<InventoryChangeVo> getStockChart(){
-        System.out.println("原材料:"+StaticFactory.getRaw_material());
+//        System.out.println("原材料:"+StaticFactory.getRaw_material());
 //        System.out.println("时间"+format.format(d));
         return service.getRawInventoryChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
     }

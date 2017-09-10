@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by YZ on 2017/9/9.
  */
-public class DrawSupplierLineChart {
+public class SupplierChartController {
     @FXML
     private LineChart<String,Number> stock_time;
     @FXML
@@ -26,7 +26,7 @@ public class DrawSupplierLineChart {
 //    InventoryManagementService service=new InventoryManagementImpl();
 
     SupplierController supplierController=new SupplierController();
-    public DrawSupplierLineChart(){
+    public SupplierChartController(){
 
     }
 
