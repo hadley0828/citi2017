@@ -4,20 +4,30 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.DetailBillController">
-   <children>
-      <Label layoutX="33.0" layoutY="14.0" text="DetailBill" />
-      <TableView fx:id="billTable" layoutY="100.0" prefHeight="200.0" prefWidth="600.0">
-        <columns>
-          <TableColumn fx:id="dateCol" prefWidth="75.0" text="日期" />
-          <TableColumn fx:id="idCol" prefWidth="75.0" text="凭证号" />
-            <TableColumn fx:id="subjectCol" prefWidth="75.0" text="科目" />
-            <TableColumn fx:id="abstractsCol" prefWidth="75.0" text="摘要" />
-            <TableColumn fx:id="debitCol" prefWidth="75.0" text="借方" />
-            <TableColumn fx:id="creditCol" prefWidth="75.0" text="贷方" />
-            <TableColumn fx:id="directionCol" prefWidth="75.0" text="方向" />
-            <TableColumn fx:id="balanceCol" prefWidth="75.0" text="余额" />
-        </columns>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.DetailBillController">
+   <center>
+      <TableView fx:id="billTable" prefHeight="200.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="dateCol" prefWidth="62.0" text="日期" />
+            <TableColumn fx:id="idCol" prefWidth="62.0" text="凭证号" />
+            <TableColumn fx:id="subjectCol" prefWidth="62.0" text="科目" />
+            <TableColumn fx:id="abstractsCol" prefWidth="62.0" text="摘要" />
+            <TableColumn fx:id="debitCol" prefWidth="62.0" text="借方" />
+            <TableColumn fx:id="creditCol" prefWidth="62.0" text="贷方" />
+            <TableColumn fx:id="directionCol" prefWidth="62.0" text="方向" />
+            <TableColumn fx:id="balanceCol" prefWidth="62.0" text="余额" />
+         </columns>
       </TableView>
-   </children>
-</AnchorPane>
+   </center>
+   <right>
+      <VBox fx:id="rightSubjects" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <Pane prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" text="筛选" />
+            <Button layoutX="523.0" layoutY="19.0" mnemonicParsing="false" text="导出" />
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

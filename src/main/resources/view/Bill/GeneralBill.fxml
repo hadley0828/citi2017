@@ -4,18 +4,19 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.DetailBillController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.GeneralBillController">
     <children>
         <Label layoutX="33.0" layoutY="14.0" text="总账" />
-        <TableView fx:id="billTable" layoutX="37.0" layoutY="100.0" prefHeight="200.0" prefWidth="527.0">
+        <TableView fx:id="billTable" layoutX="20.0" layoutY="100.0" prefHeight="200.0" prefWidth="560.0">
             <columns>
-                <TableColumn fx:id="idCol" prefWidth="75.0" text="科目编码" />
-                <TableColumn fx:id="subjectCol" prefWidth="75.0" text="科目名称" />
-            <TableColumn fx:id="periodCol" prefWidth="75.0" text="期间" />
-                <TableColumn fx:id="abstractsCol" prefWidth="75.0" text="摘要" />
-                <TableColumn fx:id="debitCol" prefWidth="75.0" text="借方金额" />
-                <TableColumn fx:id="creditCol" prefWidth="75.0" text="贷方金额" />
-                <TableColumn fx:id="directionCol" prefWidth="75.0" text="方向" />
+                <TableColumn fx:id="idCol" prefWidth="70.0" text="科目编码" />
+                <TableColumn fx:id="subjectCol" prefWidth="70.0" text="科目名称" />
+            <TableColumn fx:id="periodCol" prefWidth="70.0" text="期间" />
+                <TableColumn fx:id="abstractsCol" prefWidth="70.0" text="摘要" />
+                <TableColumn fx:id="debitCol" prefWidth="70.0" text="借方金额" />
+                <TableColumn fx:id="creditCol" prefWidth="70.0" text="贷方金额" />
+                <TableColumn fx:id="directionCol" prefWidth="70.0" text="方向" />
+            <TableColumn fx:id="balanceCol" prefWidth="70.0" text="余额" />
             </columns>
         </TableView>
     </children>

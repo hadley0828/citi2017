@@ -11,8 +11,9 @@ public class GeneralBillModel {
     private final SimpleDoubleProperty debit;
     private final SimpleDoubleProperty credit;
     private final SimpleStringProperty direction;
+    private final SimpleDoubleProperty balance;
 
-    public GeneralBillModel(String id, String subject, String period, String abstracts, double debit, double credit, String direction) {
+    public GeneralBillModel(String id, String subject, String period, String abstracts, double debit, double credit, String direction, double balance) {
         this.id = new SimpleStringProperty(id);
         this.subject = new SimpleStringProperty(subject);
         this.period = new SimpleStringProperty(period);
@@ -20,6 +21,7 @@ public class GeneralBillModel {
         this.debit = new SimpleDoubleProperty(credit);
         this.credit = new SimpleDoubleProperty(debit);
         this.direction = new SimpleStringProperty(direction);
+        this.balance = new SimpleDoubleProperty(balance);
     }
 
     public SimpleStringProperty idProperty() {
@@ -48,6 +50,10 @@ public class GeneralBillModel {
 
     public SimpleStringProperty directionProperty() {
         return direction;
+    }
+
+    public SimpleDoubleProperty balanceProperty() {
+        return balance;
     }
 
 }
