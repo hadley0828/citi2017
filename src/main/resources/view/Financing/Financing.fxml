@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.Financing.FinancingController">
+   <children>
+      <TabPane layoutX="212.0" layoutY="145.0" prefHeight="480.0" prefWidth="757.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="应收账款融资">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="212.0" layoutY="67.0" text="应收账款对象">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="133.0" text="应收账款净额">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="199.0" text="应收账款抵押额">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="270.0" text="建议融资规模">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="getDebtChoice" layoutX="369.0" layoutY="63.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="getDebtNum" editable="false" layoutX="369.0" layoutY="129.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="getDebtMortgage" editable="false" layoutX="369.0" layoutY="195.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="advice" editable="false" layoutX="369.0" layoutY="266.0" prefHeight="27.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="动产质押融资">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="212.0" layoutY="67.0" text="库存种类">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="133.0" text="库存净额">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="199.0" text="库存抵押额">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="212.0" layoutY="270.0" text="建议融资规模">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ChoiceBox fx:id="stockChoice" layoutX="369.0" layoutY="63.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="stockNum" layoutX="369.0" layoutY="129.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="stockMortgage" layoutX="369.0" layoutY="195.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="advice2" layoutX="369.0" layoutY="266.0" prefHeight="27.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

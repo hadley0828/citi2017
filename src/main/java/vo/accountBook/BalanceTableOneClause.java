@@ -4,7 +4,7 @@ package vo.accountBook;
  * Created by zhangzy on 2017/9/8 下午9:32
  * 科目余额表中的一条
  */
-public class BlanceTableOneClause {
+public class BalanceTableOneClause {
 
     String subjectId;   //科目编码
     String subjectName; //科目名称
@@ -15,13 +15,13 @@ public class BlanceTableOneClause {
     double endDebit;    //期末余额  借方
     double endCredit;   //期末余额  贷方
 
-    public BlanceTableOneClause(){
+    public BalanceTableOneClause(){
         super();
     }
 
     @Override
     public String toString() {
-        return "BlanceTableOneClause{" +
+        return "BalanceTableOneClause{" +
                 "subjectId='" + subjectId + '\'' +
                 ", subjectName='" + subjectName + '\'' +
                 ", beginDebit=" + beginDebit +

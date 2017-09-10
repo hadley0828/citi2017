@@ -29,6 +29,28 @@ public class SubjectBalanceHelper {
         }
     }
 
+    /**
+     * 根据科目编号获得会计科目的级别
+     * @param subjectId
+     * @return
+     */
+    public static int getSubjectLevel(String subjectId){
+        int result=0;
+
+        int length=subjectId.length();
+
+        if(length==4){
+            return 1;
+        }else if(length==7){
+            return 2;
+        }else if(length==9){
+            return 3;
+        }
+
+        return result;
+    }
+
+
     public static void main(String[] args) {
         System.out.println(getDirection("1001"));
         System.out.println(getDirection("2001"));

@@ -42,7 +42,7 @@ public class VoucherBlImpl implements VoucherBlService {
         ArrayList<VoucherAmountVo> amountVoList=voucherVo.getAmountList();
         ArrayList<VoucherAmountPO> amountPoList=new ArrayList<>();
 
-        HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap(factoryId);
+        HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap();
 
         if(amountVoList.size()!=0){
             for(int count=0;count<amountVoList.size();count++){
@@ -599,7 +599,7 @@ public class VoucherBlImpl implements VoucherBlService {
             ArrayList<VoucherAmountPO> amountPoList=voucherDataService.findOneVoucherAllAmount(voucherId,factoryId);
             if(amountPoList.size()!=0){
 
-                HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap(factoryId);
+                HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap();
 
                 for(int count=0;count<amountPoList.size();count++){
                     VoucherAmountPO oneAmountPo=amountPoList.get(count);

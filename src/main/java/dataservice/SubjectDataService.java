@@ -14,10 +14,9 @@ public interface SubjectDataService {
 
     /**
      * 获得全部的科目编号和名称的对应
-     * @param factoryId
      * @return
      */
-    public HashMap<String,String> getSubjectIdToNameMap(String factoryId);
+    public HashMap<String,String> getSubjectIdToNameMap();
 
     /**
      * 添加一个科目记录
@@ -35,13 +34,6 @@ public interface SubjectDataService {
      * @return
      */
     public boolean deleteOneSubject(String subjectId,String voucherId,double balance,String factoryId);
-
-    /**
-     * 更新一个科目记录 如果是一个新的期间则添加 如果是仍然是同一个会计期间则更新
-     * @param subjectPO
-     * @return
-     */
-    public boolean updateOneSubject(SubjectsPO subjectPO,String factoryId);
 
     /**
      * 获得会计科目的最新的一条金额改变的信息
@@ -72,4 +64,11 @@ public interface SubjectDataService {
      * @return
      */
     public ArrayList<SubjectsPO> findOneYearAllSubjects(String year,String factoryId);
+
+    /**
+     * 获得科目数据库所有存在记录的科目编号
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<String> getAllExistedSubjectId(String factoryId);
 }

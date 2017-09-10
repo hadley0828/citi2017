@@ -260,13 +260,24 @@ public class InventoryManagementImpl implements InventoryManagementService {
     public ArrayList<InventoryChangeVo> getRawInventoryChange(String company_id, String raw_material_variety, String time){
         InventoryService service = new InventoryServiceImpl();
         ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItemByVariety(company_id, time, raw_material_variety);
-        int length = list.size();
-        Calendar c = Calendar.getInstance();
-        c.setTime(list.get(0).getDate());
-        int begin_year = c.get(Calendar.YEAR);
-        int begin_month = c.get(Calendar.MONTH)+1;
-        Timestamp end = list.get(length-1).getDate();
-        return null;
+
+        ArrayList<InventoryChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int inventory = 0;
+        for(int i=0;i<list.size();i++){
+            InventoryRawMaterialItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                inventory = po.getRemainNum();
+            }else{
+                result.add(new InventoryChangeVo(first, inventory));
+                first = now;
+                inventory = po.getRemainNum();
+            }
+        }
+        result.add(new InventoryChangeVo(first, inventory));
+        return result;
     }
 
     /**
@@ -277,7 +288,26 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<InventoryChangeVo> getProductInventoryChange(String company_id, String product_variety, String time){
-        return null;
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryProductItemPO> list = service.getProductInventoryItemByVariety(company_id, time, product_variety);
+
+        ArrayList<InventoryChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int inventory = 0;
+        for(int i=0;i<list.size();i++){
+            InventoryProductItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                inventory = po.getRemainNum();
+            }else{
+                result.add(new InventoryChangeVo(first, inventory));
+                first = now;
+                inventory = po.getRemainNum();
+            }
+        }
+        result.add(new InventoryChangeVo(first, inventory));
+        return result;
     }
 
     /**
@@ -288,7 +318,37 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<PunctualDeliveryRateChangeVo> getRawPunctualDeliveryRateChange(String company_id, String raw_material_variety, String time){
-        return null;
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItemByVariety(company_id, time, raw_material_variety);
+
+        ArrayList<PunctualDeliveryRateChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int trade = 0;
+        int delivery_on_time = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryRawMaterialItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                trade++;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+            }else{
+                double punctual_delivery_rate = Double.valueOf(df.format(delivery_on_time/trade*100));
+                result.add(new PunctualDeliveryRateChangeVo(first,punctual_delivery_rate));
+                first = now;
+                trade = 1;
+                delivery_on_time = 0;
+                if(po.isDeliveryOntime()){
+                    delivery_on_time++;
+                }
+            }
+        }
+        double punctual_delivery_rate = Double.valueOf(df.format(delivery_on_time/trade*100));
+        result.add(new PunctualDeliveryRateChangeVo(first,punctual_delivery_rate));
+        return result;
     }
 
     /**
@@ -299,7 +359,35 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<PunctualDeliveryRateChangeVo> getProductPunctualDeliveryRateChange(String company_id, String product_variety, String time){
-        return null;
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryProductItemPO> list = service.getProductInventoryItemByVariety(company_id,time,product_variety);
+
+        ArrayList<PunctualDeliveryRateChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int trade = 0;
+        int delivery_on_time = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryProductItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                trade++;
+                if(po.isDeliveryOntime())
+                    delivery_on_time++;
+            }else{
+                double punctual_delivery_rate = Double.valueOf(df.format(delivery_on_time/trade*100));
+                result.add(new PunctualDeliveryRateChangeVo(first,punctual_delivery_rate));
+                first = now;
+                trade = 1;
+                delivery_on_time = 0;
+                if(po.isDeliveryOntime())
+                    delivery_on_time++;
+            }
+        }
+        double punctual_delivery_rate = Double.valueOf(df.format(delivery_on_time/trade*100));
+        result.add(new PunctualDeliveryRateChangeVo(first,punctual_delivery_rate));
+        return result;
     }
 
     /**
@@ -310,7 +398,37 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<RefundRateChangeVo> getRawRefundRateChange(String company_id, String raw_material_variety, String time){
-        return null;
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryRawMaterialItemPO> list = service.getRawMaterialInventoryItemByVariety(company_id, time, raw_material_variety);
+
+        ArrayList<RefundRateChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int trade = 0;
+        int back = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryRawMaterialItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                trade++;
+                if(po.isReturn()){
+                    back++;
+                }
+            }else{
+                double refund_rate = Double.valueOf(df.format(back/trade*100));
+                result.add(new RefundRateChangeVo(first,refund_rate));
+                first = now;
+                trade = 1;
+                back = 0;
+                if(po.isReturn()){
+                    back++;
+                }
+            }
+        }
+        double refund_rate = Double.valueOf(df.format(back/trade*100));
+        result.add(new RefundRateChangeVo(first,refund_rate));
+        return result;
     }
 
     /**
@@ -321,27 +439,69 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @return
      */
     public ArrayList<RefundRateChangeVo> getProductRefundRateChange(String company_id, String product_variety, String time){
-        return null;
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<InventoryProductItemPO> list = service.getProductInventoryItemByVariety(company_id, time, product_variety);
+
+        ArrayList<RefundRateChangeVo> result = new ArrayList<>();
+
+        String first = getYearAndMonth(list.get(0).getDate());
+        int trade = 0;
+        int back = 0;
+        DecimalFormat df = new DecimalFormat("0.00");
+        for(int i=0;i<list.size();i++){
+            InventoryProductItemPO po = list.get(i);
+            String now = getYearAndMonth(po.getDate());
+            if(now.equals(first)){
+                trade++;
+                if(po.isReturn())
+                    back++;
+            }else{
+                double refund_rate = Double.valueOf(df.format(back/trade*100));
+                result.add(new RefundRateChangeVo(first,refund_rate));
+                first = now;
+                trade = 1;
+                back = 0;
+                if(po.isReturn())
+                    back++;
+            }
+        }
+        double refund_rate = Double.valueOf(df.format(back/trade*100));
+        result.add(new RefundRateChangeVo(first,refund_rate));
+        return result;
     }
 
     /**
      * 原材料库存量与安全库存量的关系
      * @param company_id 公司id
-     * @param raw_material_variety 产品种类
      * @return
      */
-    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id, String raw_material_variety){
-        return null;
+    public ArrayList<RawSafeInventoryRateVo> getRawSafeInventoryRate(String company_id){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<RawMaterialSafeInventoryPo> list = service.getAllRawMaterialSafeInventory(company_id);
+        ArrayList<RawSafeInventoryRateVo> result = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            RawMaterialSafeInventoryPo po = list.get(i);
+            String variety = po.getRaw_material_variety();
+            result.add(new RawSafeInventoryRateVo(variety,service.getRawInventory(company_id, variety),po.getSafe_inventory()));
+        }
+        return result;
     }
 
     /**
      * 产品库存量与安全库存量的关系
      * @param company_id 公司id
-     * @param product_variety 产品种类
      * @return
      */
-    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id, String product_variety){
-        return null;
+    public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id){
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<ProductSafeInventoryPo> list = service.getAllProductSafeInventory(company_id);
+        ArrayList<ProductSafeInventoryRateVo> result = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            ProductSafeInventoryPo po = list.get(i);
+            String variety = po.getProduct_variety();
+            result.add(new ProductSafeInventoryRateVo(variety,service.getProductInventory(company_id, variety),po.getSafe_inventory()));
+        }
+        return result;
     }
 
     /**
@@ -372,5 +532,18 @@ public class InventoryManagementImpl implements InventoryManagementService {
             }
         }
         return 0;
+    }
+
+    /**
+     * 把timestamp转成只带年和月的string
+     * @param timestamp
+     * @return
+     */
+    private String getYearAndMonth(Timestamp timestamp){
+        Calendar c = Calendar.getInstance();
+        c.setTime(timestamp);
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH)+1;
+        return year+"-"+month;
     }
 }

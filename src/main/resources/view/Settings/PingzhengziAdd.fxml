@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.PingzhengziAdd">
+   <children>
+      <Label layoutX="440.0" layoutY="22.0" text="凭证字设置">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="107.0" layoutY="79.0" text="*凭证字" />
+      <Label layoutX="107.0" layoutY="153.0" text="*显示标题" />
+      <Label layoutX="107.0" layoutY="263.0" text="*是否默认" />
+      <TextField layoutX="268.0" layoutY="74.0" />
+      <TextField layoutX="268.0" layoutY="148.0" />
+      <RadioButton layoutX="262.0" layoutY="263.0" mnemonicParsing="false" text="是" />
+      <RadioButton layoutX="431.0" layoutY="263.0" mnemonicParsing="false" text="否" />
+      <Button layoutX="199.0" layoutY="410.0" mnemonicParsing="false" text="保存" />
+      <Button layoutX="500.0" layoutY="410.0" mnemonicParsing="false" text="取消" />
+   </children>
+</AnchorPane>

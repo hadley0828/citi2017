@@ -59,8 +59,8 @@ public class Datebar extends HBox{
     int this_year=calendar.get(Calendar.YEAR);
     int this_month=calendar.get(Calendar.MONTH)+1;
 
-    String theEarly=balanceSheetService.getEarliestTime("");
-    String theLate=balanceSheetService.getLatestTime("");
+    String theEarly=balanceSheetService.getEarliestTime("001");
+    String theLate=balanceSheetService.getLatestTime("001");
 
     public ArrayList<String> months=balanceSheetService.getMiddleMonth(theEarly,theLate);
 

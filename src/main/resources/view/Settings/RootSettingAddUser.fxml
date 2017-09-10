@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.RootSettingAddUser">
+   <children>
+      <Label layoutX="452.0" layoutY="20.0" text="权限设置">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="137.0" layoutY="162.0" text="账户id" />
+      <Label layoutX="137.0" layoutY="300.0" text="初始密码" />
+      <Label layoutX="430.0" layoutY="162.0" text="？？？" />
+      <Label layoutX="430.0" layoutY="300.0" text="？？？" />
+      <Button layoutX="475.0" layoutY="487.0" mnemonicParsing="false" text="关闭" />
+      <Label layoutX="458.0" layoutY="88.0" prefHeight="20.0" prefWidth="85.0" text="注册成功！" />
+   </children>
+</AnchorPane>
