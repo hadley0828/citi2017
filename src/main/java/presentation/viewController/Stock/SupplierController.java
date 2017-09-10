@@ -51,6 +51,7 @@ public class SupplierController {
     @FXML
     public void initialize(){
         setTable();
+        setCell();
     }
 
     public void setTable(){
@@ -68,21 +69,7 @@ public class SupplierController {
                     list.add((RawMaterialInventoryMonitorItemVo)i.next());
                 }
 
-
-                raw_material.setCellFactory(new Callback<TableColumn<RawMaterialInventoryMonitorItemVo,String>, TableCell<RawMaterialInventoryMonitorItemVo,String>>() {
-                    @Override
-                    public TableCell<RawMaterialInventoryMonitorItemVo,String> call(TableColumn<RawMaterialInventoryMonitorItemVo,String> param) {
-                        return new TableCell<RawMaterialInventoryMonitorItemVo,String>(){
-                            @Override
-                            protected void updateItem(String item, boolean empty) {
-                                super.updateItem(item, empty);
-
-                            }
-                        };
-                    }
-                });
                 raw_material.setCellValueFactory(new PropertyValueFactory("raw_material_variety"));
-
                 stock_num.setCellValueFactory(new PropertyValueFactory("inventory"));
                 safe_stock_num.setCellValueFactory(new PropertyValueFactory("safe_inventory"));
                 ontime_delivery.setCellValueFactory(new PropertyValueFactory("punctual_delivery_rate"));
@@ -91,6 +78,19 @@ public class SupplierController {
                 stock_monitor.setItems(list);
 
 
+            }
+        });
+    }
+    public void setCell(){
+        raw_material.setCellFactory(new Callback<TableColumn<RawMaterialInventoryMonitorItemVo,String>, TableCell<RawMaterialInventoryMonitorItemVo,String>>() {
+            @Override
+            public TableCell<RawMaterialInventoryMonitorItemVo,String> call(TableColumn<RawMaterialInventoryMonitorItemVo,String> param) {
+                return new TextFieldTableCell<RawMaterialInventoryMonitorItemVo,String>(){
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                    }
+                };
             }
         });
     }

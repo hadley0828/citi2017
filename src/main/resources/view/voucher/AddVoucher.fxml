@@ -6,41 +6,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.voucher.AddVoucherController">
    <children>
-      <TableView layoutX="124.0" layoutY="85.0" prefHeight="481.0" prefWidth="753.0">
+      <TableView fx:id="voucherTable" layoutX="100.0" layoutY="131.0" prefHeight="414.0" prefWidth="800.0">
         <columns>
-            <TableColumn prefWidth="200.0" text="摘要" />
-            <TableColumn prefWidth="200.0" text="会计科目" />
-          <TableColumn prefWidth="75.0" text="借方金额">
-               <columns>
-                  <TableColumn prefWidth="16.0" text="亿" />
-                  <TableColumn prefWidth="16.0" text="千" />
-                  <TableColumn prefWidth="16.0" text="百" />
-                  <TableColumn prefWidth="16.0" text="十" />
-                  <TableColumn prefWidth="16.0" text="万" />
-                  <TableColumn prefWidth="16.0" text="千" />
-                  <TableColumn prefWidth="16.0" text="百" />
-                  <TableColumn prefWidth="16.0" text="十" />
-                  <TableColumn prefWidth="16.0" text="元" />
-                  <TableColumn prefWidth="16.0" text="角" />
-                  <TableColumn prefWidth="16.0" text="分" />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="75.0" text="贷方金额">
-               <columns>
-                  <TableColumn prefWidth="16.0" text="亿" />
-                  <TableColumn prefWidth="16.0" text="千" />
-                  <TableColumn prefWidth="16.0" text="百" />
-                  <TableColumn prefWidth="16.0" text="十" />
-                  <TableColumn prefWidth="16.0" text="万" />
-                  <TableColumn prefWidth="16.0" text="千" />
-                  <TableColumn prefWidth="16.0" text="百" />
-                  <TableColumn prefWidth="16.0" text="十" />
-                  <TableColumn prefWidth="16.0" text="元" />
-                  <TableColumn prefWidth="16.0" text="角" />
-                  <TableColumn prefWidth="16.0" text="分" />
-               </columns>
-            </TableColumn>
+            <TableColumn fx:id="abstractsCol" prefWidth="200.0" text="摘要" />
+            <TableColumn fx:id="subjectCol" prefWidth="200.0" text="会计科目" />
+          <TableColumn fx:id="debitCol" prefWidth="200.0" text="借方金额" />
+            <TableColumn fx:id="creditCol" prefWidth="200.0" text="贷方金额" />
         </columns>
       </TableView>
+      <Button fx:id="addRow_btn" layoutX="32.0" layoutY="131.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
+      <Button fx:id="deleteRow_btn" layoutX="32.0" layoutY="171.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
+      <Button fx:id="saveAndAdd_btn" layoutX="96.0" layoutY="53.0" mnemonicParsing="false" onAction="#OnSaveAndAdd" prefHeight="33.0" prefWidth="76.0" text="保存并新增" />
+      <Button fx:id="export_btn" layoutX="191.0" layoutY="53.0" mnemonicParsing="false" onAction="#OnExport" prefHeight="33.0" prefWidth="40.0" text="导出" />
+      <ComboBox fx:id="type_combo" layoutX="100.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" promptText="记" />
+      <TextField fx:id="number_field" layoutX="177.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" />
+      <Label layoutX="251.0" layoutY="102.0" text="号" />
+      <Label layoutX="351.0" layoutY="102.0" text="日期：" />
+      <DatePicker fx:id="date_picker" layoutX="387.0" layoutY="98.0" />
+      <Label layoutX="100.0" layoutY="558.0" text="制单人：" />
+      <Label fx:id="maker_label" layoutX="148.0" layoutY="558.0" />
    </children>
 </AnchorPane>

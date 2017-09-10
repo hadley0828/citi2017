@@ -61,3 +61,8 @@ TableView .table-column{
     /*-fx-border-color: black;*/
     outline:none;
 }
+
+#search_company{
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}

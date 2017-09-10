@@ -18,7 +18,6 @@ public class VoucherAmountVo {
     private double debitAmount; //借方金额
     private double creditAmount;//贷方金额
 
-
     public VoucherAmountVo(){
         super();
     }
