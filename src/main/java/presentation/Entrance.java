@@ -19,7 +19,6 @@ public class Entrance extends Application {
 
         primaryStage.setMinWidth(900);
         primaryStage.setMinHeight(600);
-        primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
 
         primaryStage.show();
