@@ -62,6 +62,16 @@ public class InventoryServiceImpl implements InventoryService{
     }
 
     @Override
+    public ArrayList<InventoryRawMaterialItemPO> getRawMaterialInventoryItemByVariety(String company_id, String time, String variety) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<InventoryProductItemPO> getProductInventoryItemByVariety(String company_id, String time, String variety) {
+        return null;
+    }
+
+    @Override
     public void SaveRawMaterialSafeInventory(ArrayList<RawMaterialSafeInventoryPo> list) {
 
     }

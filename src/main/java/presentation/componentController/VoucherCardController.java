@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
+import javafx.util.converter.DoubleStringConverter;
 import presentation.dataModel.VoucherModel;
 import vo.voucher.VoucherAmountVo;
 
@@ -20,9 +21,9 @@ public class VoucherCardController extends Pane{
     @FXML
     private TableColumn<VoucherModel, String> subjectCol;
     @FXML
-    private TableColumn<VoucherModel, Number> debitCol;
+    private TableColumn<VoucherModel, String> debitCol;
     @FXML
-    private TableColumn<VoucherModel, Number> creditCol;
+    private TableColumn<VoucherModel, String> creditCol;
     @FXML
     private TableView<VoucherModel> cardTable;
 
@@ -45,7 +46,7 @@ public class VoucherCardController extends Pane{
     private void initialCard() {
         ObservableList<VoucherModel> data = FXCollections.observableArrayList();
         for(VoucherAmountVo vo: singleVoucher) {
-            data.add(new VoucherModel(vo.getAbstracts(), vo.getSubject(), vo.getDebitAmount(), vo.getCreditAmount()));
+            data.add(new VoucherModel(vo.getAbstracts(), vo.getSubject(), String.valueOf(vo.getDebitAmount()), String.valueOf(vo.getCreditAmount())));
         }
         cardTable.setItems(data);
 
