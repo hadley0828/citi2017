@@ -23,9 +23,9 @@ public class Demo extends Application {
 //            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
 //              loader.setLocation(Demo.class.getResource("../view/BalanceSheet/TestTree.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/Stock/Supplier.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/Stock/Supplier.fxml"));
 //            ScrollPane root=loader.load();
-            loader.setLocation(Demo.class.getResource("../view/PerformanceAppraisal/PerformanceAppraisal.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/PerformanceAppraisal/PerformanceAppraisal.fxml"));
             AnchorPane root=loader.load();
 
             primaryStage.setScene(new Scene(root));
