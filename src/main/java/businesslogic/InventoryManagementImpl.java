@@ -61,7 +61,6 @@ public class InventoryManagementImpl implements InventoryManagementService {
     public int getRawInventory(String company_id, String voucher_id, String  raw_material_name, int change){
         InventoryService service = new InventoryServiceImpl();
         int result = service.getRawInventoryBySupplier(company_id, voucher_id, raw_material_name)+change;
-        service.setSupplierRawInventory(company_id, voucher_id, raw_material_name, result);
         return result;
     }
 
@@ -93,7 +92,6 @@ public class InventoryManagementImpl implements InventoryManagementService {
     public int getProductInventory(String company_id, String voucher_id, String product_name, int change){
         InventoryService service = new InventoryServiceImpl();
         int result = service.getProductInventoryByProducer(company_id, voucher_id, product_name)+change;
-        service.setProducterProductInventory(company_id, voucher_id, product_name, result);
         return result;
     }
 
