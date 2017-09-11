@@ -49,6 +49,8 @@ public class FinancialLayoutController implements Initializable, ControlledScree
         financialController.loadScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN, ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN_FXML);
         financialController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
 
+//        financialController.loadScreen(ScreensFramework.FINANCIAL_SETTING_SCREEN, ScreensFramework.FINANCIAL_SETTING_SCREEN_FXML);
+
         //financialController.loadScreen(ScreensFramework.PRO_DEBT_SCREEN,ScreensFramework.PRO_DEBT_SCREEN_FXML);
         missionPane.getChildren().add(financialController);
     }

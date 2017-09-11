@@ -50,4 +50,10 @@ public interface ScreensFramework {
     String FINANCIAL_WARNING_SCREEN = "FinancialWarning";
     String FINANCIAL_WARNING_SCREEN_FXML = "/view/warning/FinancialWarning.fxml";
 
+    /*新建账套*/
+    String ZT_ADD_SCREEN = "ZhangtaoAdd";
+    String ZT_ADD_SCREEN_FXML = "/view/Settings/ZhangtaoEdit.fxml";
+
+    String FINANCIAL_SETTING_SCREEN = "";
+    String FINANCIAL_SETTING_SCREEN_FXML = "";
 }
