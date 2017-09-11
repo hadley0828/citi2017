@@ -176,12 +176,34 @@ public class SubjectDataServiceImpl implements SubjectDataService{
 
     @Override
     public ArrayList<SubjectsPO> getAllSubjects(String factoryId) {
-        return null;
+        sqlManager.getConnection();
+
+        ArrayList<SubjectsPO> list = new ArrayList<>();
+        String sql = "select t1.*,t2.subjects_name from subjects_balance t1,subjects t2 where t1.company_id=? and t1.subjects_id=t2.subjects_id";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{factoryId});
+
+        for (Map<String,Object> map : maps){
+            list.add(getSubjectsPOByMap(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
     }
 
     @Override
     public ArrayList<SubjectsPO> getOneSubjectAllRecords(String subjectId, String factoryId) {
-        return null;
+        sqlManager.getConnection();
+        ArrayList<SubjectsPO> list = new ArrayList<>();
+
+        String sql = "select t1.*,t2.subjects_name from subjects_balance t1,subjects t2 where t1.company_id=? and t1.subjects_id=? and t2.subjects_id=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{factoryId,subjectId,subjectId});
+
+        for (Map<String,Object> map : maps){
+            list.add(getSubjectsPOByMap(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
     }
 
     private SubjectsPO getSubjectsPOByMap(Map<String,Object> map){

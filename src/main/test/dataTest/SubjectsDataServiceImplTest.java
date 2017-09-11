@@ -97,14 +97,30 @@ public class SubjectsDataServiceImplTest {
         print(po);
     }
 
+    @Test
+    public void testgetAllSubjects(){
+        ArrayList<SubjectsPO> list = subjectDataService.getAllSubjects("001");
+        for (SubjectsPO po : list){
+            print(po);
+        }
+    }
+
+    @Test
+    public void testgetOneSubjectAllRecords(){
+        ArrayList<SubjectsPO> list = subjectDataService.getOneSubjectAllRecords("1002","001");
+        for (SubjectsPO po : list){
+            print(po);
+        }
+    }
+
 
     private void print(SubjectsPO po){
-        System.out.print(po.getId() + " ");
-        System.out.print(po.getName() + " ");
-        System.out.print(po.getDate() + " ");
-        System.out.print(po.getBalances() + " ");
-        System.out.print(po.getDebitAmount() + " ");
-        System.out.print(po.getCreditAmount()+ " ");
+        System.out.print(po.getId() + "\t");
+        System.out.print(po.getName() + "\t");
+        System.out.print(po.getDate() + "\t");
+        System.out.print(po.getBalances() + "\t");
+        System.out.print(po.getDebitAmount() + "\t");
+        System.out.print(po.getCreditAmount()+ "\t");
         System.out.println(po.getVoucher_id());
     }
 
