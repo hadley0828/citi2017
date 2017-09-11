@@ -151,6 +151,11 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return po;
     }
 
+    /**
+     * 将YYYY-MM型时间数据 填充成 YYYY-MM-DD数据
+     * @param period
+     * @return
+     */
     private String fillDate(String period){
         String[] date = period.split("-");
         String year = date[0];

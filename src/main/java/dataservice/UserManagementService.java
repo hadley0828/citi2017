@@ -21,4 +21,12 @@ public interface UserManagementService {
      * @return
      */
     public boolean signIn(String id,String password);
+
+    /**
+     * 修改密码
+     * @param id
+     * @param rawPassword
+     * @param newPassword
+     */
+    public void modifyPassword(String id, String rawPassword, String newPassword);
 }
