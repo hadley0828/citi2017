@@ -13,12 +13,12 @@ public class SubjectsInitialVO {
 
     private double peroidRemain;
 
-    private double debitSum;
+    private double debitSum; //借方
 
-    private double creditSum;
+    private double creditSum; //贷方
 
     private double yearRemain;
 
-    private String variety;
+    private String type;
 
 }

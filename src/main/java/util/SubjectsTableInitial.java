@@ -45,7 +45,7 @@ public class SubjectsTableInitial {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        sqlManager.commit();
     }
 
 
