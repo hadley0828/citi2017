@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginAndSignUp.FinancialSignUp">
+   <children>
+      <TextField layoutX="417.0" layoutY="121.0" />
+      <PasswordField layoutX="417.0" layoutY="262.0" />
+      <Label layoutX="164.0" layoutY="126.0" text="账号" />
+      <Label layoutX="164.0" layoutY="267.0" text="密码" />
+      <Button layoutX="164.0" layoutY="417.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="473.0" layoutY="417.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="368.0" layoutY="36.0" text="金融机构注册" />
+   </children>
+</AnchorPane>

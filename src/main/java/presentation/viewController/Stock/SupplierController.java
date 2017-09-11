@@ -2,7 +2,6 @@ package presentation.viewController.Stock;
 
 import businesslogic.InventoryManagementImpl;
 import businesslogicservice.InventoryManagementService;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

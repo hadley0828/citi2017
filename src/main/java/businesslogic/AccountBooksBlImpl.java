@@ -67,7 +67,7 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
 
         //如果需要得到一个期间的期初的金额 先把第一天到最后一个搜索月的信息取出来 然后进行遍历筛选
-        subjectDataService.getAllExistedSubjectId(factoryId);
+
 
 
 
