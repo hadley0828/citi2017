@@ -51,14 +51,10 @@ public class DateConvert {
         return year+"年第"+month+"期";
     }
 
-    /**
-     * 获得两个月份之间的全部月份
-     * @param startMonth
-     * @param endMonth
-     * @return
-     */
-    public static HashSet<String> getBetweenMonth(String startMonth,String endMonth){
-        HashSet<String> resultSet=new HashSet<>();
+
+    public static ArrayList<String> getBetweenMonthList(String startMonth,String endMonth){
+        ArrayList<String> resultList=new ArrayList<>();
+
 
         DateFormat aa = DateFormat.getDateInstance();
         Date date1 = null; // 开始日期
@@ -90,7 +86,27 @@ public class DateConvert {
         }
 
         for (int i = 0; i < list.size(); i++) {
-            resultSet.add((String) list.get(i));
+            resultList.add((String) list.get(i));
+        }
+
+        return resultList;
+    }
+
+
+    /**
+     * 获得两个月份之间的全部月份
+     * @param startMonth
+     * @param endMonth
+     * @return
+     */
+    public static HashSet<String> getBetweenMonth(String startMonth,String endMonth){
+        HashSet<String> resultSet=new HashSet<>();
+
+        ArrayList<String> betweenMonthList=getBetweenMonthList(startMonth,endMonth);
+
+
+        for (int i = 0; i < betweenMonthList.size(); i++) {
+            resultSet.add((String) betweenMonthList.get(i));
         }
 
         return resultSet;
@@ -148,13 +164,18 @@ public class DateConvert {
     public static void main(String[] args) throws ParseException {
 //        System.out.println(monthToPeriod("2017-12"));
 //        System.out.println(periodToMonth("2017年第8期"));
-//        System.out.println(getBetweenMonth("2017-04","2017-09").size());
+        System.out.println(getBetweenMonth("2017-04","2017-09").size());
+
+        ArrayList<String> monthList=getBetweenMonthList("2016-02","2017-09");
+        for(int count=0;count<monthList.size();count++){
+            System.out.println(monthList.get(count));
+        }
 
 //        String date="2010-04-10";
 //        System.out.println(date.substring(0,date.lastIndexOf("-")));
 
 //        System.out.println(getCurrentMonth());
-        System.out.println(getMonthFirstDate("2010-07"));
-        System.out.println(getMonthLastDate("2012-02"));
+//        System.out.println(getMonthFirstDate("2010-07"));
+//        System.out.println(getMonthLastDate("2012-02"));
     }
 }
