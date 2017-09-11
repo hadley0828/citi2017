@@ -71,4 +71,20 @@ public interface SubjectDataService {
      * @return
      */
     public ArrayList<String> getAllExistedSubjectId(String factoryId);
+
+    /**
+     * 获得数据库中全部的科目记录信息
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<SubjectsPO> getAllSubjects(String factoryId);
+
+    /**
+     * 获得一个科目全部的科目记录信息
+     * @param subjectId
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<SubjectsPO> getOneSubjectAllRecords(String subjectId,String factoryId);
+
 }

@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -20,8 +22,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentation.viewController.StaticFactory;
-import vo.Inventory.ProductInventoryMonitorItemVo;
-import vo.Inventory.RawMaterialInventoryMonitorItemVo;
+import vo.Inventory.*;
 
 import java.io.IOException;
 import java.sql.Array;
@@ -61,6 +62,10 @@ public class ProducerController {
     private TableColumn product_back;
     @FXML
     private TableColumn product_stock;
+    @FXML
+    private StackedBarChart raw_bar;
+    @FXML
+    private StackedBarChart product_bar;
     private InventoryManagementService service=new InventoryManagementImpl();
 
     DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
@@ -77,6 +82,36 @@ public class ProducerController {
     @FXML
     public void initialize(){
         setTable();
+        setCell();
+        setBar();
+    }
+
+    public void setBar(){
+        ArrayList<ProductSafeInventoryRateVo> p=service.getProductInventoryRate("001");
+        XYChart.Series series1=new XYChart.Series();
+        XYChart.Series series2=new XYChart.Series();
+        for(int i=0;i<p.size();i++){
+            series1.getData().add(new XYChart.Data(p.get(i).getVariety(),p.get(i).getInventory()));
+            series2.getData().add(new XYChart.Data(p.get(i).getVariety(),p.get(i).getSafe_inventory()));
+        }
+        series1.setName("产品库存量");
+        series2.setName("安全库存量");
+        product_bar.getData().add(series1);
+        product_bar.getData().add(series2);
+
+        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate("001");
+        XYChart.Series series3=new XYChart.Series();
+        XYChart.Series series4=new XYChart.Series();
+        for(int i=0;i<l.size();i++){
+            series3.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getInventory()));
+            series4.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getSafe_inventory()));
+        }
+        series3.setName("原材料库存量");
+        series4.setName("安全库存量");
+        raw_bar.getData().add(series3);
+        raw_bar.getData().add(series4);
+
+
     }
 
     public void setTable(){
@@ -85,8 +120,8 @@ public class ProducerController {
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
 
                 java.util.Date d = Date.from(raw_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                raw_tabledata.add(new RawMaterialInventoryMonitorItemVo("cotton", 200, 280, "0.9", "0.02"));
-
+                StaticFactory.setproducer_raw_date(format.format(d));
+                raw_tabledata=service.getRawMaterialInventoryMonitorItem("001",format.format(d));
                 Iterator i = raw_tabledata.iterator();
                 while (i.hasNext()) {
                     raw_list.add((RawMaterialInventoryMonitorItemVo) i.next());
@@ -102,19 +137,19 @@ public class ProducerController {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
 
-                java.util.Date d = Date.from(product_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                product_tabledata.add(new ProductInventoryMonitorItemVo("cotton", 200, 280, "0.9", "0.02"));
-
+                java.util.Date d1 = Date.from(product_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                StaticFactory.setproducer_product_date(format.format(d1));
+                product_tabledata=service.getProductInventoryMonitorItem("001",format.format(d1));
                 Iterator i = product_tabledata.iterator();
                 while (i.hasNext()) {
                     product_list.add((ProductInventoryMonitorItemVo) i.next());
                 }
             }
         });
-        product.setCellFactory(new PropertyValueFactory("product_variety"));
-        product_stock.setCellFactory(new PropertyValueFactory("inventory"));
-        product_safe_stock.setCellFactory(new PropertyValueFactory("safe_inventory"));
-        product_back.setCellFactory(new PropertyValueFactory("refund_rate"));
+        product.setCellValueFactory(new PropertyValueFactory("product_variety"));
+        product_stock.setCellValueFactory(new PropertyValueFactory("inventory"));
+        product_safe_stock.setCellValueFactory(new PropertyValueFactory("safe_inventory"));
+        product_back.setCellValueFactory(new PropertyValueFactory("refund_rate"));
 
 
         raw_monitor_table.setItems(raw_list);
@@ -203,6 +238,20 @@ public class ProducerController {
         producer_product_chartStage.initStyle(StageStyle.TRANSPARENT);
         producer_product_chartStage.initModality(Modality.APPLICATION_MODAL);
         producer_product_chartStage.show();
+    }
+
+    public ArrayList<InventoryChangeVo> getRawStockChart(){
+        return service.getRawInventoryChange("001",StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
+    }
+    public ArrayList<PunctualDeliveryRateChangeVo> getRawPunctualChart(){
+        return service.getRawPunctualDeliveryRateChange("001",StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
+    }
+
+    public ArrayList<InventoryChangeVo> getProductStockChart(){
+        return service.getProductInventoryChange("001",StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
+    }
+    public ArrayList<RefundRateChangeVo> getProductBackChart(){
+        return service.getProductRefundRateChange("001",StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
     }
 
 }

@@ -13,6 +13,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -23,8 +25,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import presentation.viewController.StaticFactory;
 import vo.BalanceSheetItemVo;
-import vo.Inventory.InventoryChangeVo;
-import vo.Inventory.RawMaterialInventoryMonitorItemVo;
+import vo.Inventory.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -54,6 +55,8 @@ public class SupplierController {
     private TableColumn back;
     @FXML
     private DatePicker date;
+    @FXML
+    private StackedBarChart barChart;
 
     static Stage chartStage;
     private InventoryManagementService service=new InventoryManagementImpl();
@@ -69,7 +72,40 @@ public class SupplierController {
     public void initialize(){
         setTable();
         setCell();
+        setBar();
     }
+
+    public void setBar(){
+        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate("001");
+        XYChart.Series series1=new XYChart.Series();
+        XYChart.Series series2=new XYChart.Series();
+        for(int i=0;i<l.size();i++){
+            series1.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getInventory()));
+            series2.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getSafe_inventory()));
+        }
+        series1.setName("原材料库存量");
+        series2.setName("安全库存量");
+        barChart.getData().add(series1);
+        barChart.getData().add(series2);
+
+    }
+    public StackedBarChart.Series<String,Integer> getSFL(ArrayList<RawSafeInventoryRateVo> list){
+       StackedBarChart.Series<String,Integer> series=new StackedBarChart.Series<>();
+        for(int i=0;i<list.size();i++){
+            RawSafeInventoryRateVo vo=list.get(i);
+            series.getData().add(new StackedBarChart.Data<>(vo.getVariety(),vo.getSafe_inventory()));
+        }
+        return series;
+    }
+    public XYChart.Series<String,Integer> getSeriesFromList(ArrayList<InventoryChangeVo> list){
+        XYChart.Series<String,Integer> series=new XYChart.Series();
+        for(int i=0;i<list.size();i++){
+            InventoryChangeVo vo=list.get(i);
+            series.getData().add(new XYChart.Data<>(vo.getTime(),(Integer)vo.getInventory()));
+        }
+        return series;
+    }
+
 
     public void setTable(){
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
@@ -79,8 +115,8 @@ public class SupplierController {
                 d=Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 StaticFactory.setDate(format.format(d));
 //                System.out.print(format.format(d));
-//                supply_tabledata=service.getRawMaterialInventoryMonitorItem("001",format.format(d));
-                supply_tabledata.add(new RawMaterialInventoryMonitorItemVo("cotton",200,280,"0.9","0.02"));
+                supply_tabledata=service.getRawMaterialInventoryMonitorItem("001",format.format(d));
+//                supply_tabledata.add(new RawMaterialInventoryMonitorItemVo("cotton",200,280,"0.9","0.02"));
 //                                System.out.println(date.getValue());
                 ObservableList<RawMaterialInventoryMonitorItemVo> list= FXCollections.observableArrayList();
                 Iterator i=supply_tabledata.iterator();
@@ -131,7 +167,7 @@ public class SupplierController {
                 cell.setStyle("-fx-text-fill: black");
                 cell.setCursor(Cursor.DEFAULT);
             });
-            System.out.println(raw_pro+"hhh");
+//            System.out.println(raw_pro+"hhh");
             return cell;
         });
     }
@@ -180,6 +216,14 @@ public class SupplierController {
 //        System.out.println("原材料:"+StaticFactory.getRaw_material());
 //        System.out.println("时间"+format.format(d));
         return service.getRawInventoryChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
+    }
+
+    public ArrayList<PunctualDeliveryRateChangeVo> getPunctualChart(){
+        return service.getRawPunctualDeliveryRateChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
+    }
+
+    public ArrayList<RefundRateChangeVo> getBackChart(){
+        return service.getRawRefundRateChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
     }
     public String getId(){
         return "aaaa";
