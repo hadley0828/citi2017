@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <TableView layoutX="14.0" layoutY="85.0" prefHeight="274.0" prefWidth="571.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="公司名称" />
+                <TableColumn prefWidth="75.0" text="借款时间" />
+                <TableColumn prefWidth="75.0" text="还款期限" />
+                <TableColumn prefWidth="93.0" text="应收账款金额" />
+                <TableColumn prefWidth="94.0" text="折扣政策" />
+                <TableColumn prefWidth="84.0" text="折扣期限" />
+                <TableColumn prefWidth="74.0" text="备注" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
