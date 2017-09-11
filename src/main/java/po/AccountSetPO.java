@@ -22,12 +22,19 @@ public class AccountSetPO {
 
     private Date startDate;
 
-    public AccountSetPO(String companyId, String companyName, String location, String industry, Date startDate) {
+    private String creditCode;
+
+    private String contact;
+
+
+    public AccountSetPO(String companyId, String companyName, String location, String industry, Date startDate, String creditCode, String contact) {
         this.companyId = companyId;
         this.companyName = companyName;
         this.location = location;
         this.industry = industry;
         this.startDate = startDate;
+        this.creditCode = creditCode;
+        this.contact = contact;
     }
 
     public AccountSetPO() {
@@ -71,5 +78,21 @@ public class AccountSetPO {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public String getCreditCode() {
+        return creditCode;
+    }
+
+    public void setCreditCode(String creditCode) {
+        this.creditCode = creditCode;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }
