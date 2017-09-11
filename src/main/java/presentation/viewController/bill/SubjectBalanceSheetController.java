@@ -6,12 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import presentation.componentController.BookSearch;
 import presentation.dataModel.SubjectBalanceModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.accountBook.BalanceTableOneClause;
+import vo.accountBook.BookSearchVo;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -41,12 +45,35 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     @FXML
     private TableColumn<SubjectBalanceModel, Number> endingCreditCol;
 
+    @FXML
+    private MenuButton select_menu;
+    @FXML
+    private BookSearch bookSearch;
+
+    private BookSearchVo bookSearchVo;
+
     private AccountBooksBlService accountBooksBl;
     private ObservableList<SubjectBalanceModel> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
+        bookSearchVo = new BookSearchVo();
+
+        bookSearch.getConfirm_btn().setOnAction(event -> {
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
+            bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+        });
+
+        MenuItem popItem = new MenuItem();
+        popItem.setGraphic(bookSearch);
+        select_menu.getItems().setAll(popItem);
+
+        initialTable();
     }
 
     @Override
@@ -55,11 +82,10 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(null, "001");
+        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, "001");
         for (BalanceTableOneClause clause: balanceTableAllClauses) {
             data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
         }
-
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());

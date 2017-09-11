@@ -6,13 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import presentation.componentController.BookSearch;
 import presentation.dataModel.GeneralBillModel;
 import presentation.dataModel.SubjectBalanceModel;
 import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import vo.accountBook.BookSearchVo;
 import vo.accountBook.GatherTableOneClause;
 
 import java.net.URL;
@@ -35,12 +39,34 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     @FXML
     private TableColumn<SubjectSummaryModel, Number> creditSumCol;
 
+    @FXML
+    private MenuButton select_menu;
+    @FXML
+    private BookSearch bookSearch;
+
+    private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<SubjectSummaryModel> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
+        bookSearchVo = new BookSearchVo();
+
+        bookSearch.getConfirm_btn().setOnAction(event -> {
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
+            bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+        });
+
+        MenuItem popItem = new MenuItem();
+        popItem.setGraphic(bookSearch);
+        select_menu.getItems().setAll(popItem);
+
+        initialTable();
     }
 
     @Override
@@ -49,7 +75,7 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(null, "001");
+        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, "001");
         for (GatherTableOneClause clause: gatherTableOneClauses) {
             data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
         }

@@ -27,18 +27,18 @@
       <Label text="科目级别：" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <HBox alignment="CENTER_LEFT" spacing="100.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
          <children>
-            <Button mnemonicParsing="false" text="确定" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" text="取消" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" text="重置" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="confirm_btn" mnemonicParsing="false" text="确定" GridPane.rowIndex="4" />
+            <Button fx:id="cancel_btn" mnemonicParsing="false" text="取消" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#OnReset" text="重置" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
       </HBox>
       <Label text=" 至" GridPane.columnIndex="3" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <TextField GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      <ComboBox fx:id="endSubject_item" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ComboBox fx:id="startSubject_item" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <TextField fx:id="startLevel_item" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Label text=" 至 " GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <TextField GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <ComboBox prefWidth="150.0" GridPane.columnIndex="2" />
-      <ComboBox prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="4" />
+      <TextField fx:id="endLevel_item" text="1" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <ComboBox fx:id="startPeriod_item" prefWidth="150.0" GridPane.columnIndex="2" />
+      <ComboBox fx:id="endPeriod_item" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="4" />
    </children>
 </GridPane>

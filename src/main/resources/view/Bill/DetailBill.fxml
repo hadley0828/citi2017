@@ -25,8 +25,13 @@
    <top>
       <Pane prefHeight="61.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="22.0" layoutY="19.0" mnemonicParsing="false" text="筛选" />
             <Button layoutX="523.0" layoutY="19.0" mnemonicParsing="false" text="导出" />
+            <MenuButton fx:id="select_menu" layoutX="21.0" layoutY="19.0" mnemonicParsing="false" text="筛选">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
          </children>
       </Pane>
    </top>
