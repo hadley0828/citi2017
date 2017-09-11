@@ -178,4 +178,12 @@ public class VoucherBlServiceImplTest {
     public void testExportToExcel(){
 
     }
+
+    @Test
+    public void testGetAllSubjectBasics(){
+        ArrayList<SubjectBasicVo> basicVos=voucherBlService.getAllSubjectBasics("001");
+        for(int count=0;count<basicVos.size();count++){
+            System.out.println(basicVos.get(count).toString());
+        }
+    }
 }
