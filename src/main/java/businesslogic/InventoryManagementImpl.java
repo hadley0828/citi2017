@@ -25,29 +25,21 @@ public class InventoryManagementImpl implements InventoryManagementService {
      * @param company_id 公司id
      * @param list 用户输入数据
      */
-    public void SaveRawMaterialSafeInventory(String company_id, ArrayList<RawMaterialSafeInventoryVo> list){
+    public void SaveSafeInventory(String company_id, ArrayList<SafeInventoryVo> list){
         InventoryService service = new InventoryServiceImpl();
-        ArrayList<RawMaterialSafeInventoryPo> result = new ArrayList<>();
+        ArrayList<RawMaterialSafeInventoryPo> result1 = new ArrayList<>();
+        ArrayList<ProductSafeInventoryPo> result2 = new ArrayList<>();
         for(int i=0;i<list.size();i++){
-            RawMaterialSafeInventoryVo vo = list.get(i);
-            result.add(new RawMaterialSafeInventoryPo(company_id, vo.getRaw_material_variety(), vo.getSafe_inventory()));
+            SafeInventoryVo vo = list.get(i);
+            String name = vo.getName();
+            if(name.equals("原材料")){
+                result1.add(new RawMaterialSafeInventoryPo(company_id, vo.getVariety(), vo.getSafe_inventory()));
+            }else{
+                result2.add(new ProductSafeInventoryPo(company_id, vo.getVariety(), vo.getSafe_inventory()));
+            }
         }
-        service.SaveRawMaterialSafeInventory(result);
-    }
-
-    /**
-     * 保存公司的产品安全库存量
-     * @param company_id 公司id
-     * @param list 用户输入数据
-     */
-    public void SaveProductSafeInventory(String company_id, ArrayList<ProductSafeInventoryVo> list){
-        InventoryService service = new InventoryServiceImpl();
-        ArrayList<ProductSafeInventoryPo> result = new ArrayList<>();
-        for(int i=0;i<list.size();i++){
-            ProductSafeInventoryVo vo = list.get(i);
-            result.add(new ProductSafeInventoryPo(company_id, vo.getProduct_variety(), vo.getSafe_inventory()));
-        }
-        service.SaveProductSafeInventory(result);
+        service.SaveRawMaterialSafeInventory(result1);
+        service.SaveProductSafeInventory(result2);
     }
 
     /**

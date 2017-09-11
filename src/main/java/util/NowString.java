@@ -17,6 +17,11 @@ public class NowString {
 
 
     public static void main(String[] args) {
-        System.out.println(getNowMonth());
+
+//        System.out.println(getNowMonth());
+
+        String test="201312345678";
+        System.out.println(test.substring(0,4));
+
     }
 }

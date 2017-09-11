@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="521.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.Stock.ProducerProductChartController">
+    <children>
+        <LineChart fx:id="producer_product_stock_time" layoutX="14.0" layoutY="82.0" prefHeight="265.0" prefWidth="320.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <LineChart fx:id="producer_product_refund_time" layoutX="406.0" layoutY="82.0" prefHeight="265.0" prefWidth="320.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis side="LEFT" />
+            </yAxis>
+        </LineChart>
+        <ImageView fx:id="back" fitHeight="35.0" fitWidth="58.0" layoutX="719.0" layoutY="14.0" onMouseClicked="#product_backtotable" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../images/return.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

@@ -11,18 +11,11 @@ import java.util.ArrayList;
 public interface InventoryManagementService {
 
     /**
-     * 保存公司的原材料安全库存量
+     * 保存公司的原材料/产品安全库存量
      * @param company_id 公司id
      * @param list 用户输入数据
      */
-    public void SaveRawMaterialSafeInventory(String company_id, ArrayList<RawMaterialSafeInventoryVo> list);
-
-    /**
-     * 保存公司的产品安全库存量
-     * @param company_id 公司id
-     * @param list 用户输入数据
-     */
-    public void SaveProductSafeInventory(String company_id, ArrayList<ProductSafeInventoryVo> list);
+    public void SaveSafeInventory(String company_id, ArrayList<SafeInventoryVo> list);
 
     /**
      * 根据录入记录得到表格末尾的原材料结存数量

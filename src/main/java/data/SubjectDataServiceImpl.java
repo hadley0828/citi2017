@@ -174,6 +174,16 @@ public class SubjectDataServiceImpl implements SubjectDataService{
         return list;
     }
 
+    @Override
+    public ArrayList<SubjectsPO> getAllSubjects(String factoryId) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<SubjectsPO> getOneSubjectAllRecords(String subjectId, String factoryId) {
+        return null;
+    }
+
     private SubjectsPO getSubjectsPOByMap(Map<String,Object> map){
         SubjectsPO po = new SubjectsPO();
 

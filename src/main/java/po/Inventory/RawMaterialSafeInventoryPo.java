@@ -10,6 +10,9 @@ public class RawMaterialSafeInventoryPo {
     private String raw_material_variety;     //原材料种类
     private int safe_inventory;     //安全库存量
 
+    public RawMaterialSafeInventoryPo() {
+    }
+
     public RawMaterialSafeInventoryPo(String company_id, String raw_material_variety, int safe_inventory){
         this.company_id = company_id;
         this.raw_material_variety = raw_material_variety;

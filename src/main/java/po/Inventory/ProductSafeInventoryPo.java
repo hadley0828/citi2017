@@ -10,6 +10,9 @@ public class ProductSafeInventoryPo {
     private String product_variety;     //产品种类
     private int safe_inventory;     //安全库存量
 
+    public ProductSafeInventoryPo() {
+    }
+
     public ProductSafeInventoryPo(String company_id, String product_variety, int safe_inventory){
         this.company_id = company_id;
         this.product_variety = product_variety;

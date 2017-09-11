@@ -1,6 +1,7 @@
 package businesslogic;
 
 import businesslogicservice.VoucherBlService;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.SubjectDataServiceImpl;
 import data.VoucherDataServiceImpl;
 import dataservice.SubjectDataService;
@@ -9,6 +10,7 @@ import po.*;
 import util.*;
 import vo.voucher.*;
 
+import javax.security.auth.Subject;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -646,6 +648,82 @@ public class VoucherBlImpl implements VoucherBlService {
     @Override
     public int getCurrentNumber(String voucherCharacter,String factoryId) {
         return 0;
+    }
+
+    @Override
+    public ArrayList<SubjectBasicVo> getAllSubjectBasics(String factoryId) {
+
+        ArrayList<SubjectBasicVo> resultList=new ArrayList<>();
+
+        ArrayList<String> allSubjectIdList=subjectDataService.getAllExistedSubjectId(factoryId);
+
+        System.out.println(allSubjectIdList.size());
+        for(int count=0;count<allSubjectIdList.size();count++){
+            System.out.println(allSubjectIdList.get(count));
+        }
+
+        HashMap<String,String> idToNameMap=subjectDataService.getSubjectIdToNameMap();
+
+        for(int count=0;count<allSubjectIdList.size();count++){
+            String oneSubjectId=allSubjectIdList.get(count);
+
+            if(oneSubjectId.length()==4){
+                SubjectBasicVo basicVo=new SubjectBasicVo();
+                ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
+                basicVo.setSubjectId(oneSubjectId);
+                basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
+                basicVo.setLowLevelList(lowList);
+                resultList.add(basicVo);
+            }
+        }
+
+        for(int count=0;count<allSubjectIdList.size();count++){
+            String oneSubjectId=allSubjectIdList.get(count);
+
+            if(oneSubjectId.length()==7){
+                String highLevel=oneSubjectId.substring(0,4);
+                if(resultList.contains(highLevel)){
+                    SubjectBasicVo basicVo=new SubjectBasicVo();
+                    ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
+                    basicVo.setSubjectId(oneSubjectId);
+                    basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
+                    basicVo.setLowLevelList(lowList);
+
+                    resultList.get(resultList.indexOf(highLevel)).getLowLevelList().add(basicVo);
+
+                }
+
+            }
+        }
+
+        for(int count=0;count<allSubjectIdList.size();count++){
+            String oneSubjectId=allSubjectIdList.get(count);
+
+            if(oneSubjectId.length()==9){
+                String firstLevel=oneSubjectId.substring(0,4);  //1001
+                String secondLevel=oneSubjectId.substring(0,7); //1001001
+
+                if(resultList.contains(firstLevel)){
+                    if(resultList.get(resultList.indexOf(firstLevel)).getLowLevelList().contains(secondLevel)){
+                        SubjectBasicVo lowSubject=resultList.get(resultList.indexOf(firstLevel));
+
+                        SubjectBasicVo basicVo=new SubjectBasicVo();
+                        ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
+                        basicVo.setSubjectId(oneSubjectId);
+                        basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
+                        basicVo.setLowLevelList(lowList);
+
+                        lowSubject.getLowLevelList().add(basicVo);
+
+
+                    }
+                }
+
+            }
+
+        }
+
+        return resultList;
     }
 
     /**

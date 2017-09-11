@@ -81,13 +81,25 @@ public class ProfitSheetController {
         profitTable_data.add(new ProfitVO("一、营业收入",1,year.getBusiness_income(),period.getBusiness_income(),"公式:\n主营业务收入\n+其他业务收入"));
         profitTable_data.add(new ProfitVO("减：营业成本",2,year.getBusiness_costs(),period.getBusiness_costs(),"公式:\n主营业务成本\n+其他业务成本"));
         profitTable_data.add(new ProfitVO("营业税金及附加",3,year.getBusiness_Taxes_and_Surcharges()[0],period.getBusiness_Taxes_and_Surcharges()[0],"公式:\n税金及附加"));
+
+
         profitTable_data.add(new ProfitVO("销售费用",11,year.getSelling_expenses()[0],period.getSelling_expenses()[0],"公式:\n销售费用"));
+
+
         profitTable_data.add(new ProfitVO("管理费用",14,year.getManagement_expenses()[0],period.getManagement_expenses()[0],"公式:\n销售费用"));
+
+
         profitTable_data.add(new ProfitVO("财务费用",18,year.getFinancial_expenses()[0],period.getFinancial_expenses()[0],"公式:\n销售费用"));
+
+
         profitTable_data.add(new ProfitVO("加：投资收益(亏损以'-'号填列)",20,year.getInvestment_proceeds(),period.getInvestment_proceeds(),"公式:\n投资收益"));
         profitTable_data.add(new ProfitVO("二、营业利润(亏损以'-'号填列)",21,year.getOperating_profit(),period.getOperating_profit(),"公式:\n营业收入\n+投资收益\n-营业成本\n-营业税金及附加\n-销售费用\n-管理费用\n-财务费用"));
         profitTable_data.add(new ProfitVO("加：营业外收入",22,year.getNon_operating_income()[0],period.getNon_operating_income()[0],"公式:\n营业外收入"));
+
+
         profitTable_data.add(new ProfitVO("减：营业外支出",24,year.getNon_operating_expenses()[0],period.getNon_operating_expenses()[0],"公式:\n营业外支出"));
+
+
         profitTable_data.add(new ProfitVO("三、利润总额(亏损总额以'-'号填列)",30,year.getTotal_profit(),period.getTotal_profit(),"公式:\n营业利润\n+营业外收入\n-营业外支出"));
         profitTable_data.add(new ProfitVO("减：所得税费用",31,year.getIncome_tax_expense(),period.getIncome_tax_expense(),"公式:\n所得税费用"));
         profitTable_data.add(new ProfitVO("四、净利润(净亏损以'-'号填列)",32,year.getNet_profit(),period.getNet_profit(),"公式:\n利润总额\n-所得税费用"));

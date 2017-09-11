@@ -11,6 +11,7 @@ import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 /**
@@ -40,12 +41,7 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
         String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
-        HashSet<String> betweenMonth=DateConvert.getBetweenMonth(startMonth,endMonth);
-
-        ArrayList<String> betweenMonthList=new ArrayList<>();
-        for(String str:betweenMonth){
-            betweenMonthList.add(str);
-        }
+        ArrayList<String> betweenMonthList=DateConvert.getBetweenMonthList(startMonth,endMonth);
 
         if(!(searchVo.getStartSubjectId()==null||searchVo.getEndSubjectId()==null)){
             int startSubjectId=Integer.valueOf(searchVo.getStartSubjectId());
@@ -70,7 +66,11 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         }
 
 
-        ArrayList<SubjectsPO> subjectsPOList=subjectDataService.findMonthsAllSubjects(betweenMonthList,factoryId);
+        //如果需要得到一个期间的期初的金额 先把第一天到最后一个搜索月的信息取出来 然后进行遍历筛选
+
+
+
+
 
 
 
