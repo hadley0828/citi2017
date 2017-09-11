@@ -19,6 +19,12 @@ public interface BalanceSheetService {
     public Map<String, ArrayList<BalanceSheetItemVo>> getBalanceSheet(String company_id, String phase);
 
     /**
+     * 按照指定路径导出资产负债表
+     * @param path 路径
+     */
+    public void CreatBalanceSheet(String path);
+
+    /**
      * 得到所有凭证数量
      * @param company_id 公司id
      * @return

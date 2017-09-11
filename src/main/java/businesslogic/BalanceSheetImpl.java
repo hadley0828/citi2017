@@ -4,10 +4,15 @@ import businesslogicservice.BalanceSheetService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
 import javafx.beans.property.IntegerProperty;
+import org.apache.poi.hssf.usermodel.*;
 import po.SubjectsPO;
 import po.VoucherAmountPO;
+import util.Voucher;
 import vo.BalanceSheetItemVo;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +23,9 @@ import java.util.Map;
  * 资产负债表
  */
 public class BalanceSheetImpl implements BalanceSheetService {
+
+    private static Map<String, ArrayList<BalanceSheetItemVo>> map;
+
     /**
      * 得到资产负债表数据
      * @param phase      时期
@@ -383,7 +391,154 @@ public class BalanceSheetImpl implements BalanceSheetService {
         total_liab_owners.add(new BalanceSheetItemVo("负债和所有者权益合计", 53, ending_balance8, beginning_balance8, law8));
 
         result.put("负债和所有者权益合计", total_liab_owners);
+        map = result;
         return result;
+    }
+
+    /**
+     * 按照指定路径导出资产负债表
+     * @param path 路径
+     */
+    public void CreatBalanceSheet(String path){
+        ArrayList<BalanceSheetItemVo> p1=map.get("流动资产");
+        ArrayList<BalanceSheetItemVo> p2=map.get("非流动资产");
+        ArrayList<BalanceSheetItemVo> p3=map.get("资产合计");
+        ArrayList<BalanceSheetItemVo> p4=map.get("流动负债");
+        ArrayList<BalanceSheetItemVo> p5=map.get("非流动负债");
+        ArrayList<BalanceSheetItemVo> p6=map.get("负债合计");
+        ArrayList<BalanceSheetItemVo> p7=map.get("所有者权益");
+        ArrayList<BalanceSheetItemVo> p8=map.get("负债和所有者权益合计");
+
+        ArrayList<BalanceSheetItemVo> list1 = p1;
+        list1.addAll(p2);
+        list1.addAll(p3);
+        ArrayList<BalanceSheetItemVo> list2 = p4;
+        list2.addAll(p5);
+        list2.addAll(p6);
+        list2.addAll(p7);
+        list2.addAll(p8);
+
+        // 创建一个Excel文件
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        // 创建一个工作表
+        HSSFSheet sheet = workbook.createSheet("资产负债表");
+        // 添加表头行
+        HSSFRow hssfRow = sheet.createRow(0);
+        // 设置单元格格式居中
+        HSSFCellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+        // 添加表头内容
+        HSSFCell headCell = hssfRow.createCell(0);
+        headCell.setCellValue("资产");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(1);
+        headCell.setCellValue("行次");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(2);
+        headCell.setCellValue("借方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(3);
+        headCell.setCellValue("贷方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(4);
+        headCell.setCellValue("负债与所有者权益");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(5);
+        headCell.setCellValue("行次");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(6);
+        headCell.setCellValue("借方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(7);
+        headCell.setCellValue("贷方余额");
+        headCell.setCellStyle(cellStyle);
+
+        // 添加数据内容
+        for (int i = 0; i < list1.size(); i++) {
+            hssfRow = sheet.createRow((int) i + 1);
+            BalanceSheetItemVo vo1 = list1.get(i);
+            BalanceSheetItemVo vo2 = list2.get(i);
+            boolean is_zero1 = false;
+            boolean is_zero2 = false;
+            if(vo1.getLine_No()==0){
+                is_zero1 = true;
+            }
+            if(vo2.getLine_No()==0){
+                is_zero2 = true;
+            }
+
+            // 创建单元格，并设置值
+            HSSFCell cell = hssfRow.createCell(0);
+            cell.setCellValue(vo1.getProperty_name());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(1);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getLine_No());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(2);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getEnding_balance());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(3);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getBeginning_balance());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(4);
+            cell.setCellValue(vo2.getProperty_name());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(5);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getLine_No());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(6);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getEnding_balance());
+            }
+
+            cell = hssfRow.createCell(7);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getBeginning_balance());
+            }
+        }
+
+        try {
+            OutputStream stream = new FileOutputStream(path);
+            workbook.write(stream);
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

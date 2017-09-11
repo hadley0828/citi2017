@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import vo.TrialTableItemVo;
+import vo.voucher.VoucherVo;
 
 import java.util.ArrayList;
 
@@ -14,4 +15,12 @@ public interface TrialSettlementService {
      * @return
      */
     public ArrayList<TrialTableItemVo> getTrialTable(String company_id);
+
+    /**
+     * 管理员账号反结账
+     * @param voucher_id 凭证id
+     * @param voucherVo 修改的一行凭证信息
+     * @param company_id 公司id
+     */
+    public void AntiSettle(String voucher_id, VoucherVo voucherVo, String company_id);
 }
