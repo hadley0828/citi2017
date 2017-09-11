@@ -1,11 +1,16 @@
 package businesslogic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import businesslogicservice.SupplyChainService;
+import data.InventoryServiceImpl;
 import data.ProfitAndCashServiceImpl;
+import data.SupplyChainDataServiceImpl;
+import dataservice.InventoryService;
 import dataservice.ProfitAndCashService;
+import dataservice.SupplyChainDataService;
 import vo.BalanceSheetItemVo;
 import vo.SupplyChainPerformanceVo;
 
@@ -16,14 +21,21 @@ import vo.SupplyChainPerformanceVo;
  */
 public class SupplyChainImpl implements SupplyChainService{
 	
-	ProfitAndCashService DATA;
-	TableCalHelper helper;
+	private ProfitAndCashService DATA;
+	private InventoryService IS;
+	private TableCalHelper helper;
+	private SupplyChainDataService SC;
 	
 	public SupplyChainImpl(){
 		DATA=new ProfitAndCashServiceImpl();
+		IS=new InventoryServiceImpl();
 		helper=new TableCalHelper();
+		SC=new SupplyChainDataServiceImpl();
 	}
 
+	/**
+	 * 暂时缺少 运营能力中的“准时交货率”和“退货率”的数据
+	 */
 	public SupplyChainPerformanceVo SupplyChain_Supplier(String Supplier_id,String Manufacturer_id,String Distributor_id,String period) {
 		String last=helper.lastTime(period);
 		BalanceSheetImpl bs=new BalanceSheetImpl();
@@ -128,6 +140,26 @@ public class SupplyChainImpl implements SupplyChainService{
 		Supply_chain[3]=(zongfu1+zongfu2+zongfu3)!=0?(this_zong1+this_zong2+this_zong3)/(zongfu1+zongfu2+zongfu3):0;//偿债能力-资产负债率
 		
 		return new SupplyChainPerformanceVo(Supplier,Manufacturer,Distributor,Supply_chain);
+	}
+
+	public List<String> AcountReceivable(String company_id,String time) {	
+		return SC.getAcountReceivable(company_id, time);
+	}
+
+	public double ReceivableFinacing(double MortgageAmount, String Receivable, String company_id, String time) {
+
+		double dis=0;//预警
+		return MortgageAmount*dis;
+	}
+
+	public List<String> InventoryTypes(String company_id,String time) {
+		return SC.getRawMaterialAndProduct(company_id, time);
+	}
+
+	public double PledgeMovables(double Amount, String InventoryType, String company_id, String time) {
+		
+		double dis=0;//预警
+		return Amount*dis;
 	}
 	
 }
