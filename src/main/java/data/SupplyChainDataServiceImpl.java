@@ -4,6 +4,7 @@ import java.util.List;
 
 import dataservice.SupplyChainDataService;
 import po.SupplyChainPO;
+import po.VoucherAmountPO;
 
 public class SupplyChainDataServiceImpl implements SupplyChainDataService{
 
@@ -23,6 +24,21 @@ public class SupplyChainDataServiceImpl implements SupplyChainDataService{
 	}
 
 	public List<SupplyChainPO> GetSupplyChains() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double GetInitial(String id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public List<VoucherAmountPO> GetVoucherAmountsWithCompany(String id, String company, String time) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<VoucherAmountPO> GetVoucherAmountsWithProduct(String id, String product, String time) {
 		// TODO Auto-generated method stub
 		return null;
 	}
