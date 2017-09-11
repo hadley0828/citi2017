@@ -2,6 +2,8 @@ package dataservice;
 
 import java.util.List;
 
+import po.SupplyChainPO;
+
 /**
  * 
  * @author hyf
@@ -23,4 +25,16 @@ public interface SupplyChainDataService {
      * @return
      */
 	public List<String> getRawMaterialAndProduct(String company_id, String time);
+	
+	/**
+	 * 
+	 * @param po
+	 */
+	public void SaveSupplyChain(SupplyChainPO po);
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public List<SupplyChainPO>  GetSupplyChains();
 }

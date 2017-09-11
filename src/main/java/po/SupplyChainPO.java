@@ -10,13 +10,13 @@ package po;
  * FinacingType                融资方式
  * ProposedFinancingScale      建议融资规模
  */
-public class SupplyChianPO {
+public class SupplyChainPO {
 	private String company;
 	private String FinacingType;
 	private double Net;
 	private double ProposedFinancingScale;
 	
-	public SupplyChianPO(String c,String f,double n,double p){
+	public SupplyChainPO(String c,String f,double n,double p){
 		this.company=c;
 		this.FinacingType=f;
 		this.Net=n;
