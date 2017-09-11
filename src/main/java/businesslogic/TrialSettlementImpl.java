@@ -22,10 +22,17 @@ public class TrialSettlementImpl implements TrialSettlementService {
         CourseMessageService service = new CourseMessageServiceImpl();
         ArrayList<SubjectsPO> polist = service.getCurrentCouseMessage(company_id);
         ArrayList<TrialTableItemVo> result = new ArrayList<>();
+        double debit_amount = 0.0;
+        double credit_amount = 0.0;
         for(int i=0;i<polist.size();i++){
             SubjectsPO po = polist.get(i);
-            result.add(new TrialTableItemVo(po.getId(), po.getName(), po.getDebitAmount(), po.getCreditAmount()));
+            double debit = po.getDebitAmount();
+            double credit = po.getCreditAmount();
+            result.add(new TrialTableItemVo(po.getId(), po.getName(), debit, credit));
+            debit_amount = debit_amount+debit;
+            credit_amount = credit_amount+credit;
         }
+        result.add(new TrialTableItemVo("合计", "", debit_amount, credit_amount));
         return result;
     }
 }

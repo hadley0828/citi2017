@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.StackedBarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -21,8 +23,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import presentation.viewController.StaticFactory;
-import vo.Inventory.ProductInventoryMonitorItemVo;
-import vo.Inventory.RawMaterialInventoryMonitorItemVo;
+import vo.Inventory.*;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -51,6 +52,8 @@ public class DistributorController {
     private TableColumn back;
     @FXML
     private DatePicker date;
+    @FXML
+    private StackedBarChart dis_bar;
 
     private InventoryManagementService service=new InventoryManagementImpl();
 
@@ -62,14 +65,31 @@ public class DistributorController {
     @FXML
     public void initialize(){
         setTable();
+        setCell();
+        setBar();
     }
 
+    public void setBar(){
+        ArrayList<ProductSafeInventoryRateVo> l=service.getProductInventoryRate("001");
+        XYChart.Series series1=new XYChart.Series();
+        XYChart.Series series2=new XYChart.Series();
+        for(int i=0;i<l.size();i++){
+            series1.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getInventory()));
+            series2.getData().add(new XYChart.Data(l.get(i).getVariety(),l.get(i).getSafe_inventory()));
+        }
+        series1.setName("原材料库存量");
+        series2.setName("安全库存量");
+        dis_bar.getData().add(series1);
+        dis_bar.getData().add(series2);
+    }
     public void setTable(){
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 java.util.Date d= Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                distributor_tabledata.add(new ProductInventoryMonitorItemVo("cotton",200,280,"0.9","0.02"));
+                StaticFactory.setdistributor_product_date(format.format(d));
+                distributor_tabledata=service.getProductInventoryMonitorItem("001",format.format(d));
+//                distributor_tabledata.add(new ProductInventoryMonitorItemVo("cotton",200,280,"0.9","0.02"));
                 ObservableList<ProductInventoryMonitorItemVo> list= FXCollections.observableArrayList();
                 Iterator i=distributor_tabledata.iterator();
                 while(i.hasNext()){
@@ -124,10 +144,22 @@ public class DistributorController {
     public void draw() throws IOException {
         Parent root= FXMLLoader.load(getClass().getResource("../../../view/Stock/DistributorChart.fxml"));
         chartStage=new Stage();
-        Scene scene=new Scene(root,800,600);
+        Scene scene=new Scene(root,900,680);
         chartStage.setScene(scene);
         chartStage.initStyle(StageStyle.TRANSPARENT);
         chartStage.initModality(Modality.APPLICATION_MODAL);
         chartStage.show();
+    }
+
+    public ArrayList<InventoryChangeVo> getStockChart(){
+        return service.getProductInventoryChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+    }
+
+    public ArrayList<PunctualDeliveryRateChangeVo> getPunctualChart(){
+        return service.getProductPunctualDeliveryRateChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+    }
+
+    public ArrayList<RefundRateChangeVo> getBackChart(){
+        return service.getProductRefundRateChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
     }
 }
