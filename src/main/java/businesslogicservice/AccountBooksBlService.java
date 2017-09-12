@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import po.SubjectNumberPO;
+import po.SubjectsPO;
 import vo.accountBook.*;
 
 import java.util.ArrayList;
@@ -80,11 +81,11 @@ public interface AccountBooksBlService {
     public ArrayList<GatherTableOneClause> getGatherTableAllClauses(BookSearchVo searchVo,String factoryId);
 
     /**
-     * 获得全部科目某个期间的期末金额信息
+     * 获得全部科目某一个期间的期末金额信息
      * @param period    "2017-08"
      * @param factoryId
      * @return
      */
-    public HashMap<String, SubjectNumberVo> getOnePeriodAllSubjectNumber(String period,String factoryId);
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId);
 
 }

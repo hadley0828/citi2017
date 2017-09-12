@@ -11,8 +11,6 @@ import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by zhangzy on 2017/8/7 下午10:45
@@ -101,7 +99,9 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
     }
 
     @Override
-    public HashMap<String, SubjectNumberVo> getOnePeriodAllSubjectNumber(String period, String factoryId) {
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId) {
         return null;
     }
+
+
 }
