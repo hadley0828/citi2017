@@ -180,17 +180,17 @@ public class SupplyChainImpl implements SupplyChainService{
 		return 0.9-i*0.1;
 	}
 
-	public double getNetReceivables(String company,String time) {
-		return helper.Cal2(SC.GetVoucherAmountsWithCompany("1122",company,time));
+	public double getNetReceivables(String company_id,String company,String time) {
+		return helper.Cal2(SC.GetVoucherAmountsWithCompany(company_id,"1122",company,time));
 	}
 
-	public double getNetInventory(String product,String time) {
-		return helper.Cal2(SC.GetVoucherAmountsWithProduct("1401", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct("1402", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct("1403", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct("1405", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct("1408", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct("1605", product, time));
+	public double getNetInventory(String company_id,String product,String time) {
+		return helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1401", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1402", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1403", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1405", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1408", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1605", product, time));
 	}
 
 	public List<SupplyChainPO> GetSupplyChains() {
