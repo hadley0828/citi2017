@@ -7,20 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.RootSetting">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.RootSettingController">
    <children>
       <Label layoutX="452.0" layoutY="24.0" text="权限设置">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutY="67.0" mnemonicParsing="false" text="新增用户" />
-      <Button layoutX="80.0" layoutY="67.0" mnemonicParsing="false" text="移交权限" />
-      <TableView layoutY="97.0" prefHeight="506.0" prefWidth="1000.0">
+      <Button fx:id="addUserButton" layoutY="67.0" mnemonicParsing="false" onAction="#addUserClicked" text="新增用户" />
+      <Button fx:id="changeRoot" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" onAction="#changeRootClicked" text="移交权限" />
+      <TableView fx:id="userTable" layoutY="97.0" prefHeight="506.0" prefWidth="1000.0">
         <columns>
-          <TableColumn prefWidth="730.0" text="用户信息" />
-          <TableColumn minWidth="6.0" prefWidth="269.0" text="用户权限" />
+          <TableColumn fx:id="userInfo" prefWidth="730.0" text="用户信息" />
+          <TableColumn fx:id="userRoot" minWidth="6.0" prefWidth="269.0" text="用户权限" />
         </columns>
       </TableView>
    </children>
