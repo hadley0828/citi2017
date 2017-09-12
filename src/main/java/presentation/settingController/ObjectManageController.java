@@ -40,7 +40,7 @@ public class ObjectManageController {
     TableColumn<Object,String> state1;
 
     @FXML
-    TableView<Object> debitTabl;
+    TableView<Object> debitTable;
 
     @FXML
     TableColumn<Object,String> code2;

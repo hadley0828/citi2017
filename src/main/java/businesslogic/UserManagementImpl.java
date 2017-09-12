@@ -1,7 +1,9 @@
 package businesslogic;
 
 import businesslogicservice.UserManagementService;
-import util.ResultMessage;
+import data.UserManagementServiceImpl;
+import po.UserCompanyPO;
+import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
@@ -11,9 +13,16 @@ import vo.userManagement.UserVO;
  */
 public class UserManagementImpl implements UserManagementService{
 
+    private dataservice.UserManagementService dataservice;
+
+    public UserManagementImpl() {
+        dataservice = new UserManagementServiceImpl();
+    }
 
     @Override
     public ResultMessage insertOneCompanyUser(UserVO vo, String password) {
+        UserCompanyPO po = UserCompanyVO2PO(vo);
+        ResultMessage resultMessage1 = dataservice.insertOneCompanyUser(po);
         return null;
     }
 
@@ -60,5 +69,15 @@ public class UserManagementImpl implements UserManagementService{
     @Override
     public ResultMessage loginIn(String id, String password, String type) {
         return null;
+    }
+
+    private UserCompanyPO UserCompanyVO2PO(UserVO vo){
+        UserCompanyPO po = new UserCompanyPO();
+        po.setUserID(vo.getUserID());
+        po.setCompanyID(vo.getCompanyID());
+        po.setType(vo.getType());
+        po.setAccountID(vo.getAccountID());
+
+        return po;
     }
 }

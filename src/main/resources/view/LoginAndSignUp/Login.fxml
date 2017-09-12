@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.loginController.LoginController">
    <children>
       <TabPane prefHeight="591.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -13,13 +13,11 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="564.0" prefWidth="1004.0">
                      <children>
                         <Label layoutX="44.0" layoutY="62.0" text="公司账号" />
-                        <TextField layoutX="131.0" layoutY="58.0" />
+                        <TextField fx:id="CompID" layoutX="131.0" layoutY="58.0" />
                         <Label layoutX="67.0" layoutY="178.0" text="密码" />
-                        <PasswordField layoutX="123.0" layoutY="168.0" />
-                        <Button layoutX="76.0" layoutY="301.0" mnemonicParsing="false" text="登陆" />
-                        <Button layoutX="248.0" layoutY="309.0" mnemonicParsing="false" text="注册" />
-                        <RadioButton layoutX="46.0" layoutY="244.0" mnemonicParsing="false" text="企业管理员" />
-                        <RadioButton layoutX="215.0" layoutY="244.0" mnemonicParsing="false" text="普通用户" />
+                        <PasswordField fx:id="CompPassword" layoutX="123.0" layoutY="168.0" />
+                        <Button fx:id="compLoginButton" layoutX="76.0" layoutY="301.0" mnemonicParsing="false" onAction="#CompLoginClicked" text="登陆" />
+                        <Button fx:id="compSignUpButton" layoutX="248.0" layoutY="309.0" mnemonicParsing="false" onAction="#CompSignupClicked" text="注册" />
                      </children>
                   </AnchorPane>
             </content>
@@ -30,10 +28,10 @@
                      <children>
                         <Label layoutX="96.0" layoutY="76.0" text="账号" />
                         <Label layoutX="96.0" layoutY="207.0" text="密码" />
-                        <TextField layoutX="252.0" layoutY="71.0" />
-                        <PasswordField layoutX="252.0" layoutY="212.0" />
-                        <Button layoutX="106.0" layoutY="353.0" mnemonicParsing="false" text="登陆" />
-                        <Button layoutX="353.0" layoutY="353.0" mnemonicParsing="false" text="注册" />
+                        <TextField fx:id="FinanceID" layoutX="252.0" layoutY="71.0" />
+                        <PasswordField fx:id="FinancePassword" layoutX="252.0" layoutY="212.0" />
+                        <Button fx:id="FinanceLoginButton" layoutX="106.0" layoutY="353.0" mnemonicParsing="false" onAction="#FinanceLoginClicked" text="登陆" />
+                        <Button fx:id="FinanceSignupButton" layoutX="353.0" layoutY="353.0" mnemonicParsing="false" onAction="#FinanceSignupClicked" text="注册" />
                      </children>
                   </AnchorPane>
             </content>

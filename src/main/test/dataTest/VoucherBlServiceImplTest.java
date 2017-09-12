@@ -184,15 +184,16 @@ public class VoucherBlServiceImplTest {
     public void testGetAllSubjectBasics(){
         ArrayList<SubjectBasicVo> basicVos=voucherBlService.getAllSubjectBasics("001");
 
+
+        for(int count=0;count<basicVos.size();count++){
+            System.out.println(basicVos.get(count).toString());
+        }
+
         ArrayList<SubjectBasicVo> lowList=basicVos.get(SubjectBasicHelper.getIndexOfSubjectsList(basicVos,"2221")).getLowLevelList();
 
         for(int count=0;count<lowList.size();count++){
             System.out.println(lowList.get(count).toString());
         }
-//        ArrayList<SubjectBasicVo> lowlowList=lowList.get(SubjectBasicHelper.getIndexOfSubjectsList(lowList,"2221001")).getLowLevelList();
-//
-//        for(int count=0;count<lowlowList.size();count++){
-//            System.out.println(lowlowList.get(count).toString());
-//        }
+
     }
 }

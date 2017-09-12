@@ -3,7 +3,9 @@ package dataservice;
 import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
-import util.ResultMessage;
+import util.EnumPackage.ResultMessage;
+
+import java.util.ArrayList;
 
 /**
  * Created by loohaze on 2017/9/8 上午7:44
@@ -39,7 +41,7 @@ public interface UserManagementService {
      * @param id
      * @return
      */
-    public UserCompanyPO getOneCompanyUser(String id);
+    public UserCompanyPO getOneCompanyUser(String id,String company_id);
 
     /**
      * 获得一个金融机构用户PO
@@ -63,12 +65,6 @@ public interface UserManagementService {
      */
     public ResultMessage modifyOneAccountSet(AccountSetPO po);
 
-    /**
-     * 根据用户id获得账套信息
-     * @param userID
-     * @return
-     */
-    public AccountSetPO getAccountSetByUserID(String userID);
 
 
     /**
@@ -82,8 +78,29 @@ public interface UserManagementService {
      * 登录
      * @param id
      * @param password
-     * @param type
      * @return
      */
-    public ResultMessage loginIn(String id,String password,String type);
+    public ResultMessage loginIn(String id,String password);
+
+
+    /**
+     * 获得所有行业
+     * @return
+     */
+    public ArrayList<String> getAllSuperIndustry();
+
+    /**
+     *
+     * @param superIndustry
+     * @return
+     */
+    public ArrayList<String> getAllSubIndustry(String superIndustry);
+
+    /**
+     *
+     * @param id
+     * @param password
+     * @return
+     */
+    public ResultMessage insertPassword(String id,String password);
 }

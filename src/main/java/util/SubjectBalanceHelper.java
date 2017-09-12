@@ -14,10 +14,16 @@ public class SubjectBalanceHelper {
      */
     public static int getDirection(String subjectId){
         int firstNumber=Integer.valueOf(subjectId.charAt(0)-48);
-        if(firstNumber==1||firstNumber==4){
+        if(firstNumber==4){
             return 1;
         }else if(firstNumber==2||firstNumber==3){
             return -1;
+        }else if(firstNumber==1){
+            if(subjectId.equals("1407")||subjectId.equals("1602")||subjectId.equals("1622")||subjectId.equals("1702")){
+                return -1;
+            }else{
+                return 1;
+            }
         }else{
             int secondNumber=Integer.valueOf(subjectId.charAt(1)-48);
             if(secondNumber>3){
