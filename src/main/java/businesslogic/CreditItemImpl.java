@@ -13,20 +13,28 @@ import java.util.ArrayList;
  */
 public class CreditItemImpl implements CreditItemService {
     @Override
-    public void SaveCreditItem(ArrayList<CreditItemVo> list) {
+    public void SaveCreditItem(ArrayList<CreditItemVo> list, String company_id, String voucher_id) {
         ArrayList<CreditItemPO> result = new ArrayList<>();
         for(int i=0;i<list.size();i++){
             CreditItemVo vo = list.get(i);
             SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
             if(vo.getCompany_name().substring(0,4).equals("应收账款")){
                 try {
-                    result.add(new CreditItemPO("应收账款", String.valueOf(i+1),vo.getCompany_name(), sdf.parse(vo.getBorrow_time()),sdf.parse(vo.getDeadline()),vo.getMoney(),
-                                vo.getPolicy(),sdf.parse(vo.getDiscount_deadline()),vo.getRemark()));
+                    result.add(new CreditItemPO("应收账款", String.valueOf(i+1), voucher_id, vo.getCompany_name(), new java.sql.Date(sdf.parse(vo.getBorrow_time()).getTime()),new java.sql.Date(sdf.parse(vo.getDeadline()).getTime()),vo.getMoney(),
+                                vo.getPolicy(),new java.sql.Date(sdf.parse(vo.getDiscount_deadline()).getTime()),vo.getRemark()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                try {
+                    result.add(new CreditItemPO("应付账款", String.valueOf(i+1), voucher_id, vo.getCompany_name(), new java.sql.Date(sdf.parse(vo.getBorrow_time()).getTime()),new java.sql.Date(sdf.parse(vo.getDeadline()).getTime()),vo.getMoney(),
+                            vo.getPolicy(),new java.sql.Date(sdf.parse(vo.getDiscount_deadline()).getTime()),vo.getRemark()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         }
+
     }
 
     @Override

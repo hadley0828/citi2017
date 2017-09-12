@@ -31,11 +31,11 @@ public interface SupplyChainService {
 	public List<String> AcountReceivable(String company_id,String time);
 	
 	/**
-	 * 
+	 * @param company_id 进行融资的公司id
 	 * @param company 公司名称
 	 * @return 应收帐款净额
 	 */
-	public double getNetReceivables(String company,String time);
+	public double getNetReceivables(String company_id,String company,String time);
 	
 	/**
 	 * 
@@ -55,11 +55,11 @@ public interface SupplyChainService {
 	public List<String> InventoryTypes(String company_id,String time);
 	
 	/**
-	 * 
+	 * @param company_id 进行融资的公司id
 	 * @param product 产品/原材料
 	 * @return 库存净额
 	 */
-	public double getNetInventory(String product,String time);
+	public double getNetInventory(String company_id,String product,String time);
 	
 	
 	/**

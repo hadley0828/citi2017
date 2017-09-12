@@ -55,22 +55,22 @@ public interface SupplyChainDataService {
 	public double GetInitial(String id,String company_id);
 	
 	/**
-	 * 
+	 * @param company_id 进行融资的公司id
 	 * @param id     科目id
 	 * @param company 辅助信息部分的公司名称
 	 * @param time   yyyy-mm-dd
 	 * @return 该time及之前的所有符合的
 	 */
-	public List<VoucherAmountPO> GetVoucherAmountsWithCompany(String id,String company,String time);
+	public List<VoucherAmountPO> GetVoucherAmountsWithCompany(String company_id,String id,String company,String time);
 	
 	/**
-	 * 
+	 * @param company_id 进行融资的公司id
 	 * @param id     科目id
 	 * @param product 原材料或产品名称
 	 * @param time   yyyy-mm-dd
 	 * @return 该time及之前的所有符合的
 	 */
-	public List<VoucherAmountPO> GetVoucherAmountsWithProduct(String id,String product,String time);
+	public List<VoucherAmountPO> GetVoucherAmountsWithProduct(String company_id,String id,String product,String time);
 	
 	/**
 	 * 
