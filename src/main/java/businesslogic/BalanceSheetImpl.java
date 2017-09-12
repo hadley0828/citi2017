@@ -1,13 +1,21 @@
 package businesslogic;
 
+import businesslogicservice.AccountBooksBlService;
 import businesslogicservice.BalanceSheetService;
 import data.CourseMessageServiceImpl;
+import data.SubjectDataServiceImpl;
 import dataservice.CourseMessageService;
+import dataservice.SubjectDataService;
 import javafx.beans.property.IntegerProperty;
+import org.apache.poi.hssf.usermodel.*;
 import po.SubjectsPO;
 import po.VoucherAmountPO;
+import util.Voucher;
 import vo.BalanceSheetItemVo;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +26,9 @@ import java.util.Map;
  * 资产负债表
  */
 public class BalanceSheetImpl implements BalanceSheetService {
+
+    private static Map<String, ArrayList<BalanceSheetItemVo>> map;
+
     /**
      * 得到资产负债表数据
      * @param phase      时期
@@ -383,7 +394,398 @@ public class BalanceSheetImpl implements BalanceSheetService {
         total_liab_owners.add(new BalanceSheetItemVo("负债和所有者权益合计", 53, ending_balance8, beginning_balance8, law8));
 
         result.put("负债和所有者权益合计", total_liab_owners);
+        map = result;
         return result;
+    }
+
+    /**
+     * 按照指定路径导出资产负债表
+     * @param path 路径
+     */
+    public void CreatBalanceSheet(String path){
+        ArrayList<BalanceSheetItemVo> p1=map.get("流动资产");
+        ArrayList<BalanceSheetItemVo> p2=map.get("非流动资产");
+        ArrayList<BalanceSheetItemVo> p3=map.get("资产合计");
+        ArrayList<BalanceSheetItemVo> p4=map.get("流动负债");
+        ArrayList<BalanceSheetItemVo> p5=map.get("非流动负债");
+        ArrayList<BalanceSheetItemVo> p6=map.get("负债合计");
+        ArrayList<BalanceSheetItemVo> p7=map.get("所有者权益");
+        ArrayList<BalanceSheetItemVo> p8=map.get("负债和所有者权益合计");
+
+        ArrayList<BalanceSheetItemVo> list1 = p1;
+        list1.addAll(p2);
+        list1.addAll(p3);
+        ArrayList<BalanceSheetItemVo> list2 = p4;
+        list2.addAll(p5);
+        list2.addAll(p6);
+        list2.addAll(p7);
+        list2.addAll(p8);
+
+        // 创建一个Excel文件
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        // 创建一个工作表
+        HSSFSheet sheet = workbook.createSheet("资产负债表");
+        // 添加表头行
+        HSSFRow hssfRow = sheet.createRow(0);
+        // 设置单元格格式居中
+        HSSFCellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+
+        // 添加表头内容
+        HSSFCell headCell = hssfRow.createCell(0);
+        headCell.setCellValue("资产");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(1);
+        headCell.setCellValue("行次");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(2);
+        headCell.setCellValue("借方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(3);
+        headCell.setCellValue("贷方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(4);
+        headCell.setCellValue("负债与所有者权益");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(5);
+        headCell.setCellValue("行次");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(6);
+        headCell.setCellValue("借方余额");
+        headCell.setCellStyle(cellStyle);
+
+        headCell = hssfRow.createCell(7);
+        headCell.setCellValue("贷方余额");
+        headCell.setCellStyle(cellStyle);
+
+        // 添加数据内容
+        for (int i = 0; i < list1.size(); i++) {
+            hssfRow = sheet.createRow((int) i + 1);
+            BalanceSheetItemVo vo1 = list1.get(i);
+            BalanceSheetItemVo vo2 = list2.get(i);
+            boolean is_zero1 = false;
+            boolean is_zero2 = false;
+            if(vo1.getLine_No()==0){
+                is_zero1 = true;
+            }
+            if(vo2.getLine_No()==0){
+                is_zero2 = true;
+            }
+
+            // 创建单元格，并设置值
+            HSSFCell cell = hssfRow.createCell(0);
+            cell.setCellValue(vo1.getProperty_name());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(1);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getLine_No());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(2);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getEnding_balance());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(3);
+            if(is_zero1){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo1.getBeginning_balance());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(4);
+            cell.setCellValue(vo2.getProperty_name());
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(5);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getLine_No());
+            }
+            cell.setCellStyle(cellStyle);
+
+            cell = hssfRow.createCell(6);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getEnding_balance());
+            }
+
+            cell = hssfRow.createCell(7);
+            if(is_zero2){
+                cell.setCellValue("");
+            }else{
+                cell.setCellValue(vo2.getBeginning_balance());
+            }
+        }
+
+        try {
+            OutputStream stream = new FileOutputStream(path);
+            workbook.write(stream);
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 得到上一期期末的总资产、本期期末总资产、总负债、流动资产、流动负债、上一期期末应收帐款、本期期末应收帐款、上期期末存货、本期期末存货、本期所有者权益、上一期所有者权益
+     * @param company_id 公司id
+     * @param phase 时间
+     * @return
+     */
+    public double[] getValue(String company_id, String phase){
+        double[] result = new double[11];
+        result[0] = getAssetByTime(company_id, getLast(phase));
+        result[1] = getAssetByTime(company_id, phase);
+
+        CourseMessageService service = new CourseMessageServiceImpl();
+        ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
+
+        //1.1货币资金=其他货币资金+库存现金+银行存款
+        double ending_balance1_1 = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
+        //1.2短期投资
+        double ending_balance1_2 = getMoneyByCourseId(polist1, "1101001", true) + getMoneyByCourseId(polist1, "1101002", true) + getMoneyByCourseId(polist1, "1101003", true);
+        //1.3应收票据
+        double ending_balance1_3 = getMoneyByCourseId(polist1, "1121", true);
+        //1.4应收账款=应收账款+预收账款（*余额在借方时）
+        double ending_balance1_4 = getMoneyByCourseId(polist1, "1122", true) + getMoneyByCourseId(polist1, "2203", true);
+        //1.5预付账款=预付账款+应付账款（*余额在借方时）
+        double ending_balance1_5 = getMoneyByCourseId(polist1, "1123", true) + getMoneyByCourseId(polist1, "2202", true);
+        //1.6应收股利
+        double ending_balance1_6 = getMoneyByCourseId(polist1, "1131", true);
+        //1.7应收利息
+        double ending_balance1_7 = getMoneyByCourseId(polist1, "1132", true);
+        //1.8其他应收款=其他应收款+其他应付款（*余额在借方时）
+        double ending_balance1_8 = getMoneyByCourseId(polist1, "1121", true) + getMoneyByCourseId(polist1, "2241", true);
+        //1.9存货=在途物资+材料采购+原材料+材料成本差异+库存商品-商品进销差价+委托加工物资+周转材料+消耗性生物资产+生产成本+制造费用+工程施工+机械作业
+        double ending_balance1_9 = getMoneyByCourseId(polist1, "1402", true) + getMoneyByCourseId(polist1, "1401", true) + getMoneyByCourseId(polist1, "1403", true)
+                + getMoneyByCourseId(polist1, "1404", true) + getMoneyByCourseId(polist1, "1405", true) - getMoneyByCourseId(polist1, "1407", true)
+                + getMoneyByCourseId(polist1, "1408", true) + getMoneyByCourseId(polist1, "1411", true) + getMoneyByCourseId(polist1, "1421", true)
+                + getMoneyByCourseId(polist1, "4001", true) + getMoneyByCourseId(polist1, "4101", true) + getMoneyByCourseId(polist1, "4401", true)
+                + getMoneyByCourseId(polist1, "4403", true);
+        //1.10其他流动资产
+        double ending_balance1_10 = getMoneyByCourseId(polist1, "6000", true);
+        //1.11流动资产合计=货币资金+短期投资+应收票据+应收账款+预付账款+应收股利+应收利息+其他应收款+存货+其他流动资产
+        double ending_balance1_11 = ending_balance1_1 + ending_balance1_2 + ending_balance1_3 + ending_balance1_4 + ending_balance1_5 + ending_balance1_6 + ending_balance1_7 + ending_balance1_8 + ending_balance1_9 + ending_balance1_10;
+
+        //2.1长期债券投资
+        double ending_balance2_1 = getMoneyByCourseId(polist1, "1501", true);
+        //2.2长期股权投资
+        double ending_balance2_2 = getMoneyByCourseId(polist1, "1511", true);
+        //2.3固定资产原价=固定资产
+        double ending_balance2_3 = getMoneyByCourseId(polist1, "1601", true);
+        //2.4减：累计折旧（数值=累计折旧）
+        double ending_balance2_4 = getMoneyByCourseId(polist1, "1602", true);
+        //2.5固定资产账面价值=固定资产原价-累计折旧
+        double ending_balance2_5 = ending_balance2_3 - ending_balance2_4;
+        //2.6在建工程
+        double ending_balance2_6 = getMoneyByCourseId(polist1, "1604", true);
+        //2.7工程物资
+        double ending_balance2_7 = getMoneyByCourseId(polist1, "1605", true);
+        //2.8固定资产清理
+        double ending_balance2_8 = getMoneyByCourseId(polist1, "1606", true);
+        //2.9生产性生物资产=生产性生物资产累计折旧+生产性生物资产
+        double ending_balance2_9 = getMoneyByCourseId(polist1, "1622", true) + getMoneyByCourseId(polist1, "1621", true);
+        //2.10无形资产=无形资产-累计摊销
+        double ending_balance2_10 = getMoneyByCourseId(polist1, "1701", true) - getMoneyByCourseId(polist1, "1702", true);
+        //2.11开发支出=研发支出
+        double ending_balance2_11 = getMoneyByCourseId(polist1, "4301", true);
+        //2.12长期待摊费用
+        double ending_balance2_12 = getMoneyByCourseId(polist1, "1801", true);
+        //2.13其他非流动资产
+        double ending_balance2_13 = getMoneyByCourseId(polist1, "6001", true);
+        //2.14非流动资产合计=长期股权投资+长期债券投资+固定资产账面价值+工程物资+在建工程+固定资产清理+生产性生物资产+开发支出+无形资产+长期待摊费用+其他非流动资产
+        double ending_balance2_14 = ending_balance2_1 + ending_balance2_2 + ending_balance2_3 + ending_balance2_4 + ending_balance2_5 + ending_balance2_6 + ending_balance2_7 + ending_balance2_8 + ending_balance2_9 + ending_balance2_10 + ending_balance2_11 + ending_balance2_12 + ending_balance2_13;
+        //3资产合计= 非流动资产合计+流动资产合计
+        double ending_balance3 = ending_balance1_11 + ending_balance2_14;
+
+        //4.1短期借款
+        double ending_balance4_1 = getMoneyByCourseId(polist1, "2001", false);
+        //4.2应付票据
+        double ending_balance4_2 = getMoneyByCourseId(polist1, "2201", false);
+        //4.3应付账款=应付账款+预付账款（*余额在贷方时）
+        double ending_balance4_3 = getMoneyByCourseId(polist1, "2202", false) + getMoneyByCourseId(polist1, "1123", false);
+        //4.4预收账款=预收账款+应收账款（*余额在贷方时）
+        double ending_balance4_4 = getMoneyByCourseId(polist1, "2203", false) + getMoneyByCourseId(polist1, "1122", false);
+        //4.5应付职工薪酬
+        double ending_balance4_5 = getMoneyByCourseId(polist1, "2211", false);
+        //4.6应交税费
+        double ending_balance4_6 = getTotalTax(polist1,false);
+        //4.7应付利息
+        double ending_balance4_7 = getMoneyByCourseId(polist1, "2231", false);
+        //4.8应付利润
+        double ending_balance4_8 = getMoneyByCourseId(polist1, "2232", false);
+        //4.9其他应付款=其他应付款+其他应收款（*余额在贷方时）
+        double ending_balance4_9 = getMoneyByCourseId(polist1, "2241", false) + getMoneyByCourseId(polist1, "1221", false);
+        //4.10其他流动负债
+        double ending_balance4_10 = getMoneyByCourseId(polist1,"8000", false);
+        //4.11流动负债合计=短期借款+应付票据+应付账款+预收账款+应付职工薪酬+应交税费+应付利息+其他应付款+应付利润+其他流动负债
+        double ending_balance4_11 = ending_balance4_1+ending_balance4_2+ending_balance4_3+ending_balance4_4+ending_balance4_5+ending_balance4_6+ending_balance4_7+ending_balance4_8+ending_balance4_9+ending_balance4_10;
+
+        //5.1长期借款
+        double ending_balance5_1 = getMoneyByCourseId(polist1, "2501", false);
+        //5.2长期应付款
+        double ending_balance5_2 = getMoneyByCourseId(polist1, "2701", false);
+        //5.3递延收益
+        double ending_balance5_3 = getMoneyByCourseId(polist1, "2401", false);
+        //5.4其他非流动负债
+        double ending_balance5_4 = getMoneyByCourseId(polist1, "8001", false);
+        //5.5非流动负债合计
+        double ending_balance5_5 = ending_balance5_1+ending_balance5_2+ending_balance5_3+ending_balance5_4;
+
+        //6负债合计=流动负债合计+非流动负债合计
+        double ending_balance6 = ending_balance4_11+ending_balance5_5;
+
+        result[2] = ending_balance6;
+        result[3] = ending_balance1_11;
+        result[4] = ending_balance4_11;
+        result[5] = getReceivablesByTime(company_id, getLast(phase));
+        result[6] = getReceivablesByTime(company_id, phase);
+        result[7] = getStockByTime(company_id, getLast(phase));
+        result[8] = getStockByTime(company_id, phase);
+        result[9] = getOwnershipByTime(company_id, phase);
+        result[10] = getOwnershipByTime(company_id, getLast(phase));
+        return result;
+    }
+
+    /**
+     * 根据时间得到得到期末总资产
+     * @param company_id 公司id
+     * @param phase 时间
+     * @return
+     */
+    private double getAssetByTime(String company_id, String phase){
+        AccountBooksBlService service = new AccountBooksBlImpl();
+        ArrayList<SubjectsPO> polist1 = service.getAllSubjectPeriodEndPrice(phase, company_id);
+
+        //1.1货币资金=其他货币资金+库存现金+银行存款
+        double ending_balance1_1 = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
+        //1.2短期投资
+        double ending_balance1_2 = getMoneyByCourseId(polist1, "1101001", true) + getMoneyByCourseId(polist1, "1101002", true) + getMoneyByCourseId(polist1, "1101003", true);
+        //1.3应收票据
+        double ending_balance1_3 = getMoneyByCourseId(polist1, "1121", true);
+        //1.4应收账款=应收账款+预收账款（*余额在借方时）
+        double ending_balance1_4 = getMoneyByCourseId(polist1, "1122", true) + getMoneyByCourseId(polist1, "2203", true);
+        //1.5预付账款=预付账款+应付账款（*余额在借方时）
+        double ending_balance1_5 = getMoneyByCourseId(polist1, "1123", true) + getMoneyByCourseId(polist1, "2202", true);
+        //1.6应收股利
+        double ending_balance1_6 = getMoneyByCourseId(polist1, "1131", true);
+        //1.7应收利息
+        double ending_balance1_7 = getMoneyByCourseId(polist1, "1132", true);
+        //1.8其他应收款=其他应收款+其他应付款（*余额在借方时）
+        double ending_balance1_8 = getMoneyByCourseId(polist1, "1121", true) + getMoneyByCourseId(polist1, "2241", true);
+        //1.9存货=在途物资+材料采购+原材料+材料成本差异+库存商品-商品进销差价+委托加工物资+周转材料+消耗性生物资产+生产成本+制造费用+工程施工+机械作业
+        double ending_balance1_9 = getMoneyByCourseId(polist1, "1402", true) + getMoneyByCourseId(polist1, "1401", true) + getMoneyByCourseId(polist1, "1403", true)
+                + getMoneyByCourseId(polist1, "1404", true) + getMoneyByCourseId(polist1, "1405", true) - getMoneyByCourseId(polist1, "1407", true)
+                + getMoneyByCourseId(polist1, "1408", true) + getMoneyByCourseId(polist1, "1411", true) + getMoneyByCourseId(polist1, "1421", true)
+                + getMoneyByCourseId(polist1, "4001", true) + getMoneyByCourseId(polist1, "4101", true) + getMoneyByCourseId(polist1, "4401", true)
+                + getMoneyByCourseId(polist1, "4403", true);
+        //1.10其他流动资产
+        double ending_balance1_10 = getMoneyByCourseId(polist1, "6000", true);
+        //1.11流动资产合计=货币资金+短期投资+应收票据+应收账款+预付账款+应收股利+应收利息+其他应收款+存货+其他流动资产
+        double ending_balance1_11 = ending_balance1_1 + ending_balance1_2 + ending_balance1_3 + ending_balance1_4 + ending_balance1_5 + ending_balance1_6 + ending_balance1_7 + ending_balance1_8 + ending_balance1_9 + ending_balance1_10;
+
+        //2.1长期债券投资
+        double ending_balance2_1 = getMoneyByCourseId(polist1, "1501", true);
+        //2.2长期股权投资
+        double ending_balance2_2 = getMoneyByCourseId(polist1, "1511", true);
+        //2.3固定资产原价=固定资产
+        double ending_balance2_3 = getMoneyByCourseId(polist1, "1601", true);
+        //2.4减：累计折旧（数值=累计折旧）
+        double ending_balance2_4 = getMoneyByCourseId(polist1, "1602", true);
+        //2.5固定资产账面价值=固定资产原价-累计折旧
+        double ending_balance2_5 = ending_balance2_3 - ending_balance2_4;
+        //2.6在建工程
+        double ending_balance2_6 = getMoneyByCourseId(polist1, "1604", true);
+        //2.7工程物资
+        double ending_balance2_7 = getMoneyByCourseId(polist1, "1605", true);
+        //2.8固定资产清理
+        double ending_balance2_8 = getMoneyByCourseId(polist1, "1606", true);
+        //2.9生产性生物资产=生产性生物资产累计折旧+生产性生物资产
+        double ending_balance2_9 = getMoneyByCourseId(polist1, "1622", true) + getMoneyByCourseId(polist1, "1621", true);
+        //2.10无形资产=无形资产-累计摊销
+        double ending_balance2_10 = getMoneyByCourseId(polist1, "1701", true) - getMoneyByCourseId(polist1, "1702", true);
+        //2.11开发支出=研发支出
+        double ending_balance2_11 = getMoneyByCourseId(polist1, "4301", true);
+        //2.12长期待摊费用
+        double ending_balance2_12 = getMoneyByCourseId(polist1, "1801", true);
+        //2.13其他非流动资产
+        double ending_balance2_13 = getMoneyByCourseId(polist1, "6001", true);
+        //2.14非流动资产合计=长期股权投资+长期债券投资+固定资产账面价值+工程物资+在建工程+固定资产清理+生产性生物资产+开发支出+无形资产+长期待摊费用+其他非流动资产
+        double ending_balance2_14 = ending_balance2_1 + ending_balance2_2 + ending_balance2_3 + ending_balance2_4 + ending_balance2_5 + ending_balance2_6 + ending_balance2_7 + ending_balance2_8 + ending_balance2_9 + ending_balance2_10 + ending_balance2_11 + ending_balance2_12 + ending_balance2_13;
+        //3资产合计= 非流动资产合计+流动资产合计
+        double ending_balance3 = ending_balance1_11 + ending_balance2_14;
+        return ending_balance3;
+    }
+
+    /**
+     * 根据时间得到得到期末应收账款
+     * @param company_id 公司id
+     * @param phase 时间
+     * @return
+     */
+    private double getReceivablesByTime(String company_id, String phase){
+        AccountBooksBlService service = new AccountBooksBlImpl();
+        ArrayList<SubjectsPO> polist1 = service.getAllSubjectPeriodEndPrice(phase, company_id);
+        //1.4应收账款=应收账款+预收账款（*余额在借方时）
+        double ending_balance1_4 = getMoneyByCourseId(polist1, "1122", true) + getMoneyByCourseId(polist1, "2203", true);
+        return ending_balance1_4;
+    }
+
+    /**
+     * 根据时间得到得到期末存货
+     * @param company_id 公司id
+     * @param phase 时间
+     * @return
+     */
+    private double getStockByTime(String company_id, String phase){
+        AccountBooksBlService service = new AccountBooksBlImpl();
+        ArrayList<SubjectsPO> polist1 = service.getAllSubjectPeriodEndPrice(phase, company_id);
+        double ending_balance1_9 = getMoneyByCourseId(polist1, "1402", true) + getMoneyByCourseId(polist1, "1401", true) + getMoneyByCourseId(polist1, "1403", true)
+                + getMoneyByCourseId(polist1, "1404", true) + getMoneyByCourseId(polist1, "1405", true) - getMoneyByCourseId(polist1, "1407", true)
+                + getMoneyByCourseId(polist1, "1408", true) + getMoneyByCourseId(polist1, "1411", true) + getMoneyByCourseId(polist1, "1421", true)
+                + getMoneyByCourseId(polist1, "4001", true) + getMoneyByCourseId(polist1, "4101", true) + getMoneyByCourseId(polist1, "4401", true)
+                + getMoneyByCourseId(polist1, "4403", true);
+        return ending_balance1_9;
+    }
+
+    /**
+     * 根据时间得到得到期末所有者权益
+     * @param company_id 公司id
+     * @param phase 时间
+     * @return
+     */
+    private double getOwnershipByTime(String company_id, String phase){
+        AccountBooksBlService service = new AccountBooksBlImpl();
+        ArrayList<SubjectsPO> polist1 = service.getAllSubjectPeriodEndPrice(phase, company_id);
+        //7.1实收资本（或股本）
+        double ending_balance7_1 = getMoneyByCourseId(polist1, "3001", false);
+        //7.2资本公积
+        double ending_balance7_2 = getMoneyByCourseId(polist1, "3002", false);
+        //7.3盈余公积
+        double ending_balance7_3 = getMoneyByCourseId(polist1, "3101001", false)+getMoneyByCourseId(polist1, "3101002", false)+getMoneyByCourseId(polist1, "3101002", false);
+        //7.4未分配利润=利润分配+本年利润
+        double ending_balance7_4 = getMoneyByCourseId(polist1, "3103", false)+getTotalProfit(polist1,false);
+        //7.5所有者权益（或股东权益）合计=实收资本+资本公积+盈余公积+未分配利润
+        double ending_balance7_5 = ending_balance7_1+ending_balance7_2+ending_balance7_3+ending_balance7_4;
+        return ending_balance7_5;
     }
 
     /**
@@ -543,5 +945,23 @@ public class BalanceSheetImpl implements BalanceSheetService {
             result = result + getMoneyByCourseId(polist, idlist[i], IsDebit);
         }
         return result;
+    }
+
+    /**
+     * 得到上一期
+     * @param phase
+     * @return
+     */
+    private String getLast(String phase){
+        String[] time = phase.split("-");
+        int year = Integer.valueOf(time[0]);
+        int month = Integer.valueOf(time[1]);
+        if(month==1){
+            year = year-1;
+            month = 12;
+        }else {
+            month--;
+        }
+        return year+"-"+month;
     }
 }

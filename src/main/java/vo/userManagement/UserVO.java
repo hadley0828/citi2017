@@ -1,7 +1,5 @@
 package vo.userManagement;
 
-import java.util.ArrayList;
-
 /**
  * Created by loohaze on 2017/9/11 下午6:53
  */
@@ -9,9 +7,44 @@ public class UserVO {
 
     private String userID;
 
-    private ArrayList<AccountSetVO> setlist;
+    private String accountID;
 
-    private int accountNum;
+    private String type;
 
+    private String companyID;
 
+    public UserVO() {
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
+    }
 }

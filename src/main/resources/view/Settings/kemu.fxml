@@ -14,21 +14,84 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TableView layoutX="-2.0" layoutY="88.0" prefHeight="512.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="88.0">
-        <columns>
-          <TableColumn prefWidth="140.0" text="科目编码" />
-          <TableColumn prefWidth="143.0" text="科目名称" />
-            <TableColumn prefWidth="173.0" text="助记码" />
-            <TableColumn prefWidth="163.0" text="余额方向" />
-            <TableColumn prefWidth="157.0" text="状态" />
-            <TableColumn prefWidth="107.0" text="属性" />
-            <TableColumn prefWidth="113.0" text="操作" />
-        </columns>
-      </TableView>
-      <Button layoutY="58.0" mnemonicParsing="false" text="资产" />
-      <Button layoutX="50.0" layoutY="58.0" mnemonicParsing="false" text="负债" />
-      <Button layoutX="100.0" layoutY="58.0" mnemonicParsing="false" text="净资产" />
-      <Button layoutX="165.0" layoutY="58.0" mnemonicParsing="false" text="收入" />
-      <Button layoutX="215.0" layoutY="58.0" mnemonicParsing="false" text="费用" />
+      <TabPane layoutY="53.0" prefHeight="547.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="资产">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="513.0" prefWidth="1000.0">
+                          <columns>
+                            <TableColumn prefWidth="303.0" text="科目编码" />
+                            <TableColumn prefWidth="295.0" text="科目名称" />
+                              <TableColumn prefWidth="178.0" text="余额方向" />
+                              <TableColumn prefWidth="222.0" text="状态" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="负债">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="513.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="303.0" text="科目编码" />
+                              <TableColumn prefWidth="295.0" text="科目名称" />
+                              <TableColumn prefWidth="178.0" text="余额方向" />
+                              <TableColumn prefWidth="222.0" text="状态" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="净资产">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="513.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="303.0" text="科目编码" />
+                              <TableColumn prefWidth="295.0" text="科目名称" />
+                              <TableColumn prefWidth="178.0" text="余额方向" />
+                              <TableColumn prefWidth="222.0" text="状态" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="收入">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="513.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="303.0" text="科目编码" />
+                              <TableColumn prefWidth="295.0" text="科目名称" />
+                              <TableColumn prefWidth="178.0" text="余额方向" />
+                              <TableColumn prefWidth="222.0" text="状态" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="费用">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="513.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="303.0" text="科目编码" />
+                              <TableColumn prefWidth="295.0" text="科目名称" />
+                              <TableColumn prefWidth="178.0" text="余额方向" />
+                              <TableColumn prefWidth="222.0" text="状态" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

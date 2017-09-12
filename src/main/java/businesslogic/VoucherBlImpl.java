@@ -10,7 +10,7 @@ import po.*;
 import util.*;
 import vo.voucher.*;
 
-import javax.security.auth.Subject;
+
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -657,11 +657,6 @@ public class VoucherBlImpl implements VoucherBlService {
 
         ArrayList<String> allSubjectIdList=subjectDataService.getAllExistedSubjectId(factoryId);
 
-        System.out.println(allSubjectIdList.size());
-        for(int count=0;count<allSubjectIdList.size();count++){
-            System.out.println(allSubjectIdList.get(count));
-        }
-
         HashMap<String,String> idToNameMap=subjectDataService.getSubjectIdToNameMap();
 
         for(int count=0;count<allSubjectIdList.size();count++){
@@ -682,46 +677,58 @@ public class VoucherBlImpl implements VoucherBlService {
 
             if(oneSubjectId.length()==7){
                 String highLevel=oneSubjectId.substring(0,4);
-                if(resultList.contains(highLevel)){
+                if(SubjectBasicHelper.getIndexOfSubjectsList(resultList,highLevel)!=-1){
                     SubjectBasicVo basicVo=new SubjectBasicVo();
                     ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
                     basicVo.setSubjectId(oneSubjectId);
                     basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
                     basicVo.setLowLevelList(lowList);
 
-                    resultList.get(resultList.indexOf(highLevel)).getLowLevelList().add(basicVo);
-
-                }
-
-            }
-        }
-
-        for(int count=0;count<allSubjectIdList.size();count++){
-            String oneSubjectId=allSubjectIdList.get(count);
-
-            if(oneSubjectId.length()==9){
-                String firstLevel=oneSubjectId.substring(0,4);  //1001
-                String secondLevel=oneSubjectId.substring(0,7); //1001001
-
-                if(resultList.contains(firstLevel)){
-                    if(resultList.get(resultList.indexOf(firstLevel)).getLowLevelList().contains(secondLevel)){
-                        SubjectBasicVo lowSubject=resultList.get(resultList.indexOf(firstLevel));
-
-                        SubjectBasicVo basicVo=new SubjectBasicVo();
-                        ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
-                        basicVo.setSubjectId(oneSubjectId);
-                        basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
-                        basicVo.setLowLevelList(lowList);
-
-                        lowSubject.getLowLevelList().add(basicVo);
-
-
+                    if(oneSubjectId.equals("2221001")){
+                        System.out.println("success");
                     }
+
+                    resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,highLevel)).getLowLevelList().add(basicVo);
+
                 }
 
             }
-
         }
+
+//        for(int count=0;count<allSubjectIdList.size();count++){
+//            String oneSubjectId=allSubjectIdList.get(count);
+//
+//            //表示当前科目是第三级别的科目
+//            if(oneSubjectId.length()==9){
+//                String firstLevel=oneSubjectId.substring(0,4);  //1001
+//                String secondLevel=oneSubjectId.substring(0,7); //1001001
+//
+//                System.out.println(firstLevel+" "+secondLevel);
+//
+//                if(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)!=-1){
+//                    ArrayList<SubjectBasicVo> lowList=resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)).getLowLevelList();
+//                    if(SubjectBasicHelper.getIndexOfSubjectsList(lowList,secondLevel)!=-1){
+//                        SubjectBasicVo basicVo=new SubjectBasicVo();
+//                        ArrayList<SubjectBasicVo> newList=new ArrayList<>();
+//                        basicVo.setSubjectId(oneSubjectId);
+//                        basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
+//                        basicVo.setLowLevelList(lowList);
+//
+//
+//                        lowList.get(SubjectBasicHelper.getIndexOfSubjectsList(lowList,secondLevel)).getLowLevelList().add(basicVo);
+//
+//                    }
+//
+//
+//
+//                }
+//
+//
+//            }
+//
+//        }
+
+
 
         return resultList;
     }

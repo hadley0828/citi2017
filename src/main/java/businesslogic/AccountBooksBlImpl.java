@@ -11,8 +11,6 @@ import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * Created by zhangzy on 2017/8/7 下午10:45
@@ -68,6 +66,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         //如果需要得到一个期间的期初的金额 先把第一天到最后一个搜索月的信息取出来 然后进行遍历筛选
 
+        ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
+        //betweenMonthList
 
 
 
@@ -97,4 +97,11 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
     public ArrayList<GatherTableOneClause> getGatherTableAllClauses(BookSearchVo searchVo, String factoryId) {
         return null;
     }
+
+    @Override
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId) {
+        return null;
+    }
+
+
 }

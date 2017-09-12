@@ -3,6 +3,7 @@ package dataservice;
 import java.util.List;
 
 import po.SupplyChainPO;
+import po.VoucherAmountPO;
 
 /**
  * 
@@ -37,4 +38,30 @@ public interface SupplyChainDataService {
 	 * @return
 	 */
 	public List<SupplyChainPO>  GetSupplyChains();
+	
+	/**
+	 * 
+	 * @param id 科目id
+	 * @return 获取期初，没有则返回0
+	 */
+	public double GetInitial(String id);
+	
+	/**
+	 * 
+	 * @param id     科目id
+	 * @param company 辅助信息部分的公司名称
+	 * @param time   yyyy-mm-dd
+	 * @return 该time及之前的所有符合的
+	 */
+	public List<VoucherAmountPO> GetVoucherAmountsWithCompany(String id,String company,String time);
+	
+	/**
+	 * 
+	 * @param id     科目id
+	 * @param product 原材料或产品名称
+	 * @param time   yyyy-mm-dd
+	 * @return 该time及之前的所有符合的
+	 */
+	public List<VoucherAmountPO> GetVoucherAmountsWithProduct(String id,String product,String time);
+	
 }
