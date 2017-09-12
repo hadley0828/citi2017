@@ -200,6 +200,17 @@ public class DateConvert {
         return dateList.get(0).substring(0,7);
     }
 
+    /**
+     * 获得一个日期的列表中的最晚的月数
+     * @param dateList
+     * @return
+     */
+    public static String getLastMonth(ArrayList<String> dateList){
+        Collections.sort(dateList);
+
+        return dateList.get(dateList.size()-1).substring(0,7);
+    }
+
 
     public static String addNMonth(String month,int n){
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -293,15 +304,17 @@ public class DateConvert {
 //        System.out.println(addOneMonth("2016-10"));
 //        System.out.println(addNMonth("2016-10",8));
 
-//        ArrayList<String> dateList=new ArrayList<>();
-//        dateList.add("2016-10-01");
-//        dateList.add("2017-07-03");
-//        dateList.add("2016-12-05");
-//        dateList.add("2015-10-08");
-//        dateList.add("2013-06-07");
-//        System.out.println(getFirstMonth(dateList));
+        ArrayList<String> dateList=new ArrayList<>();
+        dateList.add("2016-10-01");
+        dateList.add("2017-07-03");
+        dateList.add("2016-12-05");
+        dateList.add("2015-10-08");
+        dateList.add("2013-06-07");
+        System.out.println(getFirstMonth(dateList));
+        System.out.println(getLastMonth(dateList));
 
-        System.out.println(minusOneMonth("2017-07"));
-        System.out.println(minusNMonth("2018-05",10));
+//        System.out.println(minusOneMonth("2017-07"));
+//        System.out.println(minusNMonth("2018-05",10));
+
     }
 }

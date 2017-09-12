@@ -67,10 +67,30 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         //如果需要得到一个期间的期初的金额 先把第一天到最后一个搜索月的信息取出来 然后进行遍历筛选
 
+        //需要对subjectsPOArrayList按照时间来进行排序
         ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
-        //betweenMonthList
+        //处理betweenMonthList
+
+        //用来先把结果进行分类
         HashMap<String,ArrayList<DetailAccountAmountVo>> monthToDetailMap=new HashMap<>();
 
+        for(int count=betweenMonthList.indexOf(startMonth);count<=betweenMonthList.indexOf(endMonth);count++){
+            String month=betweenMonthList.get(count);
+            ArrayList<DetailAccountAmountVo> newList=new ArrayList<>();
+            monthToDetailMap.put(month,newList);
+        }
+
+        //首先得到期初的金额
+        DetailAccountAmountVo beginNumber=new DetailAccountAmountVo();
+        beginNumber.setDate(startMonth+"-01");
+        beginNumber.setSubject(subjectId);
+        beginNumber.setAbstracts("期初余额");
+        beginNumber.setDebitAmount(0.0);
+        beginNumber.setCreditAmount(0.0);
+        beginNumber.setDirection("平");
+        beginNumber.setBalance(0.0);
+
+        
 
 
 
