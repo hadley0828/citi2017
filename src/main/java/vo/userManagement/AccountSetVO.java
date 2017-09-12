@@ -15,18 +15,21 @@ public class AccountSetVO {
 
     private String industry;
 
+    private String chainPlace;
+
     private String date;
 
     private String creditCode;
 
     private String contact;
 
-    public AccountSetVO(String account_id, String company_id, String company_name, String location, String industry, String date, String creditCode, String contact) {
+    public AccountSetVO(String account_id, String company_id, String company_name, String location, String industry, String chainPlace, String date, String creditCode, String contact) {
         this.account_id = account_id;
         this.company_id = company_id;
         this.company_name = company_name;
         this.location = location;
         this.industry = industry;
+        this.chainPlace = chainPlace;
         this.date = date;
         this.creditCode = creditCode;
         this.contact = contact;
@@ -98,4 +101,13 @@ public class AccountSetVO {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    public String getChainPlace() {
+        return chainPlace;
+    }
+
+    public void setChainPlace(String chainPlace) {
+        this.chainPlace = chainPlace;
+    }
 }
+

@@ -132,6 +132,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         params.add(po.getCompanyName());
         params.add(po.getLocation());
         params.add(po.getIndustry());
+        params.add(po.getChainPlace());
         params.add(po.getDate());
         params.add(po.getCreditCode());
         params.add(po.getContact());
@@ -186,6 +187,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         po.setCompanyName(map.get("company_name").toString());
         po.setLocation(map.get("location").toString());
         po.setIndustry(map.get("industry").toString());
+        po.setChainPlace(map.get("chain_place").toString());
         po.setDate(Date.valueOf(map.get("date").toString()));
         po.setCreditCode(map.get("credit_code").toString());
         po.setContact(map.get("contact").toString());

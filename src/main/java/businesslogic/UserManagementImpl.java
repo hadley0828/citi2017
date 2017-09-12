@@ -19,10 +19,19 @@ public class UserManagementImpl implements UserManagementService{
         dataservice = new UserManagementServiceImpl();
     }
 
+
+    private UserCompanyPO UserCompanyVO2PO(UserVO vo){
+        UserCompanyPO po = new UserCompanyPO();
+        po.setUserID(vo.getUserID());
+        po.setCompanyID(vo.getCompanyID());
+        po.setType(vo.getType());
+        po.setAccountID(vo.getAccountID());
+
+        return po;
+    }
+
     @Override
     public ResultMessage insertOneCompanyUser(UserVO vo, String password) {
-        UserCompanyPO po = UserCompanyVO2PO(vo);
-        ResultMessage resultMessage1 = dataservice.insertOneCompanyUser(po);
         return null;
     }
 
@@ -67,17 +76,7 @@ public class UserManagementImpl implements UserManagementService{
     }
 
     @Override
-    public ResultMessage loginIn(String id, String password, String type) {
+    public ResultMessage loginIn(String id, String password) {
         return null;
-    }
-
-    private UserCompanyPO UserCompanyVO2PO(UserVO vo){
-        UserCompanyPO po = new UserCompanyPO();
-        po.setUserID(vo.getUserID());
-        po.setCompanyID(vo.getCompanyID());
-        po.setType(vo.getType());
-        po.setAccountID(vo.getAccountID());
-
-        return po;
     }
 }

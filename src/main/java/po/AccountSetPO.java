@@ -17,6 +17,8 @@ public class AccountSetPO {
 
     private String industry;
 
+    private String chainPlace;
+
     private Date date;
 
     private String creditCode;
@@ -24,6 +26,14 @@ public class AccountSetPO {
     private String contact;
 
     public AccountSetPO() {
+    }
+
+    public String getChainPlace() {
+        return chainPlace;
+    }
+
+    public void setChainPlace(String chainPlace) {
+        this.chainPlace = chainPlace;
     }
 
     public String getAccountID() {
