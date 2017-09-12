@@ -25,7 +25,6 @@ public class CashFlowImpl implements CashFlowTableService{
 	}
 
 	public CashFlowVo CashFlowTable_month(String time,String id) {
-		// TODO Auto-generated method stub
 		String last=helper.lastTime(time);//上一期		
 		Map<String,double[]> tool=helper.tempCal(id,time);
 		double temp1=0,temp2=0,temp3=0,temp4=0,temp5=0,temp6=0;
@@ -140,9 +139,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		return new CashFlowVo(operating_activities,Investment_activities,Financing_activities,Net_cash_increase,Final_cash_balance);
 	}
 
-	public CashFlowVo CashFlowTable_year(String time,String id) {
-		// TODO Auto-generated method stub
-		String last=helper.lastTime(time);//上一期		
+	public CashFlowVo CashFlowTable_year(String time,String id) {	
 		Map<String,double[]> tool=helper.tempCal(time,id);
 		double temp1=0,temp2=0,temp3=0,temp4=0,temp5=0,temp6=0;
 			
@@ -253,6 +250,82 @@ public class CashFlowImpl implements CashFlowTableService{
 				operating_activities[3]+operating_activities[4]+operating_activities[5];
 	    
 		return new CashFlowVo(operating_activities,Investment_activities,Financing_activities,Net_cash_increase,Final_cash_balance);
+	}
+
+	public double getValue(String id, String time) {
+		String last=helper.lastTime(time);//上一期		
+		Map<String,double[]> tool=helper.tempCal(id,time);
+		double temp1=0,temp2=0,temp3=0,temp4=0,temp5=0;
+		
+		double[] Net_cash_increase=new double[2];
+		Net_cash_increase[0]=tool.get("货币资金")[1]-tool.get("货币资金")[0];//“四、现金净增加额”
+		Net_cash_increase[1]=new BalanceSheetImpl().getDollarAssent(id,last)[0];
+		
+		double[] Investment_activities=new double[6];//二、投资活动产生的现金流量
+		temp1=tool.get("短期投资")[0]-tool.get("短期投资")[1];//（短期投资期初数－短期投资期末数）（当期初数＞期末数时）
+		if(temp1<0)temp1=0;
+		temp2=tool.get("长期股权投资")[0]-tool.get("长期股权投资")[1];//长期股权投资期初数－长期股权投资期末数）（当期初数＞期末数时）
+		if(temp2<0)temp2=0;
+		temp3=tool.get("长期债券投资")[0]-tool.get("长期债券投资")[1];//长期债券投资期初数－长期债券投资期末数）（当期初数＞期末数时）
+		if(temp3<0)temp3=0;
+		Investment_activities[0]=temp1+temp2+temp3;//2.1“收回短期投资、长期债券投资和长期股权投资收到的现金”
+		
+		temp1=helper.Cal(DATA.getVourchersByPeriod(time, "5111",id));//投资收益
+		temp2=tool.get("应收利息")[1]-tool.get("应收利息")[0];//（应收利息期末数－应收利息期初数）
+		temp3=tool.get("应收股利")[1]-tool.get("应收股利")[0];//（应收股利期末数－应收股利期初数）
+		Investment_activities[1]=temp1-temp2-temp3;//2.2“取得投资收益收到的现金”
+		
+		temp1=helper.CreditCal(DATA.getVourchersByPeriod(time, "1606",id));//“固定资产清理”的贷方余额
+		temp2=tool.get("无形资产")[1]-tool.get("无形资产")[0];//（无形资产期末数－无形资产期初数）
+		Investment_activities[2]=temp1+temp2;//2.3“处置固定资产、无形资产和其他非流动资产收回的现金净额”
+		
+		temp1=tool.get("短期投资")[1]-tool.get("短期投资")[0];//（短期投资期末数－短期投资期初数）（当期初数＜期末数时）
+		if(temp1<0)temp1=0;
+		temp2=tool.get("长期股权投资")[1]-tool.get("长期股权投资")[0];//（长期股权投资期末数－长期股权投资期初数）（当期初数＜期末数时）
+		temp4=helper.sumList(DATA.getGivenVourchers(time, "1511", "5111",id));//长期股权投资形成的投资收益
+		if(temp2<0)temp2=0;
+		else temp2-=temp4;
+		temp3=tool.get("长期债券投资")[1]-tool.get("长期债券投资")[0];//〔长期债券投资期末数－长期债权投资期初数）（当期初数＜期末数时）
+		temp5=helper.sumList(DATA.getGivenVourchers(time, "1501", "5111",id));//长期债券投资形成的投资收益
+		if(temp3<0)temp3=0;
+		else temp3-=temp5;
+		Investment_activities[3]=temp1+temp2+temp3;//2.4“短期投资、长期债券投资和长期股权投资支付的现金”
+		
+		temp1=tool.get("在建工程")[1]-tool.get("在建工程")[0];//（在建工程期末数－在建工程期初数）（当期初数＜期末数时）
+		if(temp1<0)temp1=0;
+		temp2=tool.get("固定资产")[1]-tool.get("固定资产")[0];//（固定资产期末数－固定资产期初数）（当期初数＜期末数时）
+		if(temp2<0)temp2=0;
+		temp3=tool.get("无形资产")[1]-tool.get("无形资产")[0];//（无形资产期末数－无形资产期初数）（当期初数＜期末数时）
+		if(temp3<0)temp3=0;
+		Investment_activities[4]=temp1+temp2+temp3;//“购建固定资产、无形资产和其他非流动资产支付的现金”
+		
+		Investment_activities[5]=Investment_activities[0]+Investment_activities[1]+Investment_activities[2]-
+				Investment_activities[3]-Investment_activities[4];//“投资活动产生的现金流量净额”
+		
+		double[] Financing_activities=new double[6];//三、筹资活动产生的现金流量
+		
+		temp1=helper.Cal(DATA.getVourchersByPeriod(time, "2001",id));//短期借款
+		temp2=helper.Cal(DATA.getVourchersByPeriod(time, "2501",id));//长期借款
+		Financing_activities[0]=temp1+temp2;//“取得借款收到的现金”
+		
+		Financing_activities[1]=helper.Cal(DATA.getVourchersByPeriod(time, "3001",id));//“吸收投资者投资收到的现金”
+		
+		temp1=//“利润分配-应付利润”本期借方发生额中以现金支付的部分
+		Financing_activities[3]=helper.sumList(DATA.getGivenVourchers(time, "2231", "1001",id))
+				+helper.sumList(DATA.getGivenVourchers(time,"2231", "1002",id));//3.4偿还借款利息支付的现金
+		
+		temp1=tool.get("短期借款")[0]-tool.get("短期借款")[1];//（短期借款期初数－短期借款期末数）
+		temp2=tool.get("长期借款")[0]-tool.get("长期借款")[1];//（长期借款期初数－长期借款期末数）
+		temp3=Financing_activities[3];
+		Financing_activities[2]=temp1+temp2-temp3;//3.3“偿还借款本金支付的现金”
+		
+		Financing_activities[4]=helper.sumList(DATA.getGivenVourchers(time, "3104005", "1001",id))
+				+helper.sumList(DATA.getGivenVourchers(time,"3104005", "1002",id));//3.5“分配利润支付的现金”
+		
+		Financing_activities[5]=Financing_activities[0]+Financing_activities[1]-Financing_activities[2]-
+				Financing_activities[3]-Financing_activities[4];//筹资活动产生的现金流量净额
+		
+		return Net_cash_increase[0]-Investment_activities[5]-Financing_activities[5];
 	}
 
 }
