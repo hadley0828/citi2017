@@ -68,6 +68,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         //如果需要得到一个期间的期初的金额 先把第一天到最后一个搜索月的信息取出来 然后进行遍历筛选
 
+        ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
+        //betweenMonthList
 
 
 
@@ -95,6 +97,11 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
     @Override
     public ArrayList<GatherTableOneClause> getGatherTableAllClauses(BookSearchVo searchVo, String factoryId) {
+        return null;
+    }
+
+    @Override
+    public HashMap<String, SubjectNumberVo> getOnePeriodAllSubjectNumber(String period, String factoryId) {
         return null;
     }
 }

@@ -164,9 +164,9 @@ public class DateConvert {
     public static void main(String[] args) throws ParseException {
 //        System.out.println(monthToPeriod("2017-12"));
 //        System.out.println(periodToMonth("2017年第8期"));
-        System.out.println(getBetweenMonth("2017-04","2017-09").size());
+        System.out.println(getBetweenMonth("2017-04","2017-04").size());
 
-        ArrayList<String> monthList=getBetweenMonthList("2016-02","2017-09");
+        ArrayList<String> monthList=getBetweenMonthList("2016-04","2017-04");
         for(int count=0;count<monthList.size();count++){
             System.out.println(monthList.get(count));
         }
