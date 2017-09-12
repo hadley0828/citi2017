@@ -54,9 +54,38 @@ public interface ScreensFramework {
     String FINANCIAL_WARNING_SCREEN = "FinancialWarning";
     String FINANCIAL_WARNING_SCREEN_FXML = "/view/warning/FinancialWarning.fxml";
 
-    /*新建账套*/
-    String ZT_ADD_SCREEN = "ZhangtaoAdd";
-    String ZT_ADD_SCREEN_FXML = "/view/Settings/ZhangtaoEdit.fxml";
+    /*账套管理*/
+    String ZT_EDIT_SCREEN = "ZhangtaoAdd";
+    String ZT_EDIT_SCREEN_FXML = "/view/Settings/ZhangtaoEdit.fxml";
+
+    /*科目查看*/
+    String KM_CK_SCREEN = "KeMuChaKan";
+    String KM_CK_SCREEN_FXML = "/view/Setting/kemu.fxml";
+
+    /*期初设置*/
+    String QC_SETTINGS_SCREEN = "QiChuSheZhi";
+    String QC_SETTINGS_SCREEN_FXML = "/view/Settings/qichu.fxml";
+
+    /*凭证字查看*/
+    String VOUCHER_CK_SCREEN = "VoucherChaKan";
+    String VOUCHER_CK_SCREEN_FXML = "/view/Settings/pingzhengzi.fxml";
+
+    /*权限设置*/
+    String ROOT_SETTINGS_SCREEN = "RootSettings";
+    String ROOT_SETTINGS_SCREEN_FXML = "/view/Settings/RootSetting.fxml";
+
+    /*新增用户*/
+    String ROOT_ADD_USER_SCREEN = "RootAddUser";
+    String ROOT_ADD_USER_SCREEN_FXML = "/view/Settings/RootSettingAddUser.fxml";
+
+    /*修改密码*/
+    String CHANGE_PW_SCREEN = "ChangePassword";
+    String CHANGE_PW_SCREEN_FXML = "/view/Settings/ChangePassword.fxml";
+
+    /*供应链管理*/
+    String LINK_SCREEN = "Link";
+    String LINK_SCREEN_FXML = "/view/Settings/LinkManagement.fxml";
+
 
     String FINANCIAL_SETTING_SCREEN = "";
     String FINANCIAL_SETTING_SCREEN_FXML = "";
