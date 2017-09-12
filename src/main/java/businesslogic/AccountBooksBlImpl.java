@@ -11,6 +11,7 @@ import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by zhangzy on 2017/8/7 下午10:45
@@ -37,14 +38,14 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         ArrayList<DetailAccountAmountVo> resultAmountVo=new ArrayList<>();
 
 
-        String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
-        String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
+        java.lang.String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
+        java.lang.String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
         ArrayList<String> betweenMonthList=DateConvert.getBetweenMonthList(startMonth,endMonth);
 
         if(!(searchVo.getStartSubjectId()==null||searchVo.getEndSubjectId()==null)){
             int startSubjectId=Integer.valueOf(searchVo.getStartSubjectId());
             int endSubjectId=Integer.valueOf(searchVo.getEndSubjectId());
-            int currentSubjectId=Integer.valueOf(subjectId);
+            int currentSubjectId=Integer.valueOf(java.lang.String.valueOf(subjectId));
 
             if(currentSubjectId<startSubjectId||endSubjectId<currentSubjectId){
                 return null;
@@ -68,6 +69,7 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
         //betweenMonthList
+        HashMap<String,ArrayList<DetailAccountAmountVo>> monthToDetailMap=new HashMap<>();
 
 
 

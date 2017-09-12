@@ -1,6 +1,9 @@
 package util;
 
 
+
+import java.lang.*;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,12 +21,12 @@ public class DateConvert {
      * @param accountingPeriod
      * @return
      */
-    public static String periodToMonth(String accountingPeriod){
-        String str=accountingPeriod.substring(0,accountingPeriod.length()-1);
+    public static java.lang.String periodToMonth(java.lang.String accountingPeriod){
+        java.lang.String str=accountingPeriod.substring(0,accountingPeriod.length()-1);
 
-        String[] yearAndMonth=str.split("年第");
-        String year=yearAndMonth[0];
-        String month=yearAndMonth[1];
+        java.lang.String[] yearAndMonth=str.split("年第");
+        java.lang.String year=yearAndMonth[0];
+        java.lang.String month=yearAndMonth[1];
 
         if(month.length()==1){
             month="0"+month;
@@ -39,10 +42,10 @@ public class DateConvert {
      * @param yearMonth
      * @return
      */
-    public static String monthToPeriod(String yearMonth){
-        String[] yearAndMonth=yearMonth.split("-");
-        String year=yearAndMonth[0];
-        String month=yearAndMonth[1];
+    public static java.lang.String monthToPeriod(java.lang.String yearMonth){
+        java.lang.String[] yearAndMonth=yearMonth.split("-");
+        java.lang.String year=yearAndMonth[0];
+        java.lang.String month=yearAndMonth[1];
 
         if(month.charAt(0)=='0'){
             month=month.substring(1);
@@ -52,7 +55,7 @@ public class DateConvert {
     }
 
 
-    public static ArrayList<String> getBetweenMonthList(String startMonth,String endMonth){
+    public static ArrayList<String> getBetweenMonthList(java.lang.String startMonth, java.lang.String endMonth){
         ArrayList<String> resultList=new ArrayList<>();
 
 
@@ -76,7 +79,7 @@ public class DateConvert {
         while (c1.compareTo(c2) < 0) {
             c1.add(Calendar.MONTH, 1);// 开始日期加一个月直到等于结束日期为止
             Date ss = c1.getTime();
-            String str = aa.format(ss);
+            java.lang.String str = aa.format(ss);
             str = str.substring(0, str.lastIndexOf("-"));
 
             if(str.length()!=7){
@@ -99,7 +102,7 @@ public class DateConvert {
      * @param endMonth
      * @return
      */
-    public static HashSet<String> getBetweenMonth(String startMonth,String endMonth){
+    public static HashSet<String> getBetweenMonth(java.lang.String startMonth, java.lang.String endMonth){
         HashSet<String> resultSet=new HashSet<>();
 
         ArrayList<String> betweenMonthList=getBetweenMonthList(startMonth,endMonth);
@@ -114,7 +117,7 @@ public class DateConvert {
 
 
 
-    public static String getCurrentMonth(){
+    public static java.lang.String getCurrentMonth(){
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         return format.format(new Date());
     }
@@ -124,9 +127,9 @@ public class DateConvert {
      * @param month 2017-08
      * @return
      */
-    public static String getMonthFirstDate(String month){
+    public static java.lang.String getMonthFirstDate(String month){
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-        String oneDate=month+"-01";
+        java.lang.String oneDate=month+"-01";
         Calendar c = Calendar.getInstance();
         try {
             c.setTime(format.parse(oneDate));
@@ -135,7 +138,7 @@ public class DateConvert {
         }
         c.add(Calendar.MONTH, 0);
         c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天
-        String first = format.format(c.getTime());
+        java.lang.String first = format.format(c.getTime());
 
         return first;
     }
@@ -145,9 +148,9 @@ public class DateConvert {
      * @param month
      * @return
      */
-    public static String getMonthLastDate(String month){
+    public static java.lang.String getMonthLastDate(String month){
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
-        String oneDate=month+"-01";
+        java.lang.String oneDate=month+"-01";
 
         Calendar ca = Calendar.getInstance();
         try {
@@ -156,20 +159,129 @@ public class DateConvert {
             e.printStackTrace();
         }
         ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH));
-        String last = format.format(ca.getTime());
+        java.lang.String last = format.format(ca.getTime());
 
         return last;
+    }
+
+    /**
+     * 添加一个月
+     * @param month
+     * @return
+     */
+    public static String addOneMonth(String month){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String dstr=month+"-01";
+
+        Date date= null;
+        try {
+            date = sdf.parse(dstr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar=new GregorianCalendar();
+        calendar.setTime(date);
+
+        calendar.add(calendar.MONTH, 1);//把日期往后增加一个月.整数往后推,负数往前移动
+
+
+        return sdf.format(calendar.getTime()).substring(0,7);
+    }
+
+    /**
+     * 获得一个日期的列表中的最早的月数
+     * @param dateList
+     * @return
+     */
+    public static String getFirstMonth(ArrayList<String> dateList){
+        Collections.sort(dateList);
+
+        return dateList.get(0).substring(0,7);
+    }
+
+
+    public static String addNMonth(String month,int n){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String dstr=month+"-01";
+
+        Date date= null;
+        try {
+            date = sdf.parse(dstr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar=new GregorianCalendar();
+        calendar.setTime(date);
+
+        calendar.add(calendar.MONTH, n);//把日期往后增加一个月.整数往后推,负数往前移动
+
+
+        return sdf.format(calendar.getTime()).substring(0,7);
+    }
+
+    /**
+     * 减去一个月
+     * @param month
+     * @return
+     */
+    public static String minusOneMonth(String month){
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String dstr=month+"-01";
+
+        Date date= null;
+        try {
+            date = sdf.parse(dstr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar=new GregorianCalendar();
+        calendar.setTime(date);
+
+        calendar.add(calendar.MONTH, -1);//把日期往后增加一个月.整数往后推,负数往前移动
+
+
+        return sdf.format(calendar.getTime()).substring(0,7);
+    }
+
+    /**
+     * 减去n个月
+     * @param month
+     * @param n
+     * @return
+     */
+    public static String minusNMonth(String month,int n){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        String dstr=month+"-01";
+
+        Date date= null;
+        try {
+            date = sdf.parse(dstr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar calendar=new GregorianCalendar();
+        calendar.setTime(date);
+
+        calendar.add(calendar.MONTH, -n);//把日期往后增加一个月.整数往后推,负数往前移动
+
+
+        return sdf.format(calendar.getTime()).substring(0,7);
     }
 
     public static void main(String[] args) throws ParseException {
 //        System.out.println(monthToPeriod("2017-12"));
 //        System.out.println(periodToMonth("2017年第8期"));
-        System.out.println(getBetweenMonth("2017-04","2017-04").size());
-
-        ArrayList<String> monthList=getBetweenMonthList("2016-04","2017-04");
-        for(int count=0;count<monthList.size();count++){
-            System.out.println(monthList.get(count));
-        }
+//        System.out.println(getBetweenMonth("2017-04","2017-04").size());
+//
+//        ArrayList<String> monthList=getBetweenMonthList("2016-04","2017-04");
+//        for(int count=0;count<monthList.size();count++){
+//            System.out.println(monthList.get(count));
+//        }
 
 //        String date="2010-04-10";
 //        System.out.println(date.substring(0,date.lastIndexOf("-")));
@@ -177,5 +289,19 @@ public class DateConvert {
 //        System.out.println(getCurrentMonth());
 //        System.out.println(getMonthFirstDate("2010-07"));
 //        System.out.println(getMonthLastDate("2012-02"));
+
+//        System.out.println(addOneMonth("2016-10"));
+//        System.out.println(addNMonth("2016-10",8));
+
+//        ArrayList<String> dateList=new ArrayList<>();
+//        dateList.add("2016-10-01");
+//        dateList.add("2017-07-03");
+//        dateList.add("2016-12-05");
+//        dateList.add("2015-10-08");
+//        dateList.add("2013-06-07");
+//        System.out.println(getFirstMonth(dateList));
+
+        System.out.println(minusOneMonth("2017-07"));
+        System.out.println(minusNMonth("2018-05",10));
     }
 }
