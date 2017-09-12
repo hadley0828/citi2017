@@ -1,11 +1,13 @@
 package businesslogic;
 
 import businesslogicservice.TrialSettlementService;
+import businesslogicservice.VoucherBlService;
 import data.CourseMessageServiceImpl;
 import dataservice.CourseMessageService;
 import po.SubjectsPO;
 import po.VoucherAmountPO;
 import vo.TrialTableItemVo;
+import vo.voucher.VoucherVo;
 
 import java.util.ArrayList;
 
@@ -34,5 +36,16 @@ public class TrialSettlementImpl implements TrialSettlementService {
         }
         result.add(new TrialTableItemVo("合计", "", debit_amount, credit_amount));
         return result;
+    }
+
+    /**
+     * 管理员账号反结账
+     * @param voucher_id 凭证id
+     * @param voucherVo 修改的一行凭证信息
+     * @param company_id 公司id
+     */
+    public void AntiSettle(String voucher_id, VoucherVo voucherVo, String company_id){
+        VoucherBlService service = new VoucherBlImpl();
+        service.amendOneVoucher(voucher_id, voucherVo, company_id);
     }
 }

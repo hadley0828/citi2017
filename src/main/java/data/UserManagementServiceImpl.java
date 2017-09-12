@@ -1,11 +1,12 @@
 package data;
 
 import dataservice.UserManagementService;
-import po.AccountPassword;
 import po.AccountSetPO;
+import po.UserCompanyPO;
+import po.UserFinancialPO;
+import util.ResultMessage;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,74 +16,57 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     SqlManager sqlManager = SqlManager.getSqlManager();
 
+
     @Override
-    public boolean register(AccountPassword password, AccountSetPO accountSetPO) {
-        if(!password.getCompanyID().equals(accountSetPO.getCompanyId())){
-            return false;
-        }
-        sqlManager.getConnection();
+    public ResultMessage insertOneCompanyUser(UserCompanyPO po) {
 
-        ArrayList<String> idList = getAllCompanyID();
-        if (idList.contains(accountSetPO.getCompanyId())){
-            return false;
-        }
-
-        List<Object> params = new ArrayList<>();
-        params.add(accountSetPO.getCompanyId());
-        params.add(accountSetPO.getCompanyName());
-        params.add(accountSetPO.getLocation());
-        params.add(accountSetPO.getIndustry());
-        params.add(accountSetPO.getStartDate());
-        params.add(accountSetPO.getCreditCode());
-        params.add(accountSetPO.getContact());
-
-        List<Object> params2 = new ArrayList<>();
-        params2.add(password.getCompanyID());
-        params2.add(password.getPassword());
-
-        String sql = sqlManager.appendSQL("insert into account_set values",params.size());
-        String sql2 = sqlManager.appendSQL("insert into account_password values",params2.size());
-
-
-        try{
-            sqlManager.executeUpdateByList(sql,params);
-            sqlManager.executeUpdateByList(sql2,params2);
-            sqlManager.releaseAll();
-            return true;
-        }catch (Exception e){
-            return false;
-        }
+        return null;
     }
 
     @Override
-    public boolean signIn(String id, String password) {
-        sqlManager.getConnection();
-
-        String sql = "select * from account_password where company_id=?";
-        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
-
-        sqlManager.releaseAll();
-        if (password.equals(map.get("password").toString())){
-            return true;
-        }else{
-            return false;
-        }
+    public ResultMessage insertOneFinancialUser(UserFinancialPO po) {
+        return null;
     }
 
     @Override
-    public void modifyPassword(String id, String rawPassword, String newPassword) {
-        sqlManager.getConnection();
-
-        List<Object> params = new ArrayList<>();
-        params.add(newPassword);
-        params.add(id);
-        params.add(rawPassword);
-
-        String sql = "update account_password set password=? where company_id=? and password=?";
-        sqlManager.executeUpdateByList(sql,params);
-        sqlManager.releaseAll();
+    public ResultMessage modifyPassword(String id, String rawpassword, String newpassword) {
+        return null;
     }
 
+    @Override
+    public UserCompanyPO getOneCompanyUser(String id) {
+        return null;
+    }
+
+    @Override
+    public UserFinancialPO getOneFinancialUser(String id) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage insertOneAccountSet(AccountSetPO po) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage modifyOneAccountSet(AccountSetPO po) {
+        return null;
+    }
+
+    @Override
+    public AccountSetPO getAccountSetByUserID(String userID) {
+        return null;
+    }
+
+    @Override
+    public AccountSetPO getAccountSetByCompanyID(String companyID) {
+        return null;
+    }
+
+    @Override
+    public ResultMessage loginIn(String id, String password, String type) {
+        return null;
+    }
 
     /**
      * 获得所有存在的公司ID
@@ -100,4 +84,5 @@ public class UserManagementServiceImpl implements UserManagementService {
 
         return list;
     }
+
 }

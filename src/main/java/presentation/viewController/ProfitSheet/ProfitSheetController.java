@@ -74,31 +74,47 @@ public class ProfitSheetController {
     }
 
     public void setProfitTable(){
-        period=profitTableService.BusinessIncome_period(bar.getDate(),"");
-        year=profitTableService.BusinessIncome_year(bar.getDate(),"");
+        period=profitTableService.BusinessIncome_period("001",bar.getDate());
+        year=profitTableService.BusinessIncome_year("001",bar.getDate());
 
         ArrayList<ProfitVO> profitTable_data=new ArrayList<ProfitVO>();
         profitTable_data.add(new ProfitVO("一、营业收入",1,year.getBusiness_income(),period.getBusiness_income(),"公式:\n主营业务收入\n+其他业务收入"));
         profitTable_data.add(new ProfitVO("减：营业成本",2,year.getBusiness_costs(),period.getBusiness_costs(),"公式:\n主营业务成本\n+其他业务成本"));
-        profitTable_data.add(new ProfitVO("营业税金及附加",3,year.getBusiness_Taxes_and_Surcharges()[0],period.getBusiness_Taxes_and_Surcharges()[0],"公式:\n税金及附加"));
-
+    profitTable_data.add(new ProfitVO("营业税金及附加",3,year.getBusiness_Taxes_and_Surcharges()[0],period.getBusiness_Taxes_and_Surcharges()[0],"公式:\n税金及附加"));
+        profitTable_data.add(new ProfitVO("其中：消费税",4,year.getBusiness_Taxes_and_Surcharges()[1],period.getBusiness_Taxes_and_Surcharges()[1],"公式:\n应交消费税"));
+        profitTable_data.add(new ProfitVO("营业税",5,year.getBusiness_Taxes_and_Surcharges()[2],period.getBusiness_Taxes_and_Surcharges()[2],"公式:\n应交营业税"));
+        profitTable_data.add(new ProfitVO("城市维护建设税",6,year.getBusiness_Taxes_and_Surcharges()[3],period.getBusiness_Taxes_and_Surcharges()[3],"公式:\n应交城市维护建设税"));
+        profitTable_data.add(new ProfitVO("资源税",7,year.getBusiness_Taxes_and_Surcharges()[4],period.getBusiness_Taxes_and_Surcharges()[4],"公式:\n应交资源税"));
+        profitTable_data.add(new ProfitVO("土地增值税",8,year.getBusiness_Taxes_and_Surcharges()[5],period.getBusiness_Taxes_and_Surcharges()[5],"公式:\n应交土地增值税"));
+        profitTable_data.add(new ProfitVO("城镇土地使用税、房产税、车船税、印花税",9,year.getBusiness_Taxes_and_Surcharges()[6],period.getBusiness_Taxes_and_Surcharges()[6],"公式:\n城镇土地使用税\n+房产税\n+车船税\n+印花税"));
+        profitTable_data.add(new ProfitVO("教育费附加、矿产资源补偿费、排污费",10,year.getBusiness_Taxes_and_Surcharges()[7],period.getBusiness_Taxes_and_Surcharges()[7],"公式:\n教育费附加\n+矿产资源补偿费\n+排污费"));
 
         profitTable_data.add(new ProfitVO("销售费用",11,year.getSelling_expenses()[0],period.getSelling_expenses()[0],"公式:\n销售费用"));
+        profitTable_data.add(new ProfitVO("其中：商品维修费",12,year.getSelling_expenses()[1],period.getSelling_expenses()[1],"公式:\n商品维修费"));
+        profitTable_data.add(new ProfitVO("广告费和业务宣传费",13,year.getSelling_expenses()[2],period.getSelling_expenses()[2],"公式:\n广告费\n+业务宣传费"));
 
 
-        profitTable_data.add(new ProfitVO("管理费用",14,year.getManagement_expenses()[0],period.getManagement_expenses()[0],"公式:\n销售费用"));
+        profitTable_data.add(new ProfitVO("管理费用",14,year.getManagement_expenses()[0],period.getManagement_expenses()[0],"公式:\n管理费用"));
+        profitTable_data.add(new ProfitVO("其中：开办费",15,year.getManagement_expenses()[1],period.getManagement_expenses()[1],"公式:\n开办费"));
+        profitTable_data.add(new ProfitVO("业务招待费",16,year.getManagement_expenses()[2],period.getManagement_expenses()[2],"公式:\n业务招待费"));
+        profitTable_data.add(new ProfitVO("研究费用",17,year.getManagement_expenses()[3],period.getManagement_expenses()[3],"公式:\n研究费用"));
 
-
-        profitTable_data.add(new ProfitVO("财务费用",18,year.getFinancial_expenses()[0],period.getFinancial_expenses()[0],"公式:\n销售费用"));
+        profitTable_data.add(new ProfitVO("财务费用",18,year.getFinancial_expenses()[0],period.getFinancial_expenses()[0],"公式:\n财务费用"));
+        profitTable_data.add(new ProfitVO("其中：利息费用（收入以“-”号填列）",19,year.getFinancial_expenses()[1],period.getFinancial_expenses()[1],"公式:\n利息费用"));
 
 
         profitTable_data.add(new ProfitVO("加：投资收益(亏损以'-'号填列)",20,year.getInvestment_proceeds(),period.getInvestment_proceeds(),"公式:\n投资收益"));
         profitTable_data.add(new ProfitVO("二、营业利润(亏损以'-'号填列)",21,year.getOperating_profit(),period.getOperating_profit(),"公式:\n营业收入\n+投资收益\n-营业成本\n-营业税金及附加\n-销售费用\n-管理费用\n-财务费用"));
         profitTable_data.add(new ProfitVO("加：营业外收入",22,year.getNon_operating_income()[0],period.getNon_operating_income()[0],"公式:\n营业外收入"));
+        profitTable_data.add(new ProfitVO("其中：政府补助",23,year.getNon_operating_income()[1],period.getNon_operating_income()[1],"公式:\n政府补助"));
 
 
         profitTable_data.add(new ProfitVO("减：营业外支出",24,year.getNon_operating_expenses()[0],period.getNon_operating_expenses()[0],"公式:\n营业外支出"));
-
+        profitTable_data.add(new ProfitVO("其中：坏账损失",25,year.getNon_operating_expenses()[1],period.getNon_operating_expenses()[1],"公式:\n坏账损失"));
+        profitTable_data.add(new ProfitVO("无法收回的长期债券投资损失",26,year.getNon_operating_expenses()[2],period.getNon_operating_expenses()[2],"公式:\n无法收回的长期债券投资损失"));
+        profitTable_data.add(new ProfitVO("无法收回的长期股权投资损失",27,year.getNon_operating_expenses()[3],period.getNon_operating_expenses()[3],"公式:\n无法收回的长期股权投资损失"));
+        profitTable_data.add(new ProfitVO("自然灾害等不可抗力因素造成的损失",28,year.getNon_operating_expenses()[4],period.getNon_operating_expenses()[4],"公式:\n自然灾害等不可抗力因素造成的损失"));
+        profitTable_data.add(new ProfitVO("税收滞纳金",29,year.getNon_operating_expenses()[5],period.getNon_operating_expenses()[5],"公式:\n税收滞纳金"));
 
         profitTable_data.add(new ProfitVO("三、利润总额(亏损总额以'-'号填列)",30,year.getTotal_profit(),period.getTotal_profit(),"公式:\n营业利润\n+营业外收入\n-营业外支出"));
         profitTable_data.add(new ProfitVO("减：所得税费用",31,year.getIncome_tax_expense(),period.getIncome_tax_expense(),"公式:\n所得税费用"));

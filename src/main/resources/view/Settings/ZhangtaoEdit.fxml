@@ -19,38 +19,22 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <Label layoutX="37.0" layoutY="29.0" text="*单位名称" />
-                  <TextField layoutX="129.0" layoutY="24.0" />
-                  <Label layoutX="41.0" layoutY="75.0" text="单位地址" />
-                  <Label layoutX="41.0" layoutY="118.0" text="统一社会信用代码" />
-                  <Label layoutX="42.0" layoutY="171.0" text="*增值税种类" />
-                  <Label layoutX="41.0" layoutY="233.0" text="*是否启用出纳模块" />
-                  <Label layoutX="34.0" layoutY="284.0" text="*固定资产模块" />
+                  <TextField layoutX="177.0" layoutY="24.0" />
+                  <Label layoutX="41.0" layoutY="138.0" text="单位地址" />
+                  <Label layoutX="44.0" layoutY="248.0" text="统一社会信用代码" />
                   <Label layoutX="549.0" layoutY="29.0" text="行业" />
-                  <Label layoutX="545.0" layoutY="85.0" text="*账套启用年月" />
-                  <Label layoutX="545.0" layoutY="138.0" text="国税税号" />
-                  <Label layoutX="545.0" layoutY="198.0" text="*会计准则" />
-                  <Label layoutX="549.0" layoutY="253.0" text="*凭证是否需要审核" />
+                  <Label layoutX="545.0" layoutY="138.0" text="*账套启用年月" />
+                  <Label layoutX="545.0" layoutY="248.0" text="联系方式" />
                   <Button layoutX="97.0" layoutY="348.0" mnemonicParsing="false" text="创建账套" />
                   <Button layoutX="230.0" layoutY="348.0" mnemonicParsing="false" text="取消" />
-                  <TextField layoutX="129.0" layoutY="70.0" />
-                  <TextField layoutX="179.0" layoutY="113.0" />
-                  <RadioButton layoutX="172.0" layoutY="171.0" mnemonicParsing="false" text="小规模纳税人" />
-                  <RadioButton layoutX="304.0" layoutY="171.0" mnemonicParsing="false" text="一般纳税人" />
-                  <RadioButton layoutX="179.0" layoutY="233.0" mnemonicParsing="false" text="不启用" />
-                  <RadioButton layoutX="297.0" layoutY="233.0" mnemonicParsing="false" text="启用" />
-                  <RadioButton layoutX="157.0" layoutY="284.0" mnemonicParsing="false" text="不启用" />
-                  <RadioButton layoutX="267.0" layoutY="284.0" mnemonicParsing="false" text="启用" />
+                  <TextField layoutX="177.0" layoutY="133.0" />
+                  <TextField layoutX="179.0" layoutY="243.0" />
                   <ChoiceBox layoutX="634.0" layoutY="24.0" prefWidth="150.0" />
-                  <ChoiceBox layoutX="650.0" layoutY="80.0" prefHeight="30.0" prefWidth="88.0" />
-                  <ChoiceBox layoutX="784.0" layoutY="79.0" prefHeight="32.0" prefWidth="88.0" />
-                  <Label layoutX="745.0" layoutY="85.0" text="年" />
-                  <Label layoutX="885.0" layoutY="85.0" text="月" />
-                  <TextField layoutX="652.0" layoutY="133.0" />
-                  <RadioButton layoutX="636.0" layoutY="181.0" mnemonicParsing="false" text="小企业会计准则" />
-                  <RadioButton layoutX="784.0" layoutY="181.0" mnemonicParsing="false" text="企业会计准则" />
-                  <RadioButton layoutX="636.0" layoutY="223.0" mnemonicParsing="false" text="民间非盈利组织会计制度" />
-                  <RadioButton layoutX="702.0" layoutY="253.0" mnemonicParsing="false" text="不需要审核" />
-                  <RadioButton layoutX="702.0" layoutY="294.0" mnemonicParsing="false" text="需要审核" />
+                  <ChoiceBox layoutX="652.0" layoutY="133.0" prefHeight="30.0" prefWidth="88.0" />
+                  <ChoiceBox layoutX="778.0" layoutY="132.0" prefHeight="32.0" prefWidth="88.0" />
+                  <Label layoutX="746.0" layoutY="138.0" text="年" />
+                  <Label layoutX="880.0" layoutY="138.0" text="月" />
+                  <TextField layoutX="652.0" layoutY="243.0" />
                </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

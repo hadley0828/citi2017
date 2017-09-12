@@ -7,7 +7,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Settings.Kemu">
    <children>
       <Label layoutX="393.0" layoutY="21.0" prefHeight="20.0" prefWidth="119.0" text="科目管理">

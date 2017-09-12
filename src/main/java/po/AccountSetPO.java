@@ -3,16 +3,13 @@ package po;
 import java.sql.Date;
 
 /**
- * Created by loohaze on 2017/8/7.
- *
- * companyName --> 公司名称
- * location --> 公司位置
- * industry --> 行业
- * startDate --> 开始时间
+ * Created by loohaze on 2017/9/12 上午9:45
  */
 public class AccountSetPO {
 
-    private String companyId;
+    private String accountID;
+
+    private String companyID;
 
     private String companyName;
 
@@ -20,32 +17,29 @@ public class AccountSetPO {
 
     private String industry;
 
-    private Date startDate;
+    private Date date;
 
     private String creditCode;
 
     private String contact;
 
-
-    public AccountSetPO(String companyId, String companyName, String location, String industry, Date startDate, String creditCode, String contact) {
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.location = location;
-        this.industry = industry;
-        this.startDate = startDate;
-        this.creditCode = creditCode;
-        this.contact = contact;
-    }
-
     public AccountSetPO() {
     }
 
-    public String getCompanyId() {
-        return companyId;
+    public String getAccountID() {
+        return accountID;
     }
 
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
+
+    public String getCompanyID() {
+        return companyID;
+    }
+
+    public void setCompanyID(String companyID) {
+        this.companyID = companyID;
     }
 
     public String getCompanyName() {
@@ -72,12 +66,12 @@ public class AccountSetPO {
         this.industry = industry;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCreditCode() {
