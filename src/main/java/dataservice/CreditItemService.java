@@ -12,7 +12,7 @@ public interface CreditItemService {
      * 保存辅助信息第二个表
      * @param list
      */
-    public void SaveCreditItem(ArrayList<CreditItemPO> list);
+    public void SaveCreditItem(ArrayList<CreditItemPO> list, String company_id, String vocher_id);
 
     /**
      * 得到企业的应收账款
