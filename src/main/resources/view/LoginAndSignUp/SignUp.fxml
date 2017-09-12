@@ -20,21 +20,20 @@
                     <children>
                         <Label layoutX="37.0" layoutY="29.0" text="*单位名称" />
                         <TextField layoutX="177.0" layoutY="24.0" />
-                        <Label layoutX="41.0" layoutY="138.0" text="单位地址" />
-                        <Label layoutX="44.0" layoutY="248.0" text="统一社会信用代码" />
+                        <Label layoutX="41.0" layoutY="90.0" text="单位地址" />
+                        <Label layoutX="37.0" layoutY="163.0" text="统一社会信用代码" />
                         <Label layoutX="549.0" layoutY="29.0" text="行业" />
                         <Label layoutX="545.0" layoutY="138.0" text="*账套启用年月" />
                         <Label layoutX="545.0" layoutY="248.0" text="联系方式" />
                         <Button layoutX="97.0" layoutY="348.0" mnemonicParsing="false" text="创建账号及账套" />
                         <Button layoutX="230.0" layoutY="348.0" mnemonicParsing="false" text="取消" />
-                        <TextField layoutX="177.0" layoutY="133.0" />
-                        <TextField layoutX="179.0" layoutY="243.0" />
+                        <TextField layoutX="177.0" layoutY="85.0" />
+                        <TextField layoutX="177.0" layoutY="158.0" />
                         <ChoiceBox layoutX="634.0" layoutY="24.0" prefWidth="150.0" />
-                        <ChoiceBox layoutX="652.0" layoutY="133.0" prefHeight="30.0" prefWidth="88.0" />
-                        <ChoiceBox layoutX="778.0" layoutY="132.0" prefHeight="32.0" prefWidth="88.0" />
-                        <Label layoutX="746.0" layoutY="138.0" text="年" />
-                        <Label layoutX="880.0" layoutY="138.0" text="月" />
                         <TextField layoutX="652.0" layoutY="243.0" />
+                  <DatePicker layoutX="661.0" layoutY="133.0" />
+                  <Label layoutX="52.0" layoutY="248.0" text="密码" />
+                  <PasswordField layoutX="177.0" layoutY="243.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
