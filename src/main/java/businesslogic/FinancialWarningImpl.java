@@ -22,7 +22,7 @@ public class FinancialWarningImpl {
      * @param phase 时间
      * @return
      */
-    public String getWarningMessage(String company_id, String phase){
+    public double getWarningMessage(String company_id, String phase){
         BalanceSheetService service1 = new BalanceSheetImpl();
         ProfitTableService service2 = new ProfitTableImpl();
         CashFlowTableService service3 = new CashFlowImpl();
@@ -184,20 +184,7 @@ public class FinancialWarningImpl {
 
         double Rate = rate[0]*0.16+rate[1]*0.09+rate[2]*0.07+rate[3]*0.06+rate[4]*0.12+rate[5]*0.1+rate[6]*0.12+rate[7]*0.05+rate[8]*0.08+rate[9]*0.05+rate[10]*0.05+rate[11]*0.05;
 
-        String result = "";
-        if(Rate>=90){
-            result = "无警-财务状况优异，基本无风险";
-        }else if(Rate>=80&&Rate<90){
-            result = "轻警-财务状况良好，风险很小";
-        }else if(Rate>=70&&Rate<80){
-            result = "中警-财务状况一般，存在一定风险";
-        }else if(Rate>=60&&Rate<70){
-            result = "重警-财务状况较差，风险较大";
-        }else{
-            result = "巨警-财务状况恶化，风险巨大";
-        }
-
-        return result;
+        return Rate;
     }
 
     /**
