@@ -5,14 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import businesslogicservice.SupplyChainService;
-import data.InventoryServiceImpl;
 import data.ProfitAndCashServiceImpl;
 import data.SupplyChainDataServiceImpl;
-import dataservice.InventoryService;
 import dataservice.ProfitAndCashService;
 import dataservice.SupplyChainDataService;
 import po.SupplyChainPO;
-import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 import vo.SupplyChainPerformanceVo;
 
@@ -24,23 +21,21 @@ import vo.SupplyChainPerformanceVo;
 public class SupplyChainImpl implements SupplyChainService{
 	
 	private ProfitAndCashService DATA;
-	private InventoryService IS;
 	private TableCalHelper helper;
 	private SupplyChainDataService SC;
 	private FinancialWarningImpl FW;
+	private InventoryManagementImpl IM;
 	private String[] list={"无警","轻警","中警","重警","巨警"};
 	
 	public SupplyChainImpl(){
 		DATA=new ProfitAndCashServiceImpl();
-		IS=new InventoryServiceImpl();
 		helper=new TableCalHelper();
 		SC=new SupplyChainDataServiceImpl();
 		FW=new FinancialWarningImpl();
+		IM=new InventoryManagementImpl();
 	}
 
-	/**
-	 * 暂时缺少 运营能力中的“准时交货率”和“退货率”的数据
-	 */
+
 	public SupplyChainPerformanceVo SupplyChain_Supplier(String Supplier_id,String Manufacturer_id,String Distributor_id,String period) {
 		String last=helper.lastTime(period);
 		BalanceSheetImpl bs=new BalanceSheetImpl();
@@ -144,7 +139,9 @@ public class SupplyChainImpl implements SupplyChainService{
 		Supply_chain[2]=temp!=0?(this_lirun1+this_lirun2+this_lirun3)/temp:0;//发展能力-利润增长率
 		Supply_chain[3]=(zongfu1+zongfu2+zongfu3)!=0?(this_zong1+this_zong2+this_zong3)/(zongfu1+zongfu2+zongfu3):0;//偿债能力-资产负债率
 		
-		return new SupplyChainPerformanceVo(Supplier,Manufacturer,Distributor,Supply_chain);
+		return new SupplyChainPerformanceVo(Supplier,Manufacturer,Distributor,Supply_chain,
+				IM.OnTimeDeliveryRateBySupplier_id(Supplier_id,period),IM.OnTimeDeliveryRateByManufacturer_id(Manufacturer_id,period),
+				IM.ReturnRateBySupplier_id(Manufacturer_id,period),IM.ReturnRateByDistributor_id(Distributor_id,period));
 	}
 
 	public List<String> AcountReceivable(String company_id,String time) {	

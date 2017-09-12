@@ -11,6 +11,10 @@ import java.util.Arrays;
  * Manufacturer 生产商
  * Distributor  分销商
  * Supply_chain 供应链
+ * OnTimeDeliveryRateBySupplier 供应商 原材料名称+准时交货率
+ * OnTimeDeliveryRateByManufacturer 生产商 库存商品名称+准时交货率
+ * ReturnRateByManufacturer 生产商 原材料名称+退货率
+ * ReturnRateByDistributor 分销商 库存商品名称+退货率
  */
 public class SupplyChainPerformanceVo {
 
@@ -18,12 +22,52 @@ public class SupplyChainPerformanceVo {
 	private double[][]Manufacturer;
 	private double[][]Distributor;
 	private double[]Supply_chain;
+	private String[][] OnTimeDeliveryRateBySupplier;
+	private String[][] OnTimeDeliveryRateByManufacturer;
+	private String[][] ReturnRateByManufacturer;
+	private String[][] ReturnRateByDistributor;
 	
-	public SupplyChainPerformanceVo(double[][]s,double[][] m,double[][] d,double []dp){
+	public SupplyChainPerformanceVo(double[][]s,double[][] m,double[][] d,double []dp,String[][]o1,String[][]o2,String[][]o3,String[][]o4){
 		Supplier=s;
 		Manufacturer=m;
 		Distributor=d;
 		Supply_chain=dp;
+		OnTimeDeliveryRateBySupplier=o1;
+		OnTimeDeliveryRateByManufacturer=o2;
+		ReturnRateByManufacturer=o3;
+		ReturnRateByDistributor=o4;
+	}
+
+	public String[][] getOnTimeDeliveryRateBySupplier() {
+		return OnTimeDeliveryRateBySupplier;
+	}
+
+	public void setOnTimeDeliveryRateBySupplier(String[][] onTimeDeliveryRateBySupplier) {
+		OnTimeDeliveryRateBySupplier = onTimeDeliveryRateBySupplier;
+	}
+
+	public String[][] getOnTimeDeliveryRateByManufacturer() {
+		return OnTimeDeliveryRateByManufacturer;
+	}
+
+	public void setOnTimeDeliveryRateByManufacturer(String[][] onTimeDeliveryRateByManufacturer) {
+		OnTimeDeliveryRateByManufacturer = onTimeDeliveryRateByManufacturer;
+	}
+
+	public String[][] getReturnRateByManufacturer() {
+		return ReturnRateByManufacturer;
+	}
+
+	public void setReturnRateByManufacturer(String[][] returnRateByManufacturer) {
+		ReturnRateByManufacturer = returnRateByManufacturer;
+	}
+
+	public String[][] getReturnRateByDistributor() {
+		return ReturnRateByDistributor;
+	}
+
+	public void setReturnRateByDistributor(String[][] returnRateByDistributor) {
+		ReturnRateByDistributor = returnRateByDistributor;
 	}
 
 	public double[][] getSupplier() {

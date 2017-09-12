@@ -402,6 +402,26 @@ public class InventoryManagementImpl implements InventoryManagementService {
         return result;
     }
 
+    @Override
+    public String[][] OnTimeDeliveryRateBySupplier_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] OnTimeDeliveryRateByManufacturer_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] ReturnRateBySupplier_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] ReturnRateByDistributor_id(String company_id, String time) {
+        return new String[0][];
+    }
+
     /**
      *
      * @param company_id 供应商
