@@ -31,4 +31,12 @@ public interface CashFlowTableService {
 	 * @return =
 	 */
 	public double getValue(String company_id, String time);
+
+	/**
+	 * 得到现金流量表里的 现金流入、现金流出、现金池内留存的现金
+	 * @param company_id
+	 * @param time
+	 * @return
+	 */
+	public double[] getCashFlow(String company_id, String time);
 }

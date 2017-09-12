@@ -32,4 +32,11 @@ public interface CreditItemService {
      * @return
      */
     public ArrayList<CreditItemVo> getAccountsPayable(String company_id, String voucher_id);
+
+    /**
+     * 判断距离折扣期限与还款期限是否分别还剩下30%
+     * @param company_id
+     * @return
+     */
+    public boolean IsExpire(String company_id);
 }
