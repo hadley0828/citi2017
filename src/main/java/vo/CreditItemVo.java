@@ -10,7 +10,7 @@ public class CreditItemVo {
     private String borrow_time;     //借款时间
     private String deadline;        //还款期限
     private double money;           //金额
-    private String policy;          //折扣政策
+    private double policy;          //折扣政策
     private String discount_deadline;   //折扣期限
     private String remark;      //备注
 
@@ -18,7 +18,7 @@ public class CreditItemVo {
 
     }
 
-    public CreditItemVo(String company_name, String borrow_time, String deadline, double money, String policy, String discount_deadline, String remark){
+    public CreditItemVo(String company_name, String borrow_time, String deadline, double money, double policy, String discount_deadline, String remark){
         this.company_name = company_name;
         this.borrow_time = borrow_time;
         this.deadline = deadline;
@@ -44,7 +44,7 @@ public class CreditItemVo {
         return money;
     }
 
-    public String getPolicy() {
+    public double getPolicy() {
         return policy;
     }
 
@@ -72,7 +72,7 @@ public class CreditItemVo {
         this.money = money;
     }
 
-    public void setPolicy(String policy) {
+    public void setPolicy(double policy) {
         this.policy = policy;
     }
 

@@ -53,6 +53,11 @@ public class CreditItemImpl implements CreditItemService {
         return getList(list);
     }
 
+    @Override
+    public boolean IsExpire(String company_id) {
+        return false;
+    }
+
     private ArrayList<CreditItemVo> getList(ArrayList<CreditItemPO> list){
         ArrayList<CreditItemVo> result = new ArrayList<>();
         for(int i=0;i<list.size();i++){
