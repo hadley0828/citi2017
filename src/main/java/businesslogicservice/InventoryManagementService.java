@@ -148,5 +148,36 @@ public interface InventoryManagementService {
      * @return
      */
     public ArrayList<ProductSafeInventoryRateVo> getProductInventoryRate(String company_id);
-
+    
+    /**
+     * 
+     * @param company_id 供应商
+     * @param time yyyy-mm年月
+     * @return 原材料名称+准时交货率
+     */
+    public String[][] OnTimeDeliveryRateBySupplier_id(String company_id,String time);
+    
+    /**
+     * 
+     * @param company_id 生产商
+     * @param time yyyy-mm年月
+     * @return 库存商品名称+准时交货率
+     */
+    public String[][] OnTimeDeliveryRateByManufacturer_id(String company_id,String time);
+    
+    /**
+     * 
+     * @param company_id 生产商
+     * @param time yyyy-mm年月
+     * @return 原材料名称+退货率
+     */
+    public String[][] ReturnRateBySupplier_id(String company_id,String time);
+    
+    /**
+     * 
+     * @param company_id 分销商
+     * @param time yyyy-mm年月
+     * @return 库存商品名称+退货率
+     */
+    public String[][] ReturnRateByDistributor_id(String company_id,String time);
 }
