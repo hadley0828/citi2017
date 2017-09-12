@@ -188,6 +188,24 @@ public class FinancialWarningImpl implements FinancialWarningService{
         return Rate;
     }
 
+    @Override
+    public String getWarningMessage2(String company_id, String phase) {
+        double Rate = getWarningMessage(company_id, phase);
+        String result = "";
+        if(Rate>=90){
+            result = "无警";
+        }else if(Rate>=80&&Rate<90){
+            result = "轻警";
+        }else if(Rate>=70&&Rate<80){
+            result = "中警";
+        }else if(Rate>=60&&Rate<70){
+            result = "重警";
+        }else{
+            result = "巨警";
+        }
+        return result;
+    }
+
     /**
      * 得到指标的满意值（平均值）
      * @param index_name
