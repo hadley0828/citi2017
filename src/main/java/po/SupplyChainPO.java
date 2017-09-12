@@ -5,22 +5,33 @@ package po;
  * @author hyf
  * 供应链融资
  * 
+ * time                        时间
  * company     				     企业名称
  * Net          			     应收帐款／质押货物金额
  * FinacingType                融资方式
  * ProposedFinancingScale      建议融资规模
  */
 public class SupplyChainPO {
+	private String time;
 	private String company;
 	private String FinacingType;
 	private double Net;
 	private double ProposedFinancingScale;
 	
-	public SupplyChainPO(String c,String f,double n,double p){
+	public SupplyChainPO(String t,String c,String f,double n,double p){
+		this.time=t;
 		this.company=c;
 		this.FinacingType=f;
 		this.Net=n;
 		this.ProposedFinancingScale=p;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 	public String getCompany() {
