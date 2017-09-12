@@ -8,7 +8,7 @@ package po;
  * time                        时间
  * company     				     企业名称
  * Net          			     应收帐款／质押货物金额
- * FinacingType                融资方式
+ * FinacingType                融资方式  :  应收帐款融资/动产质押融资
  * ProposedFinancingScale      建议融资规模
  */
 public class SupplyChainPO {

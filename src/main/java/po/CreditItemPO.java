@@ -21,7 +21,7 @@ public class CreditItemPO {
 
     private double creditNum;
 
-    private String discountPolicy;
+    private double discountPolicy;
 
     private Date discountDate;
 
@@ -30,7 +30,7 @@ public class CreditItemPO {
     public CreditItemPO() {
     }
 
-    public CreditItemPO(String type, String itemID, String voucherID, String companyName, Date debitDate, Date ddl, double creditNum, String discountPolicy, Date discountDate, String comment) {
+    public CreditItemPO(String type, String itemID, String voucherID, String companyName, Date debitDate, Date ddl, double creditNum, double discountPolicy, Date discountDate, String comment) {
         this.type = type;
         this.itemID = itemID;
         this.voucherID = voucherID;
@@ -91,11 +91,11 @@ public class CreditItemPO {
         this.creditNum = creditNum;
     }
 
-    public String getDiscountPolicy() {
+    public double getDiscountPolicy() {
         return discountPolicy;
     }
 
-    public void setDiscountPolicy(String discountPolicy) {
+    public void setDiscountPolicy(double discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
 

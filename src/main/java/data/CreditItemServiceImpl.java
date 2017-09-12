@@ -83,7 +83,7 @@ public class CreditItemServiceImpl implements CreditItemService{
         po.setDebitDate(Date.valueOf(map.get("debit_date").toString()));
         po.setDdl(Date.valueOf(map.get("ddl").toString()));
         po.setCreditNum(Double.parseDouble(map.get("credit_num").toString()));
-        po.setDiscountPolicy(map.get("discount_policy").toString());
+        po.setDiscountPolicy(Double.parseDouble(map.get("discount_policy").toString()));
         po.setDebitDate(Date.valueOf(map.get("discount_date").toString()));
         po.setComment(map.get("comment").toString());
 
