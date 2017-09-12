@@ -109,7 +109,7 @@ public class FinancialWarningImpl {
         double bad_value1 = getBadIndex("资产负债率");
         if(actual_value[4]<average_value[4]){
             rate[4] = 40*(actual_value[4]-bad_value1)/(average_value[4]-bad_value1)+60;
-        }else if(actual_value[4>=bad_value1&&actual_value[4]<=fine_value1){
+        }else if(actual_value[4]>=bad_value1&&actual_value[4]<=fine_value1){
             rate[4] = 100;
         }else if(actual_value[4]>average_value[4]){
             rate[4] = 40*(actual_value[4]-fine_value1)/(average_value[4]-fine_value1)+60;
@@ -131,7 +131,7 @@ public class FinancialWarningImpl {
         double bad_value3 = getBadIndex("现金流动负债比率");
         if(actual_value[6]<average_value[6]){
             rate[6] = 40*(actual_value[6]-bad_value3)/(average_value[6]-bad_value3)+60;
-        }else if(actual_value[6>=bad_value3&&actual_value[6]<=fine_value3){
+        }else if(actual_value[6]>=bad_value3&&actual_value[6]<=fine_value3){
             rate[6] = 100;
         }else if(actual_value[4]>average_value[4]){
             rate[6] = 40*(actual_value[6]-fine_value3)/(average_value[6]-fine_value3)+60;
