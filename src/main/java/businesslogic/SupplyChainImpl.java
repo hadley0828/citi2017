@@ -153,7 +153,7 @@ public class SupplyChainImpl implements SupplyChainService{
 
 	public double ReceivableFinacing(double MortgageAmount, String company_id, String time) {
 		
-		String warning=FW.getWarningMessage(company_id, time).substring(0, 2);//预警
+		String warning=FW.getWarningMessage2(company_id, time).substring(0, 2);//预警
 		double dis=warningJudge(warning);
 		SC.SaveSupplyChain(new SupplyChainPO(time,SC.getCompany(company_id),"应收帐款融资",MortgageAmount,MortgageAmount*dis));
 		return MortgageAmount*dis;
@@ -165,7 +165,7 @@ public class SupplyChainImpl implements SupplyChainService{
 
 	public double PledgeMovables(double Amount, String company_id, String time) {
 		
-		String warning=FW.getWarningMessage(company_id, time).substring(0, 2);//预警
+		String warning=FW.getWarningMessage2(company_id, time).substring(0, 2);//预警
 		double dis=warningJudge(warning);
 		SC.SaveSupplyChain(new SupplyChainPO(time,SC.getCompany(company_id),"动产质押融资",Amount,Amount*dis));
 		return Amount*dis;
@@ -181,7 +181,8 @@ public class SupplyChainImpl implements SupplyChainService{
 	}
 
 	public double getNetReceivables(String company_id,String company,String time) {
-		return helper.Cal2(SC.GetVoucherAmountsWithCompany(company_id,"1122",company,time));
+		return SC.GetInitial("1122", company_id)+
+				helper.Cal2(SC.GetVoucherAmountsWithCompany(company_id,"1122",company,time));
 	}
 
 	public double getNetInventory(String company_id,String product,String time) {
@@ -190,7 +191,13 @@ public class SupplyChainImpl implements SupplyChainService{
 				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1403", product, time))+
 				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1405", product, time))+
 				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1408", product, time))+
-				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1605", product, time));
+				helper.Cal2(SC.GetVoucherAmountsWithProduct(company_id,"1605", product, time))+
+				SC.GetInitial("1401", company_id)+
+				SC.GetInitial("1402", company_id)+
+				SC.GetInitial("1403", company_id)+
+				SC.GetInitial("1405", company_id)+
+				SC.GetInitial("1408", company_id)+
+				SC.GetInitial("1605", company_id);
 	}
 
 	public List<SupplyChainPO> GetSupplyChains() {

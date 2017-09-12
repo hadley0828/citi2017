@@ -11,4 +11,12 @@ public interface FinancialWarningService {
      * @return
      */
     public double getWarningMessage(String company_id, String phase);
+    
+    /**
+     * 
+     * @param company_id
+     * @param phase
+     * @return "无警","轻警","中警","重警","巨警"
+     */
+    public String getWarningMessage2(String company_id, String phase);
 }
