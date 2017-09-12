@@ -13,13 +13,14 @@ public class FinancialIndexServiceImpl implements FinancialIndexService{
 
     SqlManager sqlManager = SqlManager.getSqlManager();
 
+
     @Override
-    public ArrayList<IndexPo> getFinancialIndex() {
+    public ArrayList<IndexPo> getFinancialIndex(String industry) {
         sqlManager.getConnection();
 
         ArrayList<IndexPo> list = new ArrayList<>();
-        String sql = "select * from financial_index";
-        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        String sql = "select * from financial_index where industry=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{industry});
 
         for (Map<String,Object> map : maps){
             list.add(getIndexPOByMap(map));
@@ -28,6 +29,17 @@ public class FinancialIndexServiceImpl implements FinancialIndexService{
         return list;
     }
 
+    @Override
+    public String getIndustry(String company_id) {
+        sqlManager.getConnection();
+
+        String sql = "select industry from account_set where company_id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id});
+
+        String industry = map.get("industry").toString();
+        sqlManager.releaseAll();
+        return industry;
+    }
 
     private IndexPo getIndexPOByMap(Map<String,Object> map){
         IndexPo po = new IndexPo();
@@ -42,4 +54,6 @@ public class FinancialIndexServiceImpl implements FinancialIndexService{
 
         return po;
     }
+
+
 }
