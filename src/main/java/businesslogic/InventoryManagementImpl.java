@@ -494,6 +494,26 @@ public class InventoryManagementImpl implements InventoryManagementService {
         return result;
     }
 
+    @Override
+    public String[][] OnTimeDeliveryRateBySupplier_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] OnTimeDeliveryRateByManufacturer_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] ReturnRateBySupplier_id(String company_id, String time) {
+        return new String[0][];
+    }
+
+    @Override
+    public String[][] ReturnRateByDistributor_id(String company_id, String time) {
+        return new String[0][];
+    }
+
     /**
      * 得到某一种原材料的安全库存量
      * @param list 所有原材料安全库存量
