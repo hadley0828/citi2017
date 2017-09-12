@@ -12,14 +12,27 @@ public class IndexPo {
     double average_value;   //平均值
     double low_value;   //较低值
     double bad_value;   //较差值
+    String index_name;
 
-    public IndexPo(String industry, double excellent_value, double fine_value, double average_value, double low_value, double bad_value){
+    public IndexPo() {
+    }
+
+    public IndexPo(String industry, double excellent_value, double fine_value, double average_value, double low_value, double bad_value, String index_name) {
         this.industry = industry;
         this.excellent_value = excellent_value;
         this.fine_value = fine_value;
         this.average_value = average_value;
         this.low_value = low_value;
         this.bad_value = bad_value;
+        this.index_name = index_name;
+    }
+
+    public String getIndex_name() {
+        return index_name;
+    }
+
+    public void setIndex_name(String index_name) {
+        this.index_name = index_name;
     }
 
     public String getIndustry() {

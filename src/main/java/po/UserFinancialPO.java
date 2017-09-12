@@ -1,15 +1,15 @@
-package vo.userManagement;
+package po;
 
 /**
- * Created by loohaze on 2017/9/11 下午9:39
+ * Created by loohaze on 2017/9/12 上午9:35
  */
-public class FinancialUserVO {
+public class UserFinancialPO {
 
-    private String id;
+    private String userID;
 
-    private String name; //名称
+    private String name;
 
-    private String address; //地址
+    private String address;
 
     private String legalPerson; //法定代表人
 
@@ -17,15 +17,16 @@ public class FinancialUserVO {
 
     private String legalPersonQualification; //法人资格信贷证
 
-    public FinancialUserVO() {
+    public UserFinancialPO() {
+
     }
 
-    public String getId() {
-        return id;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getName() {

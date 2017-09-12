@@ -1,9 +1,9 @@
-package vo.userManagement;
+package po;
 
 /**
- * Created by loohaze on 2017/9/11 下午6:53
+ * Created by loohaze on 2017/9/12 上午9:33
  */
-public class UserVO {
+public class UserCompanyPO {
 
     private String userID;
 
@@ -13,7 +13,7 @@ public class UserVO {
 
     private String companyID;
 
-    public UserVO() {
+    public UserCompanyPO() {
     }
 
     public String getUserID() {
