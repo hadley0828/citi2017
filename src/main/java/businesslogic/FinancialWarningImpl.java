@@ -2,6 +2,7 @@ package businesslogic;
 
 import businesslogicservice.BalanceSheetService;
 import businesslogicservice.CashFlowTableService;
+import businesslogicservice.FinancialWarningService;
 import businesslogicservice.ProfitTableService;
 import data.FinancialIndexServiceImpl;
 import dataservice.FinancialIndexService;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by 费慧通 on 2017/9/12.
  */
-public class FinancialWarningImpl {
+public class FinancialWarningImpl implements FinancialWarningService{
 
     private ArrayList<IndexPo> list;
 
@@ -185,6 +186,24 @@ public class FinancialWarningImpl {
         double Rate = rate[0]*0.16+rate[1]*0.09+rate[2]*0.07+rate[3]*0.06+rate[4]*0.12+rate[5]*0.1+rate[6]*0.12+rate[7]*0.05+rate[8]*0.08+rate[9]*0.05+rate[10]*0.05+rate[11]*0.05;
 
         return Rate;
+    }
+
+    @Override
+    public String getWarningMessage2(String company_id, String phase) {
+        double Rate = getWarningMessage(company_id, phase);
+        String result = "";
+        if(Rate>=90){
+            result = "无警";
+        }else if(Rate>=80&&Rate<90){
+            result = "轻警";
+        }else if(Rate>=70&&Rate<80){
+            result = "中警";
+        }else if(Rate>=60&&Rate<70){
+            result = "重警";
+        }else{
+            result = "巨警";
+        }
+        return result;
     }
 
     /**

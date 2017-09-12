@@ -6,10 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginAndSignUp.FinancialSignUp">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.loginController.FinanceSignUpController">
    <children>
-      <Button layoutX="294.0" layoutY="483.0" mnemonicParsing="false" text="注册" />
-      <Button layoutX="536.0" layoutY="483.0" mnemonicParsing="false" text="取消" />
+      <Button fx:id="createButton" layoutX="294.0" layoutY="483.0" mnemonicParsing="false" onAction="#createButtonClicked" text="注册" />
+      <Button fx:id="cancelButton" layoutX="536.0" layoutY="483.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="取消" />
       <Label layoutX="455.0" layoutY="37.0" text="金融机构注册" />
       <GridPane layoutX="94.0" layoutY="93.0" prefHeight="316.0" prefWidth="669.0">
         <columnConstraints>
@@ -29,11 +29,11 @@
             <Label text="法人资格信贷证" GridPane.rowIndex="2" />
             <Label text="金融许可证" GridPane.rowIndex="3" />
             <Label text="密码" GridPane.rowIndex="4" />
-            <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" />
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="FinancialLicense" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="legalPersonCard" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="FinanceAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="FinanceName" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

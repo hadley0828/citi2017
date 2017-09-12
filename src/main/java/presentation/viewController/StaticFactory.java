@@ -1,5 +1,8 @@
 package presentation.viewController;
 
+import vo.userManagement.FinancialUserVO;
+import vo.userManagement.UserVO;
+
 /**
  * Created by YZ on 2017/9/10.
  */
@@ -73,6 +76,24 @@ public class StaticFactory {
     public static String getdistributor_product_date(){
         return distributor_product_date;
     }
+
+    static UserVO userVO;
+    public static void setUserVO(UserVO uservo){
+        userVO=uservo;
+    }
+    public static UserVO getUserVO(){
+        return userVO;
+    }
+
+    static FinancialUserVO FUserVO;
+    public static  void setFinancialUserVO(FinancialUserVO vo){
+        FUserVO=vo;
+    }
+    public static FinancialUserVO getFUserVO(){
+        return FUserVO;
+    }
+
+
 
 
 

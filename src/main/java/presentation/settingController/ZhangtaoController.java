@@ -26,8 +26,7 @@ public class ZhangtaoController {
     @FXML
     private ChoiceBox<Object> industryType;
 
-    @FXML
-    private PasswordField passwordField;
+
 
     @FXML
     private Button createButton;

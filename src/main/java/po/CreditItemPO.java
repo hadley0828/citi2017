@@ -11,6 +11,8 @@ public class CreditItemPO {
 
     private String itemID;
 
+    private String voucherID;
+
     private String companyName;
 
     private Date debitDate;
@@ -28,9 +30,10 @@ public class CreditItemPO {
     public CreditItemPO() {
     }
 
-    public CreditItemPO(String type, String itemID, String companyName, Date debitDate, Date ddl, double creditNum, String discountPolicy, Date discountDate, String comment) {
+    public CreditItemPO(String type, String itemID, String voucherID, String companyName, Date debitDate, Date ddl, double creditNum, String discountPolicy, Date discountDate, String comment) {
         this.type = type;
         this.itemID = itemID;
+        this.voucherID = voucherID;
         this.companyName = companyName;
         this.debitDate = debitDate;
         this.ddl = ddl;
@@ -110,5 +113,13 @@ public class CreditItemPO {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getVoucherID() {
+        return voucherID;
+    }
+
+    public void setVoucherID(String voucherID) {
+        this.voucherID = voucherID;
     }
 }
