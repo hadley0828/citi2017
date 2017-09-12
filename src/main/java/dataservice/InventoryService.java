@@ -67,6 +67,22 @@ public interface InventoryService {
     public ArrayList<InventoryProductItemPO> getProductInventoryItem(String company_id, String time);
 
     /**
+     * 得到公司某月所有的原材料库存录入信息(按原材料种类分组、时间从早到晚排序)
+     * @param company_id 公司
+     * @param time 月份 XXXX-MM
+     * @return
+     */
+    public ArrayList<InventoryRawMaterialItemPO> getRawMaterialInventoryItemByMonth(String company_id, String time);
+
+    /**
+     * 得到公司某月所有的产品库存录入信息(按产品种类分组、时间从早到晚排序)
+     * @param company_id 公司id
+     * @param time 月份 XXXX-MM
+     * @return
+     */
+    public ArrayList<InventoryProductItemPO> getProductInventoryItemByMonth(String company_id, String time);
+
+    /**
      * 得到公司截至某一天某种原材料库存录入信息(按时间从早到晚排序)
      * @param company_id 公司
      * @param time 最后时间
