@@ -2,6 +2,7 @@ package businesslogic;
 
 import businesslogicservice.BalanceSheetService;
 import businesslogicservice.CashFlowTableService;
+import businesslogicservice.FinancialWarningService;
 import businesslogicservice.ProfitTableService;
 import data.FinancialIndexServiceImpl;
 import dataservice.FinancialIndexService;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by 费慧通 on 2017/9/12.
  */
-public class FinancialWarningImpl {
+public class FinancialWarningImpl implements FinancialWarningService{
 
     private ArrayList<IndexPo> list;
 
