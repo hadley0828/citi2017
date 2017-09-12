@@ -20,16 +20,17 @@ public class Demo extends Application {
         try{
             FXMLLoader loader=new FXMLLoader();
 //            loader.setLocation(Demo.class.getResource("../view/CashFlow/CashFlow.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
 //              loader.setLocation(Demo.class.getResource("../view/BalanceSheet/TestTree.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/Stock/Supplier.fxml"));
-            ScrollPane root=loader.load();
+//            ScrollPane root=loader.load();
 //            loader.setLocation(Demo.class.getResource("../view/Stock/Distributor.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/Stock/Producer.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/Stock/StockInfo.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/PerformanceAppraisal/PerformanceAppraisal.fxml"));
-//            AnchorPane root=loader.load();
+            AnchorPane root=loader.load();
+            loader.setLocation(Demo.class.getResource("../view/StockInfo/SupplierInfo.fxml"));
 
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
