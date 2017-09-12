@@ -19,6 +19,10 @@ public interface ScreensFramework {
     String SUPPLY_LAYOUT_SCREEN = "SupplyLayout";
     String SUPPLY_LAYOUT_SCREEN_FXML = "/view/layout/SupplyLayout.fxml";
 
+    /*设置界面*/
+    String SETTINGS_LAYOUT_SCREEN = "SettingsLayout";
+    String SETTINGS_LAYOUT_SCREEN_FXML = "/view/layout/SettingsLayout.fxml";
+
     /*新增凭证*/
     String ADD_VOUCHER_SCREEN = "AddVoucher";
     String ADD_VOUCHER_SCREEN_FXML = "/view/voucher/AddVoucher.fxml";

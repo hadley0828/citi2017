@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import vo.accountBook.BookSearchVo;
@@ -11,36 +12,36 @@ import vo.accountBook.BookSearchVo;
 import java.io.IOException;
 
 public class BookSearch extends GridPane {
-    @FXML
     private Button confirm_btn;
-    @FXML
     private Button cancel_btn;
+    private Button reset_btn;
 
-    @FXML
     private ComboBox<String> startPeriod_item;
-    @FXML
     private ComboBox<String> endPeriod_item;
-    @FXML
     private ComboBox<String> startSubject_item;
-    @FXML
     private ComboBox<String> endSubject_item;
 
-    @FXML
     private TextField startLevel_item;
-    @FXML
     private TextField endLevel_item;
 
     public BookSearch(){
-        FXMLLoader fxmlLoader=new FXMLLoader(getClass().getResource("../../component/BookSearch.fxml"));
+        confirm_btn = new Button("确认");
+        cancel_btn = new Button("取消");
+        reset_btn = new Button("重置");
 
-        fxmlLoader.setRoot(this);
-        fxmlLoader.setController(this);
+        startPeriod_item = new ComboBox<>();
+        endSubject_item = new ComboBox<>();
+        startPeriod_item = new ComboBox<>();
+        endPeriod_item = new ComboBox<>();
+        startSubject_item = new ComboBox<>();
 
-        try {
-            fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        startLevel_item = new TextField();
+        endLevel_item = new TextField();
+
+        Label label_0 = new Label("会计期间：");
+        Label label_1 = new Label("起始科目：");
+        Label label_2 = new Label("结账科目：");
+        Label label_3 = new Label("");
     }
 
     public Button getConfirm_btn() {
