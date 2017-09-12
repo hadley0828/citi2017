@@ -147,7 +147,7 @@ public class SupplyChainImpl implements SupplyChainService{
 	}
 
 	public double ReceivableFinacing(double MortgageAmount, String Receivable, String company_id, String time) {
-
+		
 		double dis=0;//预警
 		return MortgageAmount*dis;
 	}

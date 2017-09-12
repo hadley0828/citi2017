@@ -18,6 +18,8 @@
                         <PasswordField layoutX="123.0" layoutY="168.0" />
                         <Button layoutX="76.0" layoutY="301.0" mnemonicParsing="false" text="登陆" />
                         <Button layoutX="248.0" layoutY="309.0" mnemonicParsing="false" text="注册" />
+                        <RadioButton layoutX="46.0" layoutY="244.0" mnemonicParsing="false" text="企业管理员" />
+                        <RadioButton layoutX="215.0" layoutY="244.0" mnemonicParsing="false" text="普通用户" />
                      </children>
                   </AnchorPane>
             </content>
@@ -26,7 +28,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="96.0" layoutY="76.0" text="机构id" />
+                        <Label layoutX="96.0" layoutY="76.0" text="账号" />
                         <Label layoutX="96.0" layoutY="207.0" text="密码" />
                         <TextField layoutX="252.0" layoutY="71.0" />
                         <PasswordField layoutX="252.0" layoutY="212.0" />

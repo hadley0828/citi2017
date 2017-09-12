@@ -21,7 +21,6 @@ public class ProfitTableImpl implements ProfitTableService{
 	}
 
 	public ProfitTableVo BusinessIncome_period(String id,String time) {
-		// TODO Auto-generated method stub
 		double business_income=0;//营业收入
 		double temp1=helper.Cal(DATA.getVourchersByPeriod(time, "5001",id));
 		double temp2=helper.Cal(DATA.getVourchersByPeriod(time, "5051",id));
@@ -95,7 +94,6 @@ public class ProfitTableImpl implements ProfitTableService{
 	}
 	
 	public ProfitTableVo BusinessIncome_year(String id,String time) {
-		// TODO Auto-generated method stub
 		double business_income=0;//营业收入
 		double temp1=helper.Cal(DATA.getVourchersByYear(time, "5001",id));
 		double temp2=helper.Cal(DATA.getVourchersByYear(time, "5051",id));
@@ -166,5 +164,57 @@ public class ProfitTableImpl implements ProfitTableService{
 		return new ProfitTableVo(business_income,business_costs,Business_Taxes_and_Surcharges,Selling_expenses,
 				Management_expenses,Financial_expenses,investment_proceeds,operating_profit,Non_operating_income,
 				Non_operating_expenses,Total_profit,Income_tax_expense,Net_profit);
+	}
+
+	public double[] getValue(String id, String time) {
+		double res[]=new double[10];
+		
+		double business_income=0;//营业收入
+		double temp1=helper.Cal(DATA.getVourchersByPeriod(time, "5001",id));
+		double temp2=helper.Cal(DATA.getVourchersByPeriod(time, "5051",id));
+		res[7]=temp2;
+		res[8]=temp1;
+		res[9]=helper.Cal(DATA.getVourchersByPeriod(helper.lastTime(time), "5001",id));
+		business_income=temp1+temp2;//主营业务收入+其他业务收入
+		
+		double business_costs=0;//营业成本
+		temp1=helper.Cal2(DATA.getVourchersByPeriod(time, "5401",id));
+		res[2]=temp1;
+		temp2=helper.Cal2(DATA.getVourchersByPeriod(time, "5451",id));
+		business_costs=temp1+temp2;//主营业务成本+其他业务成本
+		res[6]=business_costs;
+		
+		double Business_Taxes_and_Surcharges=0;
+		Business_Taxes_and_Surcharges=helper.Cal2(DATA.getVourchersByPeriod(time, "5403",id));//税金及附加
+				
+		double Selling_expenses=0;
+		Selling_expenses=helper.Cal2(DATA.getVourchersByPeriod(time, "5601",id));//销售费用
+		res[3]=Selling_expenses;	
+		
+		double Management_expenses=0;
+		Management_expenses=helper.Cal2(DATA.getVourchersByPeriod(time, "5602",id));//管理费用
+		res[4]=Management_expenses;
+		
+		double Financial_expenses=0;//财务费用
+		Financial_expenses=helper.Cal2(DATA.getVourchersByPeriod(time, "5603",id));//财务费用
+		res[5]=Financial_expenses;
+		
+		double operating_profit=business_income+helper.Cal(DATA.getVourchersByPeriod(time, "5111",id))-business_costs-
+				Business_Taxes_and_Surcharges-Selling_expenses-Management_expenses-Financial_expenses;
+		
+		double Non_operating_income=0;
+		Non_operating_income=helper.Cal(DATA.getVourchersByPeriod(time, "5301",id));
+		
+		double Non_operating_expenses=0;
+		Non_operating_expenses=helper.Cal2(DATA.getVourchersByPeriod(time, "5711",id));
+		
+		double Total_profit=operating_profit+Non_operating_income-Non_operating_expenses;
+		res[1]=Total_profit;
+		
+		double Income_tax_expense=helper.Cal2(DATA.getVourchersByPeriod(time, "5801",id));
+		
+		double Net_profit=Total_profit-Income_tax_expense;
+		res[0]=Net_profit;
+		return res;
 	}
 }
