@@ -56,8 +56,8 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
     @FXML
     private MenuButton select_menu;
-    @FXML
-    private BookSearch bookSearch;
+
+    private BookSearch bookSearch = new BookSearch();
 
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;

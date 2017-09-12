@@ -33,12 +33,12 @@
          </children>
       </HBox>
       <Label text=" 至" GridPane.columnIndex="3" />
-      <ComboBox fx:id="endSubject_item" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <ComboBox fx:id="startSubject_item" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <ComboBox fx:id="endSubject_item" prefWidth="150.0" promptText=" " GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <ComboBox fx:id="startSubject_item" prefWidth="150.0" promptText=" " GridPane.columnIndex="2" GridPane.rowIndex="1" />
       <TextField fx:id="startLevel_item" text="1" GridPane.columnIndex="2" GridPane.rowIndex="3" />
       <Label text=" 至 " GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <TextField fx:id="endLevel_item" text="1" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <ComboBox fx:id="startPeriod_item" prefWidth="150.0" GridPane.columnIndex="2" />
-      <ComboBox fx:id="endPeriod_item" prefHeight="23.0" prefWidth="152.0" GridPane.columnIndex="4" />
+      <ComboBox fx:id="startPeriod_item" prefWidth="150.0" promptText=" " GridPane.columnIndex="2" />
+      <ComboBox fx:id="endPeriod_item" prefHeight="23.0" prefWidth="152.0" promptText=" " GridPane.columnIndex="4" />
    </children>
 </GridPane>
