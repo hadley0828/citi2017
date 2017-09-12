@@ -21,6 +21,15 @@ public class UserFinancialPO {
 
     }
 
+    public UserFinancialPO(String userID, String name, String address, String legalPerson, String financialKey, String legalPersonQualification) {
+        this.userID = userID;
+        this.name = name;
+        this.address = address;
+        this.legalPerson = legalPerson;
+        this.financialKey = financialKey;
+        this.legalPersonQualification = legalPersonQualification;
+    }
+
     public String getUserID() {
         return userID;
     }

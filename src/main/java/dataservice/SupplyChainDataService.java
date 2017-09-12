@@ -11,6 +11,14 @@ import po.VoucherAmountPO;
  *
  */
 public interface SupplyChainDataService {
+	
+	/**
+	 * 
+	 * @param company_id
+	 * @return 由一个id获得三个公司的id，按供应商，生产商，分销商的顺序
+	 */
+	public String[] getTheCompanys(String company_id);
+	
 	/**
      * 得到公司截至某一天所有的辅助信息部分的公司名称
      * @param company_id 公司
@@ -44,7 +52,7 @@ public interface SupplyChainDataService {
 	 * @param id 科目id
 	 * @return 获取期初，没有则返回0
 	 */
-	public double GetInitial(String id);
+	public double GetInitial(String id,String company_id);
 	
 	/**
 	 * 
@@ -63,5 +71,12 @@ public interface SupplyChainDataService {
 	 * @return 该time及之前的所有符合的
 	 */
 	public List<VoucherAmountPO> GetVoucherAmountsWithProduct(String id,String product,String time);
+	
+	/**
+	 * 
+	 * @param id
+	 * @return 根据公司id获得名称
+	 */
+	public String getCompany(String id);
 	
 }

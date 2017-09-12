@@ -11,6 +11,8 @@ import data.SupplyChainDataServiceImpl;
 import dataservice.InventoryService;
 import dataservice.ProfitAndCashService;
 import dataservice.SupplyChainDataService;
+import po.SupplyChainPO;
+import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 import vo.SupplyChainPerformanceVo;
 
@@ -25,12 +27,15 @@ public class SupplyChainImpl implements SupplyChainService{
 	private InventoryService IS;
 	private TableCalHelper helper;
 	private SupplyChainDataService SC;
+	private FinancialWarningImpl FW;
+	private String[] list={"无警","轻警","中警","重警","巨警"};
 	
 	public SupplyChainImpl(){
 		DATA=new ProfitAndCashServiceImpl();
 		IS=new InventoryServiceImpl();
 		helper=new TableCalHelper();
 		SC=new SupplyChainDataServiceImpl();
+		FW=new FinancialWarningImpl();
 	}
 
 	/**
@@ -146,9 +151,11 @@ public class SupplyChainImpl implements SupplyChainService{
 		return SC.getAcountReceivable(company_id, time);
 	}
 
-	public double ReceivableFinacing(double MortgageAmount, String Receivable, String company_id, String time) {
-
-		double dis=0;//预警
+	public double ReceivableFinacing(double MortgageAmount, String company_id, String time) {
+		
+		String warning=FW.getWarningMessage(company_id, time).substring(0, 2);//预警
+		double dis=warningJudge(warning);
+		SC.SaveSupplyChain(new SupplyChainPO(time,SC.getCompany(company_id),"应收帐款融资",MortgageAmount,MortgageAmount*dis));
 		return MortgageAmount*dis;
 	}
 
@@ -156,10 +163,39 @@ public class SupplyChainImpl implements SupplyChainService{
 		return SC.getRawMaterialAndProduct(company_id, time);
 	}
 
-	public double PledgeMovables(double Amount, String InventoryType, String company_id, String time) {
+	public double PledgeMovables(double Amount, String company_id, String time) {
 		
-		double dis=0;//预警
+		String warning=FW.getWarningMessage(company_id, time).substring(0, 2);//预警
+		double dis=warningJudge(warning);
+		SC.SaveSupplyChain(new SupplyChainPO(time,SC.getCompany(company_id),"动产质押融资",Amount,Amount*dis));
 		return Amount*dis;
 	}
+	
+	public double warningJudge(String warning){
+		int i=0;
+		for(;i<5;i++){
+			if(warning.equals(list[i]))
+				break;
+		}
+		return 0.9-i*0.1;
+	}
+
+	public double getNetReceivables(String company,String time) {
+		return helper.Cal2(SC.GetVoucherAmountsWithCompany("1122",company,time));
+	}
+
+	public double getNetInventory(String product,String time) {
+		return helper.Cal2(SC.GetVoucherAmountsWithProduct("1401", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct("1402", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct("1403", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct("1405", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct("1408", product, time))+
+				helper.Cal2(SC.GetVoucherAmountsWithProduct("1605", product, time));
+	}
+
+	public List<SupplyChainPO> GetSupplyChains() {
+		return SC.GetSupplyChains();
+	}
+	
 	
 }

@@ -684,10 +684,6 @@ public class VoucherBlImpl implements VoucherBlService {
                     basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
                     basicVo.setLowLevelList(lowList);
 
-                    if(oneSubjectId.equals("2221001")){
-                        System.out.println("success");
-                    }
-
                     resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,highLevel)).getLowLevelList().add(basicVo);
 
                 }
@@ -695,39 +691,34 @@ public class VoucherBlImpl implements VoucherBlService {
             }
         }
 
-//        for(int count=0;count<allSubjectIdList.size();count++){
-//            String oneSubjectId=allSubjectIdList.get(count);
-//
-//            //表示当前科目是第三级别的科目
-//            if(oneSubjectId.length()==9){
-//                String firstLevel=oneSubjectId.substring(0,4);  //1001
-//                String secondLevel=oneSubjectId.substring(0,7); //1001001
-//
-//                System.out.println(firstLevel+" "+secondLevel);
-//
-//                if(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)!=-1){
-//                    ArrayList<SubjectBasicVo> lowList=resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)).getLowLevelList();
-//                    if(SubjectBasicHelper.getIndexOfSubjectsList(lowList,secondLevel)!=-1){
-//                        SubjectBasicVo basicVo=new SubjectBasicVo();
-//                        ArrayList<SubjectBasicVo> newList=new ArrayList<>();
-//                        basicVo.setSubjectId(oneSubjectId);
-//                        basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
-//                        basicVo.setLowLevelList(lowList);
-//
-//
-//                        lowList.get(SubjectBasicHelper.getIndexOfSubjectsList(lowList,secondLevel)).getLowLevelList().add(basicVo);
-//
-//                    }
-//
-//
-//
-//                }
-//
-//
-//            }
-//
-//        }
+        for(int count=0;count<allSubjectIdList.size();count++){
+            String oneSubjectId=allSubjectIdList.get(count);
 
+            if(oneSubjectId.length()==9){
+                String firstLevel=oneSubjectId.substring(0,4);
+                String secondLevel=oneSubjectId.substring(0,7);
+
+                if(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)!=-1){
+                    if(SubjectBasicHelper.getIndexOfSubjectsList(resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)).getLowLevelList(),secondLevel)!=-1){
+                        SubjectBasicVo basicVo=new SubjectBasicVo();
+                        ArrayList<SubjectBasicVo> lowList=new ArrayList<>();
+                        basicVo.setSubjectId(oneSubjectId);
+                        basicVo.setSubjectName(idToNameMap.get(oneSubjectId));
+                        basicVo.setLowLevelList(lowList);
+
+                        resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)).getLowLevelList().get(SubjectBasicHelper.getIndexOfSubjectsList(resultList.get(SubjectBasicHelper.getIndexOfSubjectsList(resultList,firstLevel)).getLowLevelList(),secondLevel)).getLowLevelList().add(basicVo);
+
+                    }
+
+
+
+                }
+
+
+
+            }
+
+        }
 
 
         return resultList;

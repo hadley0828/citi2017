@@ -10,5 +10,5 @@ public interface FinancialWarningService {
      * @param phase 时间
      * @return
      */
-    public String getWarningMessage(String company_id, String phase);
+    public double getWarningMessage(String company_id, String phase);
 }

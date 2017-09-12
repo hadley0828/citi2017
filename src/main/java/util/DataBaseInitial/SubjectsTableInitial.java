@@ -1,4 +1,4 @@
-package util;
+package util.DataBaseInitial;
 
 import data.SqlManager;
 
