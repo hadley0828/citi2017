@@ -79,8 +79,7 @@ public interface UserManagementService {
      * 登录 type是企业用户或者金融机构用户
      * @param id
      * @param password
-     * @param type
      * @return
      */
-    public ResultMessage loginIn(String id, String password,String type);
+    public ResultMessage loginIn(String id, String password);
 }
