@@ -13,6 +13,13 @@ public class UserCompanyPO {
 
     private String companyID;
 
+    public UserCompanyPO(String userID, String accountID, String type, String companyID) {
+        this.userID = userID;
+        this.accountID = accountID;
+        this.type = type;
+        this.companyID = companyID;
+    }
+
     public UserCompanyPO() {
     }
 

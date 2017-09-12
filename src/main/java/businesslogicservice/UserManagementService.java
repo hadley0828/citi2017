@@ -1,6 +1,6 @@
 package businesslogicservice;
 
-import util.ResultMessage;
+import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
