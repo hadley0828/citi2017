@@ -1,6 +1,7 @@
 package businesslogic;
 
 import businesslogicservice.CreditItemService;
+import data.CreditItemServiceImpl;
 import po.CreditItemPO;
 import vo.CreditItemVo;
 
@@ -34,16 +35,30 @@ public class CreditItemImpl implements CreditItemService {
                 }
             }
         }
-
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        service.SaveCreditItem(result, company_id);
     }
 
     @Override
     public ArrayList<CreditItemVo> getReceivables(String company_id, String voucher_id) {
-        return null;
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        ArrayList<CreditItemPO> list = service.getReceivables(company_id, voucher_id);
+        return getList(list);
     }
 
     @Override
     public ArrayList<CreditItemVo> getAccountsPayable(String company_id, String voucher_id) {
-        return null;
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        ArrayList<CreditItemPO> list = service.getAccountsPayable(company_id, voucher_id);
+        return getList(list);
+    }
+
+    private ArrayList<CreditItemVo> getList(ArrayList<CreditItemPO> list){
+        ArrayList<CreditItemVo> result = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            CreditItemPO po = list.get(i);
+            result.add(new CreditItemVo(po.getCompanyName(),po.getDebitDate().toString(),po.getDdl().toString(),po.getCreditNum(),po.getDiscountPolicy(),po.getDiscountDate().toString(),po.getComment()));
+        }
+        return result;
     }
 }
