@@ -12,11 +12,11 @@ import javafx.stage.Stage;
  * @author Molloh
  * @version 2017/9/6
  */
- class RunFSignUp extends Application {
+ public class RunFSignUp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/LoginAndSignUp/FinancialSignUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../view/LoginAndSignUp/FinancialSignUp.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setMinWidth(1000);

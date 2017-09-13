@@ -3,15 +3,19 @@ package presentation.settingController;
 import businesslogic.UserManagementImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import presentation.viewController.StaticFactory;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.UserVO;
+
+import javax.sound.midi.ControllerEventListener;
 
 
 /**
  * Created by Chris on 2017/9/12.
  */
-public class ZhangtaoController {
+public class ZhangtaoController implements ControlledScreen {
     @FXML
     private TextField compName;
 
@@ -86,4 +90,8 @@ public class ZhangtaoController {
          */
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

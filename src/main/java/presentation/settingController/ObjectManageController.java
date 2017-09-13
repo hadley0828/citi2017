@@ -4,11 +4,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 
 /**
  * Created by Chris on 2017/9/12.
  */
-public class ObjectManageController {
+public class ObjectManageController implements ControlledScreen {
     @FXML
     private  Tab Balance;
 
@@ -108,5 +110,8 @@ public class ObjectManageController {
     }
 
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
 
+    }
 }

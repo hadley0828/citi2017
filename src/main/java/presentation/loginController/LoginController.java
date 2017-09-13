@@ -90,6 +90,7 @@ public class LoginController {
          */
         RunCSignUp c=new RunCSignUp();
         try {
+
             c.start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();
