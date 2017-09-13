@@ -39,7 +39,7 @@ public interface UserManagementService {
      * @param id
      * @return
      */
-    public UserCompanyPO getOneCompanyUser(String id,String company_id);
+    public UserCompanyPO getOneCompanyUser(String id);
 
     /**
      * 获得一个金融机构用户PO
