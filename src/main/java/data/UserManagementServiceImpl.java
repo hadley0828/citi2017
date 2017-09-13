@@ -175,22 +175,26 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
+    public AccountSetPO getAccountSetByUserID(String userID) {
+        sqlManager.getConnection();
+
+        String sql = "select * from account_set where company_id in (select company_id from user_company where id=?)";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{userID});
+
+        AccountSetPO po = getAccountSetPOByMap(map);
+
+        sqlManager.releaseAll();
+        return po;
+    }
+
+    @Override
     public AccountSetPO getAccountSetByCompanyID(String companyID) {
         sqlManager.getConnection();
 
         String sql = "select * from account_set where company_id=?";
         Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{companyID});
 
-        AccountSetPO po = new AccountSetPO();
-        po.setCompanyID(map.get("company_id").toString());
-        po.setAccountID(map.get("account_id").toString());
-        po.setCompanyName(map.get("company_name").toString());
-        po.setLocation(map.get("location").toString());
-        po.setIndustry(map.get("industry").toString());
-        po.setChainPlace(map.get("chain_place").toString());
-        po.setDate(Date.valueOf(map.get("date").toString()));
-        po.setCreditCode(map.get("credit_code").toString());
-        po.setContact(map.get("contact").toString());
+        AccountSetPO po = getAccountSetPOByMap(map);
 
         sqlManager.releaseAll();
         return po;
@@ -209,41 +213,6 @@ public class UserManagementServiceImpl implements UserManagementService {
             return ResultMessage.FAIL;
         }
     }
-
-    @Override
-    public ArrayList<String> getAllSuperIndustry() {
-        sqlManager.getConnection();
-
-        ArrayList<String> list = new ArrayList<>();
-
-        String sql = "select distinct super_industry from industry";
-        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
-
-        for (Map<String,Object> map : maps){
-            list.add(map.get("super_industry").toString());
-        }
-
-        sqlManager.releaseAll();
-        return list;
-
-    }
-
-    @Override
-    public ArrayList<String> getAllSubIndustry(String superIndustry){
-        sqlManager.getConnection();
-
-        ArrayList<String> list = new ArrayList<>();
-
-        String sql = "select sub_industry from industry where super_industry=?";
-        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{superIndustry});
-
-        for (Map<String,Object> map : maps){
-            list.add(map.get("sub_industry").toString());
-        }
-        sqlManager.releaseAll();
-        return list;
-    }
-
 
     @Override
     public ResultMessage insertPassword(String id, String password) {
@@ -311,5 +280,21 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
 
         return list;
+    }
+
+    private AccountSetPO getAccountSetPOByMap(Map<String,Object> map){
+
+        AccountSetPO po = new AccountSetPO();
+        po.setCompanyID(map.get("company_id").toString());
+        po.setAccountID(map.get("account_id").toString());
+        po.setCompanyName(map.get("company_name").toString());
+        po.setLocation(map.get("location").toString());
+        po.setIndustry(map.get("industry").toString());
+        po.setChainPlace(map.get("chain_place").toString());
+        po.setDate(Date.valueOf(map.get("date").toString()));
+        po.setCreditCode(map.get("credit_code").toString());
+        po.setContact(map.get("contact").toString());
+
+        return po;
     }
 }

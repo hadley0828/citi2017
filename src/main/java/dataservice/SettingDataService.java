@@ -1,4 +1,4 @@
-package businesslogicservice;
+package dataservice;
 
 import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsInitialVO;
@@ -8,9 +8,9 @@ import vo.userManagement.UserVO;
 import java.util.ArrayList;
 
 /**
- * Created by loohaze on 2017/9/11 下午9:33
+ * Created by loohaze on 2017/9/13 下午6:47
  */
-public interface SettingService {
+public interface SettingDataService {
 
     /**
      * 一个公司的期初设置
@@ -42,7 +42,7 @@ public interface SettingService {
 
     /**
      * 获得所有科目
-      * @return
+     * @return
      */
     public ArrayList<SubjectsVO> getAllSubjects();
 
