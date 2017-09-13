@@ -226,24 +226,87 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
     @Override
     public ArrayList<TotalAccountVo> getAllSubjectTotal(BookSearchVo searchVo, String factoryId) {
+        ArrayList<TotalAccountVo> resultVoList=new ArrayList<>();
 
+        ArrayList<String> allSubjectIdList=subjectDataService.getAllExistedSubjectId(factoryId);
 
+        ArrayList<SubjectsPO> allSubjectRecordList=subjectDataService.getAllSubjects(factoryId);
 
-        return null;
+        HashMap<String,ArrayList<SubjectsPO>> subjectIdToRecordMap=new HashMap<>();
+
+        for(int count=0;count<allSubjectRecordList.size();count++){
+            String oneSubjectId=allSubjectRecordList.get(count).getId();
+            if(subjectIdToRecordMap.containsKey(oneSubjectId)){
+                subjectIdToRecordMap.get(oneSubjectId).add(allSubjectRecordList.get(count));
+
+            }else{
+                ArrayList<SubjectsPO> subjectsPOArrayList=new ArrayList<>();
+                subjectsPOArrayList.add(allSubjectRecordList.get(count));
+                subjectIdToRecordMap.put(oneSubjectId,subjectsPOArrayList);
+
+            }
+        }
+
+        for(int count=0;count<allSubjectIdList.size();count++){
+            String oneSubjectId=allSubjectIdList.get(count);
+
+            if(subjectIdToRecordMap.containsKey(oneSubjectId)){
+                if(subjectIdToRecordMap.get(oneSubjectId).size()>1){
+                    resultVoList.add(getOneSubjectTotal(oneSubjectId,searchVo,factoryId));
+
+                }
+            }
+        }
+        return resultVoList;
     }
 
     @Override
     public TotalAccountVo getOneSubjectTotal(String subjectId, BookSearchVo searchVo, String factoryId) {
         TotalAccountVo resultVo=new TotalAccountVo();
+        ArrayList<TotalAccountAmountVo> totalAccountAmountVoList=new ArrayList<>();
+
+        HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap();
+
+        DetailAccountVo detailVo=getOneSubjectDetail(subjectId,searchVo,factoryId);
+
+        ArrayList<DetailAccountAmountVo> detailAmountList=detailVo.getAmountVoArrayList();
+
+
+        for(int count=0;count<detailAmountList.size();count++){
+            DetailAccountAmountVo oneAmountVo=detailAmountList.get(count);
+
+            String oneAbstract=oneAmountVo.getAbstracts();
+
+            if(oneAbstract.equals("期初余额")||oneAbstract.equals("本期合计")||oneAbstract.equals("本年累计")){
+                TotalAccountAmountVo totalAccountAmountVo=new TotalAccountAmountVo();
+                totalAccountAmountVo.setSubjectId(subjectId);
+                totalAccountAmountVo.setSubjectName(subjectIdToNameMap.get(subjectId));
+                totalAccountAmountVo.setPeriod(DateConvert.monthToPeriod(oneAmountVo.getDate().substring(0,7)));
+                totalAccountAmountVo.setAbstracts(oneAmountVo.getAbstracts());
+                totalAccountAmountVo.setDebitAmount(oneAmountVo.getDebitAmount());
+                totalAccountAmountVo.setCreditAmount(oneAmountVo.getCreditAmount());
+                totalAccountAmountVo.setDirection(oneAmountVo.getDirection());
+                totalAccountAmountVo.setBalance(oneAmountVo.getBalance());
+
+                totalAccountAmountVoList.add(totalAccountAmountVo);
 
 
 
+            }else{
+                continue;
+            }
+        }
 
-        return null;
+        resultVo.setSubjectId(subjectId);
+        resultVo.setSubjectName(subjectIdToNameMap.get(subjectId));
+        resultVo.setAmountVoArrayList(totalAccountAmountVoList);
+
+        return resultVo;
     }
 
     @Override
     public ArrayList<BalanceTableOneClause> getBalanceTableAllClauses(BookSearchVo searchVo, String factoryId) {
+
         return null;
     }
 

@@ -2,6 +2,8 @@ package util;
 
 
 
+import po.SubjectsPO;
+
 import java.lang.*;
 
 import java.text.DateFormat;
@@ -421,5 +423,8 @@ public class DateConvert {
 
 
         System.out.println(getThisYearBeforeMonths("2009-08"));
+
+        SubjectsPO onePo=new SubjectsPO();
+        System.out.println(onePo.getVoucher_id());
     }
 }
