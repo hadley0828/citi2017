@@ -4,7 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import presentation.screenController.ScreensFramework;
-import presentation.viewController.voucher.InquireVoucherController;
+import presentation.viewController.financialSystem.voucher.InquireVoucherController;
 import vo.voucher.VoucherSearchVo;
 
 import java.io.IOException;

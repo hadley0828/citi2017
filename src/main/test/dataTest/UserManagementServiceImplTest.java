@@ -10,7 +10,6 @@ import po.UserFinancialPO;
 import util.EnumPackage.ResultMessage;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -89,21 +88,6 @@ public class UserManagementServiceImplTest {
     }
 
 
-    @Test
-    public void testgetAllSuperIndustry(){
-        ArrayList<String> list = userManagementService.getAllSuperIndustry();
-        for (String s : list){
-            System.out.println(s);
-        }
-    }
-
-    @Test
-    public void testgetAllSubIndustry(){
-        ArrayList<String> list = userManagementService.getAllSubIndustry("工业");
-        for (String s : list){
-            System.out.println(s);
-        }
-    }
 
     @Test
     public void testisCompanyUser(){
