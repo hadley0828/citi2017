@@ -2,6 +2,7 @@ package presentation.viewController.layout;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -52,7 +53,8 @@ public class RootLayoutController implements Initializable {
             rootController.setScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
         else if (event.getSource().equals(supply_btn))
             rootController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
-        else if (event.getSource().equals(settings_btn))
+        else if (event.getSource().equals(settings_btn)) {
             rootController.setScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);
+        }
     }
 }

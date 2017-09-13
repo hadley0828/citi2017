@@ -75,4 +75,5 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
             settingsController.setScreen(ScreensFramework.LINK_SCREEN);
 
     }
+
 }
