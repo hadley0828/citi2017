@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="348.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.stockInfo.SupplierInfoController">
+<AnchorPane prefHeight="348.0" prefWidth="1087.0" stylesheets="@../../../css/Info.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.stockInfo.SupplierInfoController">
    <children>
    
-       <Label layoutX="22.0" layoutY="29.0" prefHeight="43.0" prefWidth="131.0" text="供应商的信息录入">
+       <Label layoutX="21.0" layoutY="14.0" prefHeight="43.0" prefWidth="131.0" text="供应商的信息录入">
            <font>
                <Font size="16.0" />
         </font>
        </Label>
-       <TableView fx:id="supplier_raw" layoutX="4.0" layoutY="84.0" prefHeight="203.0" prefWidth="1080.0">
+       <TableView fx:id="supplier_raw" layoutX="4.0" layoutY="62.0" prefHeight="225.0" prefWidth="1080.0">
            <columns>
                <TableColumn fx:id="raw_1" prefWidth="132.0" sortable="false" text="原材料种类" />
                <TableColumn fx:id="raw_2" prefWidth="79.0" sortable="false" text="凭证编号" />
@@ -24,22 +24,22 @@
                <TableColumn fx:id="raw_5" prefWidth="89.0" sortable="false" text="是否属于退货" />
                <TableColumn editable="false" prefWidth="225.0" sortable="false" text="收入">
                    <columns>
-                       <TableColumn fx:id="raw_6"  prefWidth="67.0" sortable="false" text="数量" />
-                       <TableColumn fx:id="raw_7"  prefWidth="71.0" sortable="false" text="单价" />
-                       <TableColumn fx:id="raw_8"  prefWidth="72.0" sortable="false" text="金额" />
+                       <TableColumn fx:id="raw_6" prefWidth="67.0" sortable="false" text="数量" />
+                       <TableColumn fx:id="raw_7" prefWidth="71.0" sortable="false" text="单价" />
+                       <TableColumn fx:id="raw_8" prefWidth="72.0" sortable="false" text="金额" />
                    </columns>
                </TableColumn>
-               <TableColumn  prefWidth="225.0" sortable="false" text="发出">
+               <TableColumn prefWidth="225.0" sortable="false" text="发出">
                    <columns>
-                       <TableColumn fx:id="raw_9"  prefWidth="68.0" sortable="false" text="数量" />
-                       <TableColumn fx:id="raw_10"  prefWidth="69.0" sortable="false" text="单价" />
-                       <TableColumn fx:id="raw_11"  prefWidth="75.0" sortable="false" text="金额" />
+                       <TableColumn fx:id="raw_9" prefWidth="68.0" sortable="false" text="数量" />
+                       <TableColumn fx:id="raw_10" prefWidth="69.0" sortable="false" text="单价" />
+                       <TableColumn fx:id="raw_11" prefWidth="75.0" sortable="false" text="金额" />
                    </columns>
                </TableColumn>
                <TableColumn fx:id="raw_12" prefWidth="150.0" sortable="false" text="结存量" />
            </columns>
        </TableView>
-      <Button fx:id="supplier_button" layoutX="519.0" layoutY="305.0" mnemonicParsing="false" text="完成">
+      <Button fx:id="supplier_button" layoutX="519.0" layoutY="305.0" mnemonicParsing="false" onAction="#addSupplierInfo" stylesheets="@../../../css/BalanceSheet.css" text="完成">
          <font>
             <Font size="15.0" />
          </font>

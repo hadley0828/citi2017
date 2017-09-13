@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Font?>
 <?import presentation.componentController.Datebar?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
     <content>
-        <Pane id="bigPane" prefHeight="1300.0" prefWidth="1180.0" stylesheets="@../../css/BalanceSheet.css">
+        <Pane id="bigPane" prefHeight="1300.0" prefWidth="1180.0" stylesheets="@../../../../css/BalanceSheet.css">
             <children>
                 <Pane prefHeight="60.0" prefWidth="1180.0">
                     <children>
@@ -25,7 +25,7 @@
                         </Label>
                     </children>
                 </Pane>
-                <Pane id="innerPane" layoutX="90.0" layoutY="60.0" prefHeight="1200.0" prefWidth="1000.0" stylesheets="@../../css/BalanceSheet.css">
+                <Pane id="innerPane" layoutX="90.0" layoutY="60.0" prefHeight="1200.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css">
                     <children>
                         <Button id="out" fx:id="out" layoutX="907.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="    导出" textFill="WHITE">
                             <font>
@@ -42,12 +42,12 @@
                         </TableView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="913.0" layoutY="27.0">
                             <image>
-                                <Image url="@../../images/out_pic.png" />
+                                <Image url="@../../../../images/out_pic.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="20" fitWidth="20" layoutX="830.0" layoutY="27.0">
                             <image>
-                                <Image url="@../../images/print_pic.png" />
+                                <Image url="@../../../../images/print_pic.png" />
                             </image>
                         </ImageView>
                         <HBox layoutX="28.0" layoutY="21.0" prefHeight="36.0" prefWidth="162.0">

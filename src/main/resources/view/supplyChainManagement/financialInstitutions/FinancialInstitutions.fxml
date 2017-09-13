@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.financialInstitutions.FinancialInstitutionsController">
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.financialInstitutions.FinancialInstitutionsController">
    <children>
       <Label layoutX="281.0" layoutY="103.0" text="供应链融资需求信息库">
          <font>
@@ -23,7 +23,7 @@
       <TextField id="search_company" fx:id="company_search" layoutX="796.0" layoutY="101.0" prefHeight="27.0" prefWidth="129.0" />
       <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="796.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
        <image>
-           <Image url="@../../images/search.png" />
+           <Image url="@../../../images/search.png" />
        </image>
       </ImageView>
       <TableView fx:id="financing_table" layoutX="281.0" layoutY="162.0" prefHeight="416.0" prefWidth="650.0">

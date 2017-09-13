@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.stock.SupplierController">
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.stock.SupplierController">
    <children>
       <Label layoutX="454.0" layoutY="40.0" prefHeight="50.0" prefWidth="273.0" text="供应商原材料库存监控表">
          <font>

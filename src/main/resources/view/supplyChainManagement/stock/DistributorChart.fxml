@@ -39,7 +39,7 @@
         </LineChart>
         <ImageView fx:id="back" fitHeight="36.0" fitWidth="35.0" layoutX="844.0" layoutY="14.0" onMouseClicked="#backtotable" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../images/return.png" />
+                <Image url="@../../../images/return.png" />
             </image>
         </ImageView>
     </children>
