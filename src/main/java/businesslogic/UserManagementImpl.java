@@ -67,9 +67,10 @@ public class UserManagementImpl implements UserManagementService{
     }
 
     @Override
-    public UserVO getOneCompanyUser(String id,String company_id) {
-        UserCompanyPO po = dataservice.getOneCompanyUser(id,company_id);
-        return UserCompanyPO2VO(po);
+    public UserVO getOneCompanyUser(String id) {
+//        UserCompanyPO po = dataservice.getOneCompanyUser(id,company_id);
+//        return UserCompanyPO2VO(po);
+        return null;
     }
 
     @Override

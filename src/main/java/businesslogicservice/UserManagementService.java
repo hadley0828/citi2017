@@ -37,7 +37,7 @@ public interface UserManagementService {
      * 获得一个企业用户VO
      * @return
      */
-    public UserVO getOneCompanyUser(String id,String company_id);
+    public UserVO getOneCompanyUser(String id);
 
     /**
      * 获得一个金融机构用户VO
