@@ -328,9 +328,18 @@ public class CashFlowImpl implements CashFlowTableService{
 		return Net_cash_increase[0]-Investment_activities[5]-Financing_activities[5];
 	}
 
-	@Override
 	public double[] getCashFlow(String company_id, String time) {
-		return new double[0];
+		CashFlowVo v1=CashFlowTable_month(time,company_id);
+		
+		double res[]=new double[3];
+		res[0]=v1.getOperating_activities()[0]+v1.getOperating_activities()[1]+
+				v1.getInvestment_activities()[0]+v1.getInvestment_activities()[1]+v1.getInvestment_activities()[2]+
+				v1.getFinancing_activities()[0]+v1.getFinancing_activities()[1];
+		res[1]=v1.getOperating_activities()[2]+v1.getOperating_activities()[3]+v1.getOperating_activities()[4]+v1.getOperating_activities()[5]+
+				v1.getInvestment_activities()[3]+v1.getInvestment_activities()[4]+
+				v1.getFinancing_activities()[2]+v1.getFinancing_activities()[3]+v1.getFinancing_activities()[4];
+		res[2]=v1.getNet_cash_increase()[1];
+		return res;
 	}
 
 }

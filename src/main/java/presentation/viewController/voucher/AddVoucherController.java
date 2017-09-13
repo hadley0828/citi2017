@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.FileChooser;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -17,6 +18,7 @@ import vo.voucher.AmountTotalVo;
 import vo.voucher.VoucherAmountVo;
 import vo.voucher.VoucherVo;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -59,6 +61,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         voucher = new VoucherVo();
         type_combo.getItems().addAll("记", "收", "付", "转");
         initialTable();
+
+
     }
 
     @Override
@@ -176,10 +180,6 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
-    }
-
-    @FXML
-    private void OnExport() {
     }
 
 }

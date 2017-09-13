@@ -1,5 +1,6 @@
 package presentation.loginController;
 
+import businesslogic.SettingImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -24,7 +25,10 @@ public class CompSignUpController {
     private DatePicker startTime;
 
     @FXML
-    private ChoiceBox<Object> industryType;
+    private ChoiceBox<String> industryType;
+
+    @FXML
+    private ChoiceBox<String> subindustryType;
 
     @FXML
     private PasswordField passwordField;
@@ -40,6 +44,8 @@ public class CompSignUpController {
         /**
          * 行业初始化
          */
+
+        industryType.getItems().addAll(new SettingImpl().getAllSuperIndustry());
     }
 
     public void createButtonClicked(){
@@ -50,6 +56,11 @@ public class CompSignUpController {
     public void cancelButtonClicked(){
         /**
          * 跳转
+         */
+    }
+    public void subindustryClicked(){
+        /**
+         * 二级行业
          */
     }
 

@@ -3,11 +3,13 @@ package presentation.settingController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 
 /**
  * Created by Chris on 2017/9/12.
  */
-public class ChangePasswordController {
+public class ChangePasswordController implements ControlledScreen {
     @FXML
     private PasswordField rawPassword;
     @FXML
@@ -44,4 +46,8 @@ public class ChangePasswordController {
     }
 
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

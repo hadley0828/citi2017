@@ -1,16 +1,15 @@
 package presentation.componentController;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import vo.accountBook.BookSearchVo;
 
-import java.io.IOException;
-
+/**
+ * @author Molloh
+ * @version 2017/9/11
+ */
 public class BookSearch extends GridPane {
     private Button confirm_btn;
     private Button cancel_btn;
@@ -29,6 +28,8 @@ public class BookSearch extends GridPane {
         cancel_btn = new Button("取消");
         reset_btn = new Button("重置");
 
+        reset_btn.setOnAction(event -> OnReset());
+
         startPeriod_item = new ComboBox<>();
         endSubject_item = new ComboBox<>();
         startPeriod_item = new ComboBox<>();
@@ -43,13 +44,14 @@ public class BookSearch extends GridPane {
         Label label_2 = new Label("结账科目：");
         Label label_3 = new Label("科目级别：");
         Label label_4 = new Label("至");
+        Label label_5 = new Label("至");
 
         add(label_0, 1, 0);
         add(label_1, 1, 1);
         add(label_2, 1, 2);
         add(label_3, 1, 3);
         add(label_4, 3, 0);
-        //add(label_4, 3, 3);
+        add(label_5, 3, 3);
 
         add(startSubject_item, 2, 1);
         add(endSubject_item, 2, 2);
@@ -92,7 +94,6 @@ public class BookSearch extends GridPane {
         return endLevel_item;
     }
 
-    @FXML
     private void OnReset() {
         startPeriod_item.setValue("");
         endPeriod_item.setValue("");

@@ -17,7 +17,6 @@
       <Button fx:id="addRow_btn" layoutX="32.0" layoutY="131.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
       <Button fx:id="deleteRow_btn" layoutX="32.0" layoutY="171.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
       <Button fx:id="saveAndAdd_btn" layoutX="96.0" layoutY="53.0" mnemonicParsing="false" onAction="#OnSaveAndAdd" prefHeight="33.0" prefWidth="76.0" text="保存并新增" />
-      <Button fx:id="export_btn" layoutX="191.0" layoutY="53.0" mnemonicParsing="false" onAction="#OnExport" prefHeight="33.0" prefWidth="40.0" text="导出" />
       <ComboBox fx:id="type_combo" layoutX="100.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" promptText="记" />
       <TextField fx:id="number_field" layoutX="177.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" />
       <Label layoutX="251.0" layoutY="102.0" text="号" />
