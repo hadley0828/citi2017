@@ -88,9 +88,6 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
         //处理betweenMonthList
 
-        for(int count=0;count<subjectsPOArrayList.size();count++){
-            System.out.println(subjectsPOArrayList.get(count).toString());
-        }
 
         //用来先把结果进行分类
         HashMap<String,ArrayList<DetailAccountAmountVo>> monthToDetailMap=new HashMap<>();
@@ -277,7 +274,9 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
             String oneAbstract=oneAmountVo.getAbstracts();
 
-            if(oneAbstract.equals("期初余额")||oneAbstract.equals("本期合计")||oneAbstract.equals("本年累计")){
+            if(oneAbstract==null){
+                continue;
+            }else if(oneAbstract.equals("期初余额")||oneAbstract.equals("本期合计")||oneAbstract.equals("本年累计")){
                 TotalAccountAmountVo totalAccountAmountVo=new TotalAccountAmountVo();
                 totalAccountAmountVo.setSubjectId(subjectId);
                 totalAccountAmountVo.setSubjectName(subjectIdToNameMap.get(subjectId));
@@ -295,6 +294,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             }else{
                 continue;
             }
+
+
         }
 
         resultVo.setSubjectId(subjectId);
@@ -306,13 +307,104 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
     @Override
     public ArrayList<BalanceTableOneClause> getBalanceTableAllClauses(BookSearchVo searchVo, String factoryId) {
+        ArrayList<BalanceTableOneClause> resultList=new ArrayList<>();
 
-        return null;
+        ArrayList<TotalAccountVo> allSubjectTotal=getAllSubjectTotal(searchVo,factoryId);
+
+        for(int count=0;count<allSubjectTotal.size();count++){
+            TotalAccountVo oneAccountVo=allSubjectTotal.get(count);
+            String oneSubjectId=oneAccountVo.getSubjectId();
+            ArrayList<TotalAccountAmountVo> amountVoList=oneAccountVo.getAmountVoArrayList();
+
+            BalanceTableOneClause oneResultClause=new BalanceTableOneClause();
+            oneResultClause.setSubjectId(oneAccountVo.getSubjectId());
+            oneResultClause.setSubjectName(oneAccountVo.getSubjectName());
+
+            TotalAccountAmountVo periodBeginVo=amountVoList.get(0);
+            oneResultClause.setBeginDebit(periodBeginVo.getDebitAmount());
+            oneResultClause.setBeginCredit(periodBeginVo.getCreditAmount());
+
+            double debit=0.0;
+            double credit=0.0;
+
+            if(amountVoList.size()!=0){
+                for(int index=0;index<amountVoList.size();index++){
+                    TotalAccountAmountVo oneAmountVo=amountVoList.get(index);
+                    if(oneAmountVo.getAbstracts().equals("本期合计")){
+                        debit=debit+oneAmountVo.getDebitAmount();
+                        credit=credit+oneAmountVo.getCreditAmount();
+                    }
+                }
+            }
+
+            oneResultClause.setCurrentDebit(debit);
+            oneResultClause.setCurrentCredit(credit);
+
+            if(SubjectBalanceHelper.getDirection(oneSubjectId)==1){
+                oneResultClause.setEndDebit(oneResultClause.getBeginDebit()+oneResultClause.getCurrentDebit()-oneResultClause.getBeginCredit()-oneResultClause.getCurrentCredit());
+                oneResultClause.setEndDebit(0.0);
+
+            }else{
+                oneResultClause.setEndDebit(0.0);
+                oneResultClause.setEndCredit(oneResultClause.getBeginCredit()+oneResultClause.getCurrentCredit()-oneResultClause.getBeginDebit()-oneResultClause.getCurrentDebit());
+
+            }
+
+            resultList.add(oneResultClause);
+
+        }
+
+        BalanceTableOneClause totalClause=new BalanceTableOneClause();
+        totalClause.setSubjectId("合计");
+        double beginDebit=0.0;
+        double beginCredit=0.0;
+        double currentDebit=0.0;
+        double currentCredit=0.0;
+        double endDebit=0.0;
+        double endCredit=0.0;
+
+        for(int count=0;count<resultList.size();count++){
+            BalanceTableOneClause oneClause=resultList.get(count);
+
+            beginDebit=beginDebit+oneClause.getBeginDebit();
+            beginCredit=beginCredit+oneClause.getBeginCredit();
+            currentDebit=currentDebit+oneClause.getCurrentDebit();
+            currentCredit=currentCredit+oneClause.getCurrentCredit();
+            endDebit=endDebit+oneClause.getEndDebit();
+            endCredit=endCredit+oneClause.getEndCredit();
+        }
+        totalClause.setBeginDebit(beginDebit);
+        totalClause.setBeginCredit(beginCredit);
+        totalClause.setCurrentDebit(currentDebit);
+        totalClause.setCurrentCredit(currentCredit);
+        totalClause.setEndDebit(endDebit);
+        totalClause.setEndCredit(endCredit);
+
+        resultList.add(totalClause);
+
+        return resultList;
     }
 
     @Override
     public ArrayList<GatherTableOneClause> getGatherTableAllClauses(BookSearchVo searchVo, String factoryId) {
-        return null;
+        ArrayList<GatherTableOneClause> resultList=new ArrayList<>();
+
+        ArrayList<BalanceTableOneClause> balanceList=getBalanceTableAllClauses(searchVo,factoryId);
+
+        for(int count=0;count<balanceList.size();count++){
+            BalanceTableOneClause oneBalance=balanceList.get(count);
+
+            GatherTableOneClause oneGather=new GatherTableOneClause();
+            oneGather.setSubjectId(oneBalance.getSubjectId());
+            oneGather.setSubjectName(oneBalance.getSubjectName());
+            oneGather.setDebitTotal(oneBalance.getCurrentDebit());
+            oneGather.setCreditTotal(oneBalance.getCurrentCredit());
+
+            resultList.add(oneGather);
+
+        }
+
+        return resultList;
     }
 
     @Override

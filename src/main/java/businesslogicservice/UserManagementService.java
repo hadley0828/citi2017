@@ -5,6 +5,8 @@ import vo.userManagement.AccountSetVO;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 
+import java.util.ArrayList;
+
 /**
  * Created by loohaze on 2017/9/11 下午9:18
  */
@@ -98,4 +100,10 @@ public interface UserManagementService {
      */
     public Boolean isFinancialUser(String id);
 
+    /**
+     * 根据账套ID获得所有USER
+     * @param account_id
+     * @return
+     */
+    public ArrayList<UserVO> getAllUserVoByAccountId(String account_id);
 }

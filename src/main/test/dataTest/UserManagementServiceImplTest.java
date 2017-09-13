@@ -64,9 +64,7 @@ public class UserManagementServiceImplTest {
     @Test
     public void testinsertOneAccountSet(){
         AccountSetPO po = new AccountSetPO();
-        po.setAccountID("a1");
-        po.setCompanyID("001");
-        po.setCompanyName("xxx");
+        po.setCompanyName("xxxx");
         po.setLocation("NANJING");
         po.setIndustry("钢铁行业");
         po.setDate(Date.valueOf("2017-09-01"));

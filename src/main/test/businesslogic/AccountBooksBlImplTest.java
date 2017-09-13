@@ -40,14 +40,33 @@ public class AccountBooksBlImplTest {
 
     @Test
     public void getAllSubjectTotal() throws Exception {
+        BookSearchVo searchVo=new BookSearchVo();
+        searchVo.setStartPeriod("2017年第6期");
+        searchVo.setEndPeriod("2017年第7期");
+        searchVo.setHighLevel(1);
+        searchVo.setLowLevel(1);
+
+        System.out.println(accountBooksBlService.getAllSubjectTotal(searchVo,"001"));
+
+
     }
 
     @Test
     public void getOneSubjectTotal() throws Exception {
+
+
     }
 
     @Test
     public void getBalanceTableAllClauses() throws Exception {
+        BookSearchVo searchVo=new BookSearchVo();
+        searchVo.setStartPeriod("2017年第6期");
+        searchVo.setEndPeriod("2017年第7期");
+        searchVo.setHighLevel(1);
+        searchVo.setLowLevel(1);
+
+        System.out.println(accountBooksBlService.getBalanceTableAllClauses(searchVo,"001"));
+
     }
 
     @Test

@@ -1,10 +1,12 @@
 package data;
 
 import dataservice.UserManagementService;
+import org.apache.commons.lang.RandomStringUtils;
 import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
 import util.EnumPackage.ResultMessage;
+import vo.userManagement.UserVO;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -127,8 +129,21 @@ public class UserManagementServiceImpl implements UserManagementService {
         sqlManager.getConnection();
 
         List<Object> params = new ArrayList<>();
-        params.add(po.getAccountID());
-        params.add(po.getCompanyID());
+
+        String company_id = RandomStringUtils.randomNumeric(10);
+        ArrayList<String> companyIdList = getAllCompanyID();
+        while (companyIdList.contains(company_id)){
+            company_id = RandomStringUtils.randomNumeric(10);
+        }
+        params.add(company_id);
+
+        String account_id = RandomStringUtils.randomNumeric(10);
+        ArrayList<String> accountIdList = getAllAccountID();
+        while (accountIdList.contains(account_id)){
+            account_id = RandomStringUtils.randomNumeric(10);
+        }
+        params.add(account_id);
+
         params.add(po.getCompanyName());
         params.add(po.getLocation());
         params.add(po.getIndustry());
@@ -258,6 +273,27 @@ public class UserManagementServiceImpl implements UserManagementService {
         return !map.isEmpty();
     }
 
+    @Override
+    public ArrayList<UserVO> getAllUserVoByAccountId(String account_id) {
+        sqlManager.getConnection();
+
+        ArrayList<UserVO> list = new ArrayList<>();
+        String sql = "select * from user_company where account_id=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{account_id});
+
+        for (Map<String,Object> map : maps){
+            UserVO vo = new UserVO();
+            vo.setUserID(map.get("id").toString());
+            vo.setCompanyID(map.get("company_id").toString());
+            vo.setType(map.get("type").toString());
+            vo.setAccountID(map.get("account_id").toString());
+
+            list.add(vo);
+        }
+        sqlManager.releaseAll();
+        return list;
+    }
+
     private ArrayList<String> getAllUserIDByCompany(String company_id){
         ArrayList<String> list = new ArrayList<>();
         String sql = "select id from user_company where company_id=? union all select id from user_financial";
@@ -267,6 +303,26 @@ public class UserManagementServiceImpl implements UserManagementService {
             list.add(map.get("id").toString());
         }
 
+        return list;
+    }
+
+    private ArrayList<String> getAllCompanyID(){
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select company_id from account_set";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        for (Map map : maps){
+            list.add(map.get("company_id").toString());
+        }
+        return list;
+    }
+
+    private ArrayList<String> getAllAccountID(){
+        ArrayList<String> list = new ArrayList<>();
+        String sql = "select account_id from account_set";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
+        for (Map map : maps){
+            list.add(map.get("account_id").toString());
+        }
         return list;
     }
 
