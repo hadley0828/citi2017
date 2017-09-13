@@ -112,6 +112,7 @@ public class UserManagementServiceImplTest {
         System.out.println(userManagementService.isFinancialUser("02"));
     }
 
+
     private void print(UserCompanyPO po){
         System.out.print(po.getUserID() + "\t");
         System.out.print(po.getAccountID()+ "\t");

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.trialSettlement.TrialSheetController">
+   <children>
+      <TableView layoutX="100.0" layoutY="50.0" prefHeight="300.0" prefWidth="400.0" fx:id="tableView">
+        <columns>
+          <TableColumn prefWidth="100.0" text="科目编号" fx:id="course_id"/>
+          <TableColumn prefWidth="100.0" text="科目名称" fx:id="course_name"/>
+            <TableColumn prefWidth="100.0" text="借方余额" fx:id="credit"/>
+            <TableColumn prefWidth="100.0" text="贷方余额" fx:id="debit"/>
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

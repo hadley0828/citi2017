@@ -12,6 +12,10 @@ import presentation.screenController.ScreensFramework;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * @author Molloh
+ * @version 2017/9/12
+ */
 public class CashManagementLayoutController implements Initializable, ControlledScreen {
     @FXML
     private Button pool_btn;

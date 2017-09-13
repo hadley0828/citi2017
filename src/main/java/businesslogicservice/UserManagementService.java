@@ -5,8 +5,6 @@ import vo.userManagement.AccountSetVO;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 
-import java.util.ArrayList;
-
 /**
  * Created by loohaze on 2017/9/11 下午9:18
  */
@@ -39,7 +37,7 @@ public interface UserManagementService {
      * 获得一个企业用户VO
      * @return
      */
-    public UserVO getOneCompanyUser(String id);
+    public UserVO getOneCompanyUser(String id,String company_id);
 
     /**
      * 获得一个金融机构用户VO

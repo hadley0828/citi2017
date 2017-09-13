@@ -5,8 +5,6 @@ import po.UserCompanyPO;
 import po.UserFinancialPO;
 import util.EnumPackage.ResultMessage;
 
-import java.util.ArrayList;
-
 /**
  * Created by loohaze on 2017/9/8 上午7:44
  */
@@ -68,6 +66,13 @@ public interface UserManagementService {
 
 
     /**
+     * 根据用户id获得账套信息
+     * @param userID
+     * @return
+     */
+    public AccountSetPO getAccountSetByUserID(String userID);
+
+    /**
      * 根据公司id获得账套信息
      * @param companyID
      * @return
@@ -82,19 +87,6 @@ public interface UserManagementService {
      */
     public ResultMessage loginIn(String id,String password);
 
-
-    /**
-     * 获得所有行业
-     * @return
-     */
-    public ArrayList<String> getAllSuperIndustry();
-
-    /**
-     *
-     * @param superIndustry
-     * @return
-     */
-    public ArrayList<String> getAllSubIndustry(String superIndustry);
 
     /**
      *
