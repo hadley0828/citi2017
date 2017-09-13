@@ -328,4 +328,9 @@ public class CashFlowImpl implements CashFlowTableService{
 		return Net_cash_increase[0]-Investment_activities[5]-Financing_activities[5];
 	}
 
+	@Override
+	public double[] getCashFlow(String company_id, String time) {
+		return new double[0];
+	}
+
 }

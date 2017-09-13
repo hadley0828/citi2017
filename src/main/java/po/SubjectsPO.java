@@ -30,7 +30,18 @@ public class SubjectsPO {
 
     private double creditAmount;
 
-
+    @Override
+    public String toString() {
+        return "SubjectsPO{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", voucher_id='" + voucher_id + '\'' +
+                ", balances=" + balances +
+                ", debitAmount=" + debitAmount +
+                ", creditAmount=" + creditAmount +
+                '}';
+    }
 
     public SubjectsPO(){
 

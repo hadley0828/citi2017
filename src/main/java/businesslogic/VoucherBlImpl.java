@@ -1,7 +1,6 @@
 package businesslogic;
 
 import businesslogicservice.VoucherBlService;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.SubjectDataServiceImpl;
 import data.VoucherDataServiceImpl;
 import dataservice.SubjectDataService;
