@@ -30,7 +30,7 @@ public class Demo extends Application {
 //            loader.setLocation(Demo.class.getResource("../view/stock/stockInfo.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/performanceAppraisal/performanceAppraisal.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/financing/financing.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/stockInfo/SupplierInfo.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/financialSystem/stockInfo/SupplierInfo.fxml"));
             AnchorPane root=loader.load();
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

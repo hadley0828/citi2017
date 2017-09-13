@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="348.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.stockInfo.SupplierInfoController">
+<AnchorPane prefHeight="348.0" prefWidth="1087.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.stockInfo.SupplierInfoController">
    <children>
    
        <Label layoutX="22.0" layoutY="29.0" prefHeight="43.0" prefWidth="131.0" text="供应商的信息录入">

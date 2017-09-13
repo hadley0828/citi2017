@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="620.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.stock.ProducerProductChartController">
+<AnchorPane prefHeight="620.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.stock.ProducerProductChartController">
     <children>
         <LineChart fx:id="producer_product_stock_time" layoutX="14.0" layoutY="82.0" prefHeight="374.0" prefWidth="412.0">
             <xAxis>
