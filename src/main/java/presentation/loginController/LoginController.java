@@ -1,13 +1,19 @@
 package presentation.loginController;
 
+import businesslogic.UserManagementImpl;
 import businesslogicservice.UserManagementService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import presentation.viewController.StaticFactory;
+import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
+import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
+
+import java.io.IOException;
 
 /**
  * Created by Chris on 2017/9/12.
@@ -48,13 +54,29 @@ public class LoginController {
         /**
          * 调用接口判断
          */
-        UserManagementService service=null;
+        UserManagementService service=new UserManagementImpl();
         ResultMessage resultMessage=service.loginIn(compID,compPassword);
-        if(resultMessage==ResultMessage.FAIL){
+        if(CompID.getText().isEmpty()||CompPassword.getText().isEmpty()){
+            RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("请输入账号和密码！");
+            runWarning.start(new Stage());
+        }else if(!service.isCompanyUser(compID)){
+            RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("请从金融机构入口登陆！");
+            runWarning.start(new Stage());
+        }
+        else if(resultMessage==ResultMessage.FAIL){
+            /**
+             * 弹警告窗
+             */
+            RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("账号或密码不正确");
+            runWarning.start(new Stage());
 
         }else if(resultMessage==ResultMessage.SUCCESS){
             UserVO vo=service.getOneCompanyUser(compID);
             StaticFactory.setUserVO(vo);
+
         }
         /**
          * 跳转
@@ -62,28 +84,65 @@ public class LoginController {
 
     }
 
-    public void CompSignupClicked(){
+    public void CompSignupClicked() throws IOException{
         /**
          * 跳转
          */
+        RunCSignUp c=new RunCSignUp();
+        try {
+            c.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public void FinanceLoginClicked(){
-        String compID=FinanceID.getText();
-        String compPassword=FinancePassword.getText();
+        String Financeid=FinanceID.getText();
+        String Financepassword=FinancePassword.getText();
         /**
          * 调用接口判断
          */
-        UserManagementService service;
+        UserManagementService service=new UserManagementImpl();
+        ResultMessage resultMessage=service.loginIn(Financeid,Financepassword);
+        if(Financeid.isEmpty()||Financepassword.isEmpty()){
+            RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("请输入账号和密码！");
+            runWarning.start(new Stage());
+        }else if(!service.isFinancialUser(Financeid)){
+            RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("请从企业入口登陆！");
+            runWarning.start(new Stage());
+        }
+        else if(resultMessage==ResultMessage.FAIL){
+            /**
+             * 弹警告窗
+             */
+
+            RunWarning runWarning=new RunWarning();
+        }else if(resultMessage==ResultMessage.SUCCESS){
+            FinancialUserVO vo=service.getOneFinancialUser(Financeid);
+            StaticFactory.setFinancialUserVO(vo);
+            /**
+             * 跳转
+             */
+        }
 
 
     }
 
-    public void FinanceSignupClicked(){
+    public void FinanceSignupClicked()throws IOException{
         /**
          * 跳转
          */
+        RunFSignUp c=new RunFSignUp();
+        try {
+            c.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
-}
+
+    }
+
