@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
@@ -31,6 +32,9 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
     @FXML
     private Button link_btn;
 
+    @FXML
+    private StackPane settingsStack;
+
     private ScreensController parentController;
     private ScreensController settingsController = new ScreensController();
 
@@ -45,6 +49,7 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
         settingsController.loadScreen(ScreensFramework.LINK_SCREEN, ScreensFramework.LINK_SCREEN_FXML);
 
         //settingsController.setScreen();
+        settingsStack.getChildren().add(settingsController);
     }
 
     @Override
