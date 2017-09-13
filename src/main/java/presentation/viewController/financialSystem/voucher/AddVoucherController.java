@@ -144,6 +144,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
     @FXML
     private void OnSaveAndAdd() {
+        ObservableList<VoucherModel> aid_data = voucherTable.getItems();
+
         AmountTotalVo amountTotalVo = new AmountTotalVo();
         VoucherModel total = data.get(data.size() - 1);
         amountTotalVo.setChineseTotal(total.getSubject());
@@ -151,7 +153,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         amountTotalVo.setCreditAmount(Double.parseDouble(total.getCredit()));
         voucher.setAmountTotalVo(amountTotalVo);
 
-        String voucherId = type_combo.getValue() + "-" + number_field.getText().trim();
+        String voucherId = type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText().trim();
 
         ArrayList<VoucherAmountVo> amountList = new ArrayList<>();
         for (VoucherModel model: data) {
@@ -167,17 +169,19 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         amountList.remove(amountList.size() - 1);
         voucher.setAmountList(amountList);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String text = date_picker.getValue().format(formatter);
         voucher.setDate(text);
 
-        voucher.setVoucherId("");
-        voucher.setVoucherId(number_field.getText());
+        voucher.setVoucherId(voucherId);
         voucher.setAddedReceipts(false);
         voucher.setVoucherMaker(maker_label.getText());
         voucher.setRemark("");
 
-        voucherBl.saveOneVoucher(voucher, factoryId);
+        boolean a = voucherBl.saveOneVoucher(voucher, factoryId);
+        if(a) {
+            System.out.println("yeah");
+        }
     }
 
     @FXML

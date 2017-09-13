@@ -25,7 +25,7 @@ public class FinancialWarningController implements Initializable, ControlledScre
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String date = date_picker.getValue().format(formatter);
         String company_id = StaticFactory.getUserVO().getCompanyID();
         FinancialWarningService warning = new FinancialWarningImpl();

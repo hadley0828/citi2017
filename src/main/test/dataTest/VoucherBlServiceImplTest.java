@@ -24,15 +24,15 @@ public class VoucherBlServiceImplTest {
     @Test
     public void testSaveOneVoucher(){
         VoucherVo vo=new VoucherVo();
-        vo.setVoucherId("记-12");
+        vo.setVoucherId("记-test");
         vo.setDate("2017-04-20");
         vo.setAddedReceipts(true);
         vo.setVoucherMaker("hadley");
         vo.setRemark("this is a voucher three");
 
         VoucherAmountVo voucherAmountVo=new VoucherAmountVo();
-        voucherAmountVo.setVoucherId("记-10");
-        voucherAmountVo.setAmountId("5");
+        voucherAmountVo.setVoucherId("记-test");
+//        voucherAmountVo.setAmountId("");
         voucherAmountVo.setAbstracts("利息收入");
         voucherAmountVo.setSubject("1002");
         voucherAmountVo.setDebitAmount(20000);

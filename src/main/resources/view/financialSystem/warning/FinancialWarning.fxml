@@ -6,6 +6,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.warning.FinancialWarningController">
     <children>
-        <Label layoutX="173.0" layoutY="164.0" text="Financial Warning" />
+        <Label layoutX="100.0" layoutY="51.0" text="Financial Warning" />
+      <DatePicker fx:id="date_picker" layoutX="100.0" layoutY="121.0" />
     </children>
 </AnchorPane>
