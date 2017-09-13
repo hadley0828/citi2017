@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/LoginAndSignUp/FinancialSignUp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../view/loginAndSignUp/FinancialSignUp.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setMinWidth(1000);

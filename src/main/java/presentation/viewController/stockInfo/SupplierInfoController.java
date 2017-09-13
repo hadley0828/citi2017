@@ -62,13 +62,13 @@ public class SupplierInfoController {
         raw_2.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setVoucher_id(event.getNewValue()));
 
 //        raw_3.setCellValueFactory(new PropertyValueFactory<>("datetime"));
-//        raw_3.setCellFactory(TextFieldTableCell.<RawVO>forTableColumn());
+//        raw_3.setCellFactory(TextFieldTableCell.forTableColumn());
 //        raw_3.setOnEditCommit(event ->event.getTableView().getItems().get(event.getTablePosition().getRow()).setDatetime(Timestamp.valueOf(event.getNewValue()));
-//
-//        raw_4.setCellValueFactory(new PropertyValueFactory<>("is_delivery_ontime"));
-//        raw_4.setCellFactory(TextFieldTableCell.forTableColumn());
-//        raw_4.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setIs_delivery_ontime(event.getNewValue()));
-//
+
+        raw_4.setCellValueFactory(new PropertyValueFactory<>("is_delivery_ontime"));
+        raw_4.setCellFactory(TextFieldTableCell.forTableColumn());
+        raw_4.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setIs_delivery_ontime(event.getNewValue()));
+
 //        raw_5.setCellValueFactory(new PropertyValueFactory<>("is_return"));
 //        raw_5.setCellFactory(TextFieldTableCell.forTableColumn());
 //        raw_5.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setIs_return(event.getNewValue()));
