@@ -26,6 +26,9 @@ public class SupplyChainPO {
 		this.ProposedFinancingScale=p;
 	}
 
+	public SupplyChainPO() {
+	}
+
 	public String getTime() {
 		return time;
 	}

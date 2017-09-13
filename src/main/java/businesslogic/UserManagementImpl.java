@@ -79,4 +79,14 @@ public class UserManagementImpl implements UserManagementService{
     public ResultMessage loginIn(String id, String password) {
         return null;
     }
+
+    @Override
+    public Boolean isCompanyUser(String id) {
+        return null;
+    }
+
+    @Override
+    public Boolean isFinancialUser(String id) {
+        return null;
+    }
 }

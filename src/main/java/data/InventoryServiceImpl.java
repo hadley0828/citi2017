@@ -120,6 +120,16 @@ public class InventoryServiceImpl implements InventoryService{
     }
 
     @Override
+    public ArrayList<InventoryRawMaterialItemPO> getRawMaterialInventoryItemByMonth(String company_id, String time) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<InventoryProductItemPO> getProductInventoryItemByMonth(String company_id, String time) {
+        return null;
+    }
+
+    @Override
     public ArrayList<InventoryRawMaterialItemPO> getRawMaterialInventoryItemByVariety(String company_id, String time, String variety) {
         sqlManager.getConnection();
 

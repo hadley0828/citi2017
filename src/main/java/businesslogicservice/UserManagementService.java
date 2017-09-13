@@ -82,4 +82,19 @@ public interface UserManagementService {
      * @return
      */
     public ResultMessage loginIn(String id, String password);
+
+
+    /**
+     * 判断是否为企业用户
+     * @param id
+     * @return
+     */
+    public Boolean isCompanyUser(String id);
+
+    /**
+     * 判断是否为金融机构用户
+     * @param id
+     * @return
+     */
+    public Boolean isFinancialUser(String id);
 }
