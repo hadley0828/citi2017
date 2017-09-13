@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.performanceAppraisal.PerformanceAppraisalController">
+   <children>
+      <TabPane layoutX="214.0" layoutY="127.0" prefHeight="447.0" prefWidth="752.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="盈利能力">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="gain_table" layoutX="100.0" layoutY="36.0" prefHeight="200.0" prefWidth="550.0">
+                          <columns>
+                            <TableColumn fx:id="gain_enterprise" prefWidth="185.0" text="企业" />
+                            <TableColumn fx:id="gain_sumPayback" prefWidth="167.0" text="总资产报酬率" />
+                              <TableColumn fx:id="gain_benefit" prefWidth="197.0" text="销售净利率" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="gain_table_below" layoutX="191.0" layoutY="275.0" prefHeight="75.0" prefWidth="368.0">
+                          <columns>
+                            <TableColumn fx:id="gain" prefWidth="118.0" />
+                            <TableColumn fx:id="gain_chain" prefWidth="249.0" text="供应链资本收益率" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="运营能力">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="op_table" layoutX="58.0" layoutY="36.0" prefHeight="200.0" prefWidth="634.0">
+                          <columns>
+                            <TableColumn fx:id="op_enterprise" prefWidth="110.0" text="企业" />
+                            <TableColumn fx:id="op_sum" prefWidth="134.0" text="总资产周转率" />
+                              <TableColumn fx:id="op_stock" prefWidth="129.0" text="存货周转率" />
+                              <TableColumn fx:id="op_ontime" prefWidth="137.0" text="准时交货率" />
+                              <TableColumn fx:id="op_back" prefWidth="123.0" text="退货率" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="op_table_below" layoutX="191.0" layoutY="275.0" prefHeight="75.0" prefWidth="368.0">
+                          <columns>
+                            <TableColumn fx:id="op" prefWidth="118.0" />
+                            <TableColumn fx:id="op_coin" prefWidth="292.0" text="现金周转率" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="develop_" text="发展能力">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="develop_table" layoutX="134.0" layoutY="36.0" prefHeight="200.0" prefWidth="483.0">
+                          <columns>
+                            <TableColumn fx:id="develop_enterprise" prefWidth="130.0" text="企业" />
+                            <TableColumn fx:id="develop_increase" prefWidth="170.0" text="销售增长率" />
+                              <TableColumn fx:id="develop_profit" prefWidth="182.0" text="利润增长率" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="develop_table_below" layoutX="191.0" layoutY="275.0" prefHeight="75.0" prefWidth="368.0">
+                          <columns>
+                            <TableColumn fx:id="develop" prefWidth="118.0" />
+                            <TableColumn fx:id="develop_profit_increase" prefWidth="249.0" text="利润增长率" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="偿债能力">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="debtpay_table" layoutX="134.0" layoutY="36.0" prefHeight="200.0" prefWidth="483.0">
+                          <columns>
+                            <TableColumn fx:id="debtpay_enterprise" prefWidth="131.0" text="企业" />
+                            <TableColumn fx:id="debtpay_debt" prefWidth="351.0" text="资产负债率" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="debtpay_table_below" layoutX="191.0" layoutY="275.0" prefHeight="75.0" prefWidth="368.0">
+                          <columns>
+                            <TableColumn fx:id="debtpay" prefWidth="118.0" />
+                            <TableColumn fx:id="debtpay_balance" prefWidth="249.0" text="资产负债率" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

@@ -19,18 +19,18 @@ public class Demo extends Application {
     public void start(Stage primaryStage){
         try{
             FXMLLoader loader=new FXMLLoader();
-//            loader.setLocation(Demo.class.getResource("../view/CashFlow/CashFlow.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/ProfitSheet/ProfitSheet.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/BalanceSheet/BalanceSheet.fxml"));
-//              loader.setLocation(Demo.class.getResource("../view/BalanceSheet/TestTree.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/Stock/Supplier.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/cashFlow/cashFlow.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/profitSheet/profitSheet.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/balanceSheet/balanceSheet.fxml"));
+//              loader.setLocation(Demo.class.getResource("../view/balanceSheet/TestTree.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/stock/Supplier.fxml"));
 //            ScrollPane root=loader.load();
-//            loader.setLocation(Demo.class.getResource("../view/Stock/Distributor.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/Stock/Producer.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/Stock/StockInfo.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/PerformanceAppraisal/PerformanceAppraisal.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/Financing/Financing.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/StockInfo/SupplierInfo.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/stock/Distributor.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/stock/Producer.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/stock/stockInfo.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/performanceAppraisal/performanceAppraisal.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/financing/financing.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/stockInfo/SupplierInfo.fxml"));
             AnchorPane root=loader.load();
             primaryStage.setScene(new Scene(root));
             primaryStage.show();

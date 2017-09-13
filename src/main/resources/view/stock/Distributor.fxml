@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.stock.DistributorController">
+    <children>
+        <Label layoutX="454.0" layoutY="40.0" prefHeight="50.0" prefWidth="273.0" text="分销商产品库存监控表">
+            <font>
+                <Font name="Heiti SC Light" size="24.0" />
+            </font></Label>
+      <TabPane layoutX="146.0" layoutY="102.0" prefHeight="542.0" prefWidth="889.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="库存实时监控">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="484.0" prefWidth="820.0">
+                     <children>
+                          <Label layoutX="110.0" layoutY="35.0" prefHeight="39.0" prefWidth="99.0" text="截止日期:">
+                              <font>
+                                  <Font size="19.0" />
+                              </font>
+                          </Label>
+                          <TableView fx:id="product_monitor" layoutX="90.0" layoutY="95.0" prefHeight="384.0" prefWidth="710.0">
+                              <columns>
+                                  <TableColumn fx:id="product" prefWidth="152.0" text="产品种类" />
+                                  <TableColumn fx:id="stock_num" prefWidth="127.0" text="库存量" />
+                                  <TableColumn fx:id="safe_stock_num" minWidth="5.0" prefWidth="143.0" text="安全库存量" />
+                                  <TableColumn fx:id="ontime_delivery" prefWidth="148.0" text="准时交货率" />
+                                  <TableColumn fx:id="back" prefWidth="139.0" text="退货率" />
+                              </columns>
+                          </TableView>
+                          <DatePicker fx:id="date" layoutX="209.0" layoutY="39.0" prefHeight="31.0" prefWidth="163.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="安全库存量">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <StackedBarChart fx:id="dis_bar" layoutX="109.0" layoutY="58.0" prefHeight="400.0" prefWidth="670.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </StackedBarChart>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>
