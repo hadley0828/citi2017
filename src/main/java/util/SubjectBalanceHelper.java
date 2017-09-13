@@ -36,6 +36,20 @@ public class SubjectBalanceHelper {
     }
 
     /**
+     * 根据科目编号获得这个会计科目对应的方向
+     * @param subjectId
+     * @return
+     */
+    public static String getDirectionString(String subjectId){
+        if(getDirection(subjectId)==1){
+            return "借";
+        }else if(getDirection(subjectId)==-1){
+            return "贷";
+        }
+        return "平";
+    }
+
+    /**
      * 根据科目编号获得会计科目的级别
      * @param subjectId
      * @return

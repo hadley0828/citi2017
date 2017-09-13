@@ -51,8 +51,8 @@ public class GeneralBillController implements Initializable, ControlledScreen {
 
     @FXML
     private MenuButton select_menu;
-    @FXML
-    private BookSearch bookSearch;
+
+    private BookSearch bookSearch = new BookSearch();
 
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
@@ -86,13 +86,13 @@ public class GeneralBillController implements Initializable, ControlledScreen {
 
     private void initialTable() {
         ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, "001");
-
+/*
         for (TotalAccountVo vo: totalAccountVos) {
             ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
             for (TotalAccountAmountVo amountVo: amountVoArrayList) {
                 data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
             }
-        }
+        }*/
 
         billTable.setItems(data);
         periodCol.setCellValueFactory(cellData -> cellData.getValue().periodProperty());

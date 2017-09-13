@@ -7,7 +7,7 @@
 
 <SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
   <items>
-    <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
+    <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
          <children>
             <Button fx:id="financial_btn" layoutX="166.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
             <Button fx:id="supply_btn" layoutX="252.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />

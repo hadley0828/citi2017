@@ -47,8 +47,8 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
 
     @FXML
     private MenuButton select_menu;
-    @FXML
-    private BookSearch bookSearch;
+
+    private BookSearch bookSearch = new BookSearch();
 
     private BookSearchVo bookSearchVo;
 
@@ -83,9 +83,9 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
 
     private void initialTable() {
         ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, "001");
-        for (BalanceTableOneClause clause: balanceTableAllClauses) {
+/*        for (BalanceTableOneClause clause: balanceTableAllClauses) {
             data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
-        }
+        }*/
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());

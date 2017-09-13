@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.CashManagementLayoutController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="598.0">
+         <children>
+            <Button fx:id="pool_btn" layoutX="39.0" layoutY="27.0" mnemonicParsing="false" onAction="#missionSwitch" text="本期现金状况" />
+            <Button fx:id="finance_btn" layoutX="145.0" layoutY="27.0" mnemonicParsing="false" onAction="#missionSwitch" text="现金相关财务状况" />
+            <Button fx:id="pay_btn" layoutX="272.0" layoutY="27.0" mnemonicParsing="false" onAction="#missionSwitch" text="应付账款情况" />
+            <Button fx:id="charge_btn" layoutX="371.0" layoutY="27.0" mnemonicParsing="false" onAction="#missionSwitch" text="应收账款情况" />
+         </children></AnchorPane>
+      <StackPane fx:id="cashStack" prefHeight="150.0" prefWidth="200.0" />
+  </items>
+</SplitPane>
