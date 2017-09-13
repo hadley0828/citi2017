@@ -13,6 +13,7 @@ import vo.voucher.*;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -725,13 +726,53 @@ public class VoucherBlImpl implements VoucherBlService {
 
     @Override
     public ArrayList<String> getAllPeriod(String factoryId) {
-        //TODO
-        return null;
+        ArrayList<String> resultList=new ArrayList<>();
+
+        ArrayList<VoucherPO> allVoucherList=voucherDataService.findAllVoucher(factoryId);
+
+        for(int count=0;count<allVoucherList.size();count++){
+            String oneMonth=String.valueOf(allVoucherList.get(count).getDate()).substring(0,7);
+
+            if(resultList.contains(oneMonth)){
+                continue;
+            }else{
+                resultList.add(oneMonth);
+            }
+
+
+        }
+
+        Collections.sort(resultList);
+
+        ArrayList<String> periodList=new ArrayList<>();
+
+        for(int count=0;count<resultList.size();count++){
+            periodList.add(DateConvert.monthToPeriod(resultList.get(count)));
+
+        }
+
+        return periodList;
+
     }
 
     @Override
     public ArrayList<String> getAllVoucherMaker(String factoryId) {
-        return null;
+        ArrayList<String> resultList=new ArrayList<>();
+
+        ArrayList<VoucherPO> allVoucherList=voucherDataService.findAllVoucher(factoryId);
+
+        for(int count=0;count<allVoucherList.size();count++){
+            String oneMaker=allVoucherList.get(count).getVoucher_maker();
+
+            if(resultList.contains(oneMaker)){
+                continue;
+            }else{
+                resultList.add(oneMaker);
+
+            }
+
+        }
+        return resultList;
     }
 
     /**

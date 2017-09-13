@@ -409,6 +409,7 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
     @Override
     public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId) {
+
         return null;
     }
 
