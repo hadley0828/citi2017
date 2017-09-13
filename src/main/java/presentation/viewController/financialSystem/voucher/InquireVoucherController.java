@@ -11,6 +11,7 @@ import presentation.componentController.VoucherCard;
 import presentation.componentController.VoucherSearch;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 
@@ -35,12 +36,14 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     private VoucherBlService voucherBl;
     private ArrayList<VoucherVo> voucherList;
     private ArrayList<String> voucherIdList;
+    private String factoryId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         voucherSearch = new VoucherSearch();
         popItem.setGraphic(voucherSearch);
 
+        factoryId = StaticFactory.getUserVO().getCompanyID();
         searchVo = new VoucherSearchVo();
         voucherBl = new VoucherBlImpl();
         voucherIdList = new ArrayList<>();
@@ -59,7 +62,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
 
     public void updateList() {
         voucherIdList.clear();
-        voucherList = voucherBl.getSearchedVoucher(searchVo, "001");
+        voucherList = voucherBl.getSearchedVoucher(searchVo, factoryId);
 
         if (!voucherList.isEmpty()) {
             for (VoucherVo vo: voucherList) {
@@ -75,7 +78,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("导出");
         File file = fileChooser.showSaveDialog(voucher_list.getScene().getWindow());
-        voucherBl.exportToExcel(voucherIdList, file.getAbsolutePath(), "001");
+        voucherBl.exportToExcel(voucherIdList, file.getAbsolutePath(), factoryId);
     }
 
     @FXML
@@ -83,7 +86,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("导入");
         File file = fileChooser.showOpenDialog(voucher_list.getScene().getWindow());
-        voucherBl.importFromExcel(file.getAbsolutePath(), "001");
+        voucherBl.importFromExcel(file.getAbsolutePath(), factoryId);
         updateList();
     }
 }

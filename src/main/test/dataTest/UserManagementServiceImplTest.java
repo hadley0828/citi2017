@@ -51,7 +51,7 @@ public class UserManagementServiceImplTest {
 
     @Test
     public void testgetOneCompanyUser(){
-        UserCompanyPO po = userManagementService.getOneCompanyUser("01","001");
+        UserCompanyPO po = userManagementService.getOneCompanyUser("01");
         print(po);
     }
 

@@ -15,7 +15,6 @@
          </font>
       </Label>
       <Button fx:id="addUserButton" layoutY="67.0" mnemonicParsing="false" onAction="#addUserClicked" text="新增用户" />
-      <Button fx:id="changeRoot" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" onAction="#changeRootClicked" text="移交权限" />
       <TableView fx:id="userTable" layoutY="97.0" prefHeight="506.0" prefWidth="1000.0">
         <columns>
           <TableColumn fx:id="userInfo" prefWidth="730.0" text="用户信息" />

@@ -22,7 +22,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public ResultMessage insertOneCompanyUser(UserCompanyPO po) {
         sqlManager.getConnection();
-        ArrayList<String> idList = getAllUserIDByCompany(po.getCompanyID());
+        ArrayList<String> idList = getALLUserId();
         if (idList.contains(po.getUserID())){
             return ResultMessage.EXIST_USERID;
         }
@@ -86,11 +86,11 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public UserCompanyPO getOneCompanyUser(String id,String company_id) {
+    public UserCompanyPO getOneCompanyUser(String id) {
         sqlManager.getConnection();
 
-        String sql = "select * from user_company where id=? and company_id=?";
-        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id,company_id});
+        String sql = "select * from user_company where id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
 
         UserCompanyPO po = new UserCompanyPO();
         po.setUserID(map.get("id").toString());
@@ -205,7 +205,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         sqlManager.getConnection();
 
         String sql = "select password from user_password where id=?";
-        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{password});
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
 
         if (password.equals(map.get("password").toString())){
             return ResultMessage.SUCCESS;

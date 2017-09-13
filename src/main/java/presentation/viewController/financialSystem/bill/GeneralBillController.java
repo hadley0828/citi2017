@@ -14,7 +14,9 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.GeneralBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BookSearchVo;
+import vo.accountBook.TotalAccountAmountVo;
 import vo.accountBook.TotalAccountVo;
 
 import java.net.URL;
@@ -50,6 +52,7 @@ public class GeneralBillController implements Initializable, ControlledScreen {
 
     private BookSearch bookSearch = new BookSearch();
 
+    private String factoryId;
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<GeneralBillModel> data = FXCollections.observableArrayList();
@@ -58,6 +61,7 @@ public class GeneralBillController implements Initializable, ControlledScreen {
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
         bookSearchVo = new BookSearchVo();
+        factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
             bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
@@ -81,14 +85,14 @@ public class GeneralBillController implements Initializable, ControlledScreen {
     }
 
     private void initialTable() {
-        ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, "001");
-/*
+        ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, factoryId);
+
         for (TotalAccountVo vo: totalAccountVos) {
             ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
             for (TotalAccountAmountVo amountVo: amountVoArrayList) {
                 data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
             }
-        }*/
+        }
 
         billTable.setItems(data);
         periodCol.setCellValueFactory(cellData -> cellData.getValue().periodProperty());

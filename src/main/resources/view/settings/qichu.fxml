@@ -18,32 +18,110 @@
         <tabs>
           <Tab text="资产">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutY="1.0" prefHeight="502.0" prefWidth="1000.0">
+                          <columns>
+                            <TableColumn prefWidth="140.0" text="科目编码" />
+                            <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
           <Tab text="负债">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="140.0" text="科目编码" />
+                              <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="净资产">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="140.0" text="科目编码" />
+                              <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="收入">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="140.0" text="科目编码" />
+                              <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="费用">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="140.0" text="科目编码" />
+                              <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
             <Tab text="安全库存量">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                           <columns>
+                              <TableColumn prefWidth="140.0" text="科目编码" />
+                              <TableColumn prefWidth="126.0" text="科目名称" />
+                              <TableColumn prefWidth="110.0" text="方向" />
+                              <TableColumn prefWidth="129.0" text="期初余额" />
+                              <TableColumn prefWidth="194.0" text="借方累计" />
+                              <TableColumn prefWidth="145.0" text="贷方累计" />
+                              <TableColumn prefWidth="155.0" text="年初余额" />
+                           </columns>
+                        </TableView>
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>

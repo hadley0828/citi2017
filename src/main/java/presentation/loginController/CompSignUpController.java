@@ -45,7 +45,7 @@ public class CompSignUpController {
          * 行业初始化
          */
 
-        industryType.getItems().addAll(new SettingImpl().getAllSuperIndustry());
+//        industryType.getItems().addAll(new SettingImpl().getAllSuperIndustry());
     }
 
     public void createButtonClicked(){

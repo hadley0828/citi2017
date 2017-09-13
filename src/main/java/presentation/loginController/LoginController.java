@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import presentation.RunFLayout;
+import presentation.RunRootLayout;
 import presentation.viewController.StaticFactory;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
@@ -56,6 +58,7 @@ public class LoginController {
          */
         UserManagementService service=new UserManagementImpl();
         ResultMessage resultMessage=service.loginIn(compID,compPassword);
+//        ResultMessage resultMessage=ResultMessage.SUCCESS;
         if(CompID.getText().isEmpty()||CompPassword.getText().isEmpty()){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请输入账号和密码！");
@@ -74,8 +77,16 @@ public class LoginController {
             runWarning.start(new Stage());
 
         }else if(resultMessage==ResultMessage.SUCCESS){
+
+
             UserVO vo=service.getOneCompanyUser(compID);
             StaticFactory.setUserVO(vo);
+            RunRootLayout rr=new RunRootLayout();
+            try {
+                rr.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
         /**
@@ -90,6 +101,7 @@ public class LoginController {
          */
         RunCSignUp c=new RunCSignUp();
         try {
+
             c.start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,6 +117,7 @@ public class LoginController {
          */
         UserManagementService service=new UserManagementImpl();
         ResultMessage resultMessage=service.loginIn(Financeid,Financepassword);
+//        ResultMessage resultMessage=ResultMessage.SUCCESS;
         if(Financeid.isEmpty()||Financepassword.isEmpty()){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请输入账号和密码！");
@@ -118,14 +131,24 @@ public class LoginController {
             /**
              * 弹警告窗
              */
-
             RunWarning runWarning=new RunWarning();
+            runWarning.SetWarning("密码或账号不正确！");
+            runWarning.start(new Stage());
+
+
         }else if(resultMessage==ResultMessage.SUCCESS){
             FinancialUserVO vo=service.getOneFinancialUser(Financeid);
             StaticFactory.setFinancialUserVO(vo);
             /**
              * 跳转
              */
+            RunFLayout layout=new RunFLayout();
+            try {
+                layout.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
 

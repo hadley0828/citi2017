@@ -14,7 +14,7 @@ public class RunCSignUp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/loginAndSignUp/Login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../../view/LoginAndSignUp/SignUp.fxml"));
         Scene scene = new Scene(root);
 
         primaryStage.setMinWidth(1000);

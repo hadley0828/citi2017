@@ -3,11 +3,13 @@ package presentation.settingController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 
 /**
  * Created by Chris on 2017/9/12.
  */
-public class RootSettingAddUserController {
+public class RootSettingAddUserController implements ControlledScreen{
     @FXML
     private Label id;
     @FXML
@@ -16,6 +18,7 @@ public class RootSettingAddUserController {
     private Button closeButton;
     @FXML
     public void initialize(){
+        //新的uservo
 
     }
 
@@ -25,4 +28,8 @@ public class RootSettingAddUserController {
          */
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }
