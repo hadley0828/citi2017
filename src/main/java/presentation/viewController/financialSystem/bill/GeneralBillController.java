@@ -1,4 +1,4 @@
-package presentation.viewController.bill;
+package presentation.viewController.financialSystem.bill;
 
 import businesslogic.AccountBooksBlImpl;
 import businesslogicservice.AccountBooksBlService;
@@ -12,12 +12,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import presentation.componentController.BookSearch;
 import presentation.dataModel.GeneralBillModel;
-import presentation.dataModel.SubjectBalanceModel;
-import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.accountBook.BookSearchVo;
-import vo.accountBook.GatherTableOneClause;
+import vo.accountBook.TotalAccountVo;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -27,17 +25,25 @@ import java.util.ResourceBundle;
  * @author Molloh
  * @version 2017/9/6
  */
-public class SubjectSummarySheetController implements Initializable, ControlledScreen {
+public class GeneralBillController implements Initializable, ControlledScreen {
     @FXML
-    private TableView<SubjectSummaryModel> billTable;
+    private TableView<GeneralBillModel> billTable;
     @FXML
-    private TableColumn<SubjectSummaryModel, String> idCol;
+    private TableColumn<GeneralBillModel, String> periodCol;
     @FXML
-    private TableColumn<SubjectSummaryModel, String> subjectCol;
+    private TableColumn<GeneralBillModel, String> idCol;
     @FXML
-    private TableColumn<SubjectSummaryModel, Number> debitSumCol;
+    private TableColumn<GeneralBillModel, String> subjectCol;
     @FXML
-    private TableColumn<SubjectSummaryModel, Number> creditSumCol;
+    private TableColumn<GeneralBillModel, String> abstractsCol;
+    @FXML
+    private TableColumn<GeneralBillModel, Number> debitCol;
+    @FXML
+    private TableColumn<GeneralBillModel, Number> creditCol;
+    @FXML
+    private TableColumn<GeneralBillModel, String> directionCol;
+    @FXML
+    private TableColumn<GeneralBillModel, Number> balanceCol;
 
     @FXML
     private MenuButton select_menu;
@@ -46,7 +52,7 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
 
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
-    private ObservableList<SubjectSummaryModel> data = FXCollections.observableArrayList();
+    private ObservableList<GeneralBillModel> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,16 +81,23 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, "001");
-/*        for (GatherTableOneClause clause: gatherTableOneClauses) {
-            data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
+        ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, "001");
+/*
+        for (TotalAccountVo vo: totalAccountVos) {
+            ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
+            for (TotalAccountAmountVo amountVo: amountVoArrayList) {
+                data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
+            }
         }*/
 
         billTable.setItems(data);
+        periodCol.setCellValueFactory(cellData -> cellData.getValue().periodProperty());
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
-        debitSumCol.setCellValueFactory(cellData -> cellData.getValue().debitSumProperty());
-        creditSumCol.setCellValueFactory(cellData -> cellData.getValue().creditSumProperty());
+        abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
+        debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
+        creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
+        directionCol.setCellValueFactory(cellData -> cellData.getValue().directionProperty());
+        balanceCol.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
     }
-
 }

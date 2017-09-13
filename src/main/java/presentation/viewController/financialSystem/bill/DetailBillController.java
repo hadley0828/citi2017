@@ -1,25 +1,21 @@
-package presentation.viewController.bill;
+package presentation.viewController.financialSystem.bill;
 
 import businesslogic.AccountBooksBlImpl;
 import businesslogicservice.AccountBooksBlService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import presentation.componentController.BookSearch;
 import presentation.dataModel.DetailBillModel;
-import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.DetailAccountAmountVo;
 import vo.accountBook.DetailAccountVo;
-import vo.accountBook.TotalAccountVo;
 
 import java.net.URL;
 import java.util.ArrayList;

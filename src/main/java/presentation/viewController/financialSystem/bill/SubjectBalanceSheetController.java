@@ -1,4 +1,4 @@
-package presentation.viewController.bill;
+package presentation.viewController.financialSystem.bill;
 
 import businesslogic.AccountBooksBlImpl;
 import businesslogicservice.AccountBooksBlService;

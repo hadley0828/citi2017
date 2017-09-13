@@ -1,4 +1,4 @@
-package presentation.viewController.warning;
+package presentation.viewController.financialSystem.warning;
 
 import javafx.fxml.Initializable;
 import presentation.screenController.ControlledScreen;

@@ -1,4 +1,4 @@
-package presentation.viewController.voucher;
+package presentation.viewController.financialSystem.voucher;
 
 import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
