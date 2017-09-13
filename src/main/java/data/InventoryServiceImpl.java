@@ -5,6 +5,7 @@ import po.Inventory.InventoryProductItemPO;
 import po.Inventory.InventoryRawMaterialItemPO;
 import po.Inventory.ProductSafeInventoryPo;
 import po.Inventory.RawMaterialSafeInventoryPo;
+import util.DatesUtil;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -121,12 +122,41 @@ public class InventoryServiceImpl implements InventoryService{
 
     @Override
     public ArrayList<InventoryRawMaterialItemPO> getRawMaterialInventoryItemByMonth(String company_id, String time) {
-        return null;
+        sqlManager.getConnection();
+
+        ArrayList<InventoryRawMaterialItemPO> list = new ArrayList<>();
+
+        Map<String,String> datemap = DatesUtil.datesParser(time);
+
+        String sql = "select * from inventory_material where company_id=? and year(datetime)=? and month(datetime)=? ";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id,datemap.get("year"),datemap.get("month")});
+
+        for (Map<String,Object> map : maps){
+            list.add(getInventoryRawMaterialItemPOByMap(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
     }
 
     @Override
     public ArrayList<InventoryProductItemPO> getProductInventoryItemByMonth(String company_id, String time) {
-        return null;
+
+        sqlManager.getConnection();
+
+        ArrayList<InventoryProductItemPO> list = new ArrayList<>();
+
+        Map<String,String> datemap = DatesUtil.datesParser(time);
+
+        String sql = "select * from inventory_product where company_id=? and year(datetime)=? and month(datetime)=? ";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id,datemap.get("year"),datemap.get("month")});
+
+        for (Map<String,Object> map : maps){
+            list.add(getInventoryProductItemPOByMap(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
     }
 
     @Override
@@ -462,4 +492,6 @@ public class InventoryServiceImpl implements InventoryService{
 
         return list;
     }
+
+
 }

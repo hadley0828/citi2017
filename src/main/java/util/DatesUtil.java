@@ -26,7 +26,7 @@ public class DatesUtil {
 
 
     public static void main(String[] args) {
-        Map<String,String> map = DatesUtil.datesParser("2018-12");
+        Map<String,String> map = DatesUtil.datesParser("2018-09");
         System.out.println(map.get("year"));
         System.out.println(map.get("month"));
     }

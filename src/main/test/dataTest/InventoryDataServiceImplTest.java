@@ -163,6 +163,23 @@ public class InventoryDataServiceImplTest {
         System.out.println(Boolean.valueOf("0"));
     }
 
+
+    @Test
+    public void testgetRawMaterialInventoryItemByMonth(){
+        ArrayList<InventoryRawMaterialItemPO> list = inventoryService.getRawMaterialInventoryItemByMonth("001","2017-09");
+        for (InventoryRawMaterialItemPO po : list){
+            print(po);
+        }
+    }
+
+    @Test
+    public void testgetProductInventoryItemByMonth(){
+        ArrayList<InventoryProductItemPO> list = inventoryService.getProductInventoryItemByMonth("001","2017-09");
+        for (InventoryProductItemPO po : list){
+            print(po);
+        }
+    }
+
     private void print(InventoryRawMaterialItemPO po){
         System.out.print(po.getSheetID() + "\t");
         System.out.print(po.getListID() + "\t");
