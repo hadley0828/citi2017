@@ -11,8 +11,7 @@
          <children>
             <Button fx:id="financial_btn" layoutX="166.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
             <Button fx:id="supply_btn" layoutX="252.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
-            <Button fx:id="signIn_btn" layoutX="955.0" layoutY="26.0" mnemonicParsing="false" text="登录" />
-            <Button fx:id="signOut_btn" layoutX="1008.0" layoutY="26.0" mnemonicParsing="false" text="登出" />
+            <Button fx:id="signOut_btn" layoutX="1007.0" layoutY="26.0" mnemonicParsing="false" text="登出" />
             <Button fx:id="settings_btn" layoutX="1114.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
             <Button fx:id="logo_btn" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="LOGO" />
          </children></AnchorPane>

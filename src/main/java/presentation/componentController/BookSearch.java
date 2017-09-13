@@ -31,10 +31,10 @@ public class BookSearch extends GridPane {
         reset_btn.setOnAction(event -> OnReset());
 
         startPeriod_item = new ComboBox<>();
-        endSubject_item = new ComboBox<>();
+        endSubject_item = new SubjectsCombo();
         startPeriod_item = new ComboBox<>();
         endPeriod_item = new ComboBox<>();
-        startSubject_item = new ComboBox<>();
+        startSubject_item = new SubjectsCombo();
 
         startLevel_item = new TextField();
         endLevel_item = new TextField();
