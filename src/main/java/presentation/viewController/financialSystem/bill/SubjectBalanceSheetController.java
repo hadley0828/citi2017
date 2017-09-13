@@ -70,6 +70,8 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
             bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+
+            updateTable();
         });
 
         MenuItem popItem = new MenuItem();
@@ -85,10 +87,7 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, factoryId);
-        for (BalanceTableOneClause clause: balanceTableAllClauses) {
-            data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
-        }
+
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
@@ -100,5 +99,13 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
         endingDebitCol.setCellValueFactory(cellData -> cellData.getValue().endingDebitProperty());
         endingCreditCol.setCellValueFactory(cellData -> cellData.getValue().endingCreditProperty());
 
+    }
+
+    private void updateTable() {
+        data.clear();
+        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, factoryId);
+        for (BalanceTableOneClause clause: balanceTableAllClauses) {
+            data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
+        }
     }
 }

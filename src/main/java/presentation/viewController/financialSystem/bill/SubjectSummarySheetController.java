@@ -61,6 +61,7 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
             bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+            updateTable();
         });
 
         MenuItem popItem = new MenuItem();
@@ -76,16 +77,21 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, factoryId);
-        for (GatherTableOneClause clause: gatherTableOneClauses) {
-            data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
-        }
+
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         debitSumCol.setCellValueFactory(cellData -> cellData.getValue().debitSumProperty());
         creditSumCol.setCellValueFactory(cellData -> cellData.getValue().creditSumProperty());
+    }
+
+    private void updateTable() {
+        data.clear();
+        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, factoryId);
+        for (GatherTableOneClause clause: gatherTableOneClauses) {
+            data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
+        }
     }
 
 }

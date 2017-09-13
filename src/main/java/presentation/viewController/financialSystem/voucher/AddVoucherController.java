@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.componentController.SubjectsCombo;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -15,6 +17,7 @@ import presentation.viewController.StaticFactory;
 import util.NumberToCN;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
+import vo.voucher.SubjectBasicVo;
 import vo.voucher.VoucherAmountVo;
 import vo.voucher.VoucherVo;
 
@@ -64,7 +67,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         type_combo.getItems().addAll("记", "收", "付", "转");
         initialTable();
 
-
+        maker_label.setText(factoryId);
     }
 
     @Override
@@ -78,7 +81,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
 
-        data.add(new VoucherModel("提现", "", "1", "2"));
+        data.add(new VoucherModel("", "", "", ""));
         data.add(new VoucherModel("合计：", "", "", ""));
         voucherTable.setItems(data);
         voucherTable.setEditable(true);
@@ -89,7 +92,13 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                 event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setAbstracts(event.getNewValue())
         );
 
-        subjectCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        ArrayList<SubjectBasicVo> subjectArray = voucherBl.getAllSubjectBasics(StaticFactory.getUserVO().getCompanyID());
+        ObservableList<String> subjectChoice = FXCollections.observableArrayList();
+        for (SubjectBasicVo vo: subjectArray) {
+            subjectChoice.add(vo.getSubjectId() + " " + vo.getSubjectName());
+        }
+
+        subjectCol.setCellFactory(ComboBoxTableCell.forTableColumn(subjectChoice));
         subjectCol.setOnEditCommit(
                 event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setSubject(event.getNewValue())
         );
@@ -142,13 +151,14 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         amountTotalVo.setCreditAmount(Double.parseDouble(total.getCredit()));
         voucher.setAmountTotalVo(amountTotalVo);
 
+        String voucherId = type_combo.getValue() + "-" + number_field.getText().trim();
+
         ArrayList<VoucherAmountVo> amountList = new ArrayList<>();
         for (VoucherModel model: data) {
             VoucherAmountVo vo = new VoucherAmountVo();
-            vo.setAmountId("");
-            vo.setVoucherId("");
+            vo.setVoucherId(voucherId);
             vo.setAbstracts(model.getAbstracts());
-            vo.setSubject(model.getSubject());
+            vo.setSubject(model.getSubject().split(" ")[0]);
             vo.setDebitAmount(Double.parseDouble(model.getDebit()));
             vo.setCreditAmount(Double.parseDouble(model.getCredit()));
 

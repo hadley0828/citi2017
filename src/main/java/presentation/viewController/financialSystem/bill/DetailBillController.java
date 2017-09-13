@@ -72,6 +72,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
             bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+
         });
 
         MenuItem popItem = new MenuItem();
