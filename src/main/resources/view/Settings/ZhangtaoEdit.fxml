@@ -30,9 +30,9 @@
                   <TextField fx:id="compAddress" layoutX="177.0" layoutY="133.0" />
                   <TextField fx:id="creditCode" layoutX="179.0" layoutY="243.0" />
                   <ChoiceBox fx:id="industryType" layoutX="634.0" layoutY="24.0" prefWidth="150.0" />
-                  <Label layoutX="880.0" layoutY="138.0" text="月" />
                   <TextField fx:id="contact" layoutX="652.0" layoutY="243.0" />
                   <DatePicker fx:id="startTime" layoutX="652.0" layoutY="133.0" />
+                  <ChoiceBox fx:id="subType" layoutX="634.0" layoutY="83.0" prefWidth="150.0" />
                </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

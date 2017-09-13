@@ -37,7 +37,7 @@
                         </Label>
                         <ChoiceBox fx:id="getDebtChoice" layoutX="369.0" layoutY="63.0" prefHeight="27.0" prefWidth="150.0" />
                         <TextField fx:id="getDebtNum" editable="false" layoutX="369.0" layoutY="129.0" prefHeight="27.0" prefWidth="150.0" />
-                        <TextField fx:id="getDebtMortgage" editable="false" layoutX="369.0" layoutY="195.0" prefHeight="27.0" prefWidth="150.0" />
+                        <TextField fx:id="getDebtMortgage" layoutX="369.0" layoutY="195.0" prefHeight="27.0" prefWidth="150.0" />
                         <TextField fx:id="advice" editable="false" layoutX="369.0" layoutY="266.0" prefHeight="27.0" prefWidth="150.0" />
                      </children>
                   </AnchorPane>

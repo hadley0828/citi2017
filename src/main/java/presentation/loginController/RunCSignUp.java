@@ -1,4 +1,4 @@
-package presentation;
+package presentation.loginController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @author Molloh
  * @version 2017/9/6
  */
-public class Entrance extends Application {
+public class RunCSignUp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {

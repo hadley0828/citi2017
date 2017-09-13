@@ -10,8 +10,11 @@ import util.DateConvert;
 import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 
 /**
  * Created by zhangzy on 2017/8/7 下午10:45
@@ -29,7 +32,9 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
     @Override
     public ArrayList<String> getAllExistedSubjectId(String factoryId) {
-        return subjectDataService.getAllExistedSubjectId(factoryId);
+        ArrayList<String> resultList=subjectDataService.getAllExistedSubjectId(factoryId);
+        Collections.sort(resultList);
+        return resultList;
     }
 
     @Override
@@ -37,10 +42,22 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         DetailAccountVo resultvo=new DetailAccountVo();
         ArrayList<DetailAccountAmountVo> resultAmountVo=new ArrayList<>();
 
+        HashMap<String,String> subjectIdToNameMap=subjectDataService.getSubjectIdToNameMap();
+
+        resultvo.setSubjectId(subjectId);
+        resultvo.setSubkectName(subjectIdToNameMap.get(subjectId));
+
 
         java.lang.String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
         java.lang.String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
         ArrayList<String> betweenMonthList=DateConvert.getBetweenMonthList(startMonth,endMonth);
+
+        System.out.println(betweenMonthList);
+
+        HashSet<String> betweenMonthSet=new HashSet<>();
+        for(int count=0;count<betweenMonthList.size();count++){
+            betweenMonthSet.add(betweenMonthList.get(count));
+        }
 
         if(!(searchVo.getStartSubjectId()==null||searchVo.getEndSubjectId()==null)){
             int startSubjectId=Integer.valueOf(searchVo.getStartSubjectId());
@@ -71,16 +88,48 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         ArrayList<SubjectsPO> subjectsPOArrayList=subjectDataService.getOneSubjectAllRecords(subjectId,factoryId);
         //处理betweenMonthList
 
+        for(int count=0;count<subjectsPOArrayList.size();count++){
+            System.out.println(subjectsPOArrayList.get(count).toString());
+        }
+
         //用来先把结果进行分类
         HashMap<String,ArrayList<DetailAccountAmountVo>> monthToDetailMap=new HashMap<>();
 
         for(int count=betweenMonthList.indexOf(startMonth);count<=betweenMonthList.indexOf(endMonth);count++){
             String month=betweenMonthList.get(count);
             ArrayList<DetailAccountAmountVo> newList=new ArrayList<>();
+
+            //本期合计=本期发生额
+            DetailAccountAmountVo periodTotal=new DetailAccountAmountVo();
+            //本年累计
+            DetailAccountAmountVo yearTotal=new DetailAccountAmountVo();
+
+
+
+            periodTotal.setDate(DateConvert.getMonthLastDate(month));
+            periodTotal.setSubject(subjectId);
+
+            periodTotal.setAbstracts("本期合计");
+            periodTotal.setDebitAmount(0.0);
+            periodTotal.setCreditAmount(0.0);
+            periodTotal.setDirection(SubjectBalanceHelper.getDirectionString(subjectId));
+            periodTotal.setBalance(0.0);
+
+            yearTotal.setDate(DateConvert.getMonthLastDate(month));
+            yearTotal.setSubject(subjectId);
+            yearTotal.setAbstracts("本年累计");
+            yearTotal.setDebitAmount(0.0);
+            yearTotal.setCreditAmount(0.0);
+            yearTotal.setDirection(SubjectBalanceHelper.getDirectionString(subjectId));
+            yearTotal.setBalance(0.0);
+
+            newList.add(periodTotal);
+            newList.add(yearTotal);
+
+
             monthToDetailMap.put(month,newList);
         }
 
-        //首先得到期初的金额
         DetailAccountAmountVo beginNumber=new DetailAccountAmountVo();
         beginNumber.setDate(startMonth+"-01");
         beginNumber.setSubject(subjectId);
@@ -90,23 +139,106 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         beginNumber.setDirection("平");
         beginNumber.setBalance(0.0);
 
-        
+        //已经完成期初金额的计算
+        for(int count=0;count<subjectsPOArrayList.size();count++){
+            SubjectsPO oneRecord=subjectsPOArrayList.get(count);
+            String currentMonth=String.valueOf(oneRecord.getDate()).substring(0,7);
+            String firstMonth=betweenMonthList.get(0);
+            //需要保证currentMonth在第一个月之前
+            if((!betweenMonthSet.contains(currentMonth))&&DateConvert.isCurrentMonthBeforeMonth(currentMonth,firstMonth)){
+                beginNumber.setDebitAmount(beginNumber.getDebitAmount()+oneRecord.getDebitAmount());
+                beginNumber.setCreditAmount(beginNumber.getCreditAmount()+oneRecord.getCreditAmount());
+                beginNumber.setBalance(SubjectBalanceHelper.getDirection(subjectId)*(beginNumber.getDebitAmount()-beginNumber.getCreditAmount()));
+                if(SubjectBalanceHelper.getDirection(subjectId)==1){
+                    beginNumber.setDirection("借");
+                }else{
+                    beginNumber.setDirection("贷");
+                }
 
+            }else if(betweenMonthSet.contains(currentMonth)){
+                //每一期的本期合计要随之发生变化   在所有的计算完成之后需要对本年累计进行计算
+                DetailAccountAmountVo oneAmountVo=new DetailAccountAmountVo();
+                oneAmountVo.setDate(String.valueOf(oneRecord.getDate()));
+                oneAmountVo.setVoucherId(oneRecord.getVoucher_id());
+                oneAmountVo.setSubject(oneRecord.getId());
+//                oneAmountVo.setAbstracts();
+                oneAmountVo.setDebitAmount(oneRecord.getDebitAmount());
+                oneAmountVo.setCreditAmount(oneRecord.getCreditAmount());
+                oneAmountVo.setDirection(SubjectBalanceHelper.getDirectionString(subjectId));
+                oneAmountVo.setBalance(SubjectBalanceHelper.getDirection(subjectId)*(oneRecord.getDebitAmount()-oneRecord.getCreditAmount()));
 
+                monthToDetailMap.get(currentMonth).add(oneAmountVo);
 
+                DetailAccountAmountVo oneVo=monthToDetailMap.get(currentMonth).get(0);
+                oneVo.setDebitAmount(oneVo.getDebitAmount()+oneRecord.getDebitAmount());
+                oneVo.setCreditAmount(oneVo.getCreditAmount()+oneRecord.getCreditAmount());
+                if(oneVo.getDirection().equals("平")){
+                    oneVo.setDirection(SubjectBalanceHelper.getDirectionString(subjectId));
+                }
+                oneVo.setBalance(SubjectBalanceHelper.getDirection(subjectId)*(oneVo.getDebitAmount())-oneVo.getCreditAmount());
+                monthToDetailMap.get(currentMonth).set(0,oneVo);
+            }
+        }
+        //monthToDetailMap的列表中 0是本期合计 1是本年累计 然后后面的是每一个凭证金额对应的明细账
 
+        resultAmountVo.add(beginNumber);
 
+        //对其中的全部月份的本年累计进行计算
+        for(int count=betweenMonthList.indexOf(startMonth);count<=betweenMonthList.indexOf(endMonth);count++){
+            String currentMonth=betweenMonthList.get(count);
+            ArrayList<String> beforeMonthList=new ArrayList<>();
 
-        return null;
+            try {
+                beforeMonthList=DateConvert.getThisYearBeforeMonths(currentMonth);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            DetailAccountAmountVo oneVo=monthToDetailMap.get(currentMonth).get(1);
+            double oneDebit=0.0;
+            double oneCredit=0.0;
+            double oneBalance=0.0;
+
+            for(int index=0;index<beforeMonthList.size();index++){
+                String oneMonth=beforeMonthList.get(index);
+                if(!monthToDetailMap.containsKey(oneMonth)){
+                    continue;
+                }else{
+                    oneDebit=oneDebit+monthToDetailMap.get(oneMonth).get(0).getDebitAmount();
+                    oneCredit=oneCredit+monthToDetailMap.get(oneMonth).get(0).getCreditAmount();
+                }
+            }
+            oneBalance=SubjectBalanceHelper.getDirection(subjectId)*(oneDebit-oneCredit);
+
+            oneVo.setDebitAmount(oneDebit);
+            oneVo.setCreditAmount(oneCredit);
+            oneVo.setBalance(oneBalance);
+
+            monthToDetailMap.get(currentMonth).set(1,oneVo);
+
+            resultAmountVo.addAll(monthToDetailMap.get(currentMonth));
+
+        }
+        resultvo.setAmountVoArrayList(resultAmountVo);
+
+        return resultvo;
     }
 
     @Override
     public ArrayList<TotalAccountVo> getAllSubjectTotal(BookSearchVo searchVo, String factoryId) {
+
+
+
         return null;
     }
 
     @Override
     public TotalAccountVo getOneSubjectTotal(String subjectId, BookSearchVo searchVo, String factoryId) {
+        TotalAccountVo resultVo=new TotalAccountVo();
+
+
+
+
         return null;
     }
 
