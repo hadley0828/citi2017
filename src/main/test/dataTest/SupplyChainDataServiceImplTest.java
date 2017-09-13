@@ -73,4 +73,12 @@ public class SupplyChainDataServiceImplTest {
             System.out.println(po.getV_id());
         }
     }
+
+    @Test
+    public void testGetVoucherAmountsWithProduct(){
+        List<VoucherAmountPO> list = supplyChainDataService.GetVoucherAmountsWithProduct("001","1001","cotton","2018-10-10");
+        for (VoucherAmountPO po : list){
+            System.out.println(po.getV_id());
+        }
+    }
 }

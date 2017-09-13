@@ -145,7 +145,7 @@ public class SupplyChainDataServiceImpl implements SupplyChainDataService{
 		sqlManager.getConnection();
 
 		List<VoucherAmountPO> list = new ArrayList<>();
-		String sql = "select * from voucher_amount where subject=? and company_id=? and v_id in (select v_id from voucher  where company_id=? and date<=?) and v_id in (select voucher_id from inventory_material where company_id=? and material_variety =? union select voucher_id from inventory_product where company_id=? and product_variety=?";
+		String sql = "select * from voucher_amount where subject=? and company_id=? and v_id in (select v_id from voucher  where company_id=? and date<=?) and v_id in (select voucher_id from inventory_material where company_id=? and material_variety =? union select voucher_id from inventory_product where company_id=? and product_variety=?)";
 
 		ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{id,company_id,company_id,time,company_id,product,company_id,product});
 
