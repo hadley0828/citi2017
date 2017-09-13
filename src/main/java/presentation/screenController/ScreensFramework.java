@@ -60,7 +60,7 @@ public interface ScreensFramework {
 
     /*科目查看*/
     String KM_CK_SCREEN = "KeMuChaKan";
-    String KM_CK_SCREEN_FXML = "/view/Setting/kemu.fxml";
+    String KM_CK_SCREEN_FXML = "/view/settings/kemu.fxml";
 
     /*期初设置*/
     String QC_SETTINGS_SCREEN = "QiChuSheZhi";
