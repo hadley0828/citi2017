@@ -4,7 +4,6 @@ import dataservice.SettingDataService;
 import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsInitialVO;
 import vo.userManagement.SubjectsVO;
-import vo.userManagement.UserVO;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,7 +18,10 @@ public class SettingDataServiceImpl implements SettingDataService{
 
     @Override
     public ArrayList<SubjectsInitialVO> setInitialSubjectsBalance(String companyID) {
+        sqlManager.getConnection();
 
+
+        sqlManager.releaseAll();
         return null;
     }
 
@@ -71,21 +73,20 @@ public class SettingDataServiceImpl implements SettingDataService{
         ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
 
         for (Map<String,Object> map : maps){
-
+            list.add(getSubjectsVOByMap(map));
         }
-        return null;
+        sqlManager.releaseAll();
+        return list;
     }
 
-    @Override
-    public ArrayList<UserVO> getAllUserVoByAccountId(String account_id) {
-        return null;
-    }
+
 
     private SubjectsVO getSubjectsVOByMap(Map<String,Object> map){
         SubjectsVO vo = new SubjectsVO();
         vo.setSubjectsID(map.get("subjects_id").toString());
         vo.setSubjectsName(map.get("subjects_name").toString());
         vo.setDirection(map.get("direction").toString());
+        vo.setType(map.get("type").toString());
         return vo;
     }
 }
