@@ -1,4 +1,4 @@
-package presentation.viewController.cashManagement;
+package presentation.viewController.supplyChainManagement.cashManagement;
 
 import javafx.fxml.Initializable;
 import presentation.screenController.ControlledScreen;
@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
  * @author Molloh
  * @version 2017/9/13
  */
-public class CashPoolController implements Initializable, ControlledScreen {
+public class CashFinanceController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

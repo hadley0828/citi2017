@@ -1,4 +1,4 @@
-package presentation.viewController.cashManagement;
+package presentation.viewController.supplyChainManagement.cashManagement;
 
 import javafx.fxml.Initializable;
 import presentation.screenController.ControlledScreen;
