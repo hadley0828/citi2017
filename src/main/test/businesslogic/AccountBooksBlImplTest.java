@@ -29,7 +29,7 @@ public class AccountBooksBlImplTest {
     public void getOneSubjectDetail() throws Exception {
         BookSearchVo searchVo=new BookSearchVo();
         searchVo.setStartPeriod("2017年第6期");
-        searchVo.setEndPeriod("2017年第7期");
+        searchVo.setEndPeriod("2017年第6期");
         searchVo.setHighLevel(1);
         searchVo.setLowLevel(1);
 
