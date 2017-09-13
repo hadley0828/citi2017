@@ -80,4 +80,12 @@ public class SettingDataServiceImpl implements SettingDataService{
     public ArrayList<UserVO> getAllUserVoByAccountId(String account_id) {
         return null;
     }
+
+    private SubjectsVO getSubjectsVOByMap(Map<String,Object> map){
+        SubjectsVO vo = new SubjectsVO();
+        vo.setSubjectsID(map.get("subjects_id").toString());
+        vo.setSubjectsName(map.get("subjects_name").toString());
+        vo.setDirection(map.get("direction").toString());
+        return vo;
+    }
 }
