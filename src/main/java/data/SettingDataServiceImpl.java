@@ -1,11 +1,13 @@
 package data;
 
 import dataservice.SettingDataService;
-import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsInitialVO;
 import vo.userManagement.SubjectsVO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,19 +18,6 @@ public class SettingDataServiceImpl implements SettingDataService{
     SqlManager sqlManager = SqlManager.getSqlManager();
 
 
-    @Override
-    public ArrayList<SubjectsInitialVO> setInitialSubjectsBalance(String companyID) {
-        sqlManager.getConnection();
-
-
-        sqlManager.releaseAll();
-        return null;
-    }
-
-    @Override
-    public ArrayList<SafeInventoryVo> setSafeInventory(String companyID) {
-        return null;
-    }
 
     @Override
     public ArrayList<String> getAllSuperIndustry() {
@@ -79,6 +68,16 @@ public class SettingDataServiceImpl implements SettingDataService{
         return list;
     }
 
+    @Override
+    public boolean setInitialSubjects(ArrayList<SubjectsInitialVO> list, String company_id) {
+        sqlManager.getConnection();
+
+        for (SubjectsInitialVO vo : list){
+            insertOneSubjectInitialVO(vo,company_id);
+        }
+        sqlManager.releaseAll();
+        return true;
+    }
 
 
     private SubjectsVO getSubjectsVOByMap(Map<String,Object> map){
@@ -88,5 +87,22 @@ public class SettingDataServiceImpl implements SettingDataService{
         vo.setDirection(map.get("direction").toString());
         vo.setType(map.get("type").toString());
         return vo;
+    }
+
+    private void insertOneSubjectInitialVO(SubjectsInitialVO vo,String company_id){
+        List<Object> params = new ArrayList<>();
+        params.add(vo.getSubejcts_id());
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateNow = sdf.format(date);
+        params.add(dateNow);
+        params.add(vo.getPeroidRemain());
+        params.add(vo.getDebitSum());
+        params.add(vo.getCreditSum());
+        params.add(company_id);
+        params.add("initialization");
+
+        String sql = sqlManager.appendSQL("insert into subjects_balance values",params.size());
+        sqlManager.executeUpdateByList(sql,params);
     }
 }

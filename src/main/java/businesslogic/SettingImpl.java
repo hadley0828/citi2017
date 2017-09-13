@@ -1,5 +1,6 @@
 package businesslogic;
 
+import businesslogicservice.InventoryManagementService;
 import businesslogicservice.SettingService;
 import data.SettingDataServiceImpl;
 import data.UserManagementServiceImpl;
@@ -19,21 +20,14 @@ public class SettingImpl implements SettingService{
 
     UserManagementService userdataservice;
     SettingDataService settingDataService;
+    InventoryManagementService inventoryservice;
 
     public SettingImpl() {
         userdataservice = new UserManagementServiceImpl();
         settingDataService = new SettingDataServiceImpl();
+        inventoryservice = new InventoryManagementImpl();
     }
 
-    @Override
-    public ArrayList<SubjectsInitialVO> setInitialSubjectsBalance(String companyID) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<SafeInventoryVo> setSafeInventory(String companyID) {
-        return null;
-    }
 
     @Override
     public ArrayList<String> getAllSuperIndustry() {
@@ -47,11 +41,26 @@ public class SettingImpl implements SettingService{
 
     @Override
     public ArrayList<SubjectsVO> getAllSubjects() {
-        return null;
+        return settingDataService.getAllSubjects();
     }
 
     @Override
     public ArrayList<UserVO> getAllUserVoByAccountId(String account_id) {
-        return null;
+        return userdataservice.getAllUserVoByAccountId(account_id);
+    }
+
+    @Override
+    public boolean setInitialSubjects(ArrayList<SubjectsInitialVO> list, String company_id) {
+        return settingDataService.setInitialSubjects(list,company_id);
+    }
+
+    @Override
+    public boolean setSafetyInventory(ArrayList<SafeInventoryVo> list, String company_id) {
+        try{
+            inventoryservice.SaveSafeInventory(company_id,list);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }
