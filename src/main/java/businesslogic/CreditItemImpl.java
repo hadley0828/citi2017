@@ -5,8 +5,11 @@ import data.CreditItemServiceImpl;
 import po.CreditItemPO;
 import vo.CreditItemVo;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 /**
@@ -54,8 +57,25 @@ public class CreditItemImpl implements CreditItemService {
     }
 
     @Override
-    public boolean IsExpire(String company_id) {
-        return false;
+    public boolean IsExpire(String company_id, String voucher_id) {
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        ArrayList<CreditItemPO> list = service.getReceivables(company_id, voucher_id);
+        boolean result = false;
+        for(int i=0;i<list.size();i++){
+            CreditItemPO po = list.get(i);
+            LocalDate borrow_time = po.getDebitDate().toLocalDate();
+            LocalDate deadline = po.getDdl().toLocalDate();
+            LocalDate discount = po.getDiscountDate().toLocalDate();
+            LocalDate today = LocalDate.now();
+            int time = (int)borrow_time.until(deadline, ChronoUnit.DAYS);
+            int days = (int)borrow_time.until(discount, ChronoUnit.DAYS);
+            int now1 = (int)today.until(deadline, ChronoUnit.DAYS);
+            int now2 = (int)today.until(discount, ChronoUnit.DAYS);
+            if(now1<time*0.3||now2<days*0.3){
+                result = true;
+            }
+        }
+        return result;
     }
 
     private ArrayList<CreditItemVo> getList(ArrayList<CreditItemPO> list){

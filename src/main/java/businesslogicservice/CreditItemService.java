@@ -36,7 +36,8 @@ public interface CreditItemService {
     /**
      * 判断距离折扣期限与还款期限是否分别还剩下30%
      * @param company_id
+     * @param voucher_id
      * @return
      */
-    public boolean IsExpire(String company_id);
+    public boolean IsExpire(String company_id,String voucher_id);
 }
