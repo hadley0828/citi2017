@@ -41,7 +41,27 @@ public class BookSearch extends GridPane {
         Label label_0 = new Label("会计期间：");
         Label label_1 = new Label("起始科目：");
         Label label_2 = new Label("结账科目：");
-        Label label_3 = new Label("");
+        Label label_3 = new Label("科目级别：");
+        Label label_4 = new Label("至");
+
+        add(label_0, 1, 0);
+        add(label_1, 1, 1);
+        add(label_2, 1, 2);
+        add(label_3, 1, 3);
+        add(label_4, 3, 0);
+        //add(label_4, 3, 3);
+
+        add(startSubject_item, 2, 1);
+        add(endSubject_item, 2, 2);
+        add(startPeriod_item, 2, 0);
+        add(endPeriod_item, 4, 0);
+        add(startLevel_item, 2, 3);
+        add(endLevel_item, 4, 3);
+
+
+        add(confirm_btn, 1, 4);
+        add(cancel_btn, 2, 4);
+        add(reset_btn, 3, 4);
     }
 
     public Button getConfirm_btn() {

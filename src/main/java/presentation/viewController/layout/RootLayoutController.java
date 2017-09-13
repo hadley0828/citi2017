@@ -39,7 +39,7 @@ public class RootLayoutController implements Initializable {
         rootController.loadScreen(ScreensFramework.HOME_LAYOUT_SCREEN, ScreensFramework.HOME_LAYOUT_SCREEN_FXML);
         rootController.loadScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN, ScreensFramework.FINANCIAL_LAYOUT_SCREEN_FXML);
         rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
-        rootController.loadScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN, ScreensFramework.SETTINGS_LAYOUT_SCREEN_FXML);
+//        rootController.loadScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN, ScreensFramework.SETTINGS_LAYOUT_SCREEN_FXML);
 
         rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
 
@@ -54,7 +54,7 @@ public class RootLayoutController implements Initializable {
             rootController.setScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
         else if (event.getSource().equals(supply_btn))
             rootController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
-        else if (event.getSource().equals(settings_btn))
-            rootController.setScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);
+       /* else if (event.getSource().equals(settings_btn))
+            rootController.setScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);*/
     }
 }
