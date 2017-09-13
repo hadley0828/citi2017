@@ -723,6 +723,17 @@ public class VoucherBlImpl implements VoucherBlService {
         return resultList;
     }
 
+    @Override
+    public ArrayList<String> getAllPeriod(String factoryId) {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getAllVoucherMaker(String factoryId) {
+        return null;
+    }
+
     /**
      * 用来判断一个VoucherVo是否符合搜索条件
      * @param searchVo

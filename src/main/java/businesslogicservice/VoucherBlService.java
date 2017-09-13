@@ -157,6 +157,19 @@ public interface VoucherBlService {
      */
     public ArrayList<SubjectBasicVo> getAllSubjectBasics(String factoryId);
 
+    /**
+     * 获得数据库中的全部的会计期间
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<String> getAllPeriod(String factoryId);
+
+    /**
+     * 获得数据库中的全部的制单人
+     * @param factoryId
+     * @return
+     */
+    public ArrayList<String> getAllVoucherMaker(String factoryId);
 
     //打印凭证并且对打印进行设置    对一条凭证进行处理 修改!!!  删除  复制  插入(未实现)
     //对单条凭证金额的处理可以转换为对凭证的处理
