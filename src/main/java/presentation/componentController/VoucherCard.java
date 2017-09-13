@@ -18,6 +18,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * @author Molloh
+ * @version 2017/9/10
+ */
 public class VoucherCard extends BorderPane {
 
     private ArrayList<VoucherAmountVo> singleVoucher;
