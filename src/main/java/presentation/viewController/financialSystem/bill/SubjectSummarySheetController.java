@@ -14,6 +14,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.GatherTableOneClause;
 
@@ -42,6 +43,7 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
 
     private BookSearch bookSearch = new BookSearch();
 
+    private String factoryId;
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<SubjectSummaryModel> data = FXCollections.observableArrayList();
@@ -50,6 +52,7 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
         bookSearchVo = new BookSearchVo();
+        factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
             bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
@@ -73,10 +76,10 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, "001");
-/*        for (GatherTableOneClause clause: gatherTableOneClauses) {
+        ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, factoryId);
+        for (GatherTableOneClause clause: gatherTableOneClauses) {
             data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
-        }*/
+        }
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());

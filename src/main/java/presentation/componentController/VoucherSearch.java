@@ -47,7 +47,7 @@ public class VoucherSearch extends GridPane {
         });
         reset_btn.setOnAction(event -> OnReset());
 
-        subject_item = new ComboBox<>();
+        subject_item = new SubjectsCombo();
         startPeriod_item = new ComboBox<>();
         endPeriod_item = new ComboBox<>();
         voucherKey_item = new ComboBox<>();
@@ -58,6 +58,8 @@ public class VoucherSearch extends GridPane {
         highAmount_item = new TextField();
         lowVoucher_item = new TextField();
         highVoucher_item = new TextField();
+
+        voucherKey_item.getItems().addAll("全部", "记", "收", "付", "转");
 
         id_radio = new RadioButton("凭证号排序");
         date_radio = new RadioButton("凭证日期排序");
