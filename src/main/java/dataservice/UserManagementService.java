@@ -4,6 +4,9 @@ import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
 import util.EnumPackage.ResultMessage;
+import vo.userManagement.UserVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by loohaze on 2017/9/8 上午7:44
@@ -109,4 +112,11 @@ public interface UserManagementService {
      * @return
      */
     public Boolean isFinancialUser(String id);
+
+    /**
+     * 根据账套ID获得所有USER
+     * @param account_id
+     * @return
+     */
+    public ArrayList<UserVO> getAllUserVoByAccountId(String account_id);
 }

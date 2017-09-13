@@ -70,6 +70,8 @@ public class GeneralBillController implements Initializable, ControlledScreen {
             bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
+
+            updateTable();
         });
 
         MenuItem popItem = new MenuItem();
@@ -85,15 +87,7 @@ public class GeneralBillController implements Initializable, ControlledScreen {
     }
 
     private void initialTable() {
-        ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, factoryId);
-
-        for (TotalAccountVo vo: totalAccountVos) {
-            ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
-            for (TotalAccountAmountVo amountVo: amountVoArrayList) {
-                data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
-            }
-        }
-
+        data.add(new GeneralBillModel("", "", "", "", 0, 0, "", 0));
         billTable.setItems(data);
         periodCol.setCellValueFactory(cellData -> cellData.getValue().periodProperty());
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
@@ -103,5 +97,17 @@ public class GeneralBillController implements Initializable, ControlledScreen {
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
         directionCol.setCellValueFactory(cellData -> cellData.getValue().directionProperty());
         balanceCol.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
+    }
+
+    private void updateTable() {
+        data.clear();
+        ArrayList<TotalAccountVo> totalAccountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, factoryId);
+
+        for (TotalAccountVo vo: totalAccountVos) {
+            ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
+            for (TotalAccountAmountVo amountVo: amountVoArrayList) {
+                data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
+            }
+        }
     }
 }

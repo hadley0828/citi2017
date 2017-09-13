@@ -3,7 +3,6 @@ package dataservice;
 import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsInitialVO;
 import vo.userManagement.SubjectsVO;
-import vo.userManagement.UserVO;
 
 import java.util.ArrayList;
 
@@ -47,10 +46,5 @@ public interface SettingDataService {
     public ArrayList<SubjectsVO> getAllSubjects();
 
 
-    /**
-     * 根据账套ID获得所有USER
-     * @param account_id
-     * @return
-     */
-    public ArrayList<UserVO> getAllUserVoByAccountId(String account_id);
+
 }

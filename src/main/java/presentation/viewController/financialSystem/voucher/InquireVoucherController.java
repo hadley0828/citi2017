@@ -48,7 +48,6 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         voucherBl = new VoucherBlImpl();
         voucherIdList = new ArrayList<>();
 
-        updateList();
     }
 
     @Override
