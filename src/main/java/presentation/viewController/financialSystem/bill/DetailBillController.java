@@ -13,6 +13,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.DetailBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.DetailAccountAmountVo;
 import vo.accountBook.DetailAccountVo;
@@ -53,6 +54,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
     private BookSearch bookSearch = new BookSearch();
 
+    private String factoryId;
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<DetailBillModel> data = FXCollections.observableArrayList();
@@ -61,6 +63,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
         bookSearchVo = new BookSearchVo();
+        factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
             bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
@@ -94,7 +97,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     }
 
     private void initialSubjectsList() {
-        ArrayList<String> subjectsList = accountBooksBl.getAllExistedSubjectId("001");
+        ArrayList<String> subjectsList = accountBooksBl.getAllExistedSubjectId(factoryId);
             for (String sub: subjectsList) {
                 Button btn = new Button(sub);
             btn.setOnAction((ActionEvent e) -> {
@@ -105,7 +108,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     }
 
     private void updateTable(String subjectId) {
-        DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, "001");
+        DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
         ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
         for (DetailAccountAmountVo vo: amountVoArrayList) {
             data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));

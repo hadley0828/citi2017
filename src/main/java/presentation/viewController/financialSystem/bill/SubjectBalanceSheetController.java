@@ -14,6 +14,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.SubjectBalanceModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BalanceTableOneClause;
 import vo.accountBook.BookSearchVo;
 
@@ -52,6 +53,7 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
 
     private BookSearchVo bookSearchVo;
 
+    private String factoryId;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<SubjectBalanceModel> data = FXCollections.observableArrayList();
 
@@ -59,7 +61,8 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     public void initialize(URL location, ResourceBundle resources) {
         accountBooksBl = new AccountBooksBlImpl();
         bookSearchVo = new BookSearchVo();
-
+        factoryId = StaticFactory.getUserVO().getCompanyID();
+        
         bookSearch.getConfirm_btn().setOnAction(event -> {
             bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
             bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
@@ -82,10 +85,10 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, "001");
-/*        for (BalanceTableOneClause clause: balanceTableAllClauses) {
+        ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, factoryId);
+        for (BalanceTableOneClause clause: balanceTableAllClauses) {
             data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
-        }*/
+        }
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());

@@ -11,7 +11,9 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import util.NumberToCN;
+import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
 import vo.voucher.VoucherAmountVo;
 import vo.voucher.VoucherVo;
@@ -50,9 +52,13 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private VoucherBlService voucherBl;
     private VoucherVo voucher;
     private ObservableList<VoucherModel> data = FXCollections.observableArrayList();
-
+    private String factoryId;
+        
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        UserVO userVO = StaticFactory.getUserVO();
+        factoryId = userVO.getCompanyID();
+        
         voucherBl = new VoucherBlImpl();
         voucher = new VoucherVo();
         type_combo.getItems().addAll("记", "收", "付", "转");
@@ -161,7 +167,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         voucher.setVoucherMaker(maker_label.getText());
         voucher.setRemark("");
 
-        voucherBl.saveOneVoucher(voucher, "001");
+        voucherBl.saveOneVoucher(voucher, factoryId);
     }
 
     @FXML
