@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.performanceAppraisal.PerformanceAppraisalController">
+<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.performanceAppraisal.PerformanceAppraisalController">
    <children>
       <TabPane layoutX="214.0" layoutY="127.0" prefHeight="447.0" prefWidth="752.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>

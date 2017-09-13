@@ -36,7 +36,7 @@ public class RunWarning extends Application {
     public void SetAnchor(){
         try{
             FXMLLoader loader=new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/warning/generalWarningAnchor.fxml"));
+            loader.setLocation(getClass().getResource("/view/financialSystem/warning/generalWarningAnchor.fxml"));
             AnchorPane WarningAnchor=(AnchorPane)loader.load();
             border.setCenter(WarningAnchor);
 
@@ -59,7 +59,7 @@ public class RunWarning extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/warning/generalWarningBorder.fxml"));
+            loader.setLocation(getClass().getResource("/view/financialSystem/warning/generalWarningBorder.fxml"));
             border = (BorderPane) loader.load();
 
             // Show the scene containing the root layout.

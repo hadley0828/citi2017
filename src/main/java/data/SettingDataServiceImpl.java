@@ -67,7 +67,12 @@ public class SettingDataServiceImpl implements SettingDataService{
         sqlManager.getConnection();
 
         ArrayList<SubjectsVO> list = new ArrayList<>();
+        String sql = "select * from subjects";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{});
 
+        for (Map<String,Object> map : maps){
+
+        }
         return null;
     }
 
