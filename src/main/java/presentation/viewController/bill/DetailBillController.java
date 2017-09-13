@@ -50,8 +50,6 @@ public class DetailBillController implements Initializable, ControlledScreen {
     private TableColumn<DetailBillModel, Number> balanceCol;
 
     @FXML
-    private HBox topControl;
-    @FXML
     private VBox rightSubjects;
 
     @FXML
@@ -91,6 +89,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
         directionCol.setCellValueFactory(cellData -> cellData.getValue().directionProperty());
         balanceCol.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
+        billTable.setItems(data);
     }
 
     @Override
@@ -100,8 +99,8 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
     private void initialSubjectsList() {
         ArrayList<String> subjectsList = accountBooksBl.getAllExistedSubjectId("001");
-        for (String sub: subjectsList) {
-            Button btn = new Button(sub);
+            for (String sub: subjectsList) {
+                Button btn = new Button(sub);
             btn.setOnAction((ActionEvent e) -> {
                 updateTable(sub);
             });

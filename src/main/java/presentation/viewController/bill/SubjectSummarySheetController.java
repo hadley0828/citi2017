@@ -41,8 +41,8 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
 
     @FXML
     private MenuButton select_menu;
-    @FXML
-    private BookSearch bookSearch;
+
+    private BookSearch bookSearch = new BookSearch();
 
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
@@ -76,9 +76,9 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
 
     private void initialTable() {
         ArrayList<GatherTableOneClause> gatherTableOneClauses = accountBooksBl.getGatherTableAllClauses(bookSearchVo, "001");
-        for (GatherTableOneClause clause: gatherTableOneClauses) {
+/*        for (GatherTableOneClause clause: gatherTableOneClauses) {
             data.add(new SubjectSummaryModel(clause.getSubjectId(), clause.getSubjectName(), clause.getDebitTotal(), clause.getCreditTotal()));
-        }
+        }*/
 
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.bill.DetailBillController">
+   <children>
+      <SplitPane dividerPositions="0.2" layoutX="10.0" layoutY="10.0" orientation="VERTICAL" prefHeight="725.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="114.0" prefWidth="998.0">
+               <children>
+                  <Button layoutX="523.0" layoutY="19.0" mnemonicParsing="false" text="导出" />
+                  <MenuButton fx:id="select_menu" layoutX="21.0" layoutY="19.0" mnemonicParsing="false" text="筛选" />
+               </children>
+            </Pane>
+            <SplitPane dividerPositions="0.7" pickOnBounds="false" prefHeight="160.0" prefWidth="200.0">
+               <items>
+                  <TableView fx:id="billTable" prefHeight="200.0" prefWidth="600.0">
+                     <columns>
+                        <TableColumn fx:id="dateCol" prefWidth="62.0" text="日期" />
+                        <TableColumn fx:id="idCol" prefWidth="62.0" text="凭证号" />
+                        <TableColumn fx:id="subjectCol" prefWidth="62.0" text="科目" />
+                        <TableColumn fx:id="abstractsCol" prefWidth="62.0" text="摘要" />
+                        <TableColumn fx:id="debitCol" prefWidth="62.0" text="借方" />
+                        <TableColumn fx:id="creditCol" prefWidth="62.0" text="贷方" />
+                        <TableColumn fx:id="directionCol" prefWidth="62.0" text="方向" />
+                        <TableColumn fx:id="balanceCol" prefWidth="62.0" text="余额" />
+                     </columns>
+                  </TableView>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox fx:id="rightSubjects" prefHeight="603.0" prefWidth="238.0" />
+                     </content>
+                  </ScrollPane>
+               </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -267,6 +267,28 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
     }
 
+    @Override
+    public Boolean isCompanyUser(String id) {
+        sqlManager.getConnection();
+
+        String sql = "select id from user_company where id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
+
+        sqlManager.releaseAll();
+        return !map.isEmpty();
+    }
+
+    @Override
+    public Boolean isFinancialUser(String id) {
+        sqlManager.getConnection();
+
+        String sql = "select id from user_financial where id=?";
+        Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{id});
+
+        sqlManager.releaseAll();
+        return !map.isEmpty();
+    }
+
     private ArrayList<String> getAllUserIDByCompany(String company_id){
         ArrayList<String> list = new ArrayList<>();
         String sql = "select id from user_company where company_id=? union all select id from user_financial";

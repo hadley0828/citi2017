@@ -23,4 +23,19 @@ public interface SettingService {
      * @return
      */
     public ArrayList<SafeInventoryVo> setSafeInventory(String companyID);
+
+
+    /**
+     * 获得所有行业
+     * @return
+     */
+    public ArrayList<String> getAllSuperIndustry();
+
+    /**
+     *
+     * @param superIndustry
+     * @return
+     */
+    public ArrayList<String> getAllSubIndustry(String superIndustry);
+
 }

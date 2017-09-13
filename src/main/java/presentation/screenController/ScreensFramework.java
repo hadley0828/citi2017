@@ -25,27 +25,27 @@ public interface ScreensFramework {
 
     /*新增凭证*/
     String ADD_VOUCHER_SCREEN = "AddVoucher";
-    String ADD_VOUCHER_SCREEN_FXML = "/view/voucher/AddVoucher.fxml";
+    String ADD_VOUCHER_SCREEN_FXML = "/view/financialSystem/voucher/AddVoucher.fxml";
 
     /*查询凭证*/
     String INQUIRE_VOUCHER_SCREEN = "InquireVoucher";
-    String INQUIRE_VOUCHER_SCREEN_FXML = "/view/voucher/InquireVoucher.fxml";
+    String INQUIRE_VOUCHER_SCREEN_FXML = "/view/financialSystem/voucher/InquireVoucher.fxml";
 
     /*明细账*/
     String DETAIL_BILL_SCREEN = "DetailBill";
-    String DETAIL_BILL_SCREEN_FXML = "/view/Bill/DetailBill.fxml";
+    String DETAIL_BILL_SCREEN_FXML = "/view/financialSystem/bill/DetailBill.fxml";
 
     /*总账*/
     String GENERAL_BILL_SCREEN = "GeneralBill";
-    String GENERAL_BILL_SCREEN_FXML = "/view/Bill/GeneralBill.fxml";
+    String GENERAL_BILL_SCREEN_FXML = "/view/financialSystem/bill/GeneralBill.fxml";
 
     /*科目余额表*/
     String SUBJECT_BALANCE_SHEET_SCREEN = "SubjectBalanceSheet";
-    String SUBJECT_BALANCE_SHEET_SCREEN_FXML = "/view/Bill/SubjectBalanceSheet.fxml";
+    String SUBJECT_BALANCE_SHEET_SCREEN_FXML = "/view/financialSystem/bill/SubjectBalanceSheet.fxml";
 
     /*科目汇总表*/
     String SUBJECT_SUMMARY_SHEET_SCREEN = "SubjectSummarySheet";
-    String SUBJECT_SUMMARY_SHEET_SCREEN_FXML = "/view/Bill/SubjectSummarySheet.fxml";
+    String SUBJECT_SUMMARY_SHEET_SCREEN_FXML = "/view/financialSystem/bill/SubjectSummarySheet.fxml";
 
     String PRO_DEBT_SCREEN = "Pro_debt";
     String PRO_DEBT_SCREEN_FXML = "/view/BalanceSheet/BalanceSheet.fxml";
@@ -89,4 +89,24 @@ public interface ScreensFramework {
 
     String FINANCIAL_SETTING_SCREEN = "";
     String FINANCIAL_SETTING_SCREEN_FXML = "";
+
+    /*库存管理*/
+
+    /*现金流管理*/
+    String CASH_FINANCE_SCREEN = "CashFinance";
+    String CASH_FINANCE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/CashFinance.fxml";
+
+    String CASH_POOL_SCREEN = "CashPool";
+    String CASH_POOL_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/CashPool.fxml";
+
+    String CHARGE_STATE_SCREEN = "ChargeState";
+    String CHARGE_STATE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/ChargeState.fxml";
+
+    String PAY_STATE_SCREEN = "PayState";
+    String PAY_STATE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/PayState.fxml";
+
+    /*融资服务*/
+
+    /*绩效评价*/
+
 }
