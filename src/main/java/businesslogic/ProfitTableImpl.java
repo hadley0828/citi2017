@@ -217,4 +217,9 @@ public class ProfitTableImpl implements ProfitTableService{
 		res[0]=Net_profit;
 		return res;
 	}
+
+	@Override
+	public double getProfit(String company_id, String time) {
+		return 0;
+	}
 }

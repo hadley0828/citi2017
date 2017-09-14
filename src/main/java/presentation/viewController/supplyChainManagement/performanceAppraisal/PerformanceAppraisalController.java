@@ -70,11 +70,13 @@ public class PerformanceAppraisalController implements ControlledScreen {
     SupplyChainPerformanceVo vo=service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth());
     @FXML
     public void initialize(){
+        System.out.print(service.getTheCompanys(StaticFactory.getUserVO().getCompanyID()));
         setGain();
         setOp();
         setDevelop();
         setDebtpay();
     }
+
 
     public void setGain(){
         ArrayList<ProfitAbilityVO> profitAbilityVOS=new ArrayList<ProfitAbilityVO>();
