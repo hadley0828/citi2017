@@ -157,7 +157,7 @@ public class ProducerInfoController {
 
         producer_product.setEditable(true);
 
-        product_1.setCellValueFactory(new PropertyValueFactory<>("rawMaterial_variety"));
+        product_1.setCellValueFactory(new PropertyValueFactory<>("product_variety"));
         product_1.setCellFactory(TextFieldTableCell.<ProductVO>forTableColumn());
         product_1.setOnEditCommit((TableColumn.CellEditEvent<ProductVO,String> t)->{
             ((ProductVO) t.getTableView().getItems().get(t.getTablePosition().getRow())).setProduct_variety(t.getNewValue());

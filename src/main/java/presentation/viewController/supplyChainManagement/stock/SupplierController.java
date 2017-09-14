@@ -73,7 +73,7 @@ public class SupplierController {
     }
 
     public void setBar(){
-        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate("001");
+        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
         for(int i=0;i<l.size();i++){
@@ -212,15 +212,15 @@ public class SupplierController {
     public ArrayList<InventoryChangeVo> getStockChart(){
 //        System.out.println("原材料:"+StaticFactory.getRaw_material());
 //        System.out.println("时间"+format.format(d));
-        return service.getRawInventoryChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
+        return service.getRawInventoryChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getRaw_material(),StaticFactory.getDate());
     }
 
     public ArrayList<PunctualDeliveryRateChangeVo> getPunctualChart(){
-        return service.getRawPunctualDeliveryRateChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
+        return service.getRawPunctualDeliveryRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getRaw_material(),StaticFactory.getDate());
     }
 
     public ArrayList<RefundRateChangeVo> getBackChart(){
-        return service.getRawRefundRateChange("001",StaticFactory.getRaw_material(),StaticFactory.getDate());
+        return service.getRawRefundRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getRaw_material(),StaticFactory.getDate());
     }
     public String getId(){
         return "aaaa";

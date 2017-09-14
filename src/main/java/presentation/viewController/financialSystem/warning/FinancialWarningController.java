@@ -22,7 +22,6 @@ public class FinancialWarningController implements Initializable, ControlledScre
     @FXML
     private DatePicker date_picker;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

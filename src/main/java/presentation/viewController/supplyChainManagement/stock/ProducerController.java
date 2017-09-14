@@ -86,7 +86,7 @@ public class ProducerController {
     }
 
     public void setBar(){
-        ArrayList<ProductSafeInventoryRateVo> p=service.getProductInventoryRate("001");
+        ArrayList<ProductSafeInventoryRateVo> p=service.getProductInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
         for(int i=0;i<p.size();i++){
@@ -98,7 +98,7 @@ public class ProducerController {
         product_bar.getData().add(series1);
         product_bar.getData().add(series2);
 
-        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate("001");
+        ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series3=new XYChart.Series();
         XYChart.Series series4=new XYChart.Series();
         for(int i=0;i<l.size();i++){
@@ -120,7 +120,7 @@ public class ProducerController {
 
                 java.util.Date d = Date.from(raw_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 StaticFactory.setproducer_raw_date(format.format(d));
-                raw_tabledata=service.getRawMaterialInventoryMonitorItem("001",format.format(d));
+                raw_tabledata=service.getRawMaterialInventoryMonitorItem(StaticFactory.getUserVO().getCompanyID(),format.format(d));
                 Iterator i = raw_tabledata.iterator();
                 while (i.hasNext()) {
                     raw_list.add((RawMaterialInventoryMonitorItemVo) i.next());
@@ -138,7 +138,7 @@ public class ProducerController {
 
                 java.util.Date d1 = Date.from(product_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 StaticFactory.setproducer_product_date(format.format(d1));
-                product_tabledata=service.getProductInventoryMonitorItem("001",format.format(d1));
+                product_tabledata=service.getProductInventoryMonitorItem(StaticFactory.getUserVO().getCompanyID(),format.format(d1));
                 Iterator i = product_tabledata.iterator();
                 while (i.hasNext()) {
                     product_list.add((ProductInventoryMonitorItemVo) i.next());
@@ -240,17 +240,17 @@ public class ProducerController {
     }
 
     public ArrayList<InventoryChangeVo> getRawStockChart(){
-        return service.getRawInventoryChange("001",StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
+        return service.getRawInventoryChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
     }
     public ArrayList<PunctualDeliveryRateChangeVo> getRawPunctualChart(){
-        return service.getRawPunctualDeliveryRateChange("001",StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
+        return service.getRawPunctualDeliveryRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getProducer_Raw_material(),StaticFactory.getproducer_raw_date());
     }
 
     public ArrayList<InventoryChangeVo> getProductStockChart(){
-        return service.getProductInventoryChange("001",StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
+        return service.getProductInventoryChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
     }
     public ArrayList<RefundRateChangeVo> getProductBackChart(){
-        return service.getProductRefundRateChange("001",StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
+        return service.getProductRefundRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
     }
 
 }
