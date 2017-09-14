@@ -17,6 +17,12 @@ public interface TrialSettlementService {
     public ArrayList<TrialTableItemVo> getTrialTable(String company_id);
 
     /**
+     * 判断借贷是否相等（紧接上一个方法调用）
+     * @return
+     */
+    public boolean IsCreditDebitequal();
+
+    /**
      * 管理员账号反结账
      * @param voucher_id 凭证id
      * @param voucherVo 修改的一行凭证信息

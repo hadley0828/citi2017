@@ -1,11 +1,16 @@
 package presentation.settingController;
 
+import businesslogic.SettingImpl;
+import businesslogic.UserManagementImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import vo.userManagement.SubjectsVO;
+
+import java.util.ArrayList;
 
 /**
  * Created by Chris on 2017/9/12.
@@ -27,79 +32,79 @@ public class ObjectManageController implements ControlledScreen {
     private Tab fee;
 
     @FXML
-    TableView<Object> BalanceTable;
+    TableView<SubjectsVO> BalanceTable;
 
     @FXML
-    TableColumn<Object,String> code1;
+    TableColumn<SubjectsVO,String> code1;
 
     @FXML
-    TableColumn<Object,String> name1;
+    TableColumn<SubjectsVO,String> name1;
 
     @FXML
-    TableColumn<Object,String> direction1;
+    TableColumn<SubjectsVO,String> direction1;
 
     @FXML
-    TableColumn<Object,String> state1;
+    TableColumn<SubjectsVO,String> state1;
 
     @FXML
-    TableView<Object> debitTable;
+    TableView<SubjectsVO> debitTable;
 
     @FXML
-    TableColumn<Object,String> code2;
+    TableColumn<SubjectsVO,String> code2;
 
     @FXML
-    TableColumn<Object,String> name2;
+    TableColumn<SubjectsVO,String> name2;
 
     @FXML
-    TableColumn<Object,String> direction2;
+    TableColumn<SubjectsVO,String> direction2;
 
     @FXML
-    TableColumn<Object,String> state2;
+    TableColumn<SubjectsVO,String> state2;
 
     @FXML
-    TableView<Object> cleanBalanceTable;
+    TableView<SubjectsVO> cleanBalanceTable;
 
     @FXML
-    TableColumn<Object,String> code3;
+    TableColumn<SubjectsVO,String> code3;
 
     @FXML
-    TableColumn<Object,String> name3;
+    TableColumn<SubjectsVO,String> name3;
 
     @FXML
-    TableColumn<Object,String> direction3;
+    TableColumn<SubjectsVO,String> direction3;
 
     @FXML
-    TableColumn<Object,String> state3;
+    TableColumn<SubjectsVO,String> state3;
 
     @FXML
-    TableView<Object> incomeTable;
+    TableView<SubjectsVO> incomeTable;
 
     @FXML
-    TableColumn<Object,String> code4;
+    TableColumn<SubjectsVO,String> code4;
 
     @FXML
-    TableColumn<Object,String> name4;
+    TableColumn<SubjectsVO,String> name4;
 
     @FXML
-    TableColumn<Object,String> direction4;
+    TableColumn<SubjectsVO,String> direction4;
 
     @FXML
-    TableColumn<Object,String> state4;
+    TableColumn<SubjectsVO,String> state4;
 
     @FXML
-    TableView<Object> FeeTable;
+    TableView<SubjectsVO> FeeTable;
 
     @FXML
-    TableColumn<Object,String> code5;
+    TableColumn<SubjectsVO,String> code5;
 
     @FXML
-    TableColumn<Object,String> name5;
+    TableColumn<SubjectsVO,String> name5;
 
     @FXML
-    TableColumn<Object,String> direction5;
+    TableColumn<SubjectsVO,String> direction5;
 
     @FXML
-    TableColumn<Object,String> state5;
+    TableColumn<SubjectsVO,String> state5;
 
     @FXML
     public void initialize(){
@@ -107,6 +112,9 @@ public class ObjectManageController implements ControlledScreen {
          * 初始化5个表格
          *
          */
+        SettingImpl impl=new SettingImpl();
+        ArrayList<SubjectsVO> list=impl.getAllSubjects();
+
     }
 
 

@@ -11,6 +11,7 @@ import dataservice.ProfitAndCashService;
 import dataservice.SupplyChainDataService;
 import po.SupplyChainPO;
 import vo.BalanceSheetItemVo;
+import vo.CompanyVo;
 import vo.SupplyChainPerformanceVo;
 
 /**
@@ -200,6 +201,13 @@ public class SupplyChainImpl implements SupplyChainService{
 	public List<SupplyChainPO> GetSupplyChains() {
 		return SC.GetSupplyChains();
 	}
+
+
+	public String[] getTheCompanys(String company_id) {
+		return SC.getTheCompanys(company_id);
+	}
 	
-	
+	public CompanyVo getCompanyInfo(String companyName){
+		return new CompanyVo(SC.getCompanyInfo(companyName));
+	}
 }

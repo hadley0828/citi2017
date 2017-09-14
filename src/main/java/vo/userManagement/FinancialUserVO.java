@@ -5,6 +5,7 @@ package vo.userManagement;
  */
 public class FinancialUserVO {
 
+
     private String id;
 
     private String name; //名称
@@ -18,6 +19,15 @@ public class FinancialUserVO {
     private String legalPersonQualification; //法人资格信贷证
 
     public FinancialUserVO() {
+    }
+
+    public FinancialUserVO(String id, String name, String address, String financialKey, String legalPersonQualification) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+
+        this.financialKey = financialKey;
+        this.legalPersonQualification = legalPersonQualification;
     }
 
     public String getId() {
