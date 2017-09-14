@@ -31,6 +31,10 @@ public interface ScreensFramework {
     String INQUIRE_VOUCHER_SCREEN = "InquireVoucher";
     String INQUIRE_VOUCHER_SCREEN_FXML = "/view/financialSystem/voucher/InquireVoucher.fxml";
 
+    /*修改凭证*/
+    String AMEND_VOUCHER_SCREEN = "AmendVoucher";
+    String AMEND_VOUCHER_SCREEN_FXML = "/view/financialSystem/voucher/AmendVoucher.fxml";
+
     /*明细账*/
     String DETAIL_BILL_SCREEN = "DetailBill";
     String DETAIL_BILL_SCREEN_FXML = "/view/financialSystem/bill/DetailBill.fxml";

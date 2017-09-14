@@ -79,6 +79,37 @@ public class SettingDataServiceImpl implements SettingDataService{
         return true;
     }
 
+    @Override
+    public boolean setSupplyChain(String company_id, String index, String upper, String down) {
+        sqlManager.getConnection();
+
+        List<Object> params = new ArrayList<>();
+        params.add(0);
+        String sql = "";
+        try{
+            if (index.equals("供应商")){
+                params.add(company_id);
+                params.add(down);
+                params.add("");
+
+            }else if(index.equals("生产商")){
+                params.add(upper);
+                params.add(company_id);
+                params.add(down);
+            }else if(index.equals("分销商")){
+                params.add("");
+                params.add(upper);
+                params.add(company_id);
+            }
+            sql = sqlManager.appendSQL("insert into supply_chain values",params.size());
+            sqlManager.executeUpdateByList(sql,params);
+            sqlManager.commit();
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
 
     private SubjectsVO getSubjectsVOByMap(Map<String,Object> map){
         SubjectsVO vo = new SubjectsVO();

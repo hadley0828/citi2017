@@ -34,5 +34,6 @@ public interface SettingDataService {
 
     public boolean setInitialSubjects(ArrayList<SubjectsInitialVO> list, String company_id);
 
+    public boolean setSupplyChain(String company_id,String index,String upper,String down);
 
 }

@@ -75,6 +75,12 @@ public class UserManagementServiceImpl implements UserManagementService {
         params.add(id);
         params.add(rawpassword);
 
+        String getSql = "select password from user_password where id=?";
+        Map<String,Object> map = sqlManager.querySimple(getSql,new Object[]{id});
+        if (rawpassword.equals(map.get("password").toString())){
+            return ResultMessage.FAIL;
+        }
+
         String sql = "update user_password set password=? where id=? and password=?";
         try{
             sqlManager.executeUpdateByList(sql,params);

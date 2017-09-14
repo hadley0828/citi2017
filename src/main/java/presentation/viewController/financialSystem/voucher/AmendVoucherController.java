@@ -9,10 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.StaticFactory;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.screenController.ScreensFramework;
 import util.NumberToCN;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
@@ -25,11 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/**
- * @author Molloh
- * @version 2017/9/6
- */
-public class AddVoucherController implements Initializable, ControlledScreen {
+public class AmendVoucherController implements Initializable, ControlledScreen {
     @FXML
     private TableView<VoucherModel> voucherTable;
     @FXML
@@ -50,19 +47,21 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     @FXML
     private Label maker_label;
 
-    private ScreensController myController;
+    private ScreensController parentController;
     private VoucherBlService voucherBl;
     private VoucherVo voucher;
     private ObservableList<VoucherModel> data = FXCollections.observableArrayList();
     private String factoryId;
-        
+    private String amendId;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         UserVO userVO = StaticFactory.getUserVO();
         factoryId = userVO.getCompanyID();
-        
+        amendId = StaticFactory.getAmendId();
+
         voucherBl = new VoucherBlImpl();
-        voucher = new VoucherVo();
+        voucher = voucherBl.getOneVoucher(amendId, factoryId);
         type_combo.getItems().addAll("记", "收", "付", "转");
         initialTable();
 
@@ -71,7 +70,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-        myController = screenPage;
+        parentController = screenPage;
     }
 
     private void initialTable() {
@@ -80,10 +79,16 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
 
-        data.add(new VoucherModel("", "", "", ""));
-        data.add(new VoucherModel("合计：", "", "", ""));
         voucherTable.setItems(data);
         voucherTable.setEditable(true);
+
+        if (voucher != null) {
+            for (VoucherAmountVo voucherAmountVo: voucher.getAmountList()) {
+                data.add(new VoucherModel(voucherAmountVo.getAbstracts(), voucherAmountVo.getSubject(), String.valueOf(voucherAmountVo.getDebitAmount()), String.valueOf(voucherAmountVo.getCreditAmount())));
+            }
+            AmountTotalVo tvo = voucher.getAmountTotalVo();
+            data.add(new VoucherModel("合计： ", tvo.getChineseTotal(), String.valueOf(tvo.getDebitAmount()), String.valueOf(tvo.getCreditAmount())));
+        }
 
         /*enable cell editing*/
         abstractsCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -142,7 +147,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    private void OnSaveAndAdd() {
+    private void OnSave() {
         ObservableList<VoucherModel> aid_data = voucherTable.getItems();
 
         AmountTotalVo amountTotalVo = new AmountTotalVo();
@@ -186,9 +191,9 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     @FXML
     private void OnAddRow() {
         if (data.size() > 1)
-            data.add(data.size() - 2, new VoucherModel("提现", "", "", ""));
+            data.add(data.size() - 2, new VoucherModel("", "", "", ""));
         else
-            data.add(0, new VoucherModel("提现", "", "", ""));
+            data.add(0, new VoucherModel("", "", "", ""));
     }
 
     @FXML
@@ -197,4 +202,17 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             data.remove(data.size() - 2);
     }
 
+    @FXML
+    private void OnDelete() {
+        voucherBl.deleteOneVoucher(amendId, factoryId);
+        OnCancel();
+    }
+
+    @FXML
+    private void OnCancel() {
+        data.clear();
+//        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+//        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
+        parentController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+    }
 }

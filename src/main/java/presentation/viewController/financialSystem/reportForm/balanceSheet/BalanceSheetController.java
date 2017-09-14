@@ -13,9 +13,9 @@ import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
 import vo.BalanceSheetItemVo;
 
+import javax.swing.filechooser.FileSystemView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -95,7 +95,7 @@ public class BalanceSheetController implements ControlledScreen{
     //为资产表添加数据
     public void setBalanceTable(){
 //        System.out.print(bar.getDate());
-        bs_data=balanceSheetService.getBalanceSheet(StaticFactory.getUserVO().getCompanyID(),bar.getDate());
+        bs_data=balanceSheetService.getBalanceSheet("001",bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
         ArrayList<BalanceSheetItemVo> p3=bs_data.get("资产合计");
@@ -348,5 +348,13 @@ public class BalanceSheetController implements ControlledScreen{
     public void setScreenParent(ScreensController screenPage) {
 
     }
+    @FXML
+    public void out(){
+        FileSystemView fsv=FileSystemView.getFileSystemView();
+        String path=fsv.getHomeDirectory().getPath();
+        path += "/资产负债表.xls";
+        balanceSheetService.CreatBalanceSheet(path);
+    }
+
 
 }

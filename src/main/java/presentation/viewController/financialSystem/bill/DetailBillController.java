@@ -13,7 +13,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.DetailBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.DetailAccountAmountVo;
 import vo.accountBook.DetailAccountVo;
@@ -75,9 +75,10 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
         });
 
-        MenuItem popItem = new MenuItem();
-        popItem.setGraphic(bookSearch);
-        select_menu.getItems().setAll(popItem);
+        CustomMenuItem menuItem = new CustomMenuItem(bookSearch);
+        menuItem.setHideOnClick(false);
+        select_menu.getItems().addAll(menuItem);
+        select_menu.setFocusTraversable(false);
 
         initialSubjectsList();
 

@@ -63,4 +63,9 @@ public class SettingImpl implements SettingService{
             return false;
         }
     }
+
+    @Override
+    public boolean setSupplyChain(String company_id, String chainindex, String upper, String down) {
+        return settingDataService.setSupplyChain(company_id,chainindex,upper,down);
+    }
 }

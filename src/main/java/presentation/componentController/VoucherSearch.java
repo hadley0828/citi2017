@@ -1,13 +1,10 @@
 package presentation.componentController;
 
-import javafx.fxml.FXMLLoader;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import presentation.screenController.ScreensFramework;
-import presentation.viewController.financialSystem.voucher.InquireVoucherController;
+import presentation.StaticFactory;
 import vo.voucher.VoucherSearchVo;
-
-import java.io.IOException;
 
 /**
  * @author Molloh
@@ -38,14 +35,8 @@ public class VoucherSearch extends GridPane {
         cancel_btn = new Button("取消");
         reset_btn = new Button("重置");
 
-        confirm_btn.setOnAction(event -> {
-            try {
-                OnConfirm();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        reset_btn.setOnAction(event -> OnReset());
+        confirm_btn.addEventHandler(ActionEvent.ACTION, e -> OnConfirm());
+        reset_btn.addEventHandler(ActionEvent.ACTION, e -> OnReset());
 
         subject_item = new SubjectsCombo();
         startPeriod_item = new PeriodCombo();
@@ -124,10 +115,7 @@ public class VoucherSearch extends GridPane {
         date_radio.setFocusTraversable(false);
     }
 
-    private void OnConfirm() throws IOException {
-        FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML));
-        InquireVoucherController myScreenController = myLoader.getController();
-
+    private void OnConfirm() {
         VoucherSearchVo searchVo = new VoucherSearchVo();
         searchVo.setStartPeriod(startPeriod_item.getSelectionModel().getSelectedItem());
         searchVo.setEndPeriod(endPeriod_item.getSelectionModel().getSelectedItem());
@@ -135,13 +123,40 @@ public class VoucherSearch extends GridPane {
         searchVo.setMaker(maker_item.getSelectionModel().getSelectedItem());
         searchVo.setAbstracts(abstracts_item.getText());
         searchVo.setSubjectId(subject_item.getSelectionModel().getSelectedItem());
-        searchVo.setLowPrice(Double.parseDouble(lowAmount_item.getText()));
-        searchVo.setHighPrice(Double.parseDouble(highAmount_item.getText()));
-        searchVo.setLowVoucherNumber(Integer.parseInt(lowVoucher_item.getText()));
-        searchVo.setHighVoucherNumber(Integer.parseInt(highVoucher_item.getText()));
+        if (!lowAmount_item.getText().equals(""))
+            searchVo.setLowPrice(Double.parseDouble(lowAmount_item.getText()));
+        else
+            searchVo.setLowPrice(-1.0);
+        if (!highAmount_item.getText().equals(""))
+            searchVo.setHighPrice(Double.parseDouble(highAmount_item.getText()));
+        else
+            searchVo.setHighPrice(-1.0);
+        if (!lowVoucher_item.getText().equals(""))
+            searchVo.setLowVoucherNumber(Integer.parseInt(lowVoucher_item.getText()));
+        else
+            searchVo.setLowVoucherNumber(-1);
+        if (!highVoucher_item.getText().equals(""))
+            searchVo.setHighVoucherNumber(Integer.parseInt(highVoucher_item.getText()));
+        else
+            searchVo.setHighVoucherNumber(-1);
 
-        myScreenController.setVoucherSearch(searchVo);
-        myScreenController.updateList();
+        if (id_radio.isSelected())
+            searchVo.setSortOrder(1);
+        else
+            searchVo.setSortOrder(0);
+
+        StaticFactory.setVoucherSearchVo(searchVo);
     }
 
+    public Button getConfirm_btn() {
+        return confirm_btn;
+    }
+
+    public Button getCancel_btn() {
+        return cancel_btn;
+    }
+
+    public Button getReset_btn() {
+        return reset_btn;
+    }
 }

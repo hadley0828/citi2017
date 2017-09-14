@@ -1,0 +1,17 @@
+.custom-menu {
+    -fx-background-color: white;
+}
+
+.custom-menu:focused {
+    -fx-background-color: white;
+}
+
+.custom-menu .custom-menu-item {
+    -fx-background-color: white;
+    -fx-padding: 0;
+}
+
+.custom-menu-item:focused {
+    -fx-background-color: gray;
+}
+

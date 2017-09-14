@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.voucher.AmendVoucherController">
+   <children>
+      <Label fx:id="maker_label" layoutX="182.0" layoutY="608.0" prefHeight="15.0" prefWidth="12.0" />
+      <Label layoutX="134.0" layoutY="608.0" text="制单人：" />
+      <DatePicker fx:id="date_picker" layoutX="421.0" layoutY="148.0" />
+      <Label layoutX="385.0" layoutY="152.0" text="日期：" />
+      <Label layoutX="285.0" layoutY="152.0" text="号" />
+      <TextField fx:id="number_field" layoutX="211.0" layoutY="148.0" prefHeight="23.0" prefWidth="67.0" />
+      <ComboBox fx:id="type_combo" layoutX="134.0" layoutY="148.0" prefHeight="23.0" prefWidth="67.0" promptText="记" />
+      <Button fx:id="saveAndAdd_btn" layoutX="134.0" layoutY="103.0" mnemonicParsing="false" onAction="#OnSave" prefHeight="33.0" prefWidth="67.0" text="保存" />
+      <Button fx:id="deleteRow_btn" layoutX="66.0" layoutY="221.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
+      <Button fx:id="addRow_btn" layoutX="66.0" layoutY="181.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
+      <TableView fx:id="voucherTable" layoutX="134.0" layoutY="181.0" prefHeight="414.0" prefWidth="800.0">
+         <columns>
+            <TableColumn fx:id="abstractsCol" prefWidth="200.0" text="摘要" />
+            <TableColumn fx:id="subjectCol" prefWidth="200.0" text="会计科目" />
+            <TableColumn fx:id="debitCol" prefWidth="200.0" text="借方金额" />
+            <TableColumn fx:id="creditCol" prefWidth="200.0" text="贷方金额" />
+         </columns>
+      </TableView>
+      <Button fx:id="delete_btn" layoutX="211.0" layoutY="103.0" mnemonicParsing="false" onAction="#OnDelete" prefHeight="33.0" prefWidth="67.0" text="删除" />
+      <Button fx:id="cancel_btn" layoutX="291.0" layoutY="103.0" mnemonicParsing="false" onAction="#OnCancel" prefHeight="33.0" prefWidth="67.0" text="取消" />
+   </children>
+</AnchorPane>
