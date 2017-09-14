@@ -13,7 +13,6 @@ import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
 import vo.BalanceSheetItemVo;
 
 import javax.swing.filechooser.FileSystemView;

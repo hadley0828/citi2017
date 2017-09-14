@@ -14,7 +14,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.GatherTableOneClause;
 

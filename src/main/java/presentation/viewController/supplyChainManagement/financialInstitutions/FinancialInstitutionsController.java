@@ -2,7 +2,6 @@ package presentation.viewController.supplyChainManagement.financialInstitutions;
 
 import businesslogic.SupplyChainImpl;
 import businesslogicservice.SupplyChainService;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,13 +18,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import po.SupplyChainPO;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.CompanyVo;
-import vo.Inventory.ProductInventoryMonitorItemVo;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by YZ on 2017/9/10.
