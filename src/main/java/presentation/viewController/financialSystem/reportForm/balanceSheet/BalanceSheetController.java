@@ -73,6 +73,7 @@ public class BalanceSheetController implements ControlledScreen{
         bar.getLast().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
+                System.out.print(bar.getMidMonths());
                 if(bar.getMidMonths().indexOf(bar.getDate())>0) {
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
