@@ -16,8 +16,11 @@ public class CompanyPO {
 	private String SuoZaiDi;
 	private String XinYongDaiMa;
 	private String DianHua;
-	
-	public CompanyPO(String a,String b,String c,String d,String e){
+
+	public CompanyPO() {
+	}
+
+	public CompanyPO(String a, String b, String c, String d, String e){
 		companyName=a;
 		hangye=b;
 		SuoZaiDi=c;

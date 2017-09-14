@@ -169,6 +169,21 @@ public class SupplyChainDataServiceImpl implements SupplyChainDataService{
  		return companyName;
 	}
 
+	public CompanyPO getCompanyInfo(String companyName) {
+		sqlManager.getConnection();
+		String sql = "select * from account_set where company_name=?";
+		Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{companyName});
+
+		CompanyPO po = new CompanyPO();
+		po.setCompanyName(companyName);
+		po.setDianHua(map.get("contact").toString());
+		po.setHangye(map.get("industry").toString());
+		po.setSuoZaiDi(map.get("location").toString());
+		po.setXinYongDaiMa(map.get("credit_code").toString());
+		sqlManager.releaseAll();
+		return po;
+	}
+
 	private String getCompanyChainPlace(String company_id){
 		String sql = "select chain_place from account_set where company_id=?";
 		Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id});
@@ -208,8 +223,5 @@ public class SupplyChainDataServiceImpl implements SupplyChainDataService{
 		return po;
 	}
 
-	public CompanyPO getCompanyInfo(String companyName) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
