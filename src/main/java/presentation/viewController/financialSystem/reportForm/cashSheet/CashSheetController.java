@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.CashFlowVo;
 
 import javax.swing.filechooser.FileSystemView;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by YZ on 2017/9/5.
  */
-public class CashSheetController {
+public class CashSheetController implements ControlledScreen {
     @FXML
     private Datebar bar;
     @FXML
@@ -217,4 +219,8 @@ public class CashSheetController {
         path += "/现金流量表.xls";
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

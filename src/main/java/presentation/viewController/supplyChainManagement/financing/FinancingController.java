@@ -8,11 +8,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 
 /**
  * Created by YZ on 2017/9/9.
  */
-public class FinancingController {
+public class FinancingController implements ControlledScreen{
     @FXML
     private TextField getDebtNum;
     @FXML
@@ -75,6 +77,11 @@ public class FinancingController {
                 advice2.setText((service.PledgeMovables(Double.parseDouble(stockMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()))+"");
             }
         });
+
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
 
     }
 }
