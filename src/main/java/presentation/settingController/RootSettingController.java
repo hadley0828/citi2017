@@ -11,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.screenController.ScreensFramework;
 import vo.userManagement.UserVO;
 
 import java.util.ArrayList;
@@ -30,6 +31,8 @@ public class RootSettingController implements ControlledScreen{
     @FXML
     private TableColumn<UserVO,String> userRoot;
 
+    private ScreensController parentController;
+
     @FXML
     public void initialize(){
         UserVO vo= StaticFactory.getUserVO();
@@ -48,13 +51,13 @@ public class RootSettingController implements ControlledScreen{
 
     @FXML
     public void addUserClicked(){
-        //跳转
-
+            //跳转
+            parentController.setScreen(ScreensFramework.ROOT_ADD_USER_SCREEN);
     }
 
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-
+        parentController = screenPage;
     }
 }

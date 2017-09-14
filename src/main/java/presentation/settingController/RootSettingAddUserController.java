@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.screenController.ScreensFramework;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.UserVO;
@@ -29,6 +30,8 @@ public class RootSettingAddUserController implements ControlledScreen{
 
 
     }
+
+    private ScreensController parentController;
 
     public void CloseClicked(){
         /**
@@ -71,6 +74,11 @@ public class RootSettingAddUserController implements ControlledScreen{
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
+        parentController = screenPage;
+    }
 
+    @FXML
+    private void OnBack() {
+        parentController.setScreen(ScreensFramework.ROOT_SETTINGS_SCREEN);
     }
 }

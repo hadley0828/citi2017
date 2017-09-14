@@ -43,6 +43,7 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
         settingsController.loadScreen(ScreensFramework.QC_SETTINGS_SCREEN, ScreensFramework.QC_SETTINGS_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.CHANGE_PW_SCREEN, ScreensFramework.CHANGE_PW_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.ROOT_SETTINGS_SCREEN, ScreensFramework.ROOT_SETTINGS_SCREEN_FXML);
+        settingsController.loadScreen(ScreensFramework.ROOT_ADD_USER_SCREEN, ScreensFramework.ROOT_ADD_USER_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.LINK_SCREEN, ScreensFramework.LINK_SCREEN_FXML);
 
         //settingsController.setScreen();
