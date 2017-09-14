@@ -13,6 +13,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.ProfitTableVo;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by YZ on 2017/9/4.
  */
-public class ProfitSheetController {
+public class ProfitSheetController implements ControlledScreen {
     @FXML
     private Button print;
     @FXML
@@ -217,4 +219,8 @@ public class ProfitSheetController {
 
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

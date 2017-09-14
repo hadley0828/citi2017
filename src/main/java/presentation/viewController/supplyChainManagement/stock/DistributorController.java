@@ -22,6 +22,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ import java.util.Iterator;
 /**
  * Created by YZ on 2017/9/8.
  */
-public class DistributorController {
+public class DistributorController implements ControlledScreen{
     @FXML
     private TableView product_monitor;
     @FXML
@@ -160,5 +162,10 @@ public class DistributorController {
 
     public ArrayList<RefundRateChangeVo> getBackChart(){
         return service.getProductRefundRateChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
     }
 }

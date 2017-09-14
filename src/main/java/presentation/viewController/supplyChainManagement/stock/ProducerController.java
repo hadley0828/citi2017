@@ -22,6 +22,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -36,7 +38,7 @@ import java.util.Iterator;
 /**
  * Created by YZ on 2017/9/8.
  */
-public class ProducerController {
+public class ProducerController implements ControlledScreen {
     @FXML
     private DatePicker raw_date;
     @FXML
@@ -253,4 +255,8 @@ public class ProducerController {
         return service.getProductRefundRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getProducer_product(),StaticFactory.getproducer_product_date());
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

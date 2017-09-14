@@ -19,6 +19,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -34,7 +36,7 @@ import java.util.Iterator;
 /**
  * Created by YZ on 2017/9/8.
  */
-public class SupplierController {
+public class SupplierController implements ControlledScreen {
     @FXML
     private TableView stock_monitor;
     @FXML
@@ -224,5 +226,10 @@ public class SupplierController {
     }
     public String getId(){
         return "aaaa";
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
     }
 }

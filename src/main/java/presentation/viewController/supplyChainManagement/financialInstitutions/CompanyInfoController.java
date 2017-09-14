@@ -4,13 +4,15 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import presentation.viewController.supplyChainManagement.stock.DistributorController;
 import vo.CompanyVo;
 
 /**
  * Created by YZ on 2017/9/14.
  */
-public class CompanyInfoController {
+public class CompanyInfoController implements ControlledScreen {
     @FXML
     private TextField name;
     @FXML
@@ -46,5 +48,10 @@ public class CompanyInfoController {
     }
     public void backtotable(){
         FinancialInstitutionsController.chartStage.close();
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
     }
 }
