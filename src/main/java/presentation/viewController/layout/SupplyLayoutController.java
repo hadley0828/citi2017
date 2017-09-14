@@ -37,7 +37,7 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
         supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN,ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML);
         supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN,ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML);
         supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN,ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
-        supplyController.loadScreen(ScreensFramework.FINANCING_SCREE,ScreensFramework.FINANCING_SCREE_FXML);
+        supplyController.loadScreen(ScreensFramework.FINANCING_SCREEN,ScreensFramework.FINANCING_SCREEN_FXML);
         supplyController.loadScreen(ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN,ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN_FXML);
 //        supplyController.loadScreen();
 
@@ -57,7 +57,7 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
 //        else if (event.getSource().equals(cash_btn))
 //            supplyController.setScreen();
         else if (event.getSource().equals(financing_btn))
-            supplyController.setScreen(ScreensFramework.FINANCING_SCREE);
+            supplyController.setScreen(ScreensFramework.FINANCING_SCREEN);
         else if (event.getSource().equals(performance_btn))
             supplyController.setScreen(ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN);
     }
