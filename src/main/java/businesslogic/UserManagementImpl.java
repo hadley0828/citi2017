@@ -5,6 +5,7 @@ import data.UserManagementServiceImpl;
 import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
+import util.Encrypt;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.FinancialUserVO;
@@ -29,7 +30,7 @@ public class UserManagementImpl implements UserManagementService{
     @Override
     public ResultMessage insertOneCompanyUser(UserVO vo, String password) {
         UserCompanyPO po = UserCompanyVO2PO(vo);
-        ResultMessage message = dataservice.insertPassword(vo.getUserID(),password);
+        ResultMessage message = dataservice.insertPassword(vo.getUserID(), Encrypt.encryptByMD5(password));
         if (message == ResultMessage.SHORT_PASSWORD){
             return message;
         }
@@ -47,7 +48,7 @@ public class UserManagementImpl implements UserManagementService{
     @Override
     public ResultMessage insertOneFinancialUser(FinancialUserVO vo, String password) {
         UserFinancialPO po = UserFinancialVO2PO(vo);
-        ResultMessage message = dataservice.insertPassword(vo.getId(),password);
+        ResultMessage message = dataservice.insertPassword(vo.getId(),Encrypt.encryptByMD5(password));
         if (message == ResultMessage.SHORT_PASSWORD){
             return message;
         }
@@ -64,7 +65,7 @@ public class UserManagementImpl implements UserManagementService{
 
     @Override
     public ResultMessage modifyPassword(String id, String rawpassword, String newpassword) {
-        return dataservice.modifyPassword(id,rawpassword,newpassword);
+        return dataservice.modifyPassword(id,Encrypt.encryptByMD5(rawpassword),Encrypt.encryptByMD5(newpassword));
     }
 
     @Override
@@ -107,7 +108,7 @@ public class UserManagementImpl implements UserManagementService{
 
     @Override
     public ResultMessage loginIn(String id, String password) {
-        return dataservice.loginIn(id,password);
+        return dataservice.loginIn(id,Encrypt.encryptByMD5(password));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package dataservice;
 
+import po.CompanyPO;
 import po.SupplyChainPO;
 import po.VoucherAmountPO;
 
@@ -78,5 +79,12 @@ public interface SupplyChainDataService {
 	 * @return 根据公司id获得名称
 	 */
 	public String getCompany(String id);
+	
+	/**
+	 * 
+	 * @param companyName
+	 * @return 获取公司信息
+	 */
+	public CompanyPO getCompanyInfo(String companyName);
 	
 }

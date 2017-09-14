@@ -16,6 +16,12 @@ public class UserVO {
     public UserVO() {
     }
 
+
+    public UserVO(String userID, String type) {
+        this.userID = userID;
+        this.type = type;
+    }
+
     public String getUserID() {
         return userID;
     }

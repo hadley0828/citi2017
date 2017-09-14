@@ -56,14 +56,16 @@ public class LoginController {
         /**
          * 调用接口判断
          */
-        UserManagementService service=new UserManagementImpl();
-        ResultMessage resultMessage=service.loginIn(compID,compPassword);
+
 //        ResultMessage resultMessage=ResultMessage.SUCCESS;
         if(CompID.getText().isEmpty()||CompPassword.getText().isEmpty()){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请输入账号和密码！");
             runWarning.start(new Stage());
-        }else if(!service.isCompanyUser(compID)){
+        }else {
+            UserManagementService service=new UserManagementImpl();
+            ResultMessage resultMessage=service.loginIn(compID,compPassword);
+            if(!service.isCompanyUser(compID)){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请从金融机构入口登陆！");
             runWarning.start(new Stage());
@@ -93,7 +95,7 @@ public class LoginController {
          * 跳转
          */
 
-    }
+    }}
 
     public void CompSignupClicked() throws IOException{
         /**
@@ -115,14 +117,16 @@ public class LoginController {
         /**
          * 调用接口判断
          */
-        UserManagementService service=new UserManagementImpl();
-        ResultMessage resultMessage=service.loginIn(Financeid,Financepassword);
+
 //        ResultMessage resultMessage=ResultMessage.SUCCESS;
         if(Financeid.isEmpty()||Financepassword.isEmpty()){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请输入账号和密码！");
             runWarning.start(new Stage());
-        }else if(!service.isFinancialUser(Financeid)){
+        }else {
+            UserManagementService service=new UserManagementImpl();
+            ResultMessage resultMessage=service.loginIn(Financeid,Financepassword);
+            if(!service.isFinancialUser(Financeid)){
             RunWarning runWarning=new RunWarning();
             runWarning.SetWarning("请从企业入口登陆！");
             runWarning.start(new Stage());
@@ -152,7 +156,7 @@ public class LoginController {
         }
 
 
-    }
+    }}
 
     public void FinanceSignupClicked()throws IOException{
         /**
