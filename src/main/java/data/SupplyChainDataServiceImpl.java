@@ -1,6 +1,7 @@
 package data;
 
 import dataservice.SupplyChainDataService;
+import po.CompanyPO;
 import po.SupplyChainPO;
 import po.VoucherAmountPO;
 
@@ -205,5 +206,10 @@ public class SupplyChainDataServiceImpl implements SupplyChainDataService{
 		po.setCreditAmount(Double.valueOf(map.get("credit_amount").toString()));
 
 		return po;
+	}
+
+	public CompanyPO getCompanyInfo(String companyName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.util.List;
 
 import po.SupplyChainPO;
+import vo.CompanyVo;
 import vo.SupplyChainPerformanceVo;
 
 /**
@@ -11,6 +12,13 @@ import vo.SupplyChainPerformanceVo;
  *
  */
 public interface SupplyChainService {
+	
+	/**
+	 * 
+	 * @param company_id
+	 * @return 由一个id获得三个公司的id，按供应商，生产商，分销商的顺序
+	 */
+	public String[] getTheCompanys(String company_id);
 	
 	/**
 	 * 
@@ -76,4 +84,11 @@ public interface SupplyChainService {
 	 * @return 融资需求信息
 	 */
 	public List<SupplyChainPO>  GetSupplyChains();
+	
+	/**
+	 * 
+	 * @param companyName
+	 * @return 获取公司信息
+	 */
+	public CompanyVo getCompanyInfo(String companyName);
 }
