@@ -49,4 +49,8 @@ public class DealStateModel {
     public SimpleStringProperty moneyProperty() {
         return money;
     }
+
+//    public void setName(String na) {
+//        this.name
+//}
 }
