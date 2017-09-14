@@ -104,11 +104,12 @@ public class DetailBillController implements Initializable, ControlledScreen {
         subjectsList = accountBooksBl.getAllExistedSubjectId(factoryId);
             for (String sub: subjectsList) {
                 Button btn = new Button(sub);
-            btn.setOnAction((ActionEvent e) -> {
-                updateTable(sub);
-            });
-            rightSubjects.getChildren().add(new Button(sub));
-        }
+                btn.setOnAction((ActionEvent e) -> {
+                    updateTable(btn.getText());
+                    System.out.println(sub);
+                });
+                rightSubjects.getChildren().add(new Button(sub));
+            }
     }
 
     private void updateTable(String subjectId) {
