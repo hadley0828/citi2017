@@ -46,11 +46,13 @@ public class LinkManagementController implements ControlledScreen {
             down.setText(companys[2]);
         }else if(place.equals("分销商")){
             sale.setSelected(true);
+            up.setText(companys[1]);
 
 
 
         }else if (place.equals("供应商")){
             supply.setSelected(true);
+            down.setText(companys[1]);
 
         }
 
@@ -64,6 +66,9 @@ public class LinkManagementController implements ControlledScreen {
     }
 
     public void saveClicked(){
+        int type=0;
+
+
 
     }
 
