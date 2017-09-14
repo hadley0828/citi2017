@@ -125,8 +125,8 @@ public interface ScreensFramework {
     String PAY_STATE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/PayState.fxml";
 
     /*融资服务*/
-    String FINANCING_SCREE="Financing";
-    String FINANCING_SCREE_FXML="/view/supplyChainManagement/financing/Financing.fxml";
+    String FINANCING_SCREEN="Financing";
+    String FINANCING_SCREEN_FXML="/view/supplyChainManagement/financing/Financing.fxml";
 
     /*绩效评价*/
     String PERFORMANCE_APPRAISAL_SCREEN="PerformanceAppraisal";
