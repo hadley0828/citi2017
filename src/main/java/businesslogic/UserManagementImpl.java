@@ -26,7 +26,6 @@ public class UserManagementImpl implements UserManagementService{
     }
 
 
-
     @Override
     public ResultMessage insertOneCompanyUser(UserVO vo, String password) {
         UserCompanyPO po = UserCompanyVO2PO(vo);
@@ -38,7 +37,7 @@ public class UserManagementImpl implements UserManagementService{
         if (message2 == ResultMessage.EXIST_USERID){
             return message2;
         }
-        if (message == ResultMessage.SUCCESS && message2 == ResultMessage.SUCCESS){
+        if (message == ResultMessage.SUCCESS && message2 == ResultMessage.REGISTER_SUCCESS){
             return ResultMessage.SUCCESS;
         }else{
             return ResultMessage.FAIL;
@@ -56,7 +55,7 @@ public class UserManagementImpl implements UserManagementService{
         if (message2 == ResultMessage.EXIST_USERID){
             return message2;
         }
-        if (message == ResultMessage.SUCCESS && message2 == ResultMessage.SUCCESS){
+        if (message == ResultMessage.SUCCESS && message2 == ResultMessage.REGISTER_SUCCESS){
             return ResultMessage.SUCCESS;
         }else{
             return ResultMessage.FAIL;
