@@ -8,7 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ProgressBar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 
 import java.net.URL;
 import java.time.format.DateTimeFormatter;

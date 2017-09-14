@@ -3,7 +3,7 @@ package presentation.componentController;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 
 /**

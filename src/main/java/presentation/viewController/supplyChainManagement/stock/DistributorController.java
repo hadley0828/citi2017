@@ -21,7 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class DistributorController {
     }
 
     public void setBar(){
-        ArrayList<ProductSafeInventoryRateVo> l=service.getProductInventoryRate(StaticFactory.getUserVO().getCompanyID());
+        ArrayList<ProductSafeInventoryRateVo> l=service.getProductInventoryRate("001");
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
         for(int i=0;i<l.size();i++){
@@ -87,7 +87,7 @@ public class DistributorController {
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 java.util.Date d= Date.from(date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 StaticFactory.setdistributor_product_date(format.format(d));
-                distributor_tabledata=service.getProductInventoryMonitorItem(StaticFactory.getUserVO().getCompanyID(),format.format(d));
+                distributor_tabledata=service.getProductInventoryMonitorItem("001",format.format(d));
 //                distributor_tabledata.add(new ProductInventoryMonitorItemVo("cotton",200,280,"0.9","0.02"));
                 ObservableList<ProductInventoryMonitorItemVo> list= FXCollections.observableArrayList();
                 Iterator i=distributor_tabledata.iterator();
@@ -141,7 +141,7 @@ public class DistributorController {
 
 
     public void draw() throws IOException {
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/stock/DistributorChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../../view/supplyChainManagement/stock/DistributorChart.fxml"));
         chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         chartStage.setScene(scene);
@@ -151,14 +151,14 @@ public class DistributorController {
     }
 
     public ArrayList<InventoryChangeVo> getStockChart(){
-        return service.getProductInventoryChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+        return service.getProductInventoryChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
     }
 
     public ArrayList<PunctualDeliveryRateChangeVo> getPunctualChart(){
-        return service.getProductPunctualDeliveryRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+        return service.getProductPunctualDeliveryRateChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
     }
 
     public ArrayList<RefundRateChangeVo> getBackChart(){
-        return service.getProductRefundRateChange(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
+        return service.getProductRefundRateChange("001",StaticFactory.getdistributor_product(),StaticFactory.getdistributor_product_date());
     }
 }

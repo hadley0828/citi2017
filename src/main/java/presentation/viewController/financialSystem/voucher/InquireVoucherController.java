@@ -14,7 +14,7 @@ import presentation.componentController.VoucherSearch;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 

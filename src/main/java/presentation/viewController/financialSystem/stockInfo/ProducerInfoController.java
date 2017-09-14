@@ -10,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.Inventory.ProductInventoryItemVo;
 import vo.Inventory.RawMaterialInventoryItemVo;
 

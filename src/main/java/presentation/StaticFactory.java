@@ -1,4 +1,4 @@
-package presentation.viewController;
+package presentation;
 
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
@@ -101,6 +101,13 @@ public class StaticFactory {
     public static String getMonth(){
         LocalDate now = LocalDate.now();
         return now.toString().substring(0,7);
+    }
+    static String company_name;
+    public static void setCompany_name(String c){
+        company_name=c;
+    }
+    public static String getCompany_name(){
+        return company_name;
     }
 
     static VoucherSearchVo searchVo;

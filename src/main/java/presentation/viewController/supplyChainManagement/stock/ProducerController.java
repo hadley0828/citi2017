@@ -21,7 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -220,7 +220,7 @@ public class ProducerController {
     }
 
     public void drawProducer_raw() throws IOException{
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/stock/ProducerRawChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../../view/supplyChainManagement/stock/ProducerRawChart.fxml"));
         producer_raw_chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         producer_raw_chartStage.setScene(scene);
@@ -230,7 +230,7 @@ public class ProducerController {
     }
 
     public void drawProducer_product() throws IOException{
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/stock/ProducerProductChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../../view/supplyChainManagement/stock/ProducerProductChart.fxml"));
         producer_product_chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         producer_product_chartStage.setScene(scene);

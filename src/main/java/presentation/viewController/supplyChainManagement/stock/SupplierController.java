@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.Inventory.*;
 
 import java.io.IOException;
@@ -199,7 +199,7 @@ public class SupplierController {
 //    }
 
     public void draw() throws  IOException{
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/stock/SupplierChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../../view/supplyChainManagement/stock/SupplierChart.fxml"));
         chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         chartStage.setScene(scene);
