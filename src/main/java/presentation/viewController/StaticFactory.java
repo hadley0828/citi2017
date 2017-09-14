@@ -3,6 +3,8 @@ package presentation.viewController;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 
+import java.time.LocalDate;
+
 /**
  * Created by YZ on 2017/9/10.
  */
@@ -91,6 +93,11 @@ public class StaticFactory {
     }
     public static FinancialUserVO getFUserVO(){
         return FUserVO;
+    }
+
+    public static String getMonth(){
+        LocalDate now = LocalDate.now();
+        return now.toString().substring(0,7);
     }
 
 
