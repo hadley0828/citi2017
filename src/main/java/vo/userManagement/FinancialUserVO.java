@@ -21,10 +21,11 @@ public class FinancialUserVO {
     public FinancialUserVO() {
     }
 
-    public FinancialUserVO(String id, String name, String address, String financialKey, String legalPersonQualification) {
+    public FinancialUserVO(String id, String name, String address, String financialKey, String legalPersonQualification,String legalperson) {
         this.id = id;
         this.name = name;
         this.address = address;
+        this.legalPerson=legalperson;
 
         this.financialKey = financialKey;
         this.legalPersonQualification = legalPersonQualification;

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.ZT.QCController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.QCController">
     <children>
         <Label layoutX="441.0" layoutY="26.0" prefHeight="20.0" prefWidth="119.0" text="期初设置">
             <font>
@@ -20,15 +20,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutY="1.0" prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="BalanceTable" layoutY="1.0" prefHeight="502.0" prefWidth="1000.0">
                           <columns>
-                            <TableColumn prefWidth="140.0" text="科目编码" />
-                            <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                            <TableColumn fx:id="code1" prefWidth="140.0" text="科目编码" />
+                            <TableColumn fx:id="name1" prefWidth="126.0" text="科目名称" />
+                              <TableColumn fx:id="direction1" prefWidth="110.0" text="方向" />
+                              <TableColumn fx:id="QC1" prefWidth="129.0" text="期初余额" />
+                              <TableColumn fx:id="debit1" prefWidth="194.0" text="借方累计" />
+                              <TableColumn fx:id="credit1" prefWidth="145.0" text="贷方累计" />
+                              <TableColumn fx:id="NC1" prefWidth="155.0" text="年初余额" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -38,15 +38,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="debitTable" prefHeight="502.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn prefWidth="140.0" text="科目编码" />
-                              <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                              <TableColumn fx:id="code2" prefWidth="113.0" text="科目编码" />
+                              <TableColumn fx:id="name2" prefWidth="243.0" text="科目名称" />
+                              <TableColumn fx:id="direction2" prefWidth="96.0" text="方向" />
+                              <TableColumn fx:id="QC2" prefWidth="112.0" text="期初余额" />
+                              <TableColumn fx:id="debit2" prefWidth="135.0" text="借方累计" />
+                              <TableColumn fx:id="credit2" prefWidth="129.0" text="贷方累计" />
+                              <TableColumn fx:id="NC2" prefWidth="171.0" text="年初余额" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -56,15 +56,15 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="cleanBalanceTable" prefHeight="502.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn prefWidth="140.0" text="科目编码" />
-                              <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                              <TableColumn fx:id="code3" prefWidth="140.0" text="科目编码" />
+                              <TableColumn fx:id="name3" prefWidth="126.0" text="科目名称" />
+                              <TableColumn fx:id="direction3" prefWidth="110.0" text="方向" />
+                              <TableColumn fx:id="QC3" prefWidth="129.0" text="期初余额" />
+                              <TableColumn fx:id="debit3" prefWidth="194.0" text="借方累计" />
+                              <TableColumn fx:id="credit3" prefWidth="145.0" text="贷方累计" />
+                              <TableColumn fx:id="NC3" prefWidth="155.0" text="年初余额" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -74,15 +74,15 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="incomeTable" prefHeight="502.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn prefWidth="140.0" text="科目编码" />
-                              <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                              <TableColumn fx:id="code4" prefWidth="140.0" text="科目编码" />
+                              <TableColumn fx:id="name4" prefWidth="126.0" text="科目名称" />
+                              <TableColumn fx:id="direction4" prefWidth="110.0" text="方向" />
+                              <TableColumn fx:id="QC4" prefWidth="129.0" text="期初余额" />
+                              <TableColumn fx:id="debit4" prefWidth="194.0" text="借方累计" />
+                              <TableColumn fx:id="credit4" prefWidth="145.0" text="贷方累计" />
+                              <TableColumn fx:id="NC4" prefWidth="155.0" text="年初余额" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -92,15 +92,15 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="FeeTable" prefHeight="502.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn prefWidth="140.0" text="科目编码" />
-                              <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                              <TableColumn fx:id="code5" prefWidth="140.0" text="科目编码" />
+                              <TableColumn fx:id="name5" prefWidth="126.0" text="科目名称" />
+                              <TableColumn fx:id="direction5" prefWidth="110.0" text="方向" />
+                              <TableColumn fx:id="QC5" prefWidth="129.0" text="期初余额" />
+                              <TableColumn fx:id="debit5" prefWidth="194.0" text="借方累计" />
+                              <TableColumn fx:id="credit5" prefWidth="145.0" text="贷方累计" />
+                              <TableColumn fx:id="NC5" prefWidth="155.0" text="年初余额" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -110,15 +110,11 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="safeTable" prefHeight="502.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn prefWidth="140.0" text="科目编码" />
-                              <TableColumn prefWidth="126.0" text="科目名称" />
-                              <TableColumn prefWidth="110.0" text="方向" />
-                              <TableColumn prefWidth="129.0" text="期初余额" />
-                              <TableColumn prefWidth="194.0" text="借方累计" />
-                              <TableColumn prefWidth="145.0" text="贷方累计" />
-                              <TableColumn prefWidth="155.0" text="年初余额" />
+                              <TableColumn fx:id="safeName" prefWidth="328.0" text="原材料/产品" />
+                              <TableColumn fx:id="safeVariety" prefWidth="319.0" text="种类" />
+                              <TableColumn fx:id="safeSum" prefWidth="352.0" text="库存量" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>

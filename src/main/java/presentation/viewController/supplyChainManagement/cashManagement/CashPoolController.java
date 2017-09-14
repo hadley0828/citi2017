@@ -32,17 +32,23 @@ public class CashPoolController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CashPoolService cashPool = new CashPoolImpl();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date = datePicker.getValue().format(formatter);
-        String company_id = StaticFactory.getUserVO().getCompanyID();
+        datePicker.setOnAction(event -> {
+            CashPoolService cashPool = new CashPoolImpl();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String date = datePicker.getValue().format(formatter);
+            String company_id = StaticFactory.getUserVO().getCompanyID();
 
-        double[] quota = cashPool.getCashFlow(date, company_id);
-        last_label.setText(String.valueOf(quota[0]));
-        currentIn_label.setText(String.valueOf(quota[1]));
-        currentOut_label.setText(String.valueOf(quota[2]));
-        reserve_label.setText(String.valueOf(quota[3]));
+            double[] quota = cashPool.getFinancialIndex(date, company_id);
+
+            last_label.setText(String.valueOf(quota[0]));
+            currentIn_label.setText(String.valueOf(quota[1]));
+            currentOut_label.setText(String.valueOf(quota[2]));
+            reserve_label.setText(String.valueOf(quota[3]));
+
+        });
+
+
 
     }
 

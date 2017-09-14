@@ -17,6 +17,8 @@ public class FinanceSignUpController {
     @FXML
     private  TextField loginid;
     @FXML
+    private  TextField legalperson;
+    @FXML
     private  Button createButton;
 
     @FXML
@@ -54,8 +56,9 @@ public class FinanceSignUpController {
             String legal=legalPersonCard.getText();
             String license=FinancialLicense.getText();
             String password=passwordField.getText();
-            FinancialUserVO Fvo=new FinancialUserVO(logid,financename,address,license,legal);
-            if(logid.isEmpty()||financename.isEmpty()||address.isEmpty()||legal.isEmpty()||license.isEmpty()||password.isEmpty()){
+            String legalp=legalperson.getText();
+            FinancialUserVO Fvo=new FinancialUserVO(logid,financename,address,license,legal,legalp);
+            if(logid.isEmpty()||financename.isEmpty()||address.isEmpty()||legal.isEmpty()||license.isEmpty()||password.isEmpty()||legalp.isEmpty()){
                 RunWarning runWarning=new RunWarning();
                 runWarning.SetWarning("请录入完整信息！");
                 runWarning.start(new Stage());
