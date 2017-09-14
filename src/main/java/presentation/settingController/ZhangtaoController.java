@@ -15,6 +15,7 @@ import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.UserVO;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -84,6 +85,9 @@ public class ZhangtaoController implements ControlledScreen {
             compAddress.setText(accountvo.getLocation());
             creditCode.setText(accountvo.getCreditCode());
             contact.setText(accountvo.getContact());
+//            String time=accountvo.getDate();
+//            LocalDate ld=new LocalDate(2014,05,05);
+//            startTime.setValue();
             //时间转化为datepicker？
 
             //两个行业初始化
