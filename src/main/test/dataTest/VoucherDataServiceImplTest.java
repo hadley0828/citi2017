@@ -76,7 +76,6 @@ public class VoucherDataServiceImplTest {
         idlist.add("借-2");
         idlist.add("借-3");
         idlist.add("转-4");
-
         ArrayList<VoucherPO> polist = voucherDataService.findSeveralVoucher(idlist,"001");
         for (VoucherPO po : polist){
             print(po);

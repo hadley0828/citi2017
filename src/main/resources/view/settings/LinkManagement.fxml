@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.settings.LinkManagement"
-            prefHeight="600.0" prefWidth="1000.0">
 
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.LinkManagementController">
+   <children>
+      <Label layoutX="424.0" layoutY="33.0" text="供应链管理">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <RadioButton fx:id="product" layoutX="448.0" layoutY="120.0" mnemonicParsing="false" onAction="#productClicked" text="生产商" />
+      <RadioButton fx:id="sale" layoutX="818.0" layoutY="120.0" mnemonicParsing="false" onAction="#saleClicked" text="分销商" />
+      <RadioButton fx:id="supply" layoutX="73.0" layoutY="120.0" mnemonicParsing="false" onAction="#supplyClicked" text="供应商" />
+      <TextField fx:id="down" layoutX="347.0" layoutY="344.0" />
+      <TextField fx:id="up" layoutX="347.0" layoutY="263.0" />
+      <Label layoutX="247.0" layoutY="268.0" text="上游：" />
+      <Label layoutX="250.0" layoutY="349.0" text="下游：" />
+      <Button fx:id="saveButton" layoutX="295.0" layoutY="452.0" mnemonicParsing="false" onAction="#saveClicked" text="保存修改" />
+      <Button fx:id="cancelButton" layoutX="500.0" layoutY="452.0" mnemonicParsing="false" onAction="#cancelClicked" text="取消" />
+   </children>
 </AnchorPane>
