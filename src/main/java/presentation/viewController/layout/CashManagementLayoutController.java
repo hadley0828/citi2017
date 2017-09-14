@@ -33,10 +33,9 @@ public class CashManagementLayoutController implements Initializable, Controlled
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cashManagementController.loadScreen(ScreensFramework.CASH_POOL_SCREEN, ScreensFramework.CASH_POOL_SCREEN_FXML);
-        cashManagementController.loadScreen(ScreensFramework.CASH_FINANCE_SCREEN, ScreensFramework.CASH_FINANCE_SCREEN_FXML);
-        cashManagementController.loadScreen(ScreensFramework.PAY_STATE_SCREEN, ScreensFramework.PAY_STATE_SCREEN_FXML);
-        cashManagementController.loadScreen(ScreensFramework.CHARGE_STATE_SCREEN, ScreensFramework.CHARGE_STATE_SCREEN_FXML);
+
+
+
 
         cashManagementController.setScreen(ScreensFramework.CASH_POOL_SCREEN);
         cashStack.getChildren().add(cashManagementController);
@@ -49,13 +48,21 @@ public class CashManagementLayoutController implements Initializable, Controlled
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        if (event.getSource().equals(pool_btn))
+        if (event.getSource().equals(pool_btn)) {
+            cashManagementController.loadScreen(ScreensFramework.CASH_POOL_SCREEN, ScreensFramework.CASH_POOL_SCREEN_FXML);
             cashManagementController.setScreen(ScreensFramework.CASH_POOL_SCREEN);
-        else if (event.getSource().equals(finance_btn))
+        }
+        else if (event.getSource().equals(finance_btn)) {
+            cashManagementController.loadScreen(ScreensFramework.CASH_FINANCE_SCREEN, ScreensFramework.CASH_FINANCE_SCREEN_FXML);
             cashManagementController.setScreen(ScreensFramework.CASH_FINANCE_SCREEN);
-        else if (event.getSource().equals(pay_btn))
+        }
+        else if (event.getSource().equals(pay_btn)) {
+            cashManagementController.loadScreen(ScreensFramework.PAY_STATE_SCREEN, ScreensFramework.PAY_STATE_SCREEN_FXML);
             cashManagementController.setScreen(ScreensFramework.PAY_STATE_SCREEN);
-        else if (event.getSource().equals(charge_btn))
+        }
+        else if (event.getSource().equals(charge_btn)) {
+            cashManagementController.loadScreen(ScreensFramework.CHARGE_STATE_SCREEN, ScreensFramework.CHARGE_STATE_SCREEN_FXML);
             cashManagementController.setScreen(ScreensFramework.CHARGE_STATE_SCREEN);
+        }
     }
 }

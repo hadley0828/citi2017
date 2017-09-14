@@ -35,11 +35,9 @@ public class RootLayoutController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rootController.loadScreen(ScreensFramework.HOME_LAYOUT_SCREEN, ScreensFramework.HOME_LAYOUT_SCREEN_FXML);
         rootController.loadScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN, ScreensFramework.FINANCIAL_LAYOUT_SCREEN_FXML);
-        rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
-        rootController.loadScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN, ScreensFramework.SETTINGS_LAYOUT_SCREEN_FXML);
 
+        rootController.loadScreen(ScreensFramework.HOME_LAYOUT_SCREEN, ScreensFramework.HOME_LAYOUT_SCREEN_FXML);
         rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
 
         rootStack.getChildren().add(rootController);
@@ -47,13 +45,20 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        if (event.getSource().equals(logo_btn))
+        int tag_0 = 1;
+        int tag_1 = 1;
+        if (event.getSource().equals(logo_btn)) {
             rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
-        else if (event.getSource().equals(financial_btn))
+        }
+        else if (event.getSource().equals(financial_btn)) {
             rootController.setScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
-        else if (event.getSource().equals(supply_btn))
+        }
+        else if (event.getSource().equals(supply_btn)) {
+            rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
             rootController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
+        }
         else if (event.getSource().equals(settings_btn)) {
+            rootController.loadScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN, ScreensFramework.SETTINGS_LAYOUT_SCREEN_FXML);
             rootController.setScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);
         }
     }

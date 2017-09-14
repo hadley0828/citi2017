@@ -40,19 +40,10 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*载入凭证界面*/
-        financialController.loadScreen(ScreensFramework.ADD_VOUCHER_SCREEN, ScreensFramework.ADD_VOUCHER_SCREEN_FXML);
-        financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
         financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
-        /*载入账簿界面*/
-        financialController.loadScreen(ScreensFramework.DETAIL_BILL_SCREEN, ScreensFramework.DETAIL_BILL_SCREEN_FXML);
-        financialController.loadScreen(ScreensFramework.GENERAL_BILL_SCREEN, ScreensFramework.GENERAL_BILL_SCREEN_FXML);
-        financialController.loadScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN, ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN_FXML);
-        financialController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
 
 //        financialController.loadScreen(ScreensFramework.FINANCIAL_SETTING_SCREEN, ScreensFramework.FINANCIAL_SETTING_SCREEN_FXML);
 
-        financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);
         missionPane.getChildren().add(financialController);
     }
 
@@ -63,21 +54,34 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        if (event.getSource().equals(add_voucher))
+        if (event.getSource().equals(add_voucher)) {
+            financialController.loadScreen(ScreensFramework.ADD_VOUCHER_SCREEN, ScreensFramework.ADD_VOUCHER_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.ADD_VOUCHER_SCREEN);
-        else if (event.getSource().equals(inquire_voucher))
+        }
+        else if (event.getSource().equals(inquire_voucher)) {
+            financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
-        else if (event.getSource().equals(detail_bill))
+        }
+        else if (event.getSource().equals(detail_bill)) {
+            financialController.loadScreen(ScreensFramework.DETAIL_BILL_SCREEN, ScreensFramework.DETAIL_BILL_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.DETAIL_BILL_SCREEN);
-        else if (event.getSource().equals(general_bill))
+        }
+        else if (event.getSource().equals(general_bill)) {
+            financialController.loadScreen(ScreensFramework.GENERAL_BILL_SCREEN, ScreensFramework.GENERAL_BILL_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.GENERAL_BILL_SCREEN);
-        else if (event.getSource().equals(subject_balance))
+        }
+        else if (event.getSource().equals(subject_balance)) {
+            financialController.loadScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN, ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.SUBJECT_BALANCE_SHEET_SCREEN);
-        else if (event.getSource().equals(subject_summary))
+        }
+        else if (event.getSource().equals(subject_summary)) {
+            financialController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN);
-        else if (event.getSource().equals(pro_debt))
+        }
+        else if (event.getSource().equals(pro_debt)) {
+            financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.BALANCESHEET_SCREEN);
-
+        }
     }
 
 }

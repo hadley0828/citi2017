@@ -38,13 +38,7 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        settingsController.loadScreen(ScreensFramework.ZT_EDIT_SCREEN, ScreensFramework.ZT_EDIT_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.KM_CK_SCREEN, ScreensFramework.KM_CK_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.QC_SETTINGS_SCREEN, ScreensFramework.QC_SETTINGS_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.CHANGE_PW_SCREEN, ScreensFramework.CHANGE_PW_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.ROOT_SETTINGS_SCREEN, ScreensFramework.ROOT_SETTINGS_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.ROOT_ADD_USER_SCREEN, ScreensFramework.ROOT_ADD_USER_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.LINK_SCREEN, ScreensFramework.LINK_SCREEN_FXML);
 
         //settingsController.setScreen();
         settingsStack.getChildren().add(settingsController);
@@ -57,19 +51,30 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        if (event.getSource().equals(zt_btn))
+        if (event.getSource().equals(zt_btn)) {
+            settingsController.loadScreen(ScreensFramework.ZT_EDIT_SCREEN, ScreensFramework.ZT_EDIT_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.ZT_EDIT_SCREEN);
-        else if (event.getSource().equals(km_btn))
+        }
+        else if (event.getSource().equals(km_btn)) {
+            settingsController.loadScreen(ScreensFramework.KM_CK_SCREEN, ScreensFramework.KM_CK_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.KM_CK_SCREEN);
-        else if (event.getSource().equals(qc_btn))
+        }
+        else if (event.getSource().equals(qc_btn)) {
+            settingsController.loadScreen(ScreensFramework.QC_SETTINGS_SCREEN, ScreensFramework.QC_SETTINGS_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.QC_SETTINGS_SCREEN);
-        else if (event.getSource().equals(pw_btn))
+        }
+        else if (event.getSource().equals(pw_btn)) {
+            settingsController.loadScreen(ScreensFramework.CHANGE_PW_SCREEN, ScreensFramework.CHANGE_PW_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.CHANGE_PW_SCREEN);
-        else if (event.getSource().equals(qx_btn))
+        }
+        else if (event.getSource().equals(qx_btn)) {
+            settingsController.loadScreen(ScreensFramework.ROOT_SETTINGS_SCREEN, ScreensFramework.ROOT_SETTINGS_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.ROOT_SETTINGS_SCREEN);
-        else if (event.getSource().equals(link_btn))
+        }
+        else if (event.getSource().equals(link_btn)) {
+            settingsController.loadScreen(ScreensFramework.LINK_SCREEN, ScreensFramework.LINK_SCREEN_FXML);
             settingsController.setScreen(ScreensFramework.LINK_SCREEN);
-
+        }
     }
 
 }
