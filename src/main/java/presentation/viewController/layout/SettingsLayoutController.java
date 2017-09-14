@@ -24,8 +24,6 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
     @FXML
     private Button qc_btn;
     @FXML
-    private Button pzz_btn;
-    @FXML
     private Button pw_btn;
     @FXML
     private Button qx_btn;
@@ -43,7 +41,6 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
         settingsController.loadScreen(ScreensFramework.ZT_EDIT_SCREEN, ScreensFramework.ZT_EDIT_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.KM_CK_SCREEN, ScreensFramework.KM_CK_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.QC_SETTINGS_SCREEN, ScreensFramework.QC_SETTINGS_SCREEN_FXML);
-        settingsController.loadScreen(ScreensFramework.VOUCHER_CK_SCREEN, ScreensFramework.VOUCHER_CK_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.CHANGE_PW_SCREEN, ScreensFramework.CHANGE_PW_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.ROOT_SETTINGS_SCREEN, ScreensFramework.ROOT_SETTINGS_SCREEN_FXML);
         settingsController.loadScreen(ScreensFramework.LINK_SCREEN, ScreensFramework.LINK_SCREEN_FXML);
@@ -65,8 +62,6 @@ public class SettingsLayoutController implements Initializable, ControlledScreen
             settingsController.setScreen(ScreensFramework.KM_CK_SCREEN);
         else if (event.getSource().equals(qc_btn))
             settingsController.setScreen(ScreensFramework.QC_SETTINGS_SCREEN);
-        else if (event.getSource().equals(pzz_btn))
-            settingsController.setScreen(ScreensFramework.VOUCHER_CK_SCREEN);
         else if (event.getSource().equals(pw_btn))
             settingsController.setScreen(ScreensFramework.CHANGE_PW_SCREEN);
         else if (event.getSource().equals(qx_btn))

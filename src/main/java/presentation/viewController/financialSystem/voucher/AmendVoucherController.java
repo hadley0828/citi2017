@@ -13,7 +13,7 @@ import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import util.NumberToCN;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
