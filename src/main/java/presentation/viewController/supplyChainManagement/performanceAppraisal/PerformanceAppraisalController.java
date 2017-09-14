@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.StaticFactory;
 import vo.SupplyChainPerformanceVo;
@@ -20,19 +21,11 @@ public class PerformanceAppraisalController {
     @FXML
     private TableView gain_table;
     @FXML
-    private TableView gain_table_below;
-    @FXML
     private TableView op_table;
-    @FXML
-    private TableView op_table_below;
     @FXML
     private TableView develop_table;
     @FXML
-    private TableView develop_table_below;
-    @FXML
     private TableView debtpay_table;
-    @FXML
-    private TableView debtpay_table_below;
     @FXML
     private TableColumn gain_enterprise;
     @FXML
@@ -40,9 +33,7 @@ public class PerformanceAppraisalController {
     @FXML
     private TableColumn gain_benefit;
     @FXML
-    private TableColumn gain_chain;
-    @FXML
-    private TableColumn gain;
+    private TextField gain_chain;
     @FXML
     private TableColumn op_enterprise;
     @FXML
@@ -54,9 +45,7 @@ public class PerformanceAppraisalController {
     @FXML
     private TableColumn op_back;
     @FXML
-    private TableColumn op;
-    @FXML
-    private TableColumn op_coin;
+    private TextField op_coin;
     @FXML
     private TableColumn develop_enterprise;
     @FXML
@@ -64,17 +53,13 @@ public class PerformanceAppraisalController {
     @FXML
     private TableColumn develop_profit;
     @FXML
-    private TableColumn develop;
-    @FXML
-    private TableColumn develop_profit_increase;
+    private TextField develop_profit_increase;
     @FXML
     private TableColumn debtpay_enterprise;
     @FXML
     private TableColumn debtpay_debt;
     @FXML
-    private TableColumn debtpay;
-    @FXML
-    private TableColumn debtpay_balance;
+    private TextField debtpay_balance;
 
     private SupplyChainService service=new SupplyChainImpl();
     String sid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[0];
@@ -102,6 +87,8 @@ public class PerformanceAppraisalController {
         gain_benefit.setCellValueFactory(new PropertyValueFactory("market_purify"));
 
         gain_table.setItems(p_list);
+
+        gain_chain.setText(vo.getSupply_chain()[0]+"");
     }
 
     public void setOp(){
