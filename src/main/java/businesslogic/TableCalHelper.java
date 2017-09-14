@@ -15,6 +15,15 @@ import java.util.Map;
  */
 public class TableCalHelper {
 	
+	public List<VoucherAmountPO> getBySubject(String id,List<VoucherAmountPO> list){
+		List<VoucherAmountPO> res=new ArrayList<VoucherAmountPO>();
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getSubject().equals(id))
+				res.add(list.get(i));
+		}
+		return res;
+	}
+	
 	/**
 	 * 
 	 * @param list

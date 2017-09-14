@@ -29,9 +29,9 @@ public class Demo extends Application {
 //            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/stock/Distributor.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/stock/Producer.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/stock/stockInfo.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/performanceAppraisal/performanceAppraisal.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/performanceAppraisal/performanceAppraisal.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/financing/financing.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/financialSystem/trialSettlement/Settle.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/financialSystem/trialSettlement/Settle.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/financialSystem/stockInfo/SupplierInfo.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/financialSystem/stockInfo/ProducerInfo.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/financialSystem/stockInfo/DistributorInfo.fxml"));
