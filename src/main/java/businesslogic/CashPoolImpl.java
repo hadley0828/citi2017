@@ -2,13 +2,13 @@ package businesslogic;
 
 import businesslogicservice.BalanceSheetService;
 import businesslogicservice.CashFlowTableService;
-import businesslogicservice.CashPoolServcie;
+import businesslogicservice.CashPoolService;
 import businesslogicservice.ProfitTableService;
 
 /**
  * Created by 费慧通 on 2017/9/12.
  */
-public class CashPoolImpl implements CashPoolServcie {
+public class CashPoolImpl implements CashPoolService {
     @Override
     public double[] getCashFlow(String company_id, String time) {
         CashFlowTableService service = new CashFlowImpl();

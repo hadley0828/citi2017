@@ -3,7 +3,7 @@ package businesslogicservice;
 /**
  * Created by 费慧通 on 2017/9/12.
  */
-public interface CashPoolServcie {
+public interface CashPoolService {
     /**
      * 得到现金流量表里的 现金流入、现金流出、现金池内留存的现金
      * @param company_id

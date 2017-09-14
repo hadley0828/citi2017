@@ -48,10 +48,10 @@ public class VoucherSearch extends GridPane {
         reset_btn.setOnAction(event -> OnReset());
 
         subject_item = new SubjectsCombo();
-        startPeriod_item = new ComboBox<>();
-        endPeriod_item = new ComboBox<>();
+        startPeriod_item = new PeriodCombo();
+        endPeriod_item = new PeriodCombo();
         voucherKey_item = new ComboBox<>();
-        maker_item = new ComboBox<>();
+        maker_item = new MakerCombo();
 
         abstracts_item = new TextField();
         lowAmount_item = new TextField();
@@ -61,8 +61,11 @@ public class VoucherSearch extends GridPane {
 
         voucherKey_item.getItems().addAll("全部", "记", "收", "付", "转");
 
+        ToggleGroup toggleGroup = new ToggleGroup();
         id_radio = new RadioButton("凭证号排序");
         date_radio = new RadioButton("凭证日期排序");
+        id_radio.setToggleGroup(toggleGroup);
+        date_radio.setToggleGroup(toggleGroup);
 
         Label label_0 = new Label("会计期间：");
         Label label_1 = new Label("凭证字：");
@@ -107,11 +110,11 @@ public class VoucherSearch extends GridPane {
     }
 
     private void OnReset() {
-        startPeriod_item.setValue("");
-        endPeriod_item.setValue("");
-        voucherKey_item.setValue("");
-        maker_item.setValue("");
-        subject_item.setValue("");
+        startPeriod_item.getSelectionModel().clearSelection();
+        endPeriod_item.getSelectionModel().clearSelection();
+        voucherKey_item.getSelectionModel().clearSelection();
+        maker_item.getSelectionModel().clearSelection();
+        subject_item.getSelectionModel().clearSelection();
         abstracts_item.setText("");
         lowAmount_item.setText("");
         highAmount_item.setText("");
@@ -126,12 +129,12 @@ public class VoucherSearch extends GridPane {
         InquireVoucherController myScreenController = myLoader.getController();
 
         VoucherSearchVo searchVo = new VoucherSearchVo();
-        searchVo.setStartPeriod(startPeriod_item.getValue());
-        searchVo.setEndPeriod(endPeriod_item.getValue());
-        searchVo.setCharacter(voucherKey_item.getValue());
-        searchVo.setMaker(maker_item.getValue());
+        searchVo.setStartPeriod(startPeriod_item.getSelectionModel().getSelectedItem());
+        searchVo.setEndPeriod(endPeriod_item.getSelectionModel().getSelectedItem());
+        searchVo.setCharacter(voucherKey_item.getSelectionModel().getSelectedItem());
+        searchVo.setMaker(maker_item.getSelectionModel().getSelectedItem());
         searchVo.setAbstracts(abstracts_item.getText());
-        searchVo.setSubjectId(subject_item.getValue());
+        searchVo.setSubjectId(subject_item.getSelectionModel().getSelectedItem());
         searchVo.setLowPrice(Double.parseDouble(lowAmount_item.getText()));
         searchVo.setHighPrice(Double.parseDouble(highAmount_item.getText()));
         searchVo.setLowVoucherNumber(Integer.parseInt(lowVoucher_item.getText()));
