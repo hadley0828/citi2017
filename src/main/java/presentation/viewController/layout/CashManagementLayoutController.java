@@ -33,10 +33,6 @@ public class CashManagementLayoutController implements Initializable, Controlled
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
-
         cashManagementController.setScreen(ScreensFramework.CASH_POOL_SCREEN);
         cashStack.getChildren().add(cashManagementController);
     }

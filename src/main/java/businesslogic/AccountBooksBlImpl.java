@@ -422,7 +422,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             BalanceTableOneClause oneBalance=balanceTableOneClauses.get(count);
 
             SubjectsPO oneSubjectPo=new SubjectsPO();
-            oneSubjectPo.setVoucher_id(oneBalance.getSubjectId());
+//            oneSubjectPo.setVoucher_id();
+            oneSubjectPo.setId(oneBalance.getSubjectId());
             oneSubjectPo.setName(oneBalance.getSubjectName());
             oneSubjectPo.setDate(Date.valueOf(DateConvert.getMonthLastDate(month)));
             oneSubjectPo.setDebitAmount(oneBalance.getEndDebit());
