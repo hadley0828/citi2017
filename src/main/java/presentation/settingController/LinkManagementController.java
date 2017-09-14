@@ -1,5 +1,6 @@
 package presentation.settingController;
 
+import businesslogic.SupplyChainImpl;
 import businesslogic.UserManagementImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,7 +8,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.UserVO;
 
@@ -36,17 +37,27 @@ public class LinkManagementController implements ControlledScreen {
     @FXML
     public void initialize(){
         UserVO vo= StaticFactory.getUserVO();
+        String[] companys=new SupplyChainImpl().getTheCompanys(vo.getCompanyID());
         AccountSetVO accountvo = new UserManagementImpl().getAccountSetByCompanyID(vo.getCompanyID());
         String place=accountvo.getChainPlace();
         if(place.equals("生产商")){
             product.setSelected(true);
+            up.setText(companys[0]);
+            down.setText(companys[2]);
         }else if(place.equals("分销商")){
             sale.setSelected(true);
+            up.setText(companys[1]);
+
+
 
         }else if (place.equals("供应商")){
             supply.setSelected(true);
+            down.setText(companys[1]);
 
         }
+
+
+
 
 
 
@@ -55,6 +66,9 @@ public class LinkManagementController implements ControlledScreen {
     }
 
     public void saveClicked(){
+        int type=0;
+
+
 
     }
 
