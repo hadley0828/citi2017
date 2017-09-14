@@ -63,12 +63,14 @@ public class Datebar extends HBox{
     String theEarly=balanceSheetService.getEarliestTime(StaticFactory.getUserVO().getCompanyID());
     String theLate=balanceSheetService.getLatestTime(StaticFactory.getUserVO().getCompanyID());
 
+
     public ArrayList<String> months=balanceSheetService.getMiddleMonth(theEarly,theLate);
 
 
     @FXML
     public void initialize(){
-
+//        System.out.print(theEarly);
+//        System.out.print(theLate);
         if(voucher_num==0){
             setDate(this_year,this_month);
             setListener();
@@ -151,6 +153,7 @@ public class Datebar extends HBox{
 //        last_month.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
 //            @Override
 //            public void handle(javafx.scene.input.MouseEvent event) {
+//
 //                if(months.indexOf(getDate())>0) {
 //                    year.setText(months.get(months.indexOf(getDate()) - 1).substring(0,4));
 //                    month.setText(months.get(months.indexOf(getDate()) - 1).split("-")[1]);

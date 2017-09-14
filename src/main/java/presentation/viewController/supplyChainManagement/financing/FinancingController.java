@@ -42,13 +42,12 @@ public class FinancingController implements ControlledScreen{
         getDebtChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if ((Integer)newValue==0){
                     getDebtMortgage.setDisable(false);
-                }
+                    getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),getDebtChoice.getSelectionModel().getSelectedItem().toString(),StaticFactory.getMonth())+""));
             }
         });
 
-        getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),getDebtChoice.getSelectionModel().getSelectedItem().toString(),StaticFactory.getMonth())+""));
+
 
         getDebtMortgage.textProperty().addListener(new ChangeListener<String>() {
             @Override
