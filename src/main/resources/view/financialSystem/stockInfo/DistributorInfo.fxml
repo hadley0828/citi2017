@@ -39,7 +39,7 @@
                <TableColumn fx:id="product_12" prefWidth="150.0" sortable="false" text="结存量" />
            </columns>
        </TableView>
-      <Button layoutX="533.0" layoutY="333.0" mnemonicParsing="false" text="完成">
+      <Button fx:id="add" layoutX="533.0" layoutY="333.0" mnemonicParsing="false" onAction="#addVOs" text="完成">
          <font>
             <Font size="15.0" />
          </font>

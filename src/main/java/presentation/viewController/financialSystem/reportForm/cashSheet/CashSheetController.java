@@ -12,6 +12,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
+import presentation.viewController.StaticFactory;
 import vo.CashFlowVo;
 
 import java.util.ArrayList;
@@ -74,8 +75,8 @@ public class CashSheetController {
     private CashFlowVo year;
 
     public void setCashTable(){
-        period=cashService.CashFlowTable_month(bar.getDate(),"");
-        year=cashService.CashFlowTable_year(bar.getDate(),"");
+        period=cashService.CashFlowTable_month(bar.getDate(), StaticFactory.getUserVO().getCompanyID());
+        year=cashService.CashFlowTable_year(bar.getDate(),StaticFactory.getUserVO().getCompanyID());
 /**
  *
  * @author hyf
