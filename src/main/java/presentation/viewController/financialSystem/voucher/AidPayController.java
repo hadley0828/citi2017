@@ -1,4 +1,4 @@
-package presentation.viewController.supplyChainManagement.cashManagement;
+package presentation.viewController.financialSystem.voucher;
 
 import businesslogic.CreditItemImpl;
 import businesslogicservice.CreditItemService;
@@ -6,25 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.StaticFactory;
 import presentation.dataModel.DealStateModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
 import vo.CreditItemVo;
 
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-/**
- * @author Molloh
- * @version 2017/9/13
- */
-public class ChargeStateController implements Initializable, ControlledScreen {
+public class AidPayController implements Initializable, ControlledScreen {
     @FXML
     private TableView<DealStateModel> table;
     @FXML
@@ -43,9 +38,7 @@ public class ChargeStateController implements Initializable, ControlledScreen {
     private TableColumn<DealStateModel, String> remark_col;
 
 
-    private CreditItemService creditItemService;
     private ObservableList<DealStateModel> data = FXCollections.observableArrayList();
-    private ArrayList<CreditItemVo> itemVoArrayList;
     private String company_id;
     private String voucher_id;
 
@@ -60,19 +53,45 @@ public class ChargeStateController implements Initializable, ControlledScreen {
         term_col.setCellValueFactory(cellValue -> cellValue.getValue().discountTermProperty());
         remark_col.setCellValueFactory(cellValue -> cellValue.getValue().remarkProperty());
 
-        creditItemService = new CreditItemImpl();
         company_id = StaticFactory.getUserVO().getCompanyID();
-        voucher_id = "1001";
 
-        itemVoArrayList = creditItemService.getReceivables(company_id, voucher_id);
-        for (CreditItemVo vo: itemVoArrayList) {
-            data.add(new DealStateModel(vo.getCompany_name(), vo.getBorrow_time(), vo.getDeadline(), String.valueOf(vo.getPolicy() * 100) + "%", String.valueOf(vo.getMoney()), vo.getDiscount_deadline(), vo.getRemark()));
-        }
+//        name_col.setCellFactory(TextFieldTableCell.forTableColumn());
+//        name_col.setOnEditCommit(
+//                event -> {
+//                    event.getTableView().getItems().get(
+//                            event.getTablePosition().getRow()).setCredit(event.getNewValue());
+//                    updateSum();
+//                }
+//        );
 
     }
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
 
+    }
+
+    @FXML
+    private void OnSave() {
+
+    }
+
+    @FXML
+    private void OnCancel() {
+
+    }
+
+    @FXML
+    private void OnAddRow() {
+        if (data.size() > 1)
+            data.add(data.size() - 2, new DealStateModel("", "", "", "", "", "", ""));
+        else
+            data.add(0, new DealStateModel("", "", "", "", "", "", ""));
+    }
+
+    @FXML
+    private void OnDeleteRow() {
+        if (data.size() > 1)
+            data.remove(data.size() - 2);
     }
 }

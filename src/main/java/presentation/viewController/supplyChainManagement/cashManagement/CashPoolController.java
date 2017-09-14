@@ -39,7 +39,7 @@ public class CashPoolController implements Initializable, ControlledScreen {
             String date = datePicker.getValue().format(formatter);
             String company_id = StaticFactory.getUserVO().getCompanyID();
 
-            double[] quota = cashPool.getFinancialIndex(date, company_id);
+            double[] quota = cashPool.getCashFlow(company_id, date);
 
             last_label.setText(String.valueOf(quota[0]));
             currentIn_label.setText(String.valueOf(quota[1]));
