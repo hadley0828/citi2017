@@ -107,6 +107,7 @@ public class PerformanceAppraisalController {
         op_back.setCellValueFactory(new PropertyValueFactory("back"));
 
         op_table.setItems(o_list);
+        op_coin.setText(vo.getSupply_chain()[1]+"");
 
     }
 
@@ -124,6 +125,8 @@ public class PerformanceAppraisalController {
 
         develop_table.setItems(d_list);
 
+        develop_profit_increase.setText(vo.getSupply_chain()[2]+"");
+
     }
 
     public void setDebtpay(){
@@ -138,6 +141,8 @@ public class PerformanceAppraisalController {
         debtpay_debt.setCellValueFactory(new PropertyValueFactory("balance"));
 
         debtpay_table.setItems(pay_list);
+
+        debtpay_balance.setText(vo.getSupply_chain()[3]+"");
     }
 
 }
