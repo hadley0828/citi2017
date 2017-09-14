@@ -102,7 +102,13 @@ public class StaticFactory {
         return now.toString().substring(0,7);
     }
 
-
+    static VoucherSearchVo searchVo;
+    public static void setVoucherSearchVo(VoucherSearchVo vo) {
+        searchVo = vo;
+    }
+    public static VoucherSearchVo getVoucherSearchVo() {
+        return searchVo;
+    }
 
 
 }
