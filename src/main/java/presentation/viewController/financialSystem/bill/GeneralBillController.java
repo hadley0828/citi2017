@@ -14,7 +14,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.GeneralBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.TotalAccountAmountVo;
 import vo.accountBook.TotalAccountVo;

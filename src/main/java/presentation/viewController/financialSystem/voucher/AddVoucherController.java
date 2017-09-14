@@ -12,7 +12,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import util.NumberToCN;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;

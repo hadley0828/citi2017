@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.Inventory.*;
 
 import java.io.IOException;

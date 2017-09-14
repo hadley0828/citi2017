@@ -13,7 +13,7 @@ import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.BalanceSheetItemVo;
 
 import java.util.ArrayList;

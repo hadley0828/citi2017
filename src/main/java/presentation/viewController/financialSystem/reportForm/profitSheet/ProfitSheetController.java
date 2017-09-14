@@ -12,7 +12,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import presentation.componentController.Datebar;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.ProfitTableVo;
 
 import java.util.ArrayList;

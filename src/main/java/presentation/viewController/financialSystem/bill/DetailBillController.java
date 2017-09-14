@@ -13,7 +13,7 @@ import presentation.componentController.BookSearch;
 import presentation.dataModel.DetailBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.accountBook.BookSearchVo;
 import vo.accountBook.DetailAccountAmountVo;
 import vo.accountBook.DetailAccountVo;

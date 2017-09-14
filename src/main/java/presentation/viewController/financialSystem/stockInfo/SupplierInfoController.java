@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.Inventory.RawMaterialInventoryItemVo;
 
 import java.sql.Timestamp;

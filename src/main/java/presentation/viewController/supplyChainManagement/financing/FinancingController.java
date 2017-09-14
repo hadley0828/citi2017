@@ -7,7 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 
 /**
  * Created by YZ on 2017/9/9.

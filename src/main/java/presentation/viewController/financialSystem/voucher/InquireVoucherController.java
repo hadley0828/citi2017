@@ -13,11 +13,10 @@ import presentation.componentController.VoucherCard;
 import presentation.componentController.VoucherSearch;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 
-import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;

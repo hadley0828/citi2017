@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import presentation.RunFLayout;
 import presentation.RunRootLayout;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.FinancialUserVO;

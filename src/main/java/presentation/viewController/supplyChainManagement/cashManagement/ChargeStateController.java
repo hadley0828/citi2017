@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import presentation.dataModel.DealStateModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.CreditItemVo;
 
 import java.net.URL;

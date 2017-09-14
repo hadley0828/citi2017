@@ -3,7 +3,7 @@ package presentation.componentController;
 import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
 import javafx.scene.control.ComboBox;
-import presentation.StaticFactory;
+import presentation.viewController.StaticFactory;
 import vo.voucher.SubjectBasicVo;
 
 import java.util.ArrayList;

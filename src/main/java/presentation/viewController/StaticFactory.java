@@ -1,8 +1,10 @@
-package presentation;
+package presentation.viewController;
 
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 import vo.voucher.VoucherSearchVo;
+
+import java.time.LocalDate;
 
 /**
  * Created by YZ on 2017/9/10.
@@ -94,6 +96,7 @@ public class StaticFactory {
         return FUserVO;
     }
 
+<<<<<<< HEAD:src/main/java/presentation/StaticFactory.java
     static VoucherSearchVo searchVo;
     public static void setVoucherSearchVo(VoucherSearchVo vo) {
         searchVo = vo;
@@ -101,6 +104,14 @@ public class StaticFactory {
     public static VoucherSearchVo getVoucherSearchVo() {
         return searchVo;
     }
+=======
+    public static String getMonth(){
+        LocalDate now = LocalDate.now();
+        return now.toString().substring(0,7);
+    }
+
+
+>>>>>>> 2e8996d0585fe43f4a32156dfdc15cfc1995723a:src/main/java/presentation/viewController/StaticFactory.java
 
 
 
