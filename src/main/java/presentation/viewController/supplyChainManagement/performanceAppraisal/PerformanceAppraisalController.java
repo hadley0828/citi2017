@@ -64,13 +64,13 @@ public class PerformanceAppraisalController implements ControlledScreen {
     private TextField debtpay_balance;
 
     private SupplyChainService service=new SupplyChainImpl();
-//    String sid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[0];
-//    String mid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[1];
-//    String did=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[2];
-    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier("001","002","003", StaticFactory.getMonth());
+    String sid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[0];
+    String mid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[1];
+    String did=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[2];
+    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth());
     @FXML
     public void initialize(){
-        System.out.print(service.getTheCompanys("001"));
+        System.out.print(service.getTheCompanys(StaticFactory.getUserVO().getCompanyID()));
         setGain();
         setOp();
         setDevelop();
