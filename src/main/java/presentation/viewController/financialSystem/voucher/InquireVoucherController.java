@@ -2,19 +2,22 @@ package presentation.viewController.financialSystem.voucher;
 
 import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.MenuButton;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import presentation.componentController.VoucherCard;
 import presentation.componentController.VoucherSearch;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
-import presentation.viewController.StaticFactory;
+import presentation.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 
+import javax.swing.*;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +32,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     @FXML
     private VBox voucher_list;
     @FXML
-    private MenuItem popItem;
+    private MenuButton selectMenu;
 
     private VoucherSearch voucherSearch;
     private VoucherSearchVo searchVo;
@@ -41,12 +44,37 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         voucherSearch = new VoucherSearch();
-        popItem.setGraphic(voucherSearch);
+        CustomMenuItem menuItem = new CustomMenuItem(voucherSearch);
+        menuItem.setHideOnClick(false);
+        selectMenu.getItems().addAll(menuItem);
+        selectMenu.setFocusTraversable(false);
+        selectMenu.getStylesheets().add("/css/CustomSearch.css");
+        voucherSearch.getCancel_btn().setOnAction(event -> {
+            selectMenu.hide();
+        });
+        voucherSearch.getCancel_btn().addEventHandler(ActionEvent.ACTION, (e) -> {
+            setVoucherSearch(StaticFactory.getVoucherSearchVo());
+            updateList();
+        });
+
 
         factoryId = StaticFactory.getUserVO().getCompanyID();
         searchVo = new VoucherSearchVo();
         voucherBl = new VoucherBlImpl();
         voucherIdList = new ArrayList<>();
+
+        searchVo=new VoucherSearchVo();
+        searchVo.setStartPeriod("2017年第4期");
+        searchVo.setEndPeriod("2017年第9期");
+        searchVo.setCharacter("全部");
+        searchVo.setMaker("全部");
+        searchVo.setLowPrice(-1.0);
+        searchVo.setHighPrice(-1.0);
+        searchVo.setLowVoucherNumber(-1);
+        searchVo.setHighVoucherNumber(-1);
+
+        searchVo.setSortOrder(1);
+        updateList();
 
     }
 

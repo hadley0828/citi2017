@@ -1,7 +1,8 @@
-package presentation.viewController;
+package presentation;
 
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
+import vo.voucher.VoucherSearchVo;
 
 /**
  * Created by YZ on 2017/9/10.
@@ -93,7 +94,13 @@ public class StaticFactory {
         return FUserVO;
     }
 
-
+    static VoucherSearchVo searchVo;
+    public static void setVoucherSearchVo(VoucherSearchVo vo) {
+        searchVo = vo;
+    }
+    public static VoucherSearchVo getVoucherSearchVo() {
+        return searchVo;
+    }
 
 
 

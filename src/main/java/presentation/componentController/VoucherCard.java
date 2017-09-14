@@ -68,7 +68,11 @@ public class VoucherCard extends BorderPane {
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
 
         ObservableList<VoucherModel> data = FXCollections.observableArrayList();
-        data.add(new VoucherModel("", "", "", ""));
+
+//        for (VoucherAmountVo vo: singleVoucher) {
+//            data.add(new VoucherModel(vo.getAbstracts(), vo.getSubject(), String.valueOf(vo.getDebitAmount()), String.valueOf(vo.getCreditAmount())));
+//        }
+        data.add(new VoucherModel("1", "1", "1", "1"));
         cardTable.setItems(data);
 
         setAlignment(cardTable, Pos.CENTER);
