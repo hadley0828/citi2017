@@ -45,8 +45,6 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        int tag_0 = 1;
-        int tag_1 = 1;
         if (event.getSource().equals(logo_btn)) {
             rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
         }

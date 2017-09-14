@@ -35,7 +35,6 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN, ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
-        supplyController.loadScreen(ScreensFramework.FINANCING_SCREEN, ScreensFramework.FINANCING_SCREEN_FXML);
 //        supplyController.loadScreen();
 
         supplyStack.getChildren().add(supplyController);
@@ -53,10 +52,12 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
             supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN, ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML);
             supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN);
         }
-//        else if (event.getSource().equals(cash_btn))
-//            supplyController.setScreen();
+        else if (event.getSource().equals(cash_btn)) {
+            supplyController.loadScreen(ScreensFramework.CASH_LAYOUT_SCREEN, ScreensFramework.CASH_LAYOUT_SCREEN_FXML);
+            supplyController.setScreen(ScreensFramework.CASH_LAYOUT_SCREEN);
+        }
         else if (event.getSource().equals(financing_btn)) {
-            supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN, ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML);
+            supplyController.loadScreen(ScreensFramework.FINANCING_SCREEN, ScreensFramework.FINANCING_SCREEN_FXML);
             supplyController.setScreen(ScreensFramework.FINANCING_SCREEN);
         }
         else if (event.getSource().equals(performance_btn)) {
