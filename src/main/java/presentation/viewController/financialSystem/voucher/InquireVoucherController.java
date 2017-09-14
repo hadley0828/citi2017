@@ -51,7 +51,8 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         voucherSearch.getCancel_btn().setOnAction(event -> {
             selectMenu.hide();
         });
-        voucherSearch.getCancel_btn().addEventHandler(ActionEvent.ACTION, (e) -> {
+
+        voucherSearch.getConfirm_btn().addEventHandler(ActionEvent.ACTION, (e) -> {
             setVoucherSearch(StaticFactory.getVoucherSearchVo());
             updateList();
         });
@@ -62,7 +63,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         voucherBl = new VoucherBlImpl();
         voucherIdList = new ArrayList<>();
 
-        searchVo=new VoucherSearchVo();
+       /* searchVo=new VoucherSearchVo();
         searchVo.setStartPeriod("2017年第4期");
         searchVo.setEndPeriod("2017年第9期");
         searchVo.setCharacter("全部");
@@ -73,7 +74,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         searchVo.setHighVoucherNumber(-1);
 
         searchVo.setSortOrder(1);
-        updateList();
+        updateList();*/
 
     }
 
@@ -87,13 +88,14 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     }
 
     public void updateList() {
+        voucher_list.getChildren().clear();
         voucherIdList.clear();
         voucherList = voucherBl.getSearchedVoucher(searchVo, factoryId);
 
         if (!voucherList.isEmpty()) {
             for (VoucherVo vo: voucherList) {
                 voucherIdList.add(vo.getVoucherId());
-                VoucherCard voucherCard = new VoucherCard(vo.getAmountList());
+                VoucherCard voucherCard = new VoucherCard(vo);
                 voucher_list.getChildren().add(voucherCard);
             }
         }

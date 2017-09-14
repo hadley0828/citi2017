@@ -138,7 +138,12 @@ public class VoucherSearch extends GridPane {
         if (!highVoucher_item.getText().equals(""))
             searchVo.setHighVoucherNumber(Integer.parseInt(highVoucher_item.getText()));
         else
-            searchVo.setLowVoucherNumber(-1);
+            searchVo.setHighVoucherNumber(-1);
+
+        if (id_radio.isSelected())
+            searchVo.setSortOrder(1);
+        else
+            searchVo.setSortOrder(0);
 
         StaticFactory.setVoucherSearchVo(searchVo);
     }

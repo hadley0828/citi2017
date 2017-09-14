@@ -6,9 +6,13 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.voucher.InquireVoucherController">
     <children>
-      <VBox fx:id="voucher_list" layoutY="52.0" maxWidth="1.7976931348623157E308" prefHeight="269.0" prefWidth="1000.0" spacing="20.0" />
       <MenuButton fx:id="selectMenu" layoutX="40.0" layoutY="14.0" mnemonicParsing="false" text="筛选" />
       <Button layoutX="512.0" layoutY="14.0" mnemonicParsing="false" onAction="#OnExport" text="导出" />
       <Button layoutX="458.0" layoutY="14.0" mnemonicParsing="false" onAction="#OnImport" text="导入" />
+      <ScrollPane layoutY="54.0" prefHeight="346.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+         <content>
+            <VBox fx:id="voucher_list" spacing="20.0" />
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>
