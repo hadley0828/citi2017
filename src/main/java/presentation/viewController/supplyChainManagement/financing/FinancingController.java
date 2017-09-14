@@ -36,7 +36,7 @@ public class FinancingController {
         getDebtMortgage.setDisable(true);
         advice.setDisable(true);
         getDebtNum.setDisable(true);
-        getDebtChoice.getItems().addAll(service.AcountReceivable(StaticFactory.getUserVO().getCompanyID(),""));
+        getDebtChoice.getItems().addAll(service.AcountReceivable(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()));
         getDebtChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -46,12 +46,12 @@ public class FinancingController {
             }
         });
 
-        getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),getDebtChoice.getSelectionModel().getSelectedItem().toString(),"")+""));
+        getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),getDebtChoice.getSelectionModel().getSelectedItem().toString(),StaticFactory.getMonth())+""));
 
         getDebtMortgage.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                advice.setText((service.ReceivableFinacing(Double.parseDouble(getDebtMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),""))+"");
+                advice.setText((service.ReceivableFinacing(Double.parseDouble(getDebtMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()))+"");
             }
         });
         setSecond();
@@ -61,18 +61,18 @@ public class FinancingController {
         stockMortgage.setDisable(true);
         advice2.setDisable(true);
         stockNum.setDisable(true);
-        stockChoice.getItems().addAll(service.InventoryTypes(StaticFactory.getUserVO().getCompanyID(),""));
+        stockChoice.getItems().addAll(service.InventoryTypes(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()));
         stockChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 stockMortgage.setDisable(false);
             }
         });
-        stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),"")+"");
+        stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),StaticFactory.getMonth())+"");
         stockMortgage.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                advice2.setText((service.PledgeMovables(Double.parseDouble(stockMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),""))+"");
+                advice2.setText((service.PledgeMovables(Double.parseDouble(stockMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()))+"");
             }
         });
 
