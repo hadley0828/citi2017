@@ -309,12 +309,7 @@ public class VoucherBlImpl implements VoucherBlService {
         ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
         ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher(factoryId);
 
-        System.out.println(allVoucherPoList.size());
-
-
         ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount(factoryId);
-
-        System.out.println(allAmountPoList.size());
 
         //String是voucherId
         HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=new HashMap<>();

@@ -11,6 +11,7 @@ import util.DateConvert;
 import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -429,16 +430,15 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             SubjectsPO oneSubjectPo=new SubjectsPO();
             oneSubjectPo.setVoucher_id(oneBalance.getSubjectId());
             oneSubjectPo.setName(oneBalance.getSubjectName());
+            oneSubjectPo.setDate(Date.valueOf(DateConvert.getMonthLastDate(month)));
+            oneSubjectPo.setDebitAmount(oneBalance.getEndDebit());
+            oneSubjectPo.setCreditAmount(oneBalance.getEndCredit());
+            oneSubjectPo.setBalances(SubjectBalanceHelper.getDirection(oneSubjectPo.getId())*(oneBalance.getEndDebit()-oneBalance.getEndCredit()));
 
-
+            resultList.add(oneSubjectPo);
         }
 
-
-
-
-
-
-        return null;
+        return resultList;
     }
 
 
