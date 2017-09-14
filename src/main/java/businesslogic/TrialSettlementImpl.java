@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Created by 费慧通 on 2017/8/20.
  */
 public class TrialSettlementImpl implements TrialSettlementService {
+    private static ArrayList<TrialTableItemVo> list;
     /**
      * 根据凭证id和时期得到试算表的数据
      * @param company_id 公司id
@@ -35,7 +36,17 @@ public class TrialSettlementImpl implements TrialSettlementService {
             credit_amount = credit_amount+credit;
         }
         result.add(new TrialTableItemVo("合计", "", debit_amount, credit_amount));
+        list = result;
         return result;
+    }
+
+    @Override
+    public boolean IsCreditDebitequal() {
+        TrialTableItemVo vo = list.get(list.size()-1);
+        if(vo.getDebit()==vo.getCredit()){
+            return true;
+        }
+        return false;
     }
 
     /**

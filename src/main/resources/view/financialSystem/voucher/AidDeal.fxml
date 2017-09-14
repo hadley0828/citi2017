@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="payTable" layoutX="22.0" layoutY="146.0" prefHeight="109.0" prefWidth="556.0">
+      <TableView fx:id="table" layoutX="22.0" layoutY="146.0" prefHeight="109.0" prefWidth="556.0">
         <columns>
           <TableColumn fx:id="name_col" prefWidth="75.0" text="公司名称" />
             <TableColumn fx:id="debit_col" prefWidth="75.0" text="借款时间" />

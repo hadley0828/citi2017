@@ -1,6 +1,7 @@
 package businesslogic;
 
 import businesslogicservice.AccountBooksBlService;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.SubjectDataServiceImpl;
 import data.VoucherDataServiceImpl;
 import dataservice.SubjectDataService;
@@ -10,6 +11,7 @@ import util.DateConvert;
 import util.SubjectBalanceHelper;
 import vo.accountBook.*;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -408,9 +410,35 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
     }
 
     @Override
-    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId) {
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String month, String factoryId) {
 
-        return null;
+        ArrayList<SubjectsPO> resultList=new ArrayList<>();
+
+        String period=DateConvert.monthToPeriod(month);
+
+        BookSearchVo searchVo=new BookSearchVo();
+        //把月份赋值给searchVo
+        searchVo.setStartPeriod(period);
+        searchVo.setEndPeriod(period);
+        searchVo.setLowLevel(1);
+        searchVo.setHighLevel(3);
+
+        ArrayList<BalanceTableOneClause> balanceTableOneClauses=getBalanceTableAllClauses(searchVo,factoryId);
+        for(int count=0;count<balanceTableOneClauses.size();count++){
+            BalanceTableOneClause oneBalance=balanceTableOneClauses.get(count);
+
+            SubjectsPO oneSubjectPo=new SubjectsPO();
+            oneSubjectPo.setVoucher_id(oneBalance.getSubjectId());
+            oneSubjectPo.setName(oneBalance.getSubjectName());
+            oneSubjectPo.setDate(Date.valueOf(DateConvert.getMonthLastDate(month)));
+            oneSubjectPo.setDebitAmount(oneBalance.getEndDebit());
+            oneSubjectPo.setCreditAmount(oneBalance.getEndCredit());
+            oneSubjectPo.setBalances(SubjectBalanceHelper.getDirection(oneSubjectPo.getId())*(oneBalance.getEndDebit()-oneBalance.getEndCredit()));
+
+            resultList.add(oneSubjectPo);
+        }
+
+        return resultList;
     }
 
 

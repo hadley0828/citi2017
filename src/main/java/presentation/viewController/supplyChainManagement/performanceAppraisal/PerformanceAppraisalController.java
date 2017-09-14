@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import presentation.viewController.StaticFactory;
 import vo.SupplyChainPerformanceVo;
 
 import java.util.ArrayList;
@@ -76,7 +77,10 @@ public class PerformanceAppraisalController {
     private TableColumn debtpay_balance;
 
     private SupplyChainService service=new SupplyChainImpl();
-    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier("001","002","003","date");
+    String sid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[0];
+    String mid=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[1];
+    String did=service.getTheCompanys(StaticFactory.getUserVO().getCompanyID())[2];
+    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth());
     @FXML
     public void initialize(){
         setGain();

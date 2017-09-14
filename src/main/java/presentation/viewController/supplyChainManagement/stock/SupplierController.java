@@ -199,7 +199,7 @@ public class SupplierController {
 //    }
 
     public void draw() throws  IOException{
-        Parent root= FXMLLoader.load(getClass().getResource("../../../view/stock/SupplierChart.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("../../../../view/supplyChainManagement/stock/SupplierChart.fxml"));
         chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         chartStage.setScene(scene);

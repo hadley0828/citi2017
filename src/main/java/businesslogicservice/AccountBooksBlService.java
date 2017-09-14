@@ -14,6 +14,10 @@ import java.util.HashMap;
 public interface AccountBooksBlService {
 
     /**
+     * searchVo中的startPeriod endPeriod highLevel lowLevel为必填选项
+     */
+
+    /**
      * 明细账
      */
 
@@ -82,10 +86,10 @@ public interface AccountBooksBlService {
 
     /**
      * 获得全部科目某一个期间的期末金额信息
-     * @param period    "2017-08"
+     * @param month    "2017-08"
      * @param factoryId
      * @return
      */
-    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId);
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String month, String factoryId);
 
 }

@@ -211,7 +211,7 @@ public class FinancialWarningImpl implements FinancialWarningService{
      * @param index_name
      * @return
      */
-    public double getAverageIndex(String index_name){
+    private double getAverageIndex(String index_name){
         for(int i=0;i<list.size();i++){
             IndexPo po = list.get(i);
             if(po.getIndex_name().equals(index_name)){
@@ -226,7 +226,7 @@ public class FinancialWarningImpl implements FinancialWarningService{
      * @param index_name
      * @return
      */
-    public double getUnallowedIndex(String index_name){
+    private double getUnallowedIndex(String index_name){
         for(int i=0;i<list.size();i++){
             IndexPo po = list.get(i);
             if(po.getIndex_name().equals(index_name)){
@@ -241,7 +241,7 @@ public class FinancialWarningImpl implements FinancialWarningService{
      * @param index_name
      * @return
      */
-    public double getFineIndex(String index_name){
+    private double getFineIndex(String index_name){
         for(int i=0;i<list.size();i++){
             IndexPo po = list.get(i);
             if(po.getIndex_name().equals(index_name)){
@@ -256,7 +256,7 @@ public class FinancialWarningImpl implements FinancialWarningService{
      * @param index_name
      * @return
      */
-    public double getBadIndex(String index_name){
+    private double getBadIndex(String index_name){
         for(int i=0;i<list.size();i++){
             IndexPo po = list.get(i);
             if(po.getIndex_name().equals(index_name)){

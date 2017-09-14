@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
-import presentation.componentController.SubjectsCombo;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;

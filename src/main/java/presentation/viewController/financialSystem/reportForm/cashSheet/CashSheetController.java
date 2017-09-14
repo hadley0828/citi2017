@@ -15,6 +15,7 @@ import presentation.componentController.Datebar;
 import presentation.viewController.StaticFactory;
 import vo.CashFlowVo;
 
+import javax.swing.filechooser.FileSystemView;
 import java.util.ArrayList;
 
 /**
@@ -207,6 +208,13 @@ public class CashSheetController {
                 };
             }
         });
+    }
+
+    @FXML
+    public void out(){
+        FileSystemView fsv=FileSystemView.getFileSystemView();
+        String path=fsv.getHomeDirectory().getPath();
+        path += "/现金流量表.xls";
     }
 
 }

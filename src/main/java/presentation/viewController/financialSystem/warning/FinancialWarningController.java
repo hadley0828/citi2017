@@ -5,7 +5,6 @@ import businesslogicservice.FinancialWarningService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.viewController.StaticFactory;
