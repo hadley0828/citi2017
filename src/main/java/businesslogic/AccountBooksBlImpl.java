@@ -1,6 +1,7 @@
 package businesslogic;
 
 import businesslogicservice.AccountBooksBlService;
+import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.SubjectDataServiceImpl;
 import data.VoucherDataServiceImpl;
 import dataservice.SubjectDataService;
@@ -408,7 +409,34 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
     }
 
     @Override
-    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String period, String factoryId) {
+    public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String month, String factoryId) {
+
+        ArrayList<SubjectsPO> resultList=new ArrayList<>();
+
+        String period=DateConvert.monthToPeriod(month);
+
+        BookSearchVo searchVo=new BookSearchVo();
+        //把月份赋值给searchVo
+        searchVo.setStartPeriod(period);
+        searchVo.setEndPeriod(period);
+        searchVo.setLowLevel(1);
+        searchVo.setHighLevel(3);
+
+        ArrayList<BalanceTableOneClause> balanceTableOneClauses=getBalanceTableAllClauses(searchVo,factoryId);
+        for(int count=0;count<balanceTableOneClauses.size();count++){
+            BalanceTableOneClause oneBalance=balanceTableOneClauses.get(count);
+
+            SubjectsPO oneSubjectPo=new SubjectsPO();
+            oneSubjectPo.setVoucher_id(oneBalance.getSubjectId());
+            oneSubjectPo.setName(oneBalance.getSubjectName());
+
+
+        }
+
+
+
+
+
 
         return null;
     }

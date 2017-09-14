@@ -309,9 +309,14 @@ public class VoucherBlImpl implements VoucherBlService {
         ArrayList<VoucherVo> allVoucherVoList=new ArrayList<>();
         ArrayList<VoucherPO> allVoucherPoList=voucherDataService.findAllVoucher(factoryId);
 
+        System.out.println(allVoucherPoList.size());
 
 
         ArrayList<VoucherAmountPO> allAmountPoList=voucherDataService.findAllVoucherAllAmount(factoryId);
+
+        System.out.println(allAmountPoList.size());
+
+        //String是voucherId
         HashMap<String,ArrayList<VoucherAmountPO>> allVoucherMap=new HashMap<>();
 
         for(int count=0;count<allAmountPoList.size();count++){
@@ -338,7 +343,7 @@ public class VoucherBlImpl implements VoucherBlService {
                 String voucherId=voucherPO.getId();
 
                 if(!allVoucherMap.containsKey(voucherId)){
-                    break;
+                    continue;
                 }else{
                     ArrayList<VoucherAmountPO> amountPOList=allVoucherMap.get(voucherId);
                     //对voucherPO和amountPOList进行处理

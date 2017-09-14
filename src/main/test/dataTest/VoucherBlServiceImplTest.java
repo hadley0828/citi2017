@@ -147,8 +147,8 @@ public class VoucherBlServiceImplTest {
     @Test
     public void testGetSearchedVoucher(){
         VoucherSearchVo searchVo=new VoucherSearchVo();
-        searchVo.setStartPeriod("2017年第4期");
-        searchVo.setEndPeriod("2017年第9期");
+        searchVo.setStartPeriod("2012年第4期");
+        searchVo.setEndPeriod("2017年第7期");
         searchVo.setCharacter("全部");
         searchVo.setMaker("全部");
 
@@ -161,9 +161,7 @@ public class VoucherBlServiceImplTest {
 
         ArrayList<VoucherVo> resultList=voucherBlService.getSearchedVoucher(searchVo,"001");
 
-        for(int count=0;count<resultList.size();count++){
-            System.out.println(resultList.get(count).toString());
-        }
+        System.out.println(resultList.size());
     }
 
     @Test
