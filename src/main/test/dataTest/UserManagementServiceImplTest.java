@@ -52,7 +52,7 @@ public class UserManagementServiceImplTest {
 
     @Test
     public void testmodifyPassword(){
-        System.out.println(userManagementService.modifyPassword("01","1312412","000000").toString());
+        System.out.println(userManagementService.modifyPassword("01","000000","010101").toString());
     }
 
     @Test
