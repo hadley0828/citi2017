@@ -39,4 +39,12 @@ public interface CashFlowTableService {
 	 * @return
 	 */
 	public double[] getCashFlow(String company_id, String time);
+	
+	/**
+	 * 
+	 * @param company_id
+	 * @param time yyyy-mm
+	 * @param path
+	 */
+	public void CreateCashFlowTable(String company_id,String time,String path);
 }

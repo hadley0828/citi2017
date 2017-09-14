@@ -24,6 +24,15 @@ public class TableCalHelper {
 		return res;
 	}
 	
+	public List<VoucherAmountPO> getBySubject2(String id,List<VoucherAmountPO> list){
+		List<VoucherAmountPO> res=new ArrayList<VoucherAmountPO>();
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).getSubject().startsWith(id))
+				res.add(list.get(i));
+		}
+		return res;
+	}
+	
 	/**
 	 * 
 	 * @param list

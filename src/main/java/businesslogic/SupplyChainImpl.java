@@ -10,6 +10,7 @@ import data.SupplyChainDataServiceImpl;
 import dataservice.ProfitAndCashService;
 import dataservice.SupplyChainDataService;
 import po.SupplyChainPO;
+import po.VoucherAmountPO;
 import vo.BalanceSheetItemVo;
 import vo.CompanyVo;
 import vo.SupplyChainPerformanceVo;
@@ -40,16 +41,22 @@ public class SupplyChainImpl implements SupplyChainService{
 	public SupplyChainPerformanceVo SupplyChain_Supplier(String Supplier_id,String Manufacturer_id,String Distributor_id,String period) {
 		String last=helper.lastTime(period);
 		BalanceSheetImpl bs=new BalanceSheetImpl();
+		List<VoucherAmountPO> list11=DATA.getVourchersByPeriod(period, Supplier_id);
+		List<VoucherAmountPO> list12=DATA.getVourchersByPeriod(period, Supplier_id);
+		List<VoucherAmountPO> list21=DATA.getVourchersByPeriod(period, Manufacturer_id);
+		List<VoucherAmountPO> list22=DATA.getVourchersByPeriod(period, Manufacturer_id);
+		List<VoucherAmountPO> list31=DATA.getVourchersByPeriod(period, Distributor_id);
+		List<VoucherAmountPO> list32=DATA.getVourchersByPeriod(period, Distributor_id);
 		
 		Map<String, ArrayList<BalanceSheetItemVo>> t11=bs.getBalanceSheet(Supplier_id, period);
 		Map<String, ArrayList<BalanceSheetItemVo>> t12=bs.getBalanceSheet(Supplier_id, last);
-		double this_zyshouru1=helper.Cal(DATA.getVourchersByPeriod(period, "5001", Supplier_id));//当期主营业务收入
-		double last_zyshouru1=helper.Cal(DATA.getVourchersByPeriod(last, "5001", Supplier_id));//上期主营业务收入
-		double this_zychenben1=helper.Cal2(DATA.getVourchersByPeriod(period, "5401", Supplier_id));//当期主营业务成本
-		double last_zychenben1=helper.Cal2(DATA.getVourchersByPeriod(last, "5401", Supplier_id));//上期主营业务成本
+		double this_zyshouru1=helper.Cal(helper.getBySubject("5001", list11));//当期主营业务收入
+		double last_zyshouru1=helper.Cal(helper.getBySubject("5001", list12));//上期主营业务收入
+		double this_zychenben1=helper.Cal2(helper.getBySubject("5401", list11));//当期主营业务成本
+		double last_zychenben1=helper.Cal2(helper.getBySubject("5401", list12));//上期主营业务成本
 		double last_zong1=t12.get("资产合计").get(0).getEnding_balance();//上期期末总资产
 		double this_zong1=t11.get("资产合计").get(0).getEnding_balance();//本期期末总资产
-		double this_qtshouru1=helper.Cal(DATA.getVourchersByPeriod(period, "5051", Supplier_id));//当期其他业务收入
+		double this_qtshouru1=helper.Cal(helper.getBySubject("5051", list11));//当期其他业务收入
 		double last_cunhuo1=t12.get("流动资产").get(9).getEnding_balance();//上期期末存货
 		double this_cunhuo1=t11.get("流动资产").get(9).getEnding_balance();//当期期末存货
 		double zongfu1=t11.get("负债合计").get(0).getEnding_balance();//总负债
@@ -69,13 +76,13 @@ public class SupplyChainImpl implements SupplyChainService{
 		
 		Map<String, ArrayList<BalanceSheetItemVo>> t21=bs.getBalanceSheet(Manufacturer_id, period);
 		Map<String, ArrayList<BalanceSheetItemVo>> t22=bs.getBalanceSheet(Manufacturer_id, last);
-		double this_zyshouru2=helper.Cal(DATA.getVourchersByPeriod(period, "5001", Manufacturer_id));//当期主营业务收入
-		double last_zyshouru2=helper.Cal(DATA.getVourchersByPeriod(last, "5001", Manufacturer_id));//上期主营业务收入
-		double this_zychenben2=helper.Cal2(DATA.getVourchersByPeriod(period, "5401", Manufacturer_id));//当期主营业务成本
-		double last_zychenben2=helper.Cal2(DATA.getVourchersByPeriod(last, "5401", Manufacturer_id));//上期主营业务成本
+		double this_zyshouru2=helper.Cal(helper.getBySubject("5001", list21));//当期主营业务收入
+		double last_zyshouru2=helper.Cal(helper.getBySubject("5001", list22));//上期主营业务收入
+		double this_zychenben2=helper.Cal2(helper.getBySubject("5401", list21));//当期主营业务成本
+		double last_zychenben2=helper.Cal2(helper.getBySubject("5401", list22));//上期主营业务成本
 		double last_zong2=t22.get("资产合计").get(0).getEnding_balance();//上期期末总资产
 		double this_zong2=t21.get("资产合计").get(0).getEnding_balance();//本期期末总资产
-		double this_qtshouru2=helper.Cal(DATA.getVourchersByPeriod(period, "5051", Manufacturer_id));//当期其他业务收入
+		double this_qtshouru2=helper.Cal(helper.getBySubject("5051", list21));//当期其他业务收入
 		double last_cunhuo2=t22.get("流动资产").get(9).getEnding_balance();//上期期末存货
 		double this_cunhuo2=t21.get("流动资产").get(9).getEnding_balance();//当期期末存货
 		double zongfu2=t21.get("负债合计").get(0).getEnding_balance();//总负债
@@ -95,13 +102,13 @@ public class SupplyChainImpl implements SupplyChainService{
 		
 		Map<String, ArrayList<BalanceSheetItemVo>> t31=bs.getBalanceSheet(Distributor_id, period);
 		Map<String, ArrayList<BalanceSheetItemVo>> t32=bs.getBalanceSheet(Distributor_id, last);
-		double this_zyshouru3=helper.Cal(DATA.getVourchersByPeriod(period, "5001", Distributor_id));//当期主营业务收入
-		double last_zyshouru3=helper.Cal(DATA.getVourchersByPeriod(last, "5001", Distributor_id));//上期主营业务收入
-		double this_zychenben3=helper.Cal2(DATA.getVourchersByPeriod(period, "5401", Distributor_id));//当期主营业务成本
-		double last_zychenben3=helper.Cal2(DATA.getVourchersByPeriod(last, "5401", Distributor_id));//上期主营业务成本
+		double this_zyshouru3=helper.Cal(helper.getBySubject("5001", list31));//当期主营业务收入
+		double last_zyshouru3=helper.Cal(helper.getBySubject("5001", list32));//上期主营业务收入
+		double this_zychenben3=helper.Cal2(helper.getBySubject("5401", list31));//当期主营业务成本
+		double last_zychenben3=helper.Cal2(helper.getBySubject("5401", list32));//上期主营业务成本
 		double last_zong3=t32.get("资产合计").get(0).getEnding_balance();//上期期末总资产
 		double this_zong3=t31.get("资产合计").get(0).getEnding_balance();//本期期末总资产
-		double this_qtshouru3=helper.Cal(DATA.getVourchersByPeriod(period, "5051", Distributor_id));//当期其他业务收入
+		double this_qtshouru3=helper.Cal(helper.getBySubject("50511", list31));//当期其他业务收入
 		double last_cunhuo3=t32.get("流动资产").get(9).getEnding_balance();//上期期末存货
 		double this_cunhuo3=t31.get("流动资产").get(9).getEnding_balance();//当期期末存货
 		double zongfu3=t11.get("负债合计").get(0).getEnding_balance();//总负债
