@@ -33,6 +33,14 @@ public interface BalanceSheetService {
     public double[] getValue(String company_id, String phase);
 
     /**
+     * 得到本期期末总资产、流动资产、流动负债、本期期末应收帐款、本期期末存货
+     * @param company_id
+     * @param phase
+     * @return
+     */
+    public double[] getValue2(String company_id, String phase);
+
+    /**
      * 得到所有凭证数量
      * @param company_id 公司id
      * @return

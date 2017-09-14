@@ -666,6 +666,77 @@ public class BalanceSheetImpl implements BalanceSheetService {
     }
 
     /**
+     * 得到本期期末总资产、流动资产、流动负债、本期期末应收帐款、本期期末存货
+     * @param company_id
+     * @param phase
+     * @return
+     */
+    public double[] getValue2(String company_id, String phase){
+        double[] result = new double[5];
+        result[0] = getAssetByTime(company_id, phase);
+
+        CourseMessageService service = new CourseMessageServiceImpl();
+        ArrayList<SubjectsPO> polist1 = service.getCurrentCouseMessage(company_id);
+
+        //1.1货币资金=其他货币资金+库存现金+银行存款
+        double ending_balance1_1 = getMoneyByCourseId(polist1, "1012", true) + getMoneyByCourseId(polist1, "1001", true) + getMoneyByCourseId(polist1, "1002", true);
+        //1.2短期投资
+        double ending_balance1_2 = getMoneyByCourseId(polist1, "1101001", true) + getMoneyByCourseId(polist1, "1101002", true) + getMoneyByCourseId(polist1, "1101003", true);
+        //1.3应收票据
+        double ending_balance1_3 = getMoneyByCourseId(polist1, "1121", true);
+        //1.4应收账款=应收账款+预收账款（*余额在借方时）
+        double ending_balance1_4 = getMoneyByCourseId(polist1, "1122", true) + getMoneyByCourseId(polist1, "2203", true);
+        //1.5预付账款=预付账款+应付账款（*余额在借方时）
+        double ending_balance1_5 = getMoneyByCourseId(polist1, "1123", true) + getMoneyByCourseId(polist1, "2202", true);
+        //1.6应收股利
+        double ending_balance1_6 = getMoneyByCourseId(polist1, "1131", true);
+        //1.7应收利息
+        double ending_balance1_7 = getMoneyByCourseId(polist1, "1132", true);
+        //1.8其他应收款=其他应收款+其他应付款（*余额在借方时）
+        double ending_balance1_8 = getMoneyByCourseId(polist1, "1121", true) + getMoneyByCourseId(polist1, "2241", true);
+        //1.9存货=在途物资+材料采购+原材料+材料成本差异+库存商品-商品进销差价+委托加工物资+周转材料+消耗性生物资产+生产成本+制造费用+工程施工+机械作业
+        double ending_balance1_9 = getMoneyByCourseId(polist1, "1402", true) + getMoneyByCourseId(polist1, "1401", true) + getMoneyByCourseId(polist1, "1403", true)
+                + getMoneyByCourseId(polist1, "1404", true) + getMoneyByCourseId(polist1, "1405", true) - getMoneyByCourseId(polist1, "1407", true)
+                + getMoneyByCourseId(polist1, "1408", true) + getMoneyByCourseId(polist1, "1411", true) + getMoneyByCourseId(polist1, "1421", true)
+                + getMoneyByCourseId(polist1, "4001", true) + getMoneyByCourseId(polist1, "4101", true) + getMoneyByCourseId(polist1, "4401", true)
+                + getMoneyByCourseId(polist1, "4403", true);
+        //1.10其他流动资产
+        double ending_balance1_10 = getMoneyByCourseId(polist1, "6000", true);
+        //1.11流动资产合计=货币资金+短期投资+应收票据+应收账款+预付账款+应收股利+应收利息+其他应收款+存货+其他流动资产
+        double ending_balance1_11 = ending_balance1_1 + ending_balance1_2 + ending_balance1_3 + ending_balance1_4 + ending_balance1_5 + ending_balance1_6 + ending_balance1_7 + ending_balance1_8 + ending_balance1_9 + ending_balance1_10;
+
+        //4.1短期借款
+        double ending_balance4_1 = getMoneyByCourseId(polist1, "2001", false);
+        //4.2应付票据
+        double ending_balance4_2 = getMoneyByCourseId(polist1, "2201", false);
+        //4.3应付账款=应付账款+预付账款（*余额在贷方时）
+        double ending_balance4_3 = getMoneyByCourseId(polist1, "2202", false) + getMoneyByCourseId(polist1, "1123", false);
+        //4.4预收账款=预收账款+应收账款（*余额在贷方时）
+        double ending_balance4_4 = getMoneyByCourseId(polist1, "2203", false) + getMoneyByCourseId(polist1, "1122", false);
+        //4.5应付职工薪酬
+        double ending_balance4_5 = getMoneyByCourseId(polist1, "2211", false);
+        //4.6应交税费
+        double ending_balance4_6 = getTotalTax(polist1,false);
+        //4.7应付利息
+        double ending_balance4_7 = getMoneyByCourseId(polist1, "2231", false);
+        //4.8应付利润
+        double ending_balance4_8 = getMoneyByCourseId(polist1, "2232", false);
+        //4.9其他应付款=其他应付款+其他应收款（*余额在贷方时）
+        double ending_balance4_9 = getMoneyByCourseId(polist1, "2241", false) + getMoneyByCourseId(polist1, "1221", false);
+        //4.10其他流动负债
+        double ending_balance4_10 = getMoneyByCourseId(polist1,"8000", false);
+        //4.11流动负债合计=短期借款+应付票据+应付账款+预收账款+应付职工薪酬+应交税费+应付利息+其他应付款+应付利润+其他流动负债
+        double ending_balance4_11 = ending_balance4_1+ending_balance4_2+ending_balance4_3+ending_balance4_4+ending_balance4_5+ending_balance4_6+ending_balance4_7+ending_balance4_8+ending_balance4_9+ending_balance4_10;
+
+        result[1] = ending_balance1_11;
+        result[2] = ending_balance4_11;
+        result[3] = getReceivablesByTime(company_id, phase);
+        result[4] = getStockByTime(company_id, phase);
+
+        return result;
+    }
+
+    /**
      * 根据时间得到得到期末总资产
      * @param company_id 公司id
      * @param phase 时间
