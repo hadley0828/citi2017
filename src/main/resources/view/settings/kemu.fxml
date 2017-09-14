@@ -22,10 +22,9 @@
                      <children>
                         <TableView fx:id="BalanceTable" prefHeight="513.0" prefWidth="1000.0">
                           <columns>
-                            <TableColumn fx:id="code1" prefWidth="303.0" text="科目编码" />
-                            <TableColumn fx:id="name1" prefWidth="295.0" text="科目名称" />
-                              <TableColumn fx:id="direction1" prefWidth="178.0" text="余额方向" />
-                              <TableColumn fx:id="state1" prefWidth="222.0" text="状态" />
+                            <TableColumn fx:id="code1" prefWidth="344.0" text="科目编码" />
+                            <TableColumn fx:id="name1" prefWidth="461.0" text="科目名称" />
+                              <TableColumn fx:id="direction1" prefWidth="191.0" text="余额方向" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -37,10 +36,9 @@
                      <children>
                         <TableView fx:id="debitTable" prefHeight="513.0" prefWidth="1000.0">
                            <columns>
-                              <TableColumn fx:id="code2" prefWidth="303.0" text="科目编码" />
-                              <TableColumn fx:id="name2" prefWidth="295.0" text="科目名称" />
-                              <TableColumn fx:id="direction2" prefWidth="178.0" text="余额方向" />
-                              <TableColumn fx:id="state2" prefWidth="222.0" text="状态" />
+                              <TableColumn fx:id="code2" prefWidth="346.0" text="科目编码" />
+                              <TableColumn fx:id="name2" prefWidth="362.0" text="科目名称" />
+                              <TableColumn fx:id="direction2" prefWidth="291.0" text="余额方向" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -54,8 +52,7 @@
                            <columns>
                               <TableColumn fx:id="code3" prefWidth="303.0" text="科目编码" />
                               <TableColumn fx:id="name3" prefWidth="295.0" text="科目名称" />
-                              <TableColumn fx:id="direction3" prefWidth="178.0" text="余额方向" />
-                              <TableColumn fx:id="state3" prefWidth="222.0" text="状态" />
+                              <TableColumn fx:id="direction3" prefWidth="401.0" text="余额方向" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -69,8 +66,7 @@
                            <columns>
                               <TableColumn fx:id="code4" prefWidth="303.0" text="科目编码" />
                               <TableColumn fx:id="name4" prefWidth="295.0" text="科目名称" />
-                              <TableColumn fx:id="direction4" prefWidth="178.0" text="余额方向" />
-                              <TableColumn fx:id="state4" prefWidth="222.0" text="状态" />
+                              <TableColumn fx:id="direction4" prefWidth="401.0" text="余额方向" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -83,12 +79,26 @@
                         <TableView fx:id="FeeTable" prefHeight="513.0" prefWidth="1000.0">
                            <columns>
                               <TableColumn fx:id="code5" prefWidth="303.0" text="科目编码" />
-                              <TableColumn fx:id="name5" prefWidth="295.0" text="科目名称" />
-                              <TableColumn fx:id="direction5" prefWidth="178.0" text="余额方向" />
-                              <TableColumn fx:id="state5" prefWidth="222.0" text="状态" />
+                              <TableColumn fx:id="name5" prefWidth="294.0" text="科目名称" />
+                              <TableColumn fx:id="direction5" minWidth="0.0" prefWidth="402.0" text="余额方向" />
                            </columns>
                         </TableView>
                      </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="其他">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="other" prefHeight="509.0" prefWidth="1000.0">
+                          <columns>
+                            <TableColumn fx:id="code6" prefWidth="339.0" text="科目编码" />
+                            <TableColumn fx:id="name6" prefWidth="407.0" text="科目名称" />
+                              <TableColumn fx:id="direction6" prefWidth="253.0" text="余额方向" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
               </content>
             </Tab>
         </tabs>

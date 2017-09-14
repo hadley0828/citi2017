@@ -58,31 +58,40 @@ public class ZhangtaoController implements ControlledScreen {
          * 行业初始化
          * 显示原来账套信息
          */
-//        UserVO uservo= StaticFactory.getUserVO();
-//        AccountSetVO accountvo=new UserManagementImpl().getAccountSetByCompanyID(uservo.getCompanyID());
-//        compName.setText(accountvo.getCompany_name());
-//        compAddress.setText(accountvo.getLocation());
-//        creditCode.setText(accountvo.getCreditCode());
-//        contact.setText(accountvo.getContact());
-//        //时间转化为datepicker？
-//
-//        //两个行业初始化
-        SettingImpl impl=new SettingImpl();
-        ArrayList<String> superlist= impl.getAllSuperIndustry();
-        industryType.getItems().addAll(superlist);
-        industryType.getSelectionModel().selectedIndexProperty().addListener(
-                new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        String temp=industryType.getItems().get(newValue.intValue());
-                        ArrayList<String> sublist=impl.getAllSubIndustry(String.valueOf(temp));
-                        subType.getItems().clear();
+        try {
+            SettingImpl impl = new SettingImpl();
+            ArrayList<String> superlist = impl.getAllSuperIndustry();
+            System.out.print(superlist);
+            industryType.getItems().addAll(superlist);
+            industryType.getSelectionModel().selectedIndexProperty().addListener(
+                    new ChangeListener<Number>() {
+                        @Override
+                        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                            String temp = industryType.getItems().get(newValue.intValue());
+                            ArrayList<String> sublist = impl.getAllSubIndustry(String.valueOf(temp));
+                            subType.getItems().clear();
 
-                        subType.getItems().addAll(sublist);
+                            subType.getItems().addAll(sublist);
 
+                        }
                     }
-                }
-        );
+            );
+
+
+            UserVO uservo = StaticFactory.getUserVO();
+
+            AccountSetVO accountvo = new UserManagementImpl().getAccountSetByCompanyID(uservo.getCompanyID());
+            compName.setText(accountvo.getCompany_name());
+            compAddress.setText(accountvo.getLocation());
+            creditCode.setText(accountvo.getCreditCode());
+            contact.setText(accountvo.getContact());
+            //时间转化为datepicker？
+
+            //两个行业初始化
+
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
 
 
 
