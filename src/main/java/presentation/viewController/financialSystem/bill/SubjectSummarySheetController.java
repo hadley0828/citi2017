@@ -52,10 +52,10 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
         factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
-            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
-            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
-            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
-            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
             updateTable();

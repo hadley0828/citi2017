@@ -61,10 +61,10 @@ public class GeneralBillController implements Initializable, ControlledScreen {
         factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
-            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
-            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
-            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
-            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
 
@@ -104,7 +104,8 @@ public class GeneralBillController implements Initializable, ControlledScreen {
         for (TotalAccountVo vo: totalAccountVos) {
             ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
             for (TotalAccountAmountVo amountVo: amountVoArrayList) {
-                data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
+                if (amountVo.getBalance() != 0)
+                    data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
             }
         }
     }

@@ -61,10 +61,10 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
         factoryId = StaticFactory.getUserVO().getCompanyID();
         
         bookSearch.getConfirm_btn().setOnAction(event -> {
-            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
-            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
-            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
-            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
 
@@ -85,8 +85,6 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
     }
 
     private void initialTable() {
-
-
         billTable.setItems(data);
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
@@ -103,6 +101,7 @@ public class SubjectBalanceSheetController implements Initializable, ControlledS
         data.clear();
         ArrayList<BalanceTableOneClause> balanceTableAllClauses = accountBooksBl.getBalanceTableAllClauses(bookSearchVo, factoryId);
         for (BalanceTableOneClause clause: balanceTableAllClauses) {
+
             data.add(new SubjectBalanceModel(clause.getSubjectId(), clause.getSubjectName(), clause.getBeginDebit(), clause.getBeginCredit(), clause.getCurrentDebit(), clause.getCurrentCredit(), clause.getEndDebit(), clause.getEndCredit()));
         }
     }

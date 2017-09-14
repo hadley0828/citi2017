@@ -105,10 +105,9 @@ public class DetailBillController implements Initializable, ControlledScreen {
             for (String sub: subjectsList) {
                 Button btn = new Button(sub);
                 btn.setOnAction((ActionEvent e) -> {
-                    updateTable(btn.getText());
-                    System.out.println(sub);
+                    updateTable(sub);
                 });
-                rightSubjects.getChildren().add(new Button(sub));
+                rightSubjects.getChildren().add(btn);
             }
     }
 
@@ -117,7 +116,8 @@ public class DetailBillController implements Initializable, ControlledScreen {
         DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
         ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
         for (DetailAccountAmountVo vo: amountVoArrayList) {
-            data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));
+            if (vo.getBalance() != 0)
+                data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));
         }
 
         billTable.setItems(data);
