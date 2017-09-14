@@ -75,9 +75,10 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
         });
 
-        MenuItem popItem = new MenuItem();
-        popItem.setGraphic(bookSearch);
-        select_menu.getItems().setAll(popItem);
+        CustomMenuItem menuItem = new CustomMenuItem(bookSearch);
+        menuItem.setHideOnClick(false);
+        select_menu.getItems().addAll(menuItem);
+        select_menu.setFocusTraversable(false);
 
         initialSubjectsList();
 

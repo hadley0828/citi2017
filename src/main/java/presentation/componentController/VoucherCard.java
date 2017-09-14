@@ -30,6 +30,8 @@ public class VoucherCard extends BorderPane {
     private AmountTotalVo amountTotalVo;
     private String date;
     private String voucherId;
+    private Button modify_btn;
+    private Button delete_btn;
 
     public VoucherCard(VoucherVo voucher) {
         singleVoucher = voucher.getAmountList();
@@ -41,8 +43,8 @@ public class VoucherCard extends BorderPane {
     }
 
     private void initControl() {
-        Button modify_btn = new Button("修改");
-        Button delete_btn = new Button("删除");
+        modify_btn = new Button("修改");
+        delete_btn = new Button("删除");
         Label date_label = new Label("日期： " + date);
         Label voucher_label = new Label("凭证字号：" + voucherId);
 
@@ -86,5 +88,13 @@ public class VoucherCard extends BorderPane {
 
         setAlignment(cardTable, Pos.CENTER);
         setCenter(cardTable);
+    }
+
+    public Button getDelete_btn() {
+        return delete_btn;
+    }
+
+    public Button getModify_btn() {
+        return modify_btn;
     }
 }

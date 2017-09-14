@@ -3,6 +3,7 @@ package presentation.viewController;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 import vo.voucher.VoucherSearchVo;
+import vo.voucher.VoucherVo;
 
 import java.time.LocalDate;
 
@@ -110,5 +111,20 @@ public class StaticFactory {
         return searchVo;
     }
 
+    static String amendId;
+    public static void setAmendId(String str) {
+        amendId = str;
+    }
+    public static String getAmendId() {
+        return amendId;
+    }
+
+    static boolean ifUpdated;
+    public static void setIfUpdated(boolean bool) {
+        ifUpdated = bool;
+    }
+    public static boolean getIfUpdated() {
+        return ifUpdated;
+    }
 
 }

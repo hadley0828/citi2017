@@ -35,8 +35,8 @@ public class VoucherSearch extends GridPane {
         cancel_btn = new Button("取消");
         reset_btn = new Button("重置");
 
-        confirm_btn.addEventHandler(ActionEvent.ACTION, (e)-> OnConfirm());
-        reset_btn.setOnAction(event -> OnReset());
+        confirm_btn.addEventHandler(ActionEvent.ACTION, e -> OnConfirm());
+        reset_btn.addEventHandler(ActionEvent.ACTION, e -> OnReset());
 
         subject_item = new SubjectsCombo();
         startPeriod_item = new PeriodCombo();
@@ -154,5 +154,9 @@ public class VoucherSearch extends GridPane {
 
     public Button getCancel_btn() {
         return cancel_btn;
+    }
+
+    public Button getReset_btn() {
+        return reset_btn;
     }
 }

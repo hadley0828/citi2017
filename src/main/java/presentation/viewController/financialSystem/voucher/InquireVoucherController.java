@@ -13,6 +13,7 @@ import presentation.componentController.VoucherCard;
 import presentation.componentController.VoucherSearch;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.screenController.ScreensFramework;
 import presentation.viewController.StaticFactory;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
@@ -40,21 +41,27 @@ public class InquireVoucherController implements Initializable, ControlledScreen
     private ArrayList<String> voucherIdList;
     private String factoryId;
 
+    private ScreensController parentController;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         voucherSearch = new VoucherSearch();
         CustomMenuItem menuItem = new CustomMenuItem(voucherSearch);
         menuItem.setHideOnClick(false);
         selectMenu.getItems().addAll(menuItem);
-        selectMenu.setFocusTraversable(false);
         selectMenu.getStylesheets().add("/css/CustomSearch.css");
         voucherSearch.getCancel_btn().setOnAction(event -> {
             selectMenu.hide();
         });
 
-        voucherSearch.getConfirm_btn().addEventHandler(ActionEvent.ACTION, (e) -> {
+        voucherSearch.getConfirm_btn().addEventHandler(ActionEvent.ACTION, e -> {
             setVoucherSearch(StaticFactory.getVoucherSearchVo());
             updateList();
+            selectMenu.hide();
+        });
+
+        voucherSearch.getReset_btn().addEventHandler(ActionEvent.ACTION, e -> {
+            selectMenu.hide();
         });
 
 
@@ -76,11 +83,14 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         searchVo.setSortOrder(1);
         updateList();*/
 
+       if (StaticFactory.getIfUpdated())
+           updateList();
+
     }
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-
+        parentController = screenPage;
     }
 
     public void setVoucherSearch(VoucherSearchVo searchVo) {
@@ -97,6 +107,15 @@ public class InquireVoucherController implements Initializable, ControlledScreen
                 voucherIdList.add(vo.getVoucherId());
                 VoucherCard voucherCard = new VoucherCard(vo);
                 voucher_list.getChildren().add(voucherCard);
+                voucherCard.getDelete_btn().setOnAction(event -> {
+                    voucherBl.deleteOneVoucher(vo.getVoucherId(), factoryId);
+                    updateList();
+                });
+                voucherCard.getModify_btn().setOnAction(event -> {
+                    voucherBl.amendOneVoucher(vo.getVoucherId(), vo, factoryId);
+                    StaticFactory.setAmendId(vo.getVoucherId());
+                    parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+                });
             }
         }
     }
@@ -114,7 +133,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("导入");
         File file = fileChooser.showOpenDialog(voucher_list.getScene().getWindow());
-        voucherBl.importFromExcel(file.getAbsolutePath(), factoryId);
+        voucherList = voucherBl.importFromExcel(file.getAbsolutePath(), factoryId);
         updateList();
     }
 }
