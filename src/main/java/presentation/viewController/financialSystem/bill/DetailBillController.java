@@ -58,6 +58,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     private BookSearchVo bookSearchVo;
     private AccountBooksBlService accountBooksBl;
     private ObservableList<DetailBillModel> data = FXCollections.observableArrayList();
+    private ArrayList<String> subjectsList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -66,13 +67,13 @@ public class DetailBillController implements Initializable, ControlledScreen {
         factoryId = StaticFactory.getUserVO().getCompanyID();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
-            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getValue());
-            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getValue());
-            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getValue());
-            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getValue());
+            bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setEndPeriod(bookSearch.getEndPeriod_item().getSelectionModel().getSelectedItem());
+            bookSearchVo.setStartSubjectId(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
+            bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
-
+            updateTable(subjectsList.get(0));
         });
 
         CustomMenuItem menuItem = new CustomMenuItem(bookSearch);
@@ -91,6 +92,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
         directionCol.setCellValueFactory(cellData -> cellData.getValue().directionProperty());
         balanceCol.setCellValueFactory(cellData -> cellData.getValue().balanceProperty());
         billTable.setItems(data);
+
     }
 
     @Override
@@ -99,7 +101,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     }
 
     private void initialSubjectsList() {
-        ArrayList<String> subjectsList = accountBooksBl.getAllExistedSubjectId(factoryId);
+        subjectsList = accountBooksBl.getAllExistedSubjectId(factoryId);
             for (String sub: subjectsList) {
                 Button btn = new Button(sub);
             btn.setOnAction((ActionEvent e) -> {
@@ -110,6 +112,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
     }
 
     private void updateTable(String subjectId) {
+        data.clear();
         DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
         ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
         for (DetailAccountAmountVo vo: amountVoArrayList) {
