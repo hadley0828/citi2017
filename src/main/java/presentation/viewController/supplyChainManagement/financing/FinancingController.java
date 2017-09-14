@@ -76,11 +76,18 @@ public class FinancingController implements ControlledScreen{
         advice2.setDisable(true);
         stockNum.setDisable(true);
         stockChoice.getItems().addAll(service.InventoryTypes(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()));
-        stockChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+//        stockChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                stockMortgage.setDisable(false);
+//                stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),StaticFactory.getDay())+"");
+//            }
+//        });
+        stockChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 stockMortgage.setDisable(false);
-                stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),StaticFactory.getDay())+"");
+                stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),newValue,StaticFactory.getDay())+"");
             }
         });
 //        stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),StaticFactory.getMonth())+"");
