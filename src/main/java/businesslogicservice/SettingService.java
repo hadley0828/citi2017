@@ -12,19 +12,6 @@ import java.util.ArrayList;
  */
 public interface SettingService {
 
-    /**
-     * 一个公司的期初设置
-     * @param companyID
-     * @return
-     */
-    public ArrayList<SubjectsInitialVO> setInitialSubjectsBalance(String companyID);
-
-    /**
-     * 一个公司的安全库存量设置
-     * @param companyID
-     * @return
-     */
-    public ArrayList<SafeInventoryVo> setSafeInventory(String companyID);
 
 
     /**
@@ -53,4 +40,9 @@ public interface SettingService {
      * @return
      */
     public ArrayList<UserVO> getAllUserVoByAccountId(String account_id);
+
+
+    public boolean setInitialSubjects(ArrayList<SubjectsInitialVO> list,String company_id);
+
+    public boolean setSafetyInventory(ArrayList<SafeInventoryVo> list,String company_id);
 }

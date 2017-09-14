@@ -1,0 +1,43 @@
+Button{
+    -fx-background-color: rgb(255,135,98);
+    -fx-text-fill: #e6e6e6;
+}
+Button:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+.table-row-cell{
+    -fx-pref-height: 30;
+}
+TableView{
+    overflow: hidden;
+    -fx-border-color: rgb(212,212,212);
+    -fx-border-width: 1px 1px 0 0;
+
+    /*-fx-control-inner-background:red;*/
+    /*-fx-control-inner-background-alt:pink;*/
+}
+TableView:focused{
+    -fx-border-width: 0;
+}
+TableView .table-column{
+    -fx-alignment: CENTER;
+    /*-fx-background-color: rgb(245,255,246);*/
+}
+TableView .table-cell{
+    /*overflow: hidden;*/
+    -fx-border-color: rgb(212,212,212);
+    -fx-border-width: 1px 1px 0 0;
+}
+
+.table-row-cell:hover {
+    -fx-background: rgb(255,250,208);
+}
+.table-row-cell:selected {
+    -fx-background: rgb(255,250,208);
+}

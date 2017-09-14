@@ -13,6 +13,7 @@ import javafx.util.Callback;
 import presentation.componentController.Datebar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.viewController.StaticFactory;
 import vo.BalanceSheetItemVo;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class BalanceSheetController implements ControlledScreen{
     //为资产表添加数据
     public void setBalanceTable(){
 //        System.out.print(bar.getDate());
-        bs_data=balanceSheetService.getBalanceSheet("001",bar.getDate());
+        bs_data=balanceSheetService.getBalanceSheet(StaticFactory.getUserVO().getCompanyID(),bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
         ArrayList<BalanceSheetItemVo> p3=bs_data.get("资产合计");

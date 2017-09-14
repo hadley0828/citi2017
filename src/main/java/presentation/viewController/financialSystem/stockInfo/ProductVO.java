@@ -1,15 +1,12 @@
 package presentation.viewController.financialSystem.stockInfo;
 
-import javafx.beans.property.SimpleStringProperty;
-
 import java.sql.Timestamp;
 
 /**
- * Created by YZ on 2017/9/12.
+ * Created by YZ on 2017/9/13.
  */
-public class RawVO {
-//        private String rawMaterial_variety;    //原材料种类
-    private SimpleStringProperty rawMaterial_variety;
+public class ProductVO {
+        private String product_variety;    //原材料种类
         private String voucher_id;  //凭证编号
         private String datetime;    //时间
         private boolean is_delivery_ontime;  //是否准时交货
@@ -22,13 +19,12 @@ public class RawVO {
         private String out_account; //发出金额
         private String balance_num;    //结存数量
 
-    public RawVO(){
+    public ProductVO(){
 
     }
-        public RawVO(String rMaterial_variety, String voucher_id, String datetime, boolean is_delivery_ontime, boolean is_return, String input_num,String input_price, String input_account,
-                     String out_num, String out_price, String out_account, String balance_num) {
-//            this.rawMaterial_variety = rawMaterial_variety;
-            this.rawMaterial_variety=new SimpleStringProperty(rMaterial_variety);
+        public ProductVO(String product_variety, String voucher_id, String datetime, boolean is_delivery_ontime, boolean is_return, String input_num,String input_price, String input_account,
+                         String out_num, String out_price, String out_account, String balance_num) {
+            this.product_variety = product_variety;
             this.voucher_id = voucher_id;
             this.datetime = datetime;
             this.is_delivery_ontime = is_delivery_ontime;
@@ -42,11 +38,8 @@ public class RawVO {
             this.balance_num = balance_num;
         }
 
-//        public SimpleStringProperty rawMaterial_varityProperty(){
-//            return rawMaterial_variety;
-//        }
-        public String getRawMaterial_variety() {
-            return rawMaterial_variety.get();
+        public String getProduct_variety() {
+            return product_variety;
         }
 
         public boolean isIs_delivery_ontime() {
@@ -125,8 +118,8 @@ public class RawVO {
             this.out_num = out_num;
         }
 
-        public void setRawMaterial_variety(String raw_variety) {
-            rawMaterial_variety.set(raw_variety);
+        public void setProduct_variety(String product_variety) {
+            this.product_variety = product_variety;
         }
 
         public void setVoucher_id(String voucher_id) {

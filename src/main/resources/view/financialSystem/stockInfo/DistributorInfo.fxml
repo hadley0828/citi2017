@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="392.0" prefWidth="1115.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.financialSystem.stockInfo.DistributorInfo">
+<AnchorPane prefHeight="392.0" prefWidth="1115.0" stylesheets="@../../../css/Info.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.stockInfo.DistributorInfoController">
    <children>
    
        <Label layoutX="35.0" layoutY="46.0" text="分销商产品的信息录入">
@@ -17,29 +17,29 @@
        </Label>
        <TableView fx:id="distributor_product" layoutX="9.0" layoutY="85.0" prefHeight="225.0" prefWidth="1097.0">
            <columns>
-               <TableColumn prefWidth="132.0" sortable="false" text="产品种类" />
-               <TableColumn prefWidth="79.0" sortable="false" text="凭证编号" />
-               <TableColumn prefWidth="137.0" sortable="false" text="时间" />
-               <TableColumn prefWidth="87.0" sortable="false" text="是否准时发货" />
-               <TableColumn prefWidth="89.0" sortable="false" text="是否属于退货" />
+               <TableColumn fx:id="product_1" prefWidth="132.0" sortable="false" text="产品种类" />
+               <TableColumn fx:id="product_2" prefWidth="79.0" sortable="false" text="凭证编号" />
+               <TableColumn fx:id="product_3" prefWidth="137.0" sortable="false" text="时间" />
+               <TableColumn fx:id="product_4" prefWidth="87.0" sortable="false" text="是否准时发货" />
+               <TableColumn fx:id="product_5" prefWidth="89.0" sortable="false" text="是否属于退货" />
                <TableColumn prefWidth="225.0" sortable="false" text="收入">
                    <columns>
-                       <TableColumn prefWidth="67.0" sortable="false" text="数量" />
-                       <TableColumn prefWidth="71.0" sortable="false" text="单价" />
-                       <TableColumn prefWidth="72.0" sortable="false" text="金额" />
+                       <TableColumn fx:id="product_6" prefWidth="67.0" sortable="false" text="数量" />
+                       <TableColumn fx:id="product_7" prefWidth="71.0" sortable="false" text="单价" />
+                       <TableColumn fx:id="product_8" prefWidth="72.0" sortable="false" text="金额" />
                    </columns>
                </TableColumn>
                <TableColumn prefWidth="225.0" sortable="false" text="发出">
                    <columns>
-                       <TableColumn prefWidth="68.0" sortable="false" text="数量" />
-                       <TableColumn prefWidth="69.0" sortable="false" text="单价" />
-                       <TableColumn prefWidth="75.0" sortable="false" text="金额" />
+                       <TableColumn fx:id="product_9" prefWidth="68.0" sortable="false" text="数量" />
+                       <TableColumn fx:id="product_10" prefWidth="69.0" sortable="false" text="单价" />
+                       <TableColumn fx:id="product_11" prefWidth="75.0" sortable="false" text="金额" />
                    </columns>
                </TableColumn>
-               <TableColumn prefWidth="150.0" sortable="false" text="结存量" />
+               <TableColumn fx:id="product_12" prefWidth="150.0" sortable="false" text="结存量" />
            </columns>
        </TableView>
-      <Button layoutX="533.0" layoutY="333.0" mnemonicParsing="false" text="完成">
+      <Button fx:id="add" layoutX="533.0" layoutY="333.0" mnemonicParsing="false" onAction="#addVOs" text="完成">
          <font>
             <Font size="15.0" />
          </font>

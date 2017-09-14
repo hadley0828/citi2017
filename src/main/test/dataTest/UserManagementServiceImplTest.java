@@ -1,6 +1,8 @@
 package dataTest;
 
+import data.SettingDataServiceImpl;
 import data.UserManagementServiceImpl;
+import dataservice.SettingDataService;
 import dataservice.UserManagementService;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +10,10 @@ import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
 import util.EnumPackage.ResultMessage;
+import vo.userManagement.SubjectsInitialVO;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,10 +23,12 @@ import static org.junit.Assert.assertEquals;
 public class UserManagementServiceImplTest {
 
     UserManagementService userManagementService;
+    SettingDataService settingDataService;
 
     @Before
     public void setUp(){
         userManagementService = new UserManagementServiceImpl();
+        settingDataService = new SettingDataServiceImpl();
     }
 
 
@@ -92,6 +98,18 @@ public class UserManagementServiceImplTest {
         System.out.println(userManagementService.isCompanyUser("01"));
         System.out.println(userManagementService.isCompanyUser("02"));
         System.out.println(userManagementService.isFinancialUser("02"));
+    }
+
+    @Test
+    public void testsetInitialSubjects(){
+        ArrayList<SubjectsInitialVO> list = new ArrayList<>();
+        SubjectsInitialVO vo = new SubjectsInitialVO();
+        vo.setSubejcts_id("1001");
+        vo.setPeroidRemain(100);
+        vo.setDebitSum(100);
+        vo.setCreditSum(100);
+        list.add(vo);
+        System.out.println(settingDataService.setInitialSubjects(list,"001"));
     }
 
 
