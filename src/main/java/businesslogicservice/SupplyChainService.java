@@ -1,10 +1,10 @@
 package businesslogicservice;
 
-import java.util.List;
-
 import po.SupplyChainPO;
 import vo.CompanyVo;
 import vo.SupplyChainPerformanceVo;
+
+import java.util.List;
 
 /**
  * 
@@ -33,7 +33,6 @@ public interface SupplyChainService {
 	/**
 	 * 
 	 * @param company_id 公司id
-	 * @param period 时间 年月yyyy-mm-dd
 	 * @return 应收帐款对象
 	 */
 	public List<String> AcountReceivable(String company_id,String time);
@@ -57,7 +56,6 @@ public interface SupplyChainService {
 	/**
 	 * 
 	 * @param company_id
-	 * @param period 时间 年月yyyy-mm-dd
 	 * @return 库存种类
 	 */
 	public List<String> InventoryTypes(String company_id,String time);

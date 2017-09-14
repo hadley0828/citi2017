@@ -1,6 +1,8 @@
 package dataTest;
 
+import data.SettingDataServiceImpl;
 import data.SupplyChainDataServiceImpl;
+import dataservice.SettingDataService;
 import dataservice.SupplyChainDataService;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +17,12 @@ import java.util.List;
 public class SupplyChainDataServiceImplTest {
 
     SupplyChainDataService supplyChainDataService;
+    SettingDataService settingDataService;
 
     @Before
     public void init(){
         supplyChainDataService = new SupplyChainDataServiceImpl();
+        settingDataService = new SettingDataServiceImpl();
     }
 
     @Test
@@ -80,6 +84,13 @@ public class SupplyChainDataServiceImplTest {
         for (VoucherAmountPO po : list){
             System.out.println(po.getV_id());
         }
+    }
+
+    @Test
+    public void testSetSupplyChain(){
+        System.out.println(settingDataService.setSupplyChain("111","生产商","222","333"));
+        System.out.println(settingDataService.setSupplyChain("444","供应商","555","666"));
+        System.out.println(settingDataService.setSupplyChain("777","分销商","888","999"));
     }
 
 }

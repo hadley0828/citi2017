@@ -45,4 +45,6 @@ public interface SettingService {
     public boolean setInitialSubjects(ArrayList<SubjectsInitialVO> list,String company_id);
 
     public boolean setSafetyInventory(ArrayList<SafeInventoryVo> list,String company_id);
+
+    public boolean setSupplyChain(String company_id,String chainindex,String upper,String down);
 }
