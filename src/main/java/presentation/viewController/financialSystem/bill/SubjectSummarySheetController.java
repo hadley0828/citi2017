@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import presentation.componentController.BookSearch;
 import presentation.dataModel.SubjectSummaryModel;
 import presentation.screenController.ControlledScreen;
@@ -64,9 +61,10 @@ public class SubjectSummarySheetController implements Initializable, ControlledS
             updateTable();
         });
 
-        MenuItem popItem = new MenuItem();
-        popItem.setGraphic(bookSearch);
-        select_menu.getItems().setAll(popItem);
+        CustomMenuItem menuItem = new CustomMenuItem(bookSearch);
+        menuItem.setHideOnClick(false);
+        select_menu.getItems().addAll(menuItem);
+        select_menu.setFocusTraversable(false);
 
         initialTable();
     }

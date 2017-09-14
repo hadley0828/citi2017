@@ -10,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import presentation.StaticFactory;
+import presentation.screenController.ControlledScreen;
+import presentation.screenController.ScreensController;
 import vo.SupplyChainPerformanceVo;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Created by YZ on 2017/9/9.
  */
-public class PerformanceAppraisalController {
+public class PerformanceAppraisalController implements ControlledScreen {
     @FXML
     private TableView gain_table;
     @FXML
@@ -107,6 +109,7 @@ public class PerformanceAppraisalController {
         op_back.setCellValueFactory(new PropertyValueFactory("back"));
 
         op_table.setItems(o_list);
+        op_coin.setText(vo.getSupply_chain()[1]+"");
 
     }
 
@@ -124,6 +127,8 @@ public class PerformanceAppraisalController {
 
         develop_table.setItems(d_list);
 
+        develop_profit_increase.setText(vo.getSupply_chain()[2]+"");
+
     }
 
     public void setDebtpay(){
@@ -138,6 +143,12 @@ public class PerformanceAppraisalController {
         debtpay_debt.setCellValueFactory(new PropertyValueFactory("balance"));
 
         debtpay_table.setItems(pay_list);
+
+        debtpay_balance.setText(vo.getSupply_chain()[3]+"");
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
 }

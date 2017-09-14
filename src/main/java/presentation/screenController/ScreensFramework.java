@@ -51,8 +51,15 @@ public interface ScreensFramework {
     String SUBJECT_SUMMARY_SHEET_SCREEN = "SubjectSummarySheet";
     String SUBJECT_SUMMARY_SHEET_SCREEN_FXML = "/view/financialSystem/bill/SubjectSummarySheet.fxml";
 
-    String PRO_DEBT_SCREEN = "Pro_debt";
-    String PRO_DEBT_SCREEN_FXML = "/view/financialSystem/reportForm/balanceSheet/BalanceSheet.fxml";
+    /*资产负债表*/
+    String BALANCESHEET_SCREEN="BalanceSheet";
+    String BALANCESHEET_SCREEN_FXML="/view/financialSystem/reportForm/balanceSheet/BalanceSheet.fxml";
+    /*现金流量表*/
+    String CASHFLOW_SCREEN="CashFlow";
+    String CASHFLOW_SCREEN_FXML="/view/financialSystem/reportForm/cashSheet/CashFlow.fxml";
+    /*利润表*/
+    String PROFITSHEET_SCREEN="ProfitSheet";
+    String PROFITSHEET_SCREEN_FXML="/view/financialSystem/reportForm/profitSheet/ProfitSheet.fxml";
 
     /*财务预警*/
     String FINANCIAL_WARNING_SCREEN = "FinancialWarning";
@@ -95,6 +102,14 @@ public interface ScreensFramework {
     String FINANCIAL_SETTING_SCREEN_FXML = "";
 
     /*库存管理*/
+    String STOCK_MANAGEMENT_SUPPLIER_SCREEN="Supplier";
+    String STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML="/view/supplyChainManagement/stock/Supplier.fxml";
+
+    String STOCK_MANAGEMENT_PRODUCER_SCREEN="Producer";
+    String STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML="/view/supplyChainManagement/stock/Producer.fxml";
+
+    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN="Distributor";
+    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML="/view/supplyChainManagement/stock/Distributor.fxml";
 
     /*现金流管理*/
     String CASH_FINANCE_SCREEN = "CashFinance";
@@ -110,7 +125,15 @@ public interface ScreensFramework {
     String PAY_STATE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/PayState.fxml";
 
     /*融资服务*/
+    String FINANCING_SCREE="Financing";
+    String FINANCING_SCREE_FXML="/view/supplyChainManagement/financing/Financing.fxml";
 
     /*绩效评价*/
+    String PERFORMANCE_APPRAISAL_SCREEN="PerformanceAppraisal";
+    String PERFORMANCE_APPRAISAL_SCREEN_FXML="/view/supplyChainManagement/performanceAppraisal/PerformanceAppraisal.fxml";
+
+    /*金融机构*/
+    String FINANCIALINSTITUTIONS_SCREEN="FinancialInstitutions";
+    String FINANCIALINSTITUTIONS_SCREEN_FXML="/view/supplyChainManagement/financialInstitutions/FinancialInstitutions.fxml";
 
 }

@@ -1,11 +1,8 @@
 package businesslogic;
 
 import businesslogicservice.AccountBooksBlService;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import data.SubjectDataServiceImpl;
-import data.VoucherDataServiceImpl;
 import dataservice.SubjectDataService;
-import dataservice.VoucherDataService;
 import po.SubjectsPO;
 import util.DateConvert;
 import util.SubjectBalanceHelper;
@@ -23,12 +20,9 @@ import java.util.HashSet;
  */
 public class AccountBooksBlImpl implements AccountBooksBlService {
 
-    private VoucherDataService voucherDataService;
     private SubjectDataService subjectDataService;
 
     public AccountBooksBlImpl(){
-
-        voucherDataService=new VoucherDataServiceImpl();
         subjectDataService=new SubjectDataServiceImpl();
     }
 
