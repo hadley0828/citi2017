@@ -102,6 +102,11 @@ public class StaticFactory {
         LocalDate now = LocalDate.now();
         return now.toString().substring(0,7);
     }
+    public static String getDay(){
+        LocalDate now = LocalDate.now();
+        return now.toString().substring(0,10);
+    }
+
     static String company_name;
     public static void setCompany_name(String c){
         company_name=c;

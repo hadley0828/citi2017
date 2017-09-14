@@ -75,6 +75,7 @@ public class BalanceSheetController implements ControlledScreen{
             public void handle(javafx.scene.input.MouseEvent event) {
                 System.out.print(bar.getMidMonths());
                 if(bar.getMidMonths().indexOf(bar.getDate())>0) {
+                    System.out.print("click");
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
                     bar.changePro();
@@ -86,6 +87,8 @@ public class BalanceSheetController implements ControlledScreen{
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
                 if(bar.getMidMonths().indexOf(bar.getDate())<bar.getMidMonths().size()-1) {
+//                    System.out.print(bar.getDate());
+//                    System.out.print(bar.getMidMonths());
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).split("-")[1]);
                     bar.changePro();
