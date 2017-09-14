@@ -112,6 +112,9 @@ public interface ScreensFramework {
     String STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML="/view/supplyChainManagement/stock/Distributor.fxml";
 
     /*现金流管理*/
+    String CASH_LAYOUT_SCREEN = "CashLayout";
+    String CASH_LAYOUT_SCREEN_FXML = "/view/layout/CashManagementLayout.fxml";
+
     String CASH_FINANCE_SCREEN = "CashFinance";
     String CASH_FINANCE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/CashFinance.fxml";
 
@@ -125,8 +128,8 @@ public interface ScreensFramework {
     String PAY_STATE_SCREEN_FXML = "/view/supplyChainManagement/cashManagement/PayState.fxml";
 
     /*融资服务*/
-    String FINANCING_SCREE="Financing";
-    String FINANCING_SCREE_FXML="/view/supplyChainManagement/financing/Financing.fxml";
+    String FINANCING_SCREEN="Financing";
+    String FINANCING_SCREEN_FXML="/view/supplyChainManagement/financing/Financing.fxml";
 
     /*绩效评价*/
     String PERFORMANCE_APPRAISAL_SCREEN="PerformanceAppraisal";

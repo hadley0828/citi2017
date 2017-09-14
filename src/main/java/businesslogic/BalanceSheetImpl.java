@@ -441,11 +441,11 @@ public class BalanceSheetImpl implements BalanceSheetService {
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(2);
-        headCell.setCellValue("借方余额");
+        headCell.setCellValue("期末余额");
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(3);
-        headCell.setCellValue("贷方余额");
+        headCell.setCellValue("年初余额");
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(4);
@@ -457,11 +457,11 @@ public class BalanceSheetImpl implements BalanceSheetService {
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(6);
-        headCell.setCellValue("借方余额");
+        headCell.setCellValue("期末余额");
         headCell.setCellStyle(cellStyle);
 
         headCell = hssfRow.createCell(7);
-        headCell.setCellValue("贷方余额");
+        headCell.setCellValue("年初余额");
         headCell.setCellStyle(cellStyle);
 
         // 添加数据内容
@@ -836,35 +836,19 @@ public class BalanceSheetImpl implements BalanceSheetService {
 
         if(year1<year2){
             for(int i=month1;i<=12;i++){
-                if(i<10){
-                    result.add(String.valueOf(year1)+"-0"+String.valueOf(i));
-                }else{
-                    result.add(String.valueOf(year1)+"-"+String.valueOf(i));
-                }
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
             }
             for(int i=year1+1;i<year2;i++){
                 for(int j=1;j<=12;j++){
-                    if(i<10){
-                        result.add(String.valueOf(year1)+"-0"+String.valueOf(i));
-                    }else{
-                        result.add(String.valueOf(year1)+"-"+String.valueOf(i));
-                    }
+                    result.add(String.valueOf(i)+"-"+String.valueOf(j));
                 }
             }
             for(int i=1;i<=month2;i++){
-                if(i<10){
-                    result.add(String.valueOf(year1)+"-0"+String.valueOf(i));
-                }else{
-                    result.add(String.valueOf(year1)+"-"+String.valueOf(i));
-                }
+                result.add(String.valueOf(year2)+"-"+String.valueOf(i));
             }
         }else{
             for(int i=month1;i<=month2;i++){
-                if(i<10){
-                    result.add(String.valueOf(year1)+"-0"+String.valueOf(i));
-                }else{
-                    result.add(String.valueOf(year1)+"-"+String.valueOf(i));
-                }
+                result.add(String.valueOf(year1)+"-"+String.valueOf(i));
             }
         }
         return result;
@@ -983,4 +967,10 @@ public class BalanceSheetImpl implements BalanceSheetService {
         }
         return year+"-"+month;
     }
+
+//    public static void main(String[] args){
+//        BalanceSheetImpl balanceSheet = new BalanceSheetImpl();
+//        ArrayList<String> time = balanceSheet.getMiddleMonth("2016-10","2017-09");
+//        System.out.println(time);
+//    }
 }

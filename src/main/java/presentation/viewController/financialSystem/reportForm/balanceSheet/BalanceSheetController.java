@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
+import presentation.StaticFactory;
 import presentation.componentController.Datebar;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -72,6 +73,7 @@ public class BalanceSheetController implements ControlledScreen{
         bar.getLast().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
+                System.out.print(bar.getMidMonths());
                 if(bar.getMidMonths().indexOf(bar.getDate())>0) {
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
@@ -95,7 +97,7 @@ public class BalanceSheetController implements ControlledScreen{
     //为资产表添加数据
     public void setBalanceTable(){
 //        System.out.print(bar.getDate());
-        bs_data=balanceSheetService.getBalanceSheet("001",bar.getDate());
+        bs_data=balanceSheetService.getBalanceSheet(StaticFactory.getUserVO().getCompanyID(),bar.getDate());
         ArrayList<BalanceSheetItemVo> p1=bs_data.get("流动资产");
         ArrayList<BalanceSheetItemVo> p2=bs_data.get("非流动资产");
         ArrayList<BalanceSheetItemVo> p3=bs_data.get("资产合计");

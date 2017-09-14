@@ -14,10 +14,9 @@
             <Button fx:id="zt_btn" layoutX="50.0" layoutY="71.0" mnemonicParsing="false" onAction="#missionSwitch" text="账套管理" />
             <Button fx:id="km_btn" layoutX="50.0" layoutY="103.0" mnemonicParsing="false" onAction="#missionSwitch" text="科目查看" />
             <Button fx:id="qc_btn" layoutX="50.0" layoutY="142.0" mnemonicParsing="false" onAction="#missionSwitch" text="期初设置" />
-            <Button fx:id="pzz_btn" layoutX="50.0" layoutY="188.0" mnemonicParsing="false" onAction="#missionSwitch" text="凭证字查看" />
-            <Button fx:id="pw_btn" layoutX="50.0" layoutY="234.0" mnemonicParsing="false" onAction="#missionSwitch" text="修改密码" />
-            <Button fx:id="link_btn" layoutX="50.0" layoutY="282.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链设置" />
-            <Button fx:id="qx_btn" layoutX="50.0" layoutY="317.0" mnemonicParsing="false" onAction="#missionSwitch" text="权限设置" />
+            <Button fx:id="pw_btn" layoutX="50.0" layoutY="184.0" mnemonicParsing="false" onAction="#missionSwitch" text="修改密码" />
+            <Button fx:id="link_btn" layoutX="50.0" layoutY="227.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链设置" />
+            <Button fx:id="qx_btn" layoutX="50.0" layoutY="273.0" mnemonicParsing="false" onAction="#missionSwitch" text="权限设置" />
          </children></AnchorPane>
       <StackPane fx:id="settingsStack" prefHeight="150.0" prefWidth="200.0" />
   </items>

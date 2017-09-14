@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Font?>
 <?import presentation.componentController.Datebar?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
     <content>
-        <Pane id="bigPane" prefHeight="1300.0" prefWidth="1180.0" stylesheets="@../../../../css/BalanceSheet.css">
+        <Pane id="bigPane" prefHeight="1300.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css">
             <children>
-                <Pane prefHeight="60.0" prefWidth="1180.0">
+                <Pane prefHeight="60.0" prefWidth="1000.0">
                     <children>
                         <Label layoutX="533.0" layoutY="16.0" text="现金流量表" textAlignment="CENTER" textFill="#808087">
                             <font>
@@ -25,7 +25,7 @@
                         </Label>
                     </children>
                 </Pane>
-                <Pane id="innerPane" layoutX="90.0" layoutY="60.0" prefHeight="1200.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css">
+                <Pane id="innerPane" layoutY="60.0" prefHeight="1200.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css">
                     <children>
                         <Button id="out" fx:id="out" layoutX="907.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="    导出" textFill="WHITE">
                             <font>

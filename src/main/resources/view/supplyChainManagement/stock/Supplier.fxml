@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -14,13 +12,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.stock.SupplierController">
+<AnchorPane prefHeight="700.0" prefWidth="987.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.stock.SupplierController">
    <children>
-      <Label layoutX="454.0" layoutY="40.0" prefHeight="50.0" prefWidth="273.0" text="供应商原材料库存监控表">
+      <Label layoutX="400.0" layoutY="40.0" prefHeight="50.0" prefWidth="273.0" text="供应商原材料库存监控表">
          <font>
             <Font name="Heiti SC Light" size="24.0" />
          </font></Label>
-      <TabPane layoutX="146.0" layoutY="102.0" prefHeight="542.0" prefWidth="889.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="48.0" layoutY="102.0" prefHeight="542.0" prefWidth="889.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="库存实时监控">
             <content>
