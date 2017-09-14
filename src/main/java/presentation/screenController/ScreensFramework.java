@@ -106,10 +106,10 @@ public interface ScreensFramework {
     String STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML="/view/supplyChainManagement/stock/Supplier.fxml";
 
     String STOCK_MANAGEMENT_PRODUCER_SCREEN="Producer";
-    String STOCK_MANAGEMENT_PRODUCER_SCREE_FXML="/view/supplyChainManagement/stock/Producer.fxml";
+    String STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML="/view/supplyChainManagement/stock/Producer.fxml";
 
-    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREE="Distributor";
-    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREE_FXML="/view/supplyChainManagement/stock/Distributor.fxml";
+    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN="Distributor";
+    String STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML="/view/supplyChainManagement/stock/Distributor.fxml";
 
     /*现金流管理*/
     String CASH_FINANCE_SCREEN = "CashFinance";

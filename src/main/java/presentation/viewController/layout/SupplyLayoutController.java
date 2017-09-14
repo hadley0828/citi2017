@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import presentation.screenController.ScreensFramework;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,10 +34,12 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*supplyController.loadScreen();
-        supplyController.loadScreen();
-        supplyController.loadScreen();
-        supplyController.loadScreen();*/
+        supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN,ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML);
+        supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN,ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML);
+        supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN,ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
+        supplyController.loadScreen(ScreensFramework.FINANCING_SCREE,ScreensFramework.FINANCING_SCREE_FXML);
+        supplyController.loadScreen(ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN,ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN_FXML);
+//        supplyController.loadScreen();
 
         supplyStack.getChildren().add(supplyController);
 
@@ -49,14 +52,14 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
 
     @FXML
     private void missionSwitch(ActionEvent event) {
-        /*if (event.getSource().equals(inventory_btn))
-            supplyController.setScreen();
-        else if (event.getSource().equals(cash_btn))
-            supplyController.setScreen();
+        if (event.getSource().equals(inventory_btn))
+            supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN);
+//        else if (event.getSource().equals(cash_btn))
+//            supplyController.setScreen();
         else if (event.getSource().equals(financing_btn))
-            supplyController.setScreen();
+            supplyController.setScreen(ScreensFramework.FINANCING_SCREE);
         else if (event.getSource().equals(performance_btn))
-            supplyController.setScreen();*/
+            supplyController.setScreen(ScreensFramework.PERFORMANCE_APPRAISAL_SCREEN);
     }
 
 }
