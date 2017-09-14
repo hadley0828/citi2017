@@ -53,13 +53,13 @@ public interface ScreensFramework {
 
     /*资产负债表*/
     String BALANCESHEET_SCREEN="BalanceSheet";
-    String BALANCESHEET_SCREEN_FXML="/view/financialSystem/reportForm/BalanceSheet.fxml";
+    String BALANCESHEET_SCREEN_FXML="/view/financialSystem/reportForm/balanceSheet/BalanceSheet.fxml";
     /*现金流量表*/
     String CASHFLOW_SCREEN="CashFlow";
-    String CASHFLOW_SCREEN_FXML="/view/financialSystem/reportForm/CashFlow.fxml";
+    String CASHFLOW_SCREEN_FXML="/view/financialSystem/reportForm/cashSheet/CashFlow.fxml";
     /*利润表*/
     String PROFITSHEET_SCREEN="ProfitSheet";
-    String PROFITSHEET_SCREEN_FXML="/view/financialSystem/reportForm/ProfitSheet.fxml";
+    String PROFITSHEET_SCREEN_FXML="/view/financialSystem/reportForm/profitSheet/ProfitSheet.fxml";
 
     /*财务预警*/
     String FINANCIAL_WARNING_SCREEN = "FinancialWarning";
