@@ -104,7 +104,7 @@ public class GeneralBillController implements Initializable, ControlledScreen {
         for (TotalAccountVo vo: totalAccountVos) {
             ArrayList<TotalAccountAmountVo> amountVoArrayList = vo.getAmountVoArrayList();
             for (TotalAccountAmountVo amountVo: amountVoArrayList) {
-                if (amountVo.getBalance() != 0)
+//                if (amountVo.getBalance() != 0)
                     data.add(new GeneralBillModel(amountVo.getSubjectId(), amountVo.getSubjectName(), amountVo.getPeriod(), amountVo.getAbstracts(), amountVo.getDebitAmount(), amountVo.getDebitAmount(), amountVo.getDirection(), amountVo.getBalance()));
             }
         }
