@@ -10,7 +10,7 @@
    <children>
       <Button fx:id="createButton" layoutX="294.0" layoutY="483.0" mnemonicParsing="false" onAction="#createButtonClicked" text="注册" />
       <Button fx:id="cancelButton" layoutX="536.0" layoutY="483.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="取消" />
-      <Label layoutX="455.0" layoutY="37.0" text="金融机构注册" />
+      <Label layoutX="455.0" layoutY="14.0" text="金融机构注册" />
       <GridPane layoutX="94.0" layoutY="93.0" prefHeight="316.0" prefWidth="669.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -36,5 +36,7 @@
             <TextField fx:id="FinanceName" GridPane.columnIndex="1" />
          </children>
       </GridPane>
+      <Label layoutX="94.0" layoutY="49.0" text="登陆账号" />
+      <TextField fx:id="loginid" layoutX="429.0" layoutY="44.0" prefHeight="30.0" prefWidth="334.0" />
    </children>
 </AnchorPane>
