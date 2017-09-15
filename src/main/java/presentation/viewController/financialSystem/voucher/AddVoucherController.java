@@ -229,12 +229,16 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             data.add(data.size() - 2, new VoucherModel("提现", "", "", ""));
         else
             data.add(0, new VoucherModel("提现", "", "", ""));
+
+        updateSum();
     }
 
     @FXML
     private void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
+
+        updateSum();
     }
 
     @FXML
