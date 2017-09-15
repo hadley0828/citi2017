@@ -17,8 +17,8 @@ public class RunRootLayout extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../view/layout/RootLayout.fxml"));
         Scene scene = new Scene(root);
 
-        primaryStage.setMinWidth(1000);
-        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(1180);
+        primaryStage.setMinHeight(750);
         primaryStage.setScene(scene);
 
         primaryStage.show();
