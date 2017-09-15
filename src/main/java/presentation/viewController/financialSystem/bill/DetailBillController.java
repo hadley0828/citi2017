@@ -104,11 +104,12 @@ public class DetailBillController implements Initializable, ControlledScreen {
     }
 
     private void updateList() {
-        ArrayList<TotalAccountVo> accountVos = accountBooksBl.getAllSubjectTotal(bookSearchVo, factoryId);
         subjectsList.clear();
         rightSubjects.getChildren().clear();
+        subjectsList.add(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem());
 
-        for (TotalAccountVo vo: accountVos) {
+//        a interface to get in-period subjects' ids and names is required
+/*        for (TotalAccountVo vo: accountVos) {
             String sub = vo.getSubjectId() + " " + vo.getSubjectName();
             subjectsList.add(sub);
             Button btn = new Button(sub);
@@ -116,13 +117,11 @@ public class DetailBillController implements Initializable, ControlledScreen {
                 updateTable(sub.split(" ")[0]);
             });
             rightSubjects.getChildren().add(btn);
-        }
+        }*/
     }
 
     private void updateTable(String subjectId) {
-        subjectsList.clear();
         data.clear();
-        rightSubjects.getChildren().clear();
         DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
         ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
         for (DetailAccountAmountVo vo: amountVoArrayList) {
