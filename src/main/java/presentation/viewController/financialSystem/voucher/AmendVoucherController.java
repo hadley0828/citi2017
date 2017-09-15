@@ -29,31 +29,31 @@ import java.util.ResourceBundle;
 
 public class AmendVoucherController implements Initializable, ControlledScreen {
     @FXML
-    private TableView<VoucherModel> voucherTable;
+    public TableView<VoucherModel> voucherTable;
     @FXML
-    private TableColumn<VoucherModel, String> abstractsCol;
+    public TableColumn<VoucherModel, String> abstractsCol;
     @FXML
-    private TableColumn<VoucherModel, String> subjectCol;
+    public TableColumn<VoucherModel, String> subjectCol;
     @FXML
-    private TableColumn<VoucherModel, String> debitCol;
+    public TableColumn<VoucherModel, String> debitCol;
     @FXML
-    private TableColumn<VoucherModel, String> creditCol;
+    public TableColumn<VoucherModel, String> creditCol;
 
     @FXML
-    private ComboBox<String> type_combo;
+    public ComboBox<String> type_combo;
     @FXML
-    private TextField number_field;
+    public TextField number_field;
     @FXML
-    private DatePicker date_picker;
+    public DatePicker date_picker;
     @FXML
-    private Label maker_label;
+    public Label maker_label;
 
-    private ScreensController parentController;
-    private VoucherBlService voucherBl;
-    private VoucherVo voucher;
-    private ObservableList<VoucherModel> data = FXCollections.observableArrayList();
-    private String factoryId;
-    private String amendId;
+    public ScreensController parentController;
+    public VoucherBlService voucherBl;
+    public VoucherVo voucher;
+    public ObservableList<VoucherModel> data = FXCollections.observableArrayList();
+    public String factoryId;
+    public String amendId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -74,7 +74,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         parentController = screenPage;
     }
 
-    private void initialTable() {
+    public void initialTable() {
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
@@ -136,7 +136,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         voucherTable.refresh();
     }
 
-    private void updateSum() {
+    public void updateSum() {
         data.remove(data.size() - 1);
 
         double sumDebit = 0;
@@ -157,7 +157,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    private void OnSave() {
+    public void OnSave() {
         ObservableList<VoucherModel> aid_data = voucherTable.getItems();
 
         AmountTotalVo amountTotalVo = new AmountTotalVo();
@@ -199,7 +199,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    private void OnAddRow() {
+    public void OnAddRow() {
         if (data.size() > 1)
             data.add(data.size() - 2, new VoucherModel("", "", "", ""));
         else
@@ -207,19 +207,19 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    private void OnDeleteRow() {
+    public void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
     }
 
     @FXML
-    private void OnDelete() {
+    public void OnDelete() {
         voucherBl.deleteOneVoucher(amendId, factoryId);
         OnCancel();
     }
 
     @FXML
-    private void OnCancel() {
+    public void OnCancel() {
         data.clear();
 //        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
 //        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);

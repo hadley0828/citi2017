@@ -14,10 +14,7 @@ import presentation.dataModel.DetailBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
-import vo.accountBook.BookSearchVo;
-import vo.accountBook.DetailAccountAmountVo;
-import vo.accountBook.DetailAccountVo;
-import vo.accountBook.TotalAccountVo;
+import vo.accountBook.*;
 import vo.voucher.VoucherVo;
 
 import java.net.URL;
@@ -107,17 +104,18 @@ public class DetailBillController implements Initializable, ControlledScreen {
         subjectsList.clear();
         rightSubjects.getChildren().clear();
         subjectsList.add(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem());
+        ArrayList<SubjectIdAndNameVo> andNameVos = accountBooksBl.getBetweenSubject(bookSearchVo.getStartSubjectId(), bookSearchVo.getEndSubjectId(), factoryId);
 
-//        a interface to get in-period subjects' ids and names is required
-/*        for (TotalAccountVo vo: accountVos) {
-            String sub = vo.getSubjectId() + " " + vo.getSubjectName();
+        for (SubjectIdAndNameVo vo: andNameVos) {
+            String sub = vo.getId() + " " + vo.getName();
             subjectsList.add(sub);
             Button btn = new Button(sub);
             btn.setOnAction((ActionEvent e) -> {
                 updateTable(sub.split(" ")[0]);
             });
             rightSubjects.getChildren().add(btn);
-        }*/
+        }
+
     }
 
     private void updateTable(String subjectId) {

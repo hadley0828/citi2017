@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -120,8 +121,8 @@ public class InquireVoucherController implements Initializable, ControlledScreen
                     parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
                     try {
                         FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.AMEND_VOUCHER_SCREEN_FXML));
-                        Pane pane = (Pane) myLoader.load();
-                        AmendVoucherController myScreenController = (AmendVoucherController) myLoader.getController();
+                        AnchorPane pane = myLoader.load();
+                        AmendVoucherController myScreenController = myLoader.getController();
                         myScreenController.updateTable();
                     } catch (IOException e) {
                         e.printStackTrace();
