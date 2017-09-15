@@ -12,13 +12,13 @@
 <?import javafx.scene.text.Font?>
 <?import presentation.componentController.Datebar?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
+<ScrollPane hbarPolicy="NEVER" vbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.reportForm.cashSheet.CashSheetController">
     <content>
         <Pane id="bigPane" prefHeight="1300.0" prefWidth="1000.0" stylesheets="@../../../../css/BalanceSheet.css">
             <children>
                 <Pane prefHeight="60.0" prefWidth="1000.0">
                     <children>
-                        <Label layoutX="533.0" layoutY="16.0" text="现金流量表" textAlignment="CENTER" textFill="#808087">
+                        <Label layoutX="463.0" layoutY="16.0" text="现金流量表" textAlignment="CENTER" textFill="#808087">
                             <font>
                                 <Font size="23.0" />
                             </font>

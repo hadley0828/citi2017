@@ -47,7 +47,8 @@ public class FinancingController implements ControlledScreen{
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 getDebtMortgage.setDisable(false);
 //                System.out.println(newValue);
-                getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),newValue,StaticFactory.getMonth())+""));
+//                System.out.print((service.getNetReceivables("001",newValue,"2017-09-15")+""));
+                getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),newValue,StaticFactory.getDay())+""));
             }
         });
 //        getDebtChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
