@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
+<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
   <items>
     <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
          <children>
@@ -14,7 +15,7 @@
             <Button fx:id="supply_btn" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
             <Button fx:id="signOut_btn" layoutX="946.0" layoutY="23.0" mnemonicParsing="false" text="登出" />
             <Button fx:id="settings_btn" layoutX="1014.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
-            <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0">
+            <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" layoutX="39">
                 <image>
                     <Image url="@../../images/logo.png" />
                 </image>
