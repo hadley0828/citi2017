@@ -2,6 +2,7 @@ package presentation.viewController.financialSystem.voucher;
 
 import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -61,11 +62,11 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         amendId = StaticFactory.getAmendId();
 
         voucherBl = new VoucherBlImpl();
-        voucher = voucherBl.getOneVoucher(amendId, factoryId);
+
         type_combo.getItems().addAll("记", "收", "付", "转");
-        initialTable();
 
         maker_label.setText(factoryId);
+        initialTable();
     }
 
     @Override
@@ -79,16 +80,8 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
 
-        voucherTable.setItems(data);
+        data.add(new VoucherModel("", "", "", ""));
         voucherTable.setEditable(true);
-
-        if (voucher != null) {
-            for (VoucherAmountVo voucherAmountVo: voucher.getAmountList()) {
-                data.add(new VoucherModel(voucherAmountVo.getAbstracts(), voucherAmountVo.getSubject(), String.valueOf(voucherAmountVo.getDebitAmount()), String.valueOf(voucherAmountVo.getCreditAmount())));
-            }
-            AmountTotalVo tvo = voucher.getAmountTotalVo();
-            data.add(new VoucherModel("合计： ", tvo.getChineseTotal(), String.valueOf(tvo.getDebitAmount()), String.valueOf(tvo.getCreditAmount())));
-        }
 
         /*enable cell editing*/
         abstractsCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -124,6 +117,23 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
                     updateSum();
                 }
         );
+
+        voucherTable.setItems(data);
+    }
+
+    public void updateTable() {
+        data.add(new VoucherModel("11111", "", "", ""));
+//        data.clear();
+//        voucher = voucherBl.getOneVoucher(amendId, factoryId);
+//        if (voucher != null) {
+//            for (VoucherAmountVo voucherAmountVo: voucher.getAmountList()) {
+//                data.add(new VoucherModel(voucherAmountVo.getAbstracts(), voucherAmountVo.getSubject(), String.valueOf(voucherAmountVo.getDebitAmount()), String.valueOf(voucherAmountVo.getCreditAmount())));
+//            }
+//            AmountTotalVo tvo = voucher.getAmountTotalVo();
+//            data.add(new VoucherModel("合计： ", tvo.getChineseTotal(), String.valueOf(tvo.getDebitAmount()), String.valueOf(tvo.getCreditAmount())));
+//        }
+//        voucherTable.setItems(data);
+        voucherTable.refresh();
     }
 
     private void updateSum() {
@@ -182,7 +192,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         voucher.setVoucherMaker(maker_label.getText());
         voucher.setRemark("");
 
-        boolean a = voucherBl.saveOneVoucher(voucher, factoryId);
+        boolean a = voucherBl.amendOneVoucher(voucherId, voucher, factoryId);
         if(a) {
             System.out.println("yeah");
         }
