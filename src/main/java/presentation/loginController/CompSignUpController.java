@@ -140,6 +140,13 @@ public class CompSignUpController {
                 runWarning.SetWarning("注册成功");
                 runWarning.start(new Stage());
 
+                Entrance entrance=new Entrance();
+                try {
+                    entrance.start(new StaticStage().GetStage());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
                 //返回登陆界面
 
             }
@@ -151,6 +158,12 @@ public class CompSignUpController {
         /**
          * 跳转
          */
+        try {
+            Entrance entrance=new Entrance();
+            entrance.start(new StaticStage().GetStage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

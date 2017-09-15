@@ -50,10 +50,7 @@ public class LoginController {
     private static Entrance entrance;
 
 
-    public static  void SetEntrance(Entrance e){
-        LoginController.entrance=e;
 
-    }
 
     @FXML
     public void initialize(){
@@ -95,7 +92,7 @@ public class LoginController {
             StaticFactory.setUserVO(vo);
             RunRootLayout rr=new RunRootLayout();
             try {
-                rr.start(new Stage());
+                rr.start(new StaticStage().GetStage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -104,7 +101,7 @@ public class LoginController {
         /**
          * 跳转
          */
-        entrance.getPrimaryStage().close();
+
 
     }}
 
@@ -115,11 +112,11 @@ public class LoginController {
         RunCSignUp c=new RunCSignUp();
         try {
 
-            c.start(new Stage());
+            c.start(new StaticStage().GetStage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        entrance.getPrimaryStage().close();
+
 
     }
 
@@ -154,20 +151,21 @@ public class LoginController {
 
         }else if(resultMessage==ResultMessage.SUCCESS){
             FinancialUserVO vo=service.getOneFinancialUser(Financeid);
+
             StaticFactory.setFinancialUserVO(vo);
             /**
              * 跳转
              */
             RunFLayout layout=new RunFLayout();
             try {
-                layout.start(new Stage());
+                layout.start(new StaticStage().GetStage());
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
 
-        entrance.getPrimaryStage().close();
+
 
 
     }}
@@ -178,11 +176,11 @@ public class LoginController {
          */
         RunFSignUp c=new RunFSignUp();
         try {
-            c.start(new Stage());
+            c.start(new StaticStage().GetStage());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        entrance.getPrimaryStage().close();
+
 
     }
 

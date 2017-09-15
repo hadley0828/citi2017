@@ -1,45 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.loginController.FinanceSignUpController">
+<AnchorPane prefHeight="551.0" prefWidth="741.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.loginController.FinanceSignUpController">
    <children>
-      <Button fx:id="createButton" layoutX="294.0" layoutY="483.0" mnemonicParsing="false" onAction="#createButtonClicked" text="注册" />
-      <Button fx:id="cancelButton" layoutX="536.0" layoutY="483.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="取消" />
-      <Label layoutX="455.0" layoutY="14.0" text="金融机构注册" />
-      <GridPane layoutX="93.0" layoutY="132.0" prefHeight="283.0" prefWidth="670.0">
+      <Button fx:id="createButton" layoutX="288.0" layoutY="470.0" mnemonicParsing="false" onAction="#createButtonClicked" text="注册">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button fx:id="cancelButton" layoutX="390.0" layoutY="470.0" mnemonicParsing="false" onAction="#cancelButtonClicked" text="取消">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="299.0" layoutY="21.0" text="金融机构注册">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+      <GridPane layoutX="203.0" layoutY="78.0" prefHeight="347.0" prefWidth="374.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="226.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="501.0" minWidth="10.0" prefWidth="222.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="49.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="名称" />
-            <Label text="地址" GridPane.rowIndex="1" />
-            <Label text="法人资格信贷证" GridPane.rowIndex="2" />
-            <Label text="金融许可证" GridPane.rowIndex="4" />
-            <Label text="密码" GridPane.rowIndex="5" />
-            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="FinancialLicense" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="legalPersonCard" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="FinanceAddress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="FinanceName" GridPane.columnIndex="1" />
-            <Label text="法人代表" GridPane.rowIndex="3" />
-            <TextField fx:id="legalperson" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="名称" GridPane.rowIndex="1">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label text="地址" GridPane.rowIndex="2">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label text="法人资格信贷证" GridPane.rowIndex="3">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label text="金融许可证" GridPane.rowIndex="5">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label text="密码" GridPane.rowIndex="6">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="FinancialLicense" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="legalPersonCard" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="FinanceAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="FinanceName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="法人代表" GridPane.rowIndex="4">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <TextField fx:id="legalperson" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="登陆账号">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <TextField fx:id="loginid" prefHeight="30.0" prefWidth="282.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <Label layoutX="93.0" layoutY="95.0" text="登陆账号" />
-      <TextField fx:id="loginid" layoutX="428.0" layoutY="90.0" prefHeight="30.0" prefWidth="334.0" />
    </children>
 </AnchorPane>

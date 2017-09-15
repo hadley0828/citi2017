@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<SplitPane dividerPositions="0.2" prefHeight="725.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.FinancialLayoutController">
+<SplitPane dividerPositions="0.2" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.FinancialLayoutController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="-Infinity" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -21,6 +21,6 @@
             <Button fx:id="pro_debt" layoutX="43.0" layoutY="334.0" mnemonicParsing="false" onAction="#missionSwitch" text="资产负债表" />
             <Button fx:id="warning_btn" layoutX="43.0" layoutY="372.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务预警" />
          </children></AnchorPane>
-      <StackPane fx:id="missionPane" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="missionPane" prefHeight="598.0" prefWidth="775.0" />
   </items>
 </SplitPane>

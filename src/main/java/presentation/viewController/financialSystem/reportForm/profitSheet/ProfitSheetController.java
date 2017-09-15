@@ -17,6 +17,7 @@ import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.ProfitTableVo;
 
+import javax.swing.filechooser.FileSystemView;
 import java.util.ArrayList;
 
 /**
@@ -82,7 +83,7 @@ public class ProfitSheetController implements ControlledScreen {
         ArrayList<ProfitVO> profitTable_data=new ArrayList<ProfitVO>();
         profitTable_data.add(new ProfitVO("一、营业收入",1,year.getBusiness_income(),period.getBusiness_income(),"公式:\n主营业务收入\n+其他业务收入"));
         profitTable_data.add(new ProfitVO("减：营业成本",2,year.getBusiness_costs(),period.getBusiness_costs(),"公式:\n主营业务成本\n+其他业务成本"));
-    profitTable_data.add(new ProfitVO("营业税金及附加",3,year.getBusiness_Taxes_and_Surcharges()[0],period.getBusiness_Taxes_and_Surcharges()[0],"公式:\n税金及附加"));
+        profitTable_data.add(new ProfitVO("营业税金及附加",3,year.getBusiness_Taxes_and_Surcharges()[0],period.getBusiness_Taxes_and_Surcharges()[0],"公式:\n税金及附加"));
         profitTable_data.add(new ProfitVO("其中：消费税",4,year.getBusiness_Taxes_and_Surcharges()[1],period.getBusiness_Taxes_and_Surcharges()[1],"公式:\n应交消费税"));
         profitTable_data.add(new ProfitVO("营业税",5,year.getBusiness_Taxes_and_Surcharges()[2],period.getBusiness_Taxes_and_Surcharges()[2],"公式:\n应交营业税"));
         profitTable_data.add(new ProfitVO("城市维护建设税",6,year.getBusiness_Taxes_and_Surcharges()[3],period.getBusiness_Taxes_and_Surcharges()[3],"公式:\n应交城市维护建设税"));
@@ -219,8 +220,21 @@ public class ProfitSheetController implements ControlledScreen {
 
     }
 
+
     @Override
     public void setScreenParent(ScreensController screenPage) {
 
+    }
+
+    @FXML
+    public void out(){
+        FileSystemView fsv=FileSystemView.getFileSystemView();
+        String path=fsv.getHomeDirectory().getPath();
+        path += "/利润表.xls";
+        profitTableService.CreateProfitTable(StaticFactory.getUserVO().getCompanyID(),bar.getDate(),path);
+
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("导出成功！");
+        alert.showAndWait();
     }
 }

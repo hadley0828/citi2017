@@ -214,8 +214,8 @@ public class ProfitTableImpl implements ProfitTableService{
 	}
 
 	public void CreateProfitTable(String id, String time, String path) {
-		ProfitTableVo vo1= BusinessIncome_period(id,time);
-		ProfitTableVo vo2= BusinessIncome_year(id,time);
+		ProfitTableVo vo1= BusinessIncome_period(time,id);
+		ProfitTableVo vo2= BusinessIncome_year(time,id);
 		String s1="";
 		String s2="";
 		List<String[]> list=new ArrayList<String[]>();

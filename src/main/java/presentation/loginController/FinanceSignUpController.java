@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import presentation.Entrance;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.FinancialUserVO;
@@ -88,6 +89,12 @@ public class FinanceSignUpController {
                     runWarning.start(new Stage());
 
                     //返回登陆界面
+                    try {
+                        Entrance entrance=new Entrance();
+                        entrance.start(new StaticStage().GetStage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }
@@ -109,6 +116,12 @@ public class FinanceSignUpController {
         /**
          * 跳转
          */
+        try {
+            Entrance entrance=new Entrance();
+            entrance.start(new StaticStage().GetStage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
