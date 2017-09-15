@@ -50,7 +50,60 @@ public class DealStateModel {
         return money;
     }
 
-//    public void setName(String na) {
-//        this.name
-//}
+    public void setName(String na) {
+        name.set(na);
+    }
+
+    public void setDebitTime(String de) {
+        debitTime.set(de);
+    }
+
+    public void setCreditTerm(String cr) {
+        creditTerm.set(cr);
+    }
+
+    public void setDiscount(String dis) {
+        discount.set(dis);
+    }
+
+    public void setMoney(String mon) {
+        money.set(mon);
+    }
+
+    public void setDiscountTerm(String dt) {
+        discountTerm.set(dt);
+    }
+
+    public void setRemark(String re) {
+        remark.set(re);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public String getDiscount() {
+        return discount.get();
+    }
+
+    public String getDebitTime() {
+        return debitTime.get();
+    }
+
+    public String getCreditTerm() {
+        return creditTerm.get();
+    }
+
+    public String getMoney() {
+        return money.get();
+    }
+
+    public String getDiscountTerm() {
+        return discountTerm.get();
+    }
+
+    public String getRemark() {
+        return remark.get();
+    }
+
 }
