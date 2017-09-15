@@ -4,9 +4,12 @@ import businesslogic.VoucherBlImpl;
 import businesslogicservice.VoucherBlService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import presentation.componentController.VoucherCard;
@@ -19,6 +22,7 @@ import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -112,9 +116,16 @@ public class InquireVoucherController implements Initializable, ControlledScreen
                     updateList();
                 });
                 voucherCard.getModify_btn().setOnAction(event -> {
-                    voucherBl.amendOneVoucher(vo.getVoucherId(), vo, factoryId);
                     StaticFactory.setAmendId(vo.getVoucherId());
                     parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+                    try {
+                        FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.AMEND_VOUCHER_SCREEN_FXML));
+                        Pane pane = (Pane) myLoader.load();
+                        AmendVoucherController myScreenController = (AmendVoucherController) myLoader.getController();
+                        myScreenController.updateTable();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 });
             }
         }

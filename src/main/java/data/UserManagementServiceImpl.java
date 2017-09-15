@@ -131,7 +131,7 @@ public class UserManagementServiceImpl implements UserManagementService {
     }
 
     @Override
-    public ResultMessage insertOneAccountSet(AccountSetPO po) {
+    public ArrayList<String> insertOneAccountSet(AccountSetPO po) {
         sqlManager.getConnection();
 
         List<Object> params = new ArrayList<>();
@@ -158,16 +158,19 @@ public class UserManagementServiceImpl implements UserManagementService {
         params.add(po.getCreditCode());
         params.add(po.getContact());
 
+        ArrayList<String> list = new ArrayList<>();
+        list.add(company_id);
+        list.add(account_id);
 
         try {
             String sql = sqlManager.appendSQL("insert into account_set values",params.size());
             sqlManager.executeUpdateByList(sql,params);
             sqlManager.releaseAll();
 
-            return ResultMessage.SUCCESS;
+            return list;
         }catch (Exception e){
             sqlManager.releaseAll();
-            return ResultMessage.FAIL;
+            return list;
         }
 
     }
@@ -298,6 +301,19 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
         sqlManager.releaseAll();
         return list;
+    }
+
+    @Override
+    public void updateUserInfo(String user_id, String account_id, String company_id) {
+        sqlManager.getConnection();
+
+        List<Object> params = new ArrayList<>();
+        params.add(account_id);
+        params.add(company_id);
+        params.add(user_id);
+        String sql = "update user_company set account_id=?,company_id=? where id=?";
+        sqlManager.executeUpdateByList(sql,params);
+        sqlManager.releaseAll();
     }
 
     private ArrayList<String> getAllUserIDByCompany(String company_id){

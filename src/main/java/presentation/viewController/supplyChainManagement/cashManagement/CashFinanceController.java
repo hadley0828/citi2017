@@ -32,18 +32,22 @@ public class CashFinanceController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CashPoolService cashPool = new CashPoolImpl();
+        datePicker.setOnAction(event -> {
+            CashPoolService cashPool = new CashPoolImpl();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String date = datePicker.getValue().format(formatter);
+            String company_id = StaticFactory.getUserVO().getCompanyID();
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date = datePicker.getValue().format(formatter);
-        String company_id = StaticFactory.getUserVO().getCompanyID();
+            double[] quota = cashPool.getFinancialIndex(company_id, date);
+            for (double num : quota){
+                System.out.println(num);
+            }
+            guarantee_bar.setProgress(quota[0]);
+            recycle_bar.setProgress(quota[1]);
+            cashFlow_bar.setProgress(quota[2]);
+            gravity_bar.setProgress(quota[3]);
 
-        double[] quota = cashPool.getFinancialIndex(date, company_id);
-
-        guarantee_bar.setProgress(quota[0]);
-        recycle_bar.setProgress(quota[1]);
-        cashFlow_bar.setProgress(quota[2]);
-        gravity_bar.setProgress(quota[3]);
+        });
     }
 
     @Override

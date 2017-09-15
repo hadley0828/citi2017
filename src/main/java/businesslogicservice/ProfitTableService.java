@@ -31,4 +31,20 @@ public interface ProfitTableService {
 	 * @return
 	 */
 	public double[] getValue(String company_id, String time);
+
+	/**
+	 * 得到净利润
+	 * @param company_id 公司id
+	 * @param time 时间
+	 * @return
+	 */
+	public double getProfit(String company_id, String time);
+	
+	/**
+	 * 
+	 * @param company_id
+	 * @param time yyyy-mm
+	 * @param path
+	 */
+	public void CreateProfitTable(String company_id,String time,String path);
 }

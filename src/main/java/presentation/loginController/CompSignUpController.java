@@ -117,8 +117,8 @@ public class CompSignUpController {
 
             AccountSetVO ACCvo = new AccountSetVO(name, address, subType, chain, time, credit, contact);
             UserVO UserVO = new UserVO(logid, "admin");
-            ResultMessage AccRM = new UserManagementImpl().register(ACCvo);
             ResultMessage UserRM = new UserManagementImpl().insertOneCompanyUser(UserVO, password);
+            ResultMessage AccRM = new UserManagementImpl().register(ACCvo,logid);
             if (UserRM == ResultMessage.EXIST_USERID) {
                 RunWarning runWarning = new RunWarning();
                 runWarning.SetWarning("用户已存在");

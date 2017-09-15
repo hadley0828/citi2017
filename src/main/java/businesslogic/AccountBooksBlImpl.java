@@ -48,7 +48,6 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         java.lang.String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
         ArrayList<String> betweenMonthList=DateConvert.getBetweenMonthList(startMonth,endMonth);
 
-        System.out.println(betweenMonthList);
 
         HashSet<String> betweenMonthSet=new HashSet<>();
         for(int count=0;count<betweenMonthList.size();count++){
@@ -61,7 +60,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             int currentSubjectId=Integer.valueOf(java.lang.String.valueOf(subjectId));
 
             if(currentSubjectId<startSubjectId||endSubjectId<currentSubjectId){
-                return null;
+                resultvo.setAmountVoArrayList(new ArrayList<DetailAccountAmountVo>());
+                return resultvo;
             }
 
         }
@@ -264,7 +264,6 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         ArrayList<DetailAccountAmountVo> detailAmountList=detailVo.getAmountVoArrayList();
 
-
         for(int count=0;count<detailAmountList.size();count++){
             DetailAccountAmountVo oneAmountVo=detailAmountList.get(count);
 
@@ -422,7 +421,8 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             BalanceTableOneClause oneBalance=balanceTableOneClauses.get(count);
 
             SubjectsPO oneSubjectPo=new SubjectsPO();
-            oneSubjectPo.setVoucher_id(oneBalance.getSubjectId());
+//            oneSubjectPo.setVoucher_id();
+            oneSubjectPo.setId(oneBalance.getSubjectId());
             oneSubjectPo.setName(oneBalance.getSubjectName());
             oneSubjectPo.setDate(Date.valueOf(DateConvert.getMonthLastDate(month)));
             oneSubjectPo.setDebitAmount(oneBalance.getEndDebit());

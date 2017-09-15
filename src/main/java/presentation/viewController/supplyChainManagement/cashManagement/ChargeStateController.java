@@ -42,12 +42,12 @@ public class ChargeStateController implements Initializable, ControlledScreen {
     @FXML
     private TableColumn<DealStateModel, String> remark_col;
 
-    @FXML
-    private DatePicker datePicker;
 
     private CreditItemService creditItemService;
     private ObservableList<DealStateModel> data = FXCollections.observableArrayList();
     private ArrayList<CreditItemVo> itemVoArrayList;
+    private String company_id;
+    private String voucher_id;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,12 +60,14 @@ public class ChargeStateController implements Initializable, ControlledScreen {
         term_col.setCellValueFactory(cellValue -> cellValue.getValue().discountTermProperty());
         remark_col.setCellValueFactory(cellValue -> cellValue.getValue().remarkProperty());
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date = datePicker.getValue().format(formatter);
-        String company_id = StaticFactory.getUserVO().getCompanyID();
-
         creditItemService = new CreditItemImpl();
-        itemVoArrayList = creditItemService.getReceivables(company_id, date);
+        company_id = StaticFactory.getUserVO().getCompanyID();
+        voucher_id = "1001";
+
+        itemVoArrayList = creditItemService.getReceivables(company_id, voucher_id);
+        for (CreditItemVo vo: itemVoArrayList) {
+            data.add(new DealStateModel(vo.getCompany_name(), vo.getBorrow_time(), vo.getDeadline(), String.valueOf(vo.getPolicy() * 100) + "%", String.valueOf(vo.getMoney()), vo.getDiscount_deadline(), vo.getRemark()));
+        }
 
     }
 

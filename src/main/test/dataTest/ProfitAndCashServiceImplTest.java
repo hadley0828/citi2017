@@ -26,7 +26,7 @@ public class ProfitAndCashServiceImplTest {
         String year = "2017";
         String account_id = "1001";
         String company_id = "001";
-        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersByYear(year,account_id,company_id);
+        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersByYear(year,company_id);
         for (VoucherAmountPO po : list){
             System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
         }
@@ -35,9 +35,9 @@ public class ProfitAndCashServiceImplTest {
 //
     @Test
     public void testGetVourchersByPeriod(){
-        String period = "2017-08";
+        String period = "2017-04";
         String account_id = "1001";
-        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersByPeriod(period,account_id,"001");
+        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersByPeriod(period,"001");
         for (VoucherAmountPO po : list){
             System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
         }
@@ -47,7 +47,7 @@ public class ProfitAndCashServiceImplTest {
     public void testGetVourchersBefore(){
         String period = "2017-09";
         String account_id = "1001";
-        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersBefore(period,account_id,"001");
+        ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersBefore(period,"001");
         for (VoucherAmountPO po : list){
             System.out.println(po.getV_id() + " " +po.getA_id() + " " +po.getSubject());
         }

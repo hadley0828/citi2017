@@ -5,6 +5,7 @@ import businesslogicservice.InventoryManagementService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -249,6 +250,9 @@ public class ProducerInfoController {
         }
 //        System.out.print(toAddVOs.size());
         service.SupplierInformationEntry(StaticFactory.getUserVO().getCompanyID(), toAddVOs);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("录入成功！");
+        alert.showAndWait();
     }
 
     @FXML
@@ -299,8 +303,10 @@ public class ProducerInfoController {
             //        System.out.print(toAddVOs.get(0).getDatetime());
         }
 //        System.out.print(proAddVOs.size());
-//        service.ProducerProductInformationEntry(StaticFactory.getUserVO().getCompanyID(), proAddVOs);
-
+        service.ProducerProductInformationEntry(StaticFactory.getUserVO().getCompanyID(), proAddVOs);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("录入成功！");
+        alert.showAndWait();
     }
 
     public void refresh(){

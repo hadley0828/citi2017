@@ -4,19 +4,18 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.cashManagement.PayStateController">
    <children>
-      <TableView layoutX="14.0" layoutY="85.0" prefHeight="274.0" prefWidth="571.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="公司名称" />
-          <TableColumn prefWidth="75.0" text="借款时间" />
-            <TableColumn prefWidth="75.0" text="还款期限" />
-            <TableColumn prefWidth="93.0" text="应收账款金额" />
-            <TableColumn prefWidth="94.0" text="折扣政策" />
-            <TableColumn prefWidth="84.0" text="折扣期限" />
-            <TableColumn prefWidth="74.0" text="备注" />
-        </columns>
+      <TableView fx:id="table" layoutX="24.0" layoutY="95.0" prefHeight="274.0" prefWidth="571.0">
+         <columns>
+            <TableColumn fx:id="name_col" prefWidth="75.0" text="公司名称" />
+            <TableColumn fx:id="debit_col" prefWidth="75.0" text="借款时间" />
+            <TableColumn fx:id="credit_col" prefWidth="75.0" text="还款期限" />
+            <TableColumn fx:id="money_col" prefWidth="93.0" text="应收账款金额" />
+            <TableColumn fx:id="discount_col" prefWidth="94.0" text="折扣政策" />
+            <TableColumn fx:id="term_col" prefWidth="84.0" text="折扣期限" />
+            <TableColumn fx:id="remark_col" prefWidth="74.0" text="备注" />
+         </columns>
       </TableView>
    </children>
 </AnchorPane>

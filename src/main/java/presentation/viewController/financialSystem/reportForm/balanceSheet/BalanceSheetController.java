@@ -73,8 +73,8 @@ public class BalanceSheetController implements ControlledScreen{
         bar.getLast().setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
-                System.out.print(bar.getMidMonths());
                 if(bar.getMidMonths().indexOf(bar.getDate())>0) {
+//                    System.out.print("click");
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) - 1).split("-")[1]);
                     bar.changePro();
@@ -86,6 +86,8 @@ public class BalanceSheetController implements ControlledScreen{
             @Override
             public void handle(javafx.scene.input.MouseEvent event) {
                 if(bar.getMidMonths().indexOf(bar.getDate())<bar.getMidMonths().size()-1) {
+//                    System.out.print(bar.getDate());
+//                    System.out.print(bar.getMidMonths());
                     bar.getYL().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).substring(0,4));
                     bar.getML().setText(bar.getMidMonths().get(bar.getMidMonths().indexOf(bar.getDate()) + 1).split("-")[1]);
                     bar.changePro();
@@ -356,6 +358,10 @@ public class BalanceSheetController implements ControlledScreen{
         String path=fsv.getHomeDirectory().getPath();
         path += "/资产负债表.xls";
         balanceSheetService.CreatBalanceSheet(path);
+
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("导出成功！");
+        alert.showAndWait();
     }
 
 
