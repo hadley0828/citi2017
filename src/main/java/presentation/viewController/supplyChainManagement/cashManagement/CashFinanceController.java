@@ -80,14 +80,13 @@ public class CashFinanceController implements Initializable, ControlledScreen {
                 public void handle(long now) {
                     if (now > lastTimerCall + 800_000_000L) {
                         {
-                            guarantee_bar.setValue(340);
-                            recycle_bar.setValue(550);
-                            recycle_bar.setValue(120);
-                            recycle_bar.setValue(440);
+                            guarantee_bar.setValue(quota[0]);
+                            recycle_bar.setValue(quota[1] * recycle_bar.getRange());
+                            cashFlow_bar.setValue(quota[2] * cashFlow_bar.getRange());
+                            gravity_bar.setValue(quota[3] * gravity_bar.getRange());
                             lastTimerCall = now;
                         }
                     }
-
                 }
             };
             timer.start();

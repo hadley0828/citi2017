@@ -41,30 +41,32 @@ public class FinancialWarningController implements Initializable, ControlledScre
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LocalDate localDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
         String date = localDate.format(formatter);
         String company_id = StaticFactory.getUserVO().getCompanyID();
-        System.out.println(date + "    " + company_id);
-/*        FinancialWarningService warning = new FinancialWarningImpl();
+
+        FinancialWarningService warning = new FinancialWarningImpl();
 
         String warningMessage = warning.getWarningMessage2(company_id, date);
         double warningLevel = warning.getWarningMessage(company_id, date);
 
         message.setText(warningMessage);
-        number.setText(String.valueOf(warningLevel));*/
-
+        number.setText(String.valueOf(warningLevel));
+        System.out.println(warningMessage);
+        System.out.println(warningLevel);
 
 //        gauge here
         gauge = GaugeBuilder.create()
                 .skinType(Gauge.SkinType.SIMPLE_SECTION)
-                .title("Title")
-                .unit("unit")
                 .titleColor(Color.WHITE)
                 .unitColor(Color.WHITE)
                 .animated(true)
                 .valueColor(Color.WHITE)
                 .minValue(0)
                 .maxValue(150)
+                .titleColor(Color.BLACK)
+                .valueColor(Color.BLACK)
+                .unitColor(Color.BLACK)
                 .sections(new Section(0, 25, "0", Color.web("#cc6230")),
                         new Section(25, 50, "1", Color.web("#e18c2f")),
                         new Section(50, 75, "2", Color.web("#f0c051")),
@@ -81,7 +83,7 @@ public class FinancialWarningController implements Initializable, ControlledScre
             public void handle(long now) {
                 if (now > lastTimerCall + 1_000_000_000L) {
                     {
-                        gauge.setValue(60);
+                        gauge.setValue(warningLevel);
                         lastTimerCall = now;
                     }
                 }

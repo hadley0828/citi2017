@@ -51,27 +51,26 @@ public class CashPoolController implements Initializable, ControlledScreen {
 
             double[] quota = cashPool.getCashFlow(company_id, date);
 
-            last_label.setText(String.valueOf(quota[0]));
-            currentIn_label.setText(String.valueOf(quota[1]));
-            currentOut_label.setText(String.valueOf(quota[2]));
-            reserve_label.setText(String.valueOf(quota[3]));
+            currentIn_label.setText(String.valueOf(quota[0]));
+            currentOut_label.setText(String.valueOf(quota[1]));
+            reserve_label.setText(String.valueOf(quota[2]));
+            lastTimerCall = System.nanoTime();
+            timer = new AnimationTimer() {
+                @Override public void handle(long now) {
+                    if (now > lastTimerCall + 800_000_000l) {
+                        gauge.setLevel(quota[2]);
+                        lastTimerCall = now;
+                    }
+                }
+            };
+
+            timer.start();
 
         });
 
         gauge = new FunLevelGauge();
         gauge.setPrefSize(400, 400);
 
-        lastTimerCall = System.nanoTime();
-        timer = new AnimationTimer() {
-            @Override public void handle(long now) {
-                if (now > lastTimerCall + 800_000_000l) {
-                    gauge.setLevel(0.5);
-                    lastTimerCall = now;
-                }
-            }
-        };
-
-        timer.start();
 
         layoutPane.getChildren().add(gauge);
     }

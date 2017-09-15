@@ -33,7 +33,6 @@ public class FinancialWarningImpl implements FinancialWarningService{
         double[] data2 = service2.getValue(company_id, phase);
         //经营现金净流量
         double data3 = service3.getValue(company_id, phase);
-
         FinancialIndexService service = new FinancialIndexServiceImpl();
         list = service.getFinancialIndex(service.getIndustry(company_id));
 
