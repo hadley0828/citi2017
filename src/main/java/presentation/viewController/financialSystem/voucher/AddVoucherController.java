@@ -1,8 +1,10 @@
 package presentation.viewController.financialSystem.voucher;
 
+import businesslogic.CreditItemImpl;
 import businesslogic.SettingImpl;
 import businesslogic.UserManagementImpl;
 import businesslogic.VoucherBlImpl;
+import businesslogicservice.CreditItemService;
 import businesslogicservice.SettingService;
 import businesslogicservice.UserManagementService;
 import businesslogicservice.VoucherBlService;
@@ -23,6 +25,7 @@ import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
 import util.NumberToCN;
+import vo.CreditItemVo;
 import vo.userManagement.AccountSetVO;
 import vo.userManagement.SubjectsVO;
 import vo.userManagement.UserVO;
@@ -68,8 +71,9 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private VoucherBlService voucherBl;
     private VoucherVo voucher;
     private ObservableList<VoucherModel> data = FXCollections.observableArrayList();
+    private CreditItemService creditItemService = new CreditItemImpl();
     private String factoryId;
-    private String judger;
+    private String jugder;
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -117,9 +121,9 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         subjectCol.setOnEditCommit(
                 event -> {
                     event.getTableView().getItems().get(event.getTablePosition().getRow()).setSubject(event.getNewValue());
-                    judger = event.getNewValue().split(" ")[1];
-                    if (judger.equals("材料采购") || judger.equals("在途物资") || judger.equals("原材料") || judger.equals("库存商品")
-                            || judger.equals("委托加工物资、工程物资") || judger.equals("工程物资") || judger.equals("应付账款") || judger.equals("应收账款")) {
+                    jugder = event.getNewValue().split(" ")[1];
+                    if (jugder.equals("材料采购") || jugder.equals("在途物资") || jugder.equals("原材料") || jugder.equals("库存商品")
+                            || jugder.equals("委托加工物资、工程物资") || jugder.equals("工程物资") || jugder.equals("应付账款") || jugder.equals("应收账款")) {
                         aid_btn.setVisible(true);
                     }else
                         aid_btn.setVisible(false);
@@ -207,6 +211,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             System.out.println("yeah");
         }
 
+        ArrayList<CreditItemVo> arrayList = StaticFactory.getAidVos();
+        creditItemService.SaveCreditItem(arrayList, factoryId, type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText());
         Reset();
     }
 
@@ -229,9 +235,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
 
-        StaticFactory.setAidId(type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText());
-
-        if (judger.equals("应收账款")){
+        if (jugder.equals("应收账款")){
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/voucher/AidCharge.fxml"));
                 Scene scene = new Scene(root);
@@ -240,7 +244,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                 e.printStackTrace();
             }
             dialog.show();
-        } else if (judger.equals("应付账款")){
+        } else if (jugder.equals("应付账款")){
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/voucher/AidPay.fxml"));
                 Scene scene = new Scene(root);
@@ -249,7 +253,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                 e.printStackTrace();
             }
             dialog.show();
-        } else if (judger.equals("材料采购") || judger.equals("在途物资") || judger.equals("原材料") || judger.equals("库存商品") || judger.equals("委托加工物资") || judger.equals("工程物资")) {
+        } else if (jugder.equals("材料采购") || jugder.equals("在途物资") || jugder.equals("原材料") || jugder.equals("库存商品") || jugder.equals("委托加工物资") || jugder.equals("工程物资")) {
             String compayId = StaticFactory.getUserVO().getUserID();
             UserManagementService userManagementService = new UserManagementImpl();
             AccountSetVO accountSetVO = userManagementService.getAccountSetByCompanyID(compayId);
@@ -290,7 +294,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         type_combo.getSelectionModel().clearSelection();
         number_field.setText("");
         data.clear();
-        data.add(new VoucherModel("合计：", "", "", ""));
+        data.add(new VoucherModel("合计：", "", "0", "0"));
         date_picker.setValue(null);
 
     }
