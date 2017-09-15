@@ -3,6 +3,8 @@ package presentation.viewController.financialSystem.trialSettlement;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import presentation.StaticFactory;
+import vo.userManagement.UserVO;
 
 
 /**
@@ -24,9 +26,17 @@ public class SettleController {
         label2.setText("2017年第7期");
         label3.setText("2017年第8期");
         label4.setText("2017年第9期");
-        label1.setDisable(true);
-        label2.setDisable(true);
-        label3.setDisable(true);
-        label4.setCursor(Cursor.CLOSED_HAND);
+        UserVO vo = StaticFactory.getUserVO();
+        if(vo.getType().equals("admin")){
+            label1.setDisable(true);
+            label2.setDisable(true);
+            label3.setDisable(true);
+            label4.setCursor(Cursor.CLOSED_HAND);
+        }else{
+            label1.setDisable(true);
+            label2.setDisable(true);
+            label3.setDisable(true);
+            label4.setDisable(true);
+        }
     }
 }

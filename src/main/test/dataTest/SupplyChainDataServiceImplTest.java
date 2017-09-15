@@ -88,9 +88,9 @@ public class SupplyChainDataServiceImplTest {
 
     @Test
     public void testSetSupplyChain(){
-        System.out.println(settingDataService.setSupplyChain("111","生产商","222","333"));
-        System.out.println(settingDataService.setSupplyChain("444","供应商","555","666"));
-        System.out.println(settingDataService.setSupplyChain("777","分销商","888","999"));
+        System.out.println(settingDataService.setSupplyChain("l8","生产商","l10","l11"));
+//        System.out.println(settingDataService.setSupplyChain("t4","供应商","l5","l6"));
+//        System.out.println(settingDataService.setSupplyChain("t7","分销商","l8","l9"));
     }
 
 }
