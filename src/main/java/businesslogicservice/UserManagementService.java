@@ -53,7 +53,7 @@ public interface UserManagementService {
      * @param vo
      * @return
      */
-    public ResultMessage register(AccountSetVO vo);
+    public ResultMessage register(AccountSetVO vo,String userID);
 
     /**
      * 修改公司账套信息

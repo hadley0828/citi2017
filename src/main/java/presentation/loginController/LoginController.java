@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import presentation.Entrance;
 import presentation.RunFLayout;
 import presentation.RunRootLayout;
 import presentation.StaticFactory;
@@ -44,6 +45,15 @@ public class LoginController {
 
     @FXML
     private Button FinanceSignupButton;
+
+
+    private static Entrance entrance;
+
+
+    public static  void SetEntrance(Entrance e){
+        LoginController.entrance=e;
+
+    }
 
     @FXML
     public void initialize(){
@@ -94,6 +104,7 @@ public class LoginController {
         /**
          * 跳转
          */
+        entrance.getPrimaryStage().close();
 
     }}
 
@@ -108,6 +119,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        entrance.getPrimaryStage().close();
 
     }
 
@@ -155,6 +167,8 @@ public class LoginController {
 
         }
 
+        entrance.getPrimaryStage().close();
+
 
     }}
 
@@ -168,6 +182,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        entrance.getPrimaryStage().close();
 
     }
 

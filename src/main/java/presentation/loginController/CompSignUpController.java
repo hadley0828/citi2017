@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import presentation.Entrance;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
@@ -117,8 +118,8 @@ public class CompSignUpController {
 
             AccountSetVO ACCvo = new AccountSetVO(name, address, subType, chain, time, credit, contact);
             UserVO UserVO = new UserVO(logid, "admin");
-            ResultMessage AccRM = new UserManagementImpl().register(ACCvo);
             ResultMessage UserRM = new UserManagementImpl().insertOneCompanyUser(UserVO, password);
+            ResultMessage AccRM = new UserManagementImpl().register(ACCvo,logid);
             if (UserRM == ResultMessage.EXIST_USERID) {
                 RunWarning runWarning = new RunWarning();
                 runWarning.SetWarning("用户已存在");
@@ -150,6 +151,7 @@ public class CompSignUpController {
         /**
          * 跳转
          */
+
     }
 
 

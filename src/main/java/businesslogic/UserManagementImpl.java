@@ -80,9 +80,14 @@ public class UserManagementImpl implements UserManagementService{
     }
 
     @Override
-    public ResultMessage register(AccountSetVO vo) {
+    public ResultMessage register(AccountSetVO vo,String userID) {
         AccountSetPO po = AccountSetVO2PO(vo);
-        return dataservice.insertOneAccountSet(po);
+        ArrayList<String> list  = dataservice.insertOneAccountSet(po);
+        if (list.isEmpty()){
+            return ResultMessage.FAIL;
+        }
+        dataservice.updateUserInfo(userID,list.get(0),list.get(1));
+        return ResultMessage.SUCCESS;
     }
 
     @Override

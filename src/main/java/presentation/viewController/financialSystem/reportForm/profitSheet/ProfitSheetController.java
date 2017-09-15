@@ -76,8 +76,8 @@ public class ProfitSheetController implements ControlledScreen {
     }
 
     public void setProfitTable(){
-        period=profitTableService.BusinessIncome_period(StaticFactory.getUserVO().getCompanyID(),bar.getDate());
-        year=profitTableService.BusinessIncome_year(StaticFactory.getUserVO().getCompanyID(),bar.getDate());
+        period=profitTableService.BusinessIncome_period(bar.getDate(),StaticFactory.getUserVO().getCompanyID());
+        year=profitTableService.BusinessIncome_year(bar.getDate(),StaticFactory.getUserVO().getCompanyID());
 
         ArrayList<ProfitVO> profitTable_data=new ArrayList<ProfitVO>();
         profitTable_data.add(new ProfitVO("一、营业收入",1,year.getBusiness_income(),period.getBusiness_income(),"公式:\n主营业务收入\n+其他业务收入"));

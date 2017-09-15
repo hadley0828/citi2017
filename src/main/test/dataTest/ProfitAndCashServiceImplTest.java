@@ -35,7 +35,7 @@ public class ProfitAndCashServiceImplTest {
 //
     @Test
     public void testGetVourchersByPeriod(){
-        String period = "2017-08";
+        String period = "2017-04";
         String account_id = "1001";
         ArrayList<VoucherAmountPO> list = (ArrayList<VoucherAmountPO>) profitAndCashService.getVourchersByPeriod(period,"001");
         for (VoucherAmountPO po : list){
