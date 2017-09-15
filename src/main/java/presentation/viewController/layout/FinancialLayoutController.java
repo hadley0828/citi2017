@@ -33,6 +33,10 @@ public class FinancialLayoutController implements Initializable, ControlledScree
     private Button pro_debt;
     @FXML
     private Button warning_btn;
+    @FXML
+    private Button cashflow_btn;
+    @FXML
+    private Button profit_btn;
 
     @FXML
     private StackPane missionPane;
@@ -86,18 +90,18 @@ public class FinancialLayoutController implements Initializable, ControlledScree
             financialController.loadScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN, ScreensFramework.FINANCIAL_WARNING_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN);
         }
-//        else if (event.getSource().equals(pro_debt)) {
-//            financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);
-//            financialController.setScreen(ScreensFramework.BALANCESHEET_SCREEN);
-//        }
         else if (event.getSource().equals(pro_debt)) {
+            financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);
+            financialController.setScreen(ScreensFramework.BALANCESHEET_SCREEN);
+        }
+        else if (event.getSource().equals(cashflow_btn)) {
             financialController.loadScreen(ScreensFramework.CASHFLOW_SCREEN,ScreensFramework.CASHFLOW_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.CASHFLOW_SCREEN);
         }
-//        else if (event.getSource().equals(pro_debt)) {
-//            financialController.loadScreen(ScreensFramework.PROFITSHEET_SCREEN,ScreensFramework.PROFITSHEET_SCREEN_FXML);
-//            financialController.setScreen(ScreensFramework.PROFITSHEET_SCREEN);
-//        }
+        else if (event.getSource().equals(profit_btn)) {
+            financialController.loadScreen(ScreensFramework.PROFITSHEET_SCREEN,ScreensFramework.PROFITSHEET_SCREEN_FXML);
+            financialController.setScreen(ScreensFramework.PROFITSHEET_SCREEN);
+        }
     }
 
 }

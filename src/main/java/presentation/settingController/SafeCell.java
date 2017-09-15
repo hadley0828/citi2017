@@ -5,12 +5,14 @@ import javafx.scene.control.TextField;
 import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsVO;
 
+import static presentation.settingController.QCController.isSet;
+
 /**
  * Created by Chris on 2017/9/14.
  */
 public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
     final TextField cellText = new TextField();
-    static Boolean isSet=false;
+
 
     SafeCell(){
 //        cellButton.setOnAction(new EventHandler<ActionEvent>(){
@@ -40,10 +42,8 @@ public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
     protected void updateItem(Boolean t, boolean empty) {
 
         super.updateItem(t, empty);
-
-        if(isSet==false){
-            setGraphic(cellText);
-            isSet=true;
+        if(!empty) {
+                setGraphic(cellText);
         }
     }
 }

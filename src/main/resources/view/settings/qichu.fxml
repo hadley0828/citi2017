@@ -110,13 +110,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="safeTable" prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="safeTable" layoutX="-7.0" layoutY="-3.0" prefHeight="507.0" prefWidth="1009.0">
                            <columns>
                               <TableColumn fx:id="safeName" prefWidth="328.0" text="原材料/产品" />
                               <TableColumn fx:id="safeVariety" prefWidth="319.0" text="种类" />
-                              <TableColumn fx:id="safeSum" prefWidth="352.0" text="库存量" />
+                              <TableColumn fx:id="safeSum" prefWidth="361.0" text="库存量" />
                            </columns>
                         </TableView>
+                        <Button fx:id="addButton" layoutX="926.0" layoutY="-4.0" mnemonicParsing="false" onAction="#addClicked" text="添加" />
                      </children></AnchorPane>
               </content>
             </Tab>
