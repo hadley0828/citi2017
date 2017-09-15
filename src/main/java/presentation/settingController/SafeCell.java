@@ -1,18 +1,17 @@
 package presentation.settingController;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsVO;
 
 /**
  * Created by Chris on 2017/9/14.
  */
-public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
+public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
     final TextField cellText = new TextField();
 
-    ButtonCell(){
+    SafeCell(){
 //        cellButton.setOnAction(new EventHandler<ActionEvent>(){
 //            @Override
 //            public void handle(ActionEvent t) {
@@ -33,17 +32,6 @@ public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
 //                }
 //            }
 //        });
-
-
-        cellText.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                SubjectsVO vo=getTableView().getItems().get(getIndex());
-                String direction=vo.getDirection();
-                
-
-            }
-        });
     }
 
     //Display button if the row is not empty
@@ -52,6 +40,7 @@ public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
         super.updateItem(t, empty);
         if(!empty){
             setGraphic(cellText);
+
         }
     }
 }

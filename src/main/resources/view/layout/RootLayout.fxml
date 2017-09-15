@@ -5,16 +5,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
+<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
   <items>
     <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
          <children>
-            <Button fx:id="financial_btn" layoutX="166.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
-            <Button fx:id="supply_btn" layoutX="252.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
-            <Button fx:id="signOut_btn" layoutX="1007.0" layoutY="26.0" mnemonicParsing="false" text="登出" />
-            <Button fx:id="settings_btn" layoutX="1114.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
-            <Button fx:id="logo_btn" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" onAction="#missionSwitch" text="LOGO" />
+            <Button fx:id="financial_btn" layoutX="208.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
+            <Button fx:id="supply_btn" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
+            <Button fx:id="signOut_btn" layoutX="946.0" layoutY="23.0" mnemonicParsing="false" text="登出" />
+            <Button fx:id="settings_btn" layoutX="1014.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
+            <Button fx:id="logo_btn" layoutY="-2.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="75.0" prefWidth="80.0" text="LOGO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1118.0" AnchorPane.topAnchor="0.0" />
          </children></AnchorPane>
-      <StackPane fx:id="rootStack" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="rootStack" prefHeight="351.0" prefWidth="811.0" />
   </items>
 </SplitPane>

@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import presentation.loginController.LoginController;
+import presentation.loginController.StaticStage;
 
 /**
  * @author Molloh
@@ -19,12 +20,10 @@ public class Entrance extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("../view/loginAndSignUp/Login.fxml"));
         Scene scene = new Scene(root);
 
-        FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(getClass().getResource("../view/loginAndSignUp/Login.fxml"));
-        LoginController controller=loader.getController();
-        controller.SetEntrance(this);
+
 
         this.primaryStage=primaryStage;
+        new StaticStage().SetStage(this.primaryStage);
 
         this.primaryStage.setMinWidth(1000);
         this.primaryStage.setMinHeight(600);
