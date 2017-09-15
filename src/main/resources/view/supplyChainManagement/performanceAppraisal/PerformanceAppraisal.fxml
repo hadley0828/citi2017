@@ -9,27 +9,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.performanceAppraisal.PerformanceAppraisalController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.performanceAppraisal.PerformanceAppraisalController">
    <children>
-      <TabPane layoutX="214.0" layoutY="127.0" prefHeight="447.0" prefWidth="752.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="130.0" layoutY="127.0" prefHeight="447.0" prefWidth="752.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="盈利能力">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="gain_table" layoutX="100.0" layoutY="36.0" prefHeight="200.0" prefWidth="550.0">
+                        <TableView fx:id="gain_table" layoutX="100.0" layoutY="36.0" prefHeight="180.0" prefWidth="550.0">
                           <columns>
                             <TableColumn fx:id="gain_enterprise" prefWidth="185.0" text="企业" />
                             <TableColumn fx:id="gain_sumPayback" prefWidth="167.0" text="总资产报酬率" />
                               <TableColumn fx:id="gain_benefit" prefWidth="197.0" text="销售净利率" />
                           </columns>
                         </TableView>
-                        <Label layoutX="232.0" layoutY="295.0" text="供应链资本收益率">
+                        <Label layoutX="232.0" layoutY="302.0" text="供应链资本收益率">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="gain_chain" layoutX="375.0" layoutY="291.0" />
+                        <TextField fx:id="gain_chain" layoutX="375.0" layoutY="299.0" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -37,7 +37,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="op_table" layoutX="58.0" layoutY="36.0" prefHeight="200.0" prefWidth="634.0">
+                        <TableView fx:id="op_table" layoutX="58.0" layoutY="36.0" prefHeight="180.0" prefWidth="634.0">
                           <columns>
                             <TableColumn fx:id="op_enterprise" prefWidth="110.0" text="企业" />
                             <TableColumn fx:id="op_sum" prefWidth="134.0" text="总资产周转率" />
@@ -59,7 +59,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="develop_table" layoutX="134.0" layoutY="36.0" prefHeight="200.0" prefWidth="483.0">
+                        <TableView fx:id="develop_table" layoutX="134.0" layoutY="36.0" prefHeight="180.0" prefWidth="483.0">
                           <columns>
                             <TableColumn fx:id="develop_enterprise" prefWidth="130.0" text="企业" />
                             <TableColumn fx:id="develop_increase" prefWidth="170.0" text="销售增长率" />
@@ -79,17 +79,17 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="debtpay_table" layoutX="134.0" layoutY="36.0" prefHeight="200.0" prefWidth="483.0">
+                        <TableView fx:id="debtpay_table" layoutX="134.0" layoutY="36.0" prefHeight="180.0" prefWidth="483.0">
                           <columns>
                             <TableColumn fx:id="debtpay_enterprise" prefWidth="131.0" text="企业" />
                             <TableColumn fx:id="debtpay_debt" prefWidth="351.0" text="资产负债率" />
                           </columns>
                         </TableView>
-                        <Label layoutX="232.0" layoutY="288.0" text="供应链资产负债率">
+                        <Label layoutX="232.0" layoutY="302.0" text="供应链资产负债率">
                            <font>
                               <Font size="16.0" />
                            </font></Label>
-                        <TextField fx:id="debtpay_balance" layoutX="380.0" layoutY="285.0" />
+                        <TextField fx:id="debtpay_balance" layoutX="375.0" layoutY="299.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
