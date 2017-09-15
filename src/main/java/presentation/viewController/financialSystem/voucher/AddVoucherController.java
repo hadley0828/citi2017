@@ -168,6 +168,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
     @FXML
     private void OnSaveAndAdd() {
+
         ObservableList<VoucherModel> aid_data = voucherTable.getItems();
 
         AmountTotalVo amountTotalVo = new AmountTotalVo();
@@ -206,6 +207,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         if(a) {
             System.out.println("yeah");
         }
+
+        Reset();gi
     }
 
     @FXML
@@ -284,4 +287,12 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         }
     }
 
+    private void Reset() {
+        type_combo.getSelectionModel().clearSelection();
+        number_field.setText("");
+        data.clear();
+        data.add(new VoucherModel("", "", "", ""));
+        data.add(new VoucherModel("合计：", "", "", ""));
+
+    }
 }
