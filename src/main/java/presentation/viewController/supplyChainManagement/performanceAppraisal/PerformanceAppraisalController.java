@@ -70,11 +70,11 @@ String []companies=service.getTheCompanys("001");
     String mid=companies[1];
     String did=companies[2];
 
-    SupplyChainPerformanceVo vo;
-//    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth());
+//    SupplyChainPerformanceVo vo;
+    SupplyChainPerformanceVo vo=service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth());
     @FXML
     public void initialize(){
-        System.out.print(service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth()));
+//        System.out.print(service.SupplyChain_Supplier(sid,mid,did, StaticFactory.getMonth()));
         setGain();
         setOp();
         setDevelop();

@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="630.0" prefWidth="1000.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.financing.FinancingController">
    <children>
-      <TabPane layoutX="140.0" layoutY="78.0" prefHeight="480.0" prefWidth="757.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="135.0" layoutY="78.0" prefHeight="480.0" prefWidth="757.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="应收账款融资">
             <content>
