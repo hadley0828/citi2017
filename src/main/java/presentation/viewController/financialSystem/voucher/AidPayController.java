@@ -120,7 +120,9 @@ public class AidPayController implements Initializable, ControlledScreen {
             list.add(new CreditItemVo(model.getName(), model.getDebitTime(), model.getCreditTerm(), Double.parseDouble(model.getMoney()), Double.parseDouble(model.getDiscount()), model.getDiscountTerm(), model.getRemark()));
         }
 
-        creditItemService.SaveCreditItem(list, company_id, voucher_id);
+//        creditItemService.SaveCreditItem(list, company_id, voucher_id);
+        StaticFactory.setAidVos(list);
+        table.getScene().getWindow().hide();
     }
 
     @FXML

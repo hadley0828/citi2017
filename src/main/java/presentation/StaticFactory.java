@@ -1,11 +1,13 @@
 package presentation;
 
+import vo.CreditItemVo;
 import vo.userManagement.FinancialUserVO;
 import vo.userManagement.UserVO;
 import vo.voucher.VoucherSearchVo;
 import vo.voucher.VoucherVo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Created by YZ on 2017/9/10.
@@ -139,12 +141,12 @@ public class StaticFactory {
         return ifUpdated;
     }
 
-    static String aidId;
-    public static void setAidId(String aid) {
-        aidId = aid;
+    static ArrayList<CreditItemVo> aidVos;
+    public static void setAidVos(ArrayList<CreditItemVo> aid) {
+        aidVos = aid;
     }
-    public static String getAidId() {
-        return aidId;
+    public static ArrayList<CreditItemVo> getAidVos() {
+        return aidVos;
     }
 
 }
