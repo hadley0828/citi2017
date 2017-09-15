@@ -18,7 +18,7 @@ public class RunRootLayout extends Application {
         Scene scene = new Scene(root);
 
         primaryStage.setMinWidth(1180);
-        primaryStage.setMinHeight(750);
+        primaryStage.setMinHeight(790);
         primaryStage.setScene(scene);
 
         primaryStage.show();
