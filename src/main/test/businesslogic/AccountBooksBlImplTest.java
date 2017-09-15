@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
  */
 public class AccountBooksBlImplTest {
 
+
     private AccountBooksBlService accountBooksBlService;
 
     @Before
@@ -77,4 +78,10 @@ public class AccountBooksBlImplTest {
     public void getAllSubjectPeriodEndPrice() throws Exception {
     }
 
+
+    @Test
+    public void getBetweenSubject() throws Exception {
+        System.out.println(accountBooksBlService.getBetweenSubject("1012","4001","001"));
+
+    }
 }

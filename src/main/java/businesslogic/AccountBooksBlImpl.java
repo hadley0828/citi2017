@@ -3,6 +3,7 @@ package businesslogic;
 import businesslogicservice.AccountBooksBlService;
 import data.SubjectDataServiceImpl;
 import dataservice.SubjectDataService;
+import org.apache.commons.collections4.multimap.HashSetValuedHashMap;
 import po.SubjectsPO;
 import util.DateConvert;
 import util.SubjectBalanceHelper;
@@ -309,11 +310,16 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         for(int count=0;count<allSubjectTotal.size();count++){
             TotalAccountVo oneAccountVo=allSubjectTotal.get(count);
             String oneSubjectId=oneAccountVo.getSubjectId();
+
             ArrayList<TotalAccountAmountVo> amountVoList=oneAccountVo.getAmountVoArrayList();
 
             BalanceTableOneClause oneResultClause=new BalanceTableOneClause();
             oneResultClause.setSubjectId(oneAccountVo.getSubjectId());
             oneResultClause.setSubjectName(oneAccountVo.getSubjectName());
+
+            if(amountVoList.size()==0){
+                continue;
+            }
 
             TotalAccountAmountVo periodBeginVo=amountVoList.get(0);
             oneResultClause.setBeginDebit(periodBeginVo.getDebitAmount());
@@ -432,6 +438,32 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
             resultList.add(oneSubjectPo);
         }
 
+        return resultList;
+    }
+
+    @Override
+    public ArrayList<SubjectIdAndNameVo> getBetweenSubject(String startSubject, String endSubject,String factoryId) {
+        ArrayList<String> allSubjectIdList=subjectDataService.getAllExistedSubjectId(factoryId);
+
+        Collections.sort(allSubjectIdList);
+
+        int startIndex=allSubjectIdList.indexOf(startSubject);
+        int endIndex=allSubjectIdList.indexOf(endSubject);
+
+        System.out.println(startIndex+" "+endIndex);
+
+        ArrayList<SubjectIdAndNameVo> resultList=new ArrayList<>();
+        HashMap<String,String> resultIdToNameMap=subjectDataService.getSubjectIdToNameMap();
+
+        for(int count=0;count<allSubjectIdList.size();count++){
+            if(startIndex<=count&&count<=endIndex){
+                String currentSubjectId=allSubjectIdList.get(count);
+                resultList.add(new SubjectIdAndNameVo(currentSubjectId,resultIdToNameMap.get(currentSubjectId)));
+
+            }
+
+
+        }
         return resultList;
     }
 

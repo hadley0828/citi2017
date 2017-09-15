@@ -92,4 +92,12 @@ public interface AccountBooksBlService {
      */
     public ArrayList<SubjectsPO> getAllSubjectPeriodEndPrice(String month, String factoryId);
 
+    /**
+     * 获得开始科目和结束科目之间所有有改变记录的科目的id和name
+     * @param startSubject
+     * @param endSubject
+     * @return
+     */
+    public ArrayList<SubjectIdAndNameVo> getBetweenSubject(String startSubject,String endSubject,String factoryId);
+
 }

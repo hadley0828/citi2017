@@ -2,10 +2,14 @@ package presentation.viewController.supplyChainManagement.cashManagement;
 
 import businesslogic.CashPoolImpl;
 import businesslogicservice.CashPoolService;
+import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import presentation.componentController.FunLevelGauge;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
@@ -29,6 +33,12 @@ public class CashPoolController implements Initializable, ControlledScreen {
     private Label currentOut_label;
     @FXML
     private Label reserve_label;
+    @FXML
+    private VBox layoutPane;
+
+    private long lastTimerCall;
+    private AnimationTimer timer;
+    private FunLevelGauge gauge;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,15 +51,28 @@ public class CashPoolController implements Initializable, ControlledScreen {
 
             double[] quota = cashPool.getCashFlow(company_id, date);
 
-            last_label.setText(String.valueOf(quota[0]));
-            currentIn_label.setText(String.valueOf(quota[1]));
-            currentOut_label.setText(String.valueOf(quota[2]));
-            reserve_label.setText(String.valueOf(quota[3]));
+            currentIn_label.setText(String.valueOf(quota[0]));
+            currentOut_label.setText(String.valueOf(quota[1]));
+            reserve_label.setText(String.valueOf(quota[2]));
+            lastTimerCall = System.nanoTime();
+            timer = new AnimationTimer() {
+                @Override public void handle(long now) {
+                    if (now > lastTimerCall + 800_000_000l) {
+                        gauge.setLevel(quota[2]);
+                        lastTimerCall = now;
+                    }
+                }
+            };
+
+            timer.start();
 
         });
 
+        gauge = new FunLevelGauge();
+        gauge.setPrefSize(400, 400);
 
 
+        layoutPane.getChildren().add(gauge);
     }
 
     @Override

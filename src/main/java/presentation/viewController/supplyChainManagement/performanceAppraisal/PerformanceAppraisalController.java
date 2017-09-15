@@ -5,13 +5,14 @@ import businesslogicservice.SupplyChainService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+import vo.BalanceSheetItemVo;
 import vo.SupplyChainPerformanceVo;
 
 import java.util.ArrayList;
@@ -79,9 +80,47 @@ String []companies=service.getTheCompanys("001");
         setOp();
         setDevelop();
         setDebtpay();
+        setCell();
     }
 
+    public void setCell(){
+        op_back.setCellFactory(new Callback<TableColumn<OperationVO,Double>, TableCell<OperationVO,Double>>() {
+            @Override
+            public TableCell<OperationVO,Double> call(TableColumn<OperationVO,Double> param) {
+                return new TextFieldTableCell<OperationVO,Double>(){
+                    public void updateItem(Double d,boolean isEmpty){
+                        super.updateItem(d,isEmpty);
+                        if(!isEmpty){
+                            OperationVO vo=getTableView().getItems().get(getTableRow().getIndex());
+                            if(vo.getEnterprise().equals("供应商")){
+                                setStyle("-fx-text-fill: transparent;");
+                            }
 
+                        }
+                    }
+                };
+            }
+        });
+        op_ontime.setCellFactory(new Callback<TableColumn<OperationVO,Double>, TableCell<OperationVO,Double>>() {
+            @Override
+            public TableCell<OperationVO,Double> call(TableColumn<OperationVO,Double> param) {
+                return new TextFieldTableCell<OperationVO,Double>(){
+                    public void updateItem(Double d,boolean isEmpty){
+                        super.updateItem(d,isEmpty);
+                        if(!isEmpty){
+                            OperationVO vo=getTableView().getItems().get(getTableRow().getIndex());
+                            if(vo.getEnterprise().equals("分销商")){
+                                setStyle("-fx-text-fill: transparent;");
+                            }
+
+                        }
+                    }
+                };
+            }
+        });
+
+
+    }
     public void setGain(){
         ArrayList<ProfitAbilityVO> profitAbilityVOS=new ArrayList<ProfitAbilityVO>();
         profitAbilityVOS.add(new ProfitAbilityVO("供应商",vo.getSupplier()[0][0],vo.getSupplier()[0][1]));

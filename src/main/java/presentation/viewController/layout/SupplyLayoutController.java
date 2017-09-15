@@ -34,7 +34,7 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN, ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
+//        supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN, ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
 //        supplyController.loadScreen();
 
         supplyStack.getChildren().add(supplyController);

@@ -31,6 +31,8 @@ public class FinancialLayoutController implements Initializable, ControlledScree
     private Button subject_summary;
     @FXML
     private Button pro_debt;
+    @FXML
+    private Button warning_btn;
 
     @FXML
     private StackPane missionPane;
@@ -63,6 +65,7 @@ public class FinancialLayoutController implements Initializable, ControlledScree
             financialController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
         }
         else if (event.getSource().equals(detail_bill)) {
+            System.out.println("aaa");
             financialController.loadScreen(ScreensFramework.DETAIL_BILL_SCREEN, ScreensFramework.DETAIL_BILL_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.DETAIL_BILL_SCREEN);
         }
@@ -77,6 +80,11 @@ public class FinancialLayoutController implements Initializable, ControlledScree
         else if (event.getSource().equals(subject_summary)) {
             financialController.loadScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN, ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.SUBJECT_SUMMARY_SHEET_SCREEN);
+        }
+        else if (event.getSource().equals(warning_btn)) {
+            System.out.println("aaa");
+            financialController.loadScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN, ScreensFramework.FINANCIAL_WARNING_SCREEN_FXML);
+            financialController.setScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN);
         }
 //        else if (event.getSource().equals(pro_debt)) {
 //            financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);

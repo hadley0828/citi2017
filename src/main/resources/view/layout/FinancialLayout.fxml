@@ -19,6 +19,7 @@
             <Button fx:id="subject_balance" layoutX="44.0" layoutY="243.0" mnemonicParsing="false" onAction="#missionSwitch" text="科目余额表" />
             <Button fx:id="subject_summary" layoutX="44.0" layoutY="288.0" mnemonicParsing="false" onAction="#missionSwitch" text="科目汇总表" />
             <Button fx:id="pro_debt" layoutX="43.0" layoutY="334.0" mnemonicParsing="false" onAction="#missionSwitch" text="资产负债表" />
+            <Button fx:id="warning_btn" layoutX="43.0" layoutY="372.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务预警" />
          </children></AnchorPane>
       <StackPane fx:id="missionPane" prefHeight="598.0" prefWidth="775.0" />
   </items>

@@ -83,31 +83,61 @@ public class SettingDataServiceImpl implements SettingDataService{
     public boolean setSupplyChain(String company_id, String index, String upper, String down) {
         sqlManager.getConnection();
 
-        List<Object> params = new ArrayList<>();
-        params.add(0);
-        String sql = "";
-        try{
-            if (index.equals("供应商")){
-                params.add(company_id);
-                params.add(down);
-                params.add("");
+        String getsql = "select * from supply_chain where upper_id=? or middle_id=? or down_id=?";
+        Map<String,Object> map = sqlManager.querySimple(getsql,new Object[]{company_id,company_id,company_id});
+        if (map.isEmpty()){
+            List<Object> params = new ArrayList<>();
+            params.add(0);
+            String sql = "";
+            try{
+                if (index.equals("供应商")){
+                    params.add(company_id);
+                    params.add(down);
+                    params.add("");
 
-            }else if(index.equals("生产商")){
-                params.add(upper);
-                params.add(company_id);
-                params.add(down);
-            }else if(index.equals("分销商")){
-                params.add("");
-                params.add(upper);
-                params.add(company_id);
+                }else if(index.equals("生产商")){
+                    params.add(upper);
+                    params.add(company_id);
+                    params.add(down);
+                }else if(index.equals("分销商")){
+                    params.add("");
+                    params.add(upper);
+                    params.add(company_id);
+                }
+                sql = sqlManager.appendSQL("insert into supply_chain values",params.size());
+                sqlManager.executeUpdateByList(sql,params);
+                sqlManager.commit();
+                return true;
+            }catch (Exception e){
+                return false;
             }
-            sql = sqlManager.appendSQL("insert into supply_chain values",params.size());
-            sqlManager.executeUpdateByList(sql,params);
-            sqlManager.commit();
-            return true;
-        }catch (Exception e){
-            return false;
+        }else{
+            String sql = "";
+            List<Object> params = new ArrayList<>();
+            try {
+                if (index.equals("供应商")){
+                    sql = "update supply_chain set middle_id=? where upper_id=?";
+                    params.add(down);
+                    params.add(company_id);
+                }else if (index.equals("生产商")){
+                    sql = "update supply_chain set upper_id=?,down_id=? where middle_id=?";
+                    params.add(upper);
+                    params.add(down);
+                    params.add(company_id);
+
+                }else if (index.equals("分销商")){
+                    sql = "update supply_chain set middle_id=? where down_id=?";
+                    params.add(upper);
+                    params.add(company_id);
+                }
+                sqlManager.executeUpdateByList(sql,params);
+                sqlManager.commit();
+                return true;
+            }catch (Exception e){
+                return false;
+            }
         }
+
     }
 
 

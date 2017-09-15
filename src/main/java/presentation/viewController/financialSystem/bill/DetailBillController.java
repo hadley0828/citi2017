@@ -14,9 +14,8 @@ import presentation.dataModel.DetailBillModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
-import vo.accountBook.BookSearchVo;
-import vo.accountBook.DetailAccountAmountVo;
-import vo.accountBook.DetailAccountVo;
+import vo.accountBook.*;
+import vo.voucher.VoucherVo;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,6 +64,7 @@ public class DetailBillController implements Initializable, ControlledScreen {
         accountBooksBl = new AccountBooksBlImpl();
         bookSearchVo = new BookSearchVo();
         factoryId = StaticFactory.getUserVO().getCompanyID();
+        subjectsList = new ArrayList<>();
 
         bookSearch.getConfirm_btn().setOnAction(event -> {
             bookSearchVo.setStartPeriod(bookSearch.getStartPeriod_item().getSelectionModel().getSelectedItem());
@@ -73,8 +73,10 @@ public class DetailBillController implements Initializable, ControlledScreen {
             bookSearchVo.setEndSubjectId(bookSearch.getEndSubject_item().getSelectionModel().getSelectedItem().split(" ")[0]);
             bookSearchVo.setLowLevel(Integer.parseInt(bookSearch.getStartLevel_item().getText()));
             bookSearchVo.setHighLevel(Integer.parseInt(bookSearch.getEndLevel_item().getText()));
-            updateTable(subjectsList.get(0));
+            updateList();
+            updateTable(subjectsList.get(0).split(" ")[0]);
         });
+
 
         CustomMenuItem menuItem = new CustomMenuItem(bookSearch);
         menuItem.setHideOnClick(false);
@@ -98,20 +100,31 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
     }
 
+    private void updateList() {
+        subjectsList.clear();
+        rightSubjects.getChildren().clear();
+        subjectsList.add(bookSearch.getStartSubject_item().getSelectionModel().getSelectedItem());
+        ArrayList<SubjectIdAndNameVo> andNameVos = accountBooksBl.getBetweenSubject(bookSearchVo.getStartSubjectId(), bookSearchVo.getEndSubjectId(), factoryId);
+
+        for (SubjectIdAndNameVo vo: andNameVos) {
+            String sub = vo.getId() + " " + vo.getName();
+            subjectsList.add(sub);
+            Button btn = new Button(sub);
+            btn.setOnAction((ActionEvent e) -> {
+                updateTable(sub.split(" ")[0]);
+            });
+            rightSubjects.getChildren().add(btn);
+        }
+
+    }
+
     private void updateTable(String subjectId) {
         data.clear();
-        rightSubjects.getChildren().clear();
         DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
         ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
         for (DetailAccountAmountVo vo: amountVoArrayList) {
             if (vo.getBalance() != 0) {
                 data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));
-                String sub = vo.getSubject();
-                Button btn = new Button(sub);
-                btn.setOnAction((ActionEvent e) -> {
-                    updateTable(sub);
-                });
-                rightSubjects.getChildren().add(btn);
             }
         }
 

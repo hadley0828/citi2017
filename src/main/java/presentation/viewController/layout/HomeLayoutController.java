@@ -28,9 +28,6 @@ public class HomeLayoutController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        homeController.loadScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN, ScreensFramework.FINANCIAL_WARNING_SCREEN_FXML);
-        homeController.setScreen(ScreensFramework.FINANCIAL_WARNING_SCREEN);
-
         homeStack.getChildren().add(homeController);
     }
 
