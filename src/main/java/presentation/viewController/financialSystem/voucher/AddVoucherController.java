@@ -96,7 +96,6 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
         creditCol.setCellValueFactory(cellData -> cellData.getValue().creditProperty());
 
-        data.add(new VoucherModel("", "", "", ""));
         data.add(new VoucherModel("合计：", "", "", ""));
         voucherTable.setItems(data);
         voucherTable.setEditable(true);
@@ -208,7 +207,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             System.out.println("yeah");
         }
 
-        Reset();gi
+        Reset();
     }
 
     @FXML
@@ -291,8 +290,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         type_combo.getSelectionModel().clearSelection();
         number_field.setText("");
         data.clear();
-        data.add(new VoucherModel("", "", "", ""));
         data.add(new VoucherModel("合计：", "", "", ""));
+        date_picker.setValue(null);
 
     }
 }
