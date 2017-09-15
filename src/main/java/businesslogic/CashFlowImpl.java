@@ -35,7 +35,7 @@ public class CashFlowImpl implements CashFlowTableService{
 	}
 
 	public CashFlowVo CashFlowTable_month(String time,String id) {	
-		Map<String,double[]> tool=helper.tempCal(id,time);
+		Map<String,double[]> tool=helper.tempCal(time,id);
 		double temp1=0,temp2=0,temp3=0,temp4=0,temp5=0,temp6=0;
 		List<VoucherAmountPO> list=DATA.getVourchersByPeriod(time, id);
 		

@@ -20,13 +20,13 @@ public class Demo extends Application {
         try{
             FXMLLoader loader=new FXMLLoader();
 //            loader.setLocation(Demo.class.getResource("../view/cashFlow/cashFlow.fxml"));
-//            loader.setLocation(Demo.class.getResource("../view/profitSheet/profitSheet.fxml"));
+            loader.setLocation(Demo.class.getResource("../view/financialSystem/reportForm/profitSheet/profitSheet.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/financialSystem/reportForm/balanceSheet/balanceSheet.fxml"));
 //              loader.setLocation(Demo.class.getResource("../view/balanceSheet/TestTree.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/stock/Supplier.fxml"));
 //            ScrollPane root=loader.load();
 //            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/financialInstitutions/FinancialInstitutions.fxml"));
-            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/stock/Distributor.fxml"));
+//            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/stock/Distributor.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/stock/Producer.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/stock/stockInfo.fxml"));
 //            loader.setLocation(Demo.class.getResource("../view/supplyChainManagement/performanceAppraisal/performanceAppraisal.fxml"));

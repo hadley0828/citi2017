@@ -84,6 +84,7 @@ public class TableCalHelper {
 	}
 	
 	public String lastTime(String time){
+		System.out.print(time);
 		String temp[]=time.split("-");
 		int year=Integer.parseInt(temp[0]);
 		int month=Integer.parseInt(temp[1]);

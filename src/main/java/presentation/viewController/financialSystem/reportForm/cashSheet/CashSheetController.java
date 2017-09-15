@@ -78,8 +78,9 @@ public class CashSheetController implements ControlledScreen {
     private CashFlowVo year;
 
     public void setCashTable(){
-        period=cashService.CashFlowTable_month(bar.getDate(), StaticFactory.getUserVO().getCompanyID());
-        year=cashService.CashFlowTable_year(bar.getDate(),StaticFactory.getUserVO().getCompanyID());
+//        System.out.print(cashService.CashFlowTable_month("2017-07", "001"));
+        period=cashService.CashFlowTable_month(bar.getZeroDate(), StaticFactory.getUserVO().getCompanyID());
+        year=cashService.CashFlowTable_year(bar.getZeroDate(),StaticFactory.getUserVO().getCompanyID());
 /**
  *
  * @author hyf
