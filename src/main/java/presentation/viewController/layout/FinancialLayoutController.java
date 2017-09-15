@@ -42,9 +42,10 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
+//        financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
 
 //        financialController.loadScreen(ScreensFramework.FINANCIAL_SETTING_SCREEN, ScreensFramework.FINANCIAL_SETTING_SCREEN_FXML);
+        financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
 
         missionPane.getChildren().add(financialController);
     }
@@ -61,7 +62,6 @@ public class FinancialLayoutController implements Initializable, ControlledScree
             financialController.setScreen(ScreensFramework.ADD_VOUCHER_SCREEN);
         }
         else if (event.getSource().equals(inquire_voucher)) {
-            financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
         }
         else if (event.getSource().equals(detail_bill)) {

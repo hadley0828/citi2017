@@ -1,25 +1,34 @@
 package presentation.viewController.financialSystem.voucher;
 
+import businesslogic.UserManagementImpl;
 import businesslogic.VoucherBlImpl;
+import businesslogicservice.UserManagementService;
 import businesslogicservice.VoucherBlService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
 import util.NumberToCN;
+import vo.userManagement.AccountSetVO;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
 import vo.voucher.SubjectBasicVo;
 import vo.voucher.VoucherAmountVo;
 import vo.voucher.VoucherVo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -49,15 +58,19 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private DatePicker date_picker;
     @FXML
     private Label maker_label;
+    @FXML
+    private Button aid_btn;
 
     private ScreensController myController;
     private VoucherBlService voucherBl;
     private VoucherVo voucher;
     private ObservableList<VoucherModel> data = FXCollections.observableArrayList();
     private String factoryId;
+    private String judger;
         
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        aid_btn.setVisible(false);
         UserVO userVO = StaticFactory.getUserVO();
         factoryId = userVO.getCompanyID();
         
@@ -99,7 +112,15 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
         subjectCol.setCellFactory(ComboBoxTableCell.forTableColumn(subjectChoice));
         subjectCol.setOnEditCommit(
-                event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setSubject(event.getNewValue())
+                event -> {
+                    event.getTableView().getItems().get(event.getTablePosition().getRow()).setSubject(event.getNewValue());
+                    judger = event.getNewValue().split(" ")[1];
+                    if (judger.equals("材料采购") || judger.equals("在途物资") || judger.equals("原材料") || judger.equals("库存商品")
+                            || judger.equals("委托加工物资、工程物资") || judger.equals("工程物资") || judger.equals("应付账款") || judger.equals("应收账款")) {
+                        aid_btn.setVisible(true);
+                    }else
+                        aid_btn.setVisible(false);
+                }
         );
 
         debitCol.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -195,6 +216,66 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
+    }
+
+    @FXML
+    private void OnAid() {
+        Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UTILITY);
+
+        if (judger.equals("应收账款")){
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/voucher/AidCharge.fxml"));
+                Scene scene = new Scene(root);
+                dialog.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            dialog.show();
+        } else if (judger.equals("应付账款")){
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/voucher/AidPay.fxml"));
+                Scene scene = new Scene(root);
+                dialog.setScene(scene);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            dialog.show();
+        } else if (judger.equals("材料采购") || judger.equals("在途物资") || judger.equals("原材料") || judger.equals("库存商品") || judger.equals("委托加工物资") || judger.equals("工程物资")) {
+            String compayId = StaticFactory.getUserVO().getUserID();
+            UserManagementService userManagementService = new UserManagementImpl();
+            AccountSetVO accountSetVO = userManagementService.getAccountSetByCompanyID(compayId);
+            String str = accountSetVO.getChainPlace();
+            if (str.equals("供应商")) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/stockInfo/SupplierInfo.fxml"));
+                    Scene scene = new Scene(root);
+                    dialog.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dialog.show();
+            } else if (str.equals("生产商")) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/stockInfo/ProducerInfo.fxml"));
+                    Scene scene = new Scene(root);
+                    dialog.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dialog.show();
+            } else if (str.equals("分销商")) {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("../../../../git view/financialSystem/stockInfo/DistributionInfo.fxml"));
+                    Scene scene = new Scene(root);
+                    dialog.setScene(scene);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dialog.show();
+            }
+
+        }
     }
 
 }
