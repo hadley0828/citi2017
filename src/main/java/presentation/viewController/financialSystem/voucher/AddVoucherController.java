@@ -1,7 +1,9 @@
 package presentation.viewController.financialSystem.voucher;
 
+import businesslogic.SettingImpl;
 import businesslogic.UserManagementImpl;
 import businesslogic.VoucherBlImpl;
+import businesslogicservice.SettingService;
 import businesslogicservice.UserManagementService;
 import businesslogicservice.VoucherBlService;
 import javafx.collections.FXCollections;
@@ -22,6 +24,7 @@ import presentation.screenController.ScreensController;
 import presentation.StaticFactory;
 import util.NumberToCN;
 import vo.userManagement.AccountSetVO;
+import vo.userManagement.SubjectsVO;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
 import vo.voucher.SubjectBasicVo;
@@ -104,10 +107,11 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                 event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setAbstracts(event.getNewValue())
         );
 
-        ArrayList<SubjectBasicVo> subjectArray = voucherBl.getAllSubjectBasics(StaticFactory.getUserVO().getCompanyID());
+        SettingService settingService = new SettingImpl();
+        ArrayList<SubjectsVO> subjectArray = settingService.getAllSubjects();
         ObservableList<String> subjectChoice = FXCollections.observableArrayList();
-        for (SubjectBasicVo vo: subjectArray) {
-            subjectChoice.add(vo.getSubjectId() + " " + vo.getSubjectName());
+        for (SubjectsVO vo: subjectArray) {
+            subjectChoice.add(vo.getSubjectsID() + " " + vo.getSubjectsName());
         }
 
         subjectCol.setCellFactory(ComboBoxTableCell.forTableColumn(subjectChoice));
@@ -222,6 +226,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private void OnAid() {
         Stage dialog = new Stage();
         dialog.initStyle(StageStyle.UTILITY);
+
+        StaticFactory.setAidId(type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText());
 
         if (judger.equals("应收账款")){
             try {
