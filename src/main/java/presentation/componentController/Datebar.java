@@ -75,7 +75,6 @@ public class Datebar extends HBox{
             setDate(this_year,this_month);
             setListener();
         }else{
-//            System.out.print(balanceSheetService.getLatestTime());
             setDate(Integer.parseInt(balanceSheetService.getLatestTime(StaticFactory.getUserVO().getCompanyID()).substring(0,4)),Integer.parseInt(balanceSheetService.getLatestTime(StaticFactory.getUserVO().getCompanyID()).split("-")[1]));
             setListener();
         }
@@ -112,6 +111,13 @@ public class Datebar extends HBox{
     public String getDate(){
 //        System.out.println(yearProperty.get());
         return yearProperty.get()+"-"+monthProperty.get();
+    }
+    public String getZeroDate(){
+        if(monthProperty.get()<10){
+            return yearProperty.get()+"-0"+monthProperty.get();
+        }else {
+            return yearProperty.get()+"-"+monthProperty.get();
+        }
     }
 
     DropShadow shadow=new DropShadow();

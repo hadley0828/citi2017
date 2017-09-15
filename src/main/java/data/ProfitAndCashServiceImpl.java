@@ -136,6 +136,50 @@ public class ProfitAndCashServiceImpl implements ProfitAndCashService{
         return result;
     }
 
+    @Override
+    public List<VoucherAmountPO> getVourchersBefore(String period, String company_id) {
+        sqlManager.getConnection();
+
+        ArrayList<VoucherAmountPO> list = new ArrayList<>();
+        String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE date<=? AND company_id=? )AND company_id=?";
+//        System.out.println(fillDate(period));
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{Date.valueOf(fillDate(period)),company_id,company_id});
+        for(Map<String,Object> map : datalist){
+            list.add(getVoucherAmountPO(map));
+        }
+
+        sqlManager.releaseAll();
+        return list;
+    }
+
+    @Override
+    public List<VoucherAmountPO> getVourchersByYear(String year, String company_id) {
+        sqlManager.getConnection();
+        ArrayList<VoucherAmountPO> list = new ArrayList<>();
+        String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND company_id=?) AND company_id=?";
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{year,company_id,company_id});
+
+        for(Map<String,Object> map : datalist){
+            list.add(getVoucherAmountPO(map));
+        }
+        sqlManager.releaseAll();
+        return list;
+    }
+
+    @Override
+    public List<VoucherAmountPO> getVourchersByPeriod(String period, String company_id) {
+        sqlManager.getConnection();
+        ArrayList<VoucherAmountPO> list = new ArrayList<>();
+        String sql = "SELECT * FROM voucher_amount WHERE v_id IN(SELECT v_id FROM voucher WHERE year(date)=? AND month(date)=? AND company_id=?) AND company_id=?";
+        Map<String,String> dateMap = DatesUtil.datesParser(period);
+
+        ArrayList<Map<String,Object>> datalist = sqlManager.queryMulti(sql,new Object[]{dateMap.get("year"),dateMap.get("month"),company_id,company_id});
+        for(Map<String,Object> map : datalist){
+            list.add(getVoucherAmountPO(map));
+        }
+        sqlManager.releaseAll();
+        return list;
+    }
 
 
     private VoucherAmountPO getVoucherAmountPO(Map<String,Object> map){

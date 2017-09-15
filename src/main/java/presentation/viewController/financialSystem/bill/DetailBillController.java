@@ -81,8 +81,6 @@ public class DetailBillController implements Initializable, ControlledScreen {
         select_menu.getItems().addAll(menuItem);
         select_menu.setFocusTraversable(false);
 
-        initialSubjectsList();
-
         dateCol.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
         idCol.setCellValueFactory(cellData -> cellData.getValue().idProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
@@ -100,24 +98,21 @@ public class DetailBillController implements Initializable, ControlledScreen {
 
     }
 
-    private void initialSubjectsList() {
-        subjectsList = accountBooksBl.getAllExistedSubjectId(factoryId);
-            for (String sub: subjectsList) {
+    private void updateTable(String subjectId) {
+        data.clear();
+        rightSubjects.getChildren().clear();
+        DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
+        ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
+        for (DetailAccountAmountVo vo: amountVoArrayList) {
+            if (vo.getBalance() != 0) {
+                data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));
+                String sub = vo.getSubject();
                 Button btn = new Button(sub);
                 btn.setOnAction((ActionEvent e) -> {
                     updateTable(sub);
                 });
                 rightSubjects.getChildren().add(btn);
             }
-    }
-
-    private void updateTable(String subjectId) {
-        data.clear();
-        DetailAccountVo detailAccountVo = accountBooksBl.getOneSubjectDetail(subjectId, bookSearchVo, factoryId);
-        ArrayList<DetailAccountAmountVo> amountVoArrayList = detailAccountVo.getAmountVoArrayList();
-        for (DetailAccountAmountVo vo: amountVoArrayList) {
-            if (vo.getBalance() != 0)
-                data.add(new DetailBillModel(vo.getDate(), vo.getVoucherId(), vo.getSubject(), vo.getAbstracts(), vo.getDebitAmount(), vo.getCreditAmount(), vo.getDirection(), vo.getBalance()));
         }
 
         billTable.setItems(data);

@@ -39,4 +39,12 @@ public interface ProfitTableService {
 	 * @return
 	 */
 	public double getProfit(String company_id, String time);
+	
+	/**
+	 * 
+	 * @param company_id
+	 * @param time yyyy-mm
+	 * @param path
+	 */
+	public void CreateProfitTable(String company_id,String time,String path);
 }

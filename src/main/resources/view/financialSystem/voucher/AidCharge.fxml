@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.voucher.AidChargeController">
+   <children>
+      <Button layoutX="25.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnSave" text="保存" />
+      <Button layoutX="88.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnCancel" text="取消" />
+      <TableView fx:id="table" layoutX="24.0" layoutY="95.0" prefHeight="274.0" prefWidth="571.0">
+         <columns>
+            <TableColumn fx:id="name_col" prefWidth="75.0" text="公司名称" />
+            <TableColumn fx:id="debit_col" prefWidth="75.0" text="借款时间" />
+            <TableColumn fx:id="credit_col" prefWidth="75.0" text="还款期限" />
+            <TableColumn fx:id="money_col" prefWidth="93.0" text="应收账款金额" />
+            <TableColumn fx:id="discount_col" prefWidth="94.0" text="折扣政策" />
+            <TableColumn fx:id="term_col" prefWidth="84.0" text="折扣期限" />
+            <TableColumn fx:id="remark_col" prefWidth="74.0" text="备注" />
+         </columns>
+      </TableView>
+      <Button layoutX="429.0" layoutY="47.0" mnemonicParsing="false" onAction="#OnAddRow" text="+1s" />
+      <Button layoutX="512.0" layoutY="47.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="-1s" />
+   </children>
+</AnchorPane>

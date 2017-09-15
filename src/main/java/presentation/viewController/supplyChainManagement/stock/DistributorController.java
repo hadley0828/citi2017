@@ -147,8 +147,8 @@ public class DistributorController implements ControlledScreen{
         chartStage=new Stage();
         Scene scene=new Scene(root,900,680);
         chartStage.setScene(scene);
-        chartStage.initStyle(StageStyle.TRANSPARENT);
-        chartStage.initModality(Modality.APPLICATION_MODAL);
+        chartStage.initStyle(StageStyle.UNDECORATED);
+        chartStage.initModality(Modality.WINDOW_MODAL);
         chartStage.show();
     }
 

@@ -166,5 +166,8 @@ public class SupplierInfoController {
         }
         System.out.print(toAddVOs.size());
         service.SupplierInformationEntry(StaticFactory.getUserVO().getCompanyID(), toAddVOs);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("录入成功！");
+        alert.showAndWait();
     }
 }
