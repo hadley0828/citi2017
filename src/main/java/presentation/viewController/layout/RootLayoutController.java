@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
@@ -28,6 +29,8 @@ public class RootLayoutController implements Initializable {
     @FXML
     private Button signOut_btn;
 
+    @FXML
+    private ImageView logo;
     @FXML
     private StackPane rootStack;
 

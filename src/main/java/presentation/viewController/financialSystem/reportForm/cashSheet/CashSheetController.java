@@ -213,15 +213,19 @@ public class CashSheetController implements ControlledScreen {
         });
     }
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+
+    }
     @FXML
     public void out(){
         FileSystemView fsv=FileSystemView.getFileSystemView();
         String path=fsv.getHomeDirectory().getPath();
         path += "/现金流量表.xls";
-    }
+        cashService.CreateCashFlowTable(StaticFactory.getUserVO().getCompanyID(),bar.getDate(),path);
 
-    @Override
-    public void setScreenParent(ScreensController screenPage) {
-
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("导出成功！");
+        alert.showAndWait();
     }
 }

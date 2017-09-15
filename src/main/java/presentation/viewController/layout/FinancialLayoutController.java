@@ -42,9 +42,10 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
+//        financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
 
 //        financialController.loadScreen(ScreensFramework.FINANCIAL_SETTING_SCREEN, ScreensFramework.FINANCIAL_SETTING_SCREEN_FXML);
+        financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
 
         missionPane.getChildren().add(financialController);
     }
@@ -61,7 +62,6 @@ public class FinancialLayoutController implements Initializable, ControlledScree
             financialController.setScreen(ScreensFramework.ADD_VOUCHER_SCREEN);
         }
         else if (event.getSource().equals(inquire_voucher)) {
-            financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
         }
         else if (event.getSource().equals(detail_bill)) {
@@ -90,14 +90,14 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 //            financialController.loadScreen(ScreensFramework.BALANCESHEET_SCREEN,ScreensFramework.BALANCESHEET_SCREEN_FXML);
 //            financialController.setScreen(ScreensFramework.BALANCESHEET_SCREEN);
 //        }
-//        else if (event.getSource().equals(pro_debt)) {
-//            financialController.loadScreen(ScreensFramework.CASHFLOW_SCREEN,ScreensFramework.CASHFLOW_SCREEN_FXML);
-//            financialController.setScreen(ScreensFramework.CASHFLOW_SCREEN);
-//        }
         else if (event.getSource().equals(pro_debt)) {
-            financialController.loadScreen(ScreensFramework.PROFITSHEET_SCREEN,ScreensFramework.PROFITSHEET_SCREEN_FXML);
-            financialController.setScreen(ScreensFramework.PROFITSHEET_SCREEN);
+            financialController.loadScreen(ScreensFramework.CASHFLOW_SCREEN,ScreensFramework.CASHFLOW_SCREEN_FXML);
+            financialController.setScreen(ScreensFramework.CASHFLOW_SCREEN);
         }
+//        else if (event.getSource().equals(pro_debt)) {
+//            financialController.loadScreen(ScreensFramework.PROFITSHEET_SCREEN,ScreensFramework.PROFITSHEET_SCREEN_FXML);
+//            financialController.setScreen(ScreensFramework.PROFITSHEET_SCREEN);
+//        }
     }
 
 }

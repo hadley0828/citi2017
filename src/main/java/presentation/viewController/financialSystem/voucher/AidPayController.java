@@ -131,9 +131,9 @@ public class AidPayController implements Initializable, ControlledScreen {
     @FXML
     private void OnAddRow() {
         if (data.size() > 1)
-            data.add(data.size() - 2, new DealStateModel("", "", "", "", "", "", ""));
+            data.add(data.size() - 2, new DealStateModel("应付账款-", "", "", "", "", "", ""));
         else
-            data.add(0, new DealStateModel("", "", "", "", "", "", ""));
+            data.add(0, new DealStateModel("应付账款-", "", "", "", "", "", ""));
     }
 
     @FXML

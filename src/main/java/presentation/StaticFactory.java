@@ -139,4 +139,12 @@ public class StaticFactory {
         return ifUpdated;
     }
 
+    static String aidId;
+    public static void setAidId(String aid) {
+        aidId = aid;
+    }
+    public static String getAidId() {
+        return aidId;
+    }
+
 }

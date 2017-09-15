@@ -10,11 +10,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.stage.Stage;
 import presentation.StaticFactory;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
+import presentation.warningController.RunWarning;
 import util.NumberToCN;
 import vo.userManagement.UserVO;
 import vo.voucher.AmountTotalVo;
@@ -23,6 +25,7 @@ import vo.voucher.VoucherAmountVo;
 import vo.voucher.VoucherVo;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -48,12 +51,12 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     @FXML
     public Label maker_label;
 
-    public ScreensController parentController;
-    public VoucherBlService voucherBl;
+    private ScreensController parentController;
+    private VoucherBlService voucherBl;
     public VoucherVo voucher;
     public ObservableList<VoucherModel> data = FXCollections.observableArrayList();
     public String factoryId;
-    public String amendId;
+    private String amendId;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,6 +78,8 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     public void initialTable() {
+
+
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
@@ -119,24 +124,34 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         );
 
         voucherTable.setItems(data);
+
+        updateTable();
     }
 
-    public void updateTable() {
-        data.add(new VoucherModel("11111", "", "", ""));
-//        data.clear();
-//        voucher = voucherBl.getOneVoucher(amendId, factoryId);
-//        if (voucher != null) {
-//            for (VoucherAmountVo voucherAmountVo: voucher.getAmountList()) {
-//                data.add(new VoucherModel(voucherAmountVo.getAbstracts(), voucherAmountVo.getSubject(), String.valueOf(voucherAmountVo.getDebitAmount()), String.valueOf(voucherAmountVo.getCreditAmount())));
-//            }
-//            AmountTotalVo tvo = voucher.getAmountTotalVo();
-//            data.add(new VoucherModel("合计： ", tvo.getChineseTotal(), String.valueOf(tvo.getDebitAmount()), String.valueOf(tvo.getCreditAmount())));
-//        }
-//        voucherTable.setItems(data);
+    private void updateTable() {
+        data.clear();
+        voucher = voucherBl.getOneVoucher(amendId, factoryId);
+        String[] strings = voucher.getVoucherId().split("-");
+        type_combo.getSelectionModel().select(strings[0]);
+        number_field.setText(strings[1]);
+        maker_label.setText(voucher.getVoucherMaker());
+        String dateStr = voucher.getDate();
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+        LocalDate localDate = LocalDate.parse(dateStr, formatter);
+        date_picker.setValue(localDate);
+
+        if (voucher != null) {
+            for (VoucherAmountVo voucherAmountVo: voucher.getAmountList()) {
+                data.add(new VoucherModel(voucherAmountVo.getAbstracts(), voucherAmountVo.getSubject(), String.valueOf(voucherAmountVo.getDebitAmount()), String.valueOf(voucherAmountVo.getCreditAmount())));
+            }
+            AmountTotalVo tvo = voucher.getAmountTotalVo();
+            data.add(new VoucherModel("合计： ", tvo.getChineseTotal(), String.valueOf(tvo.getDebitAmount()), String.valueOf(tvo.getCreditAmount())));
+        }
+        voucherTable.setItems(data);
         voucherTable.refresh();
     }
 
-    public void updateSum() {
+    private void updateSum() {
         data.remove(data.size() - 1);
 
         double sumDebit = 0;
@@ -194,12 +209,14 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
 
         boolean a = voucherBl.amendOneVoucher(voucherId, voucher, factoryId);
         if(a) {
-            System.out.println("yeah");
+            RunWarning warning = new RunWarning();
+            warning.SetWarning("保存成功！");
+            warning.start(new Stage());
         }
     }
 
     @FXML
-    public void OnAddRow() {
+    private void OnAddRow() {
         if (data.size() > 1)
             data.add(data.size() - 2, new VoucherModel("", "", "", ""));
         else
@@ -207,19 +224,19 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     @FXML
-    public void OnDeleteRow() {
+    private void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
     }
 
     @FXML
-    public void OnDelete() {
+    private void OnDelete() {
         voucherBl.deleteOneVoucher(amendId, factoryId);
         OnCancel();
     }
 
     @FXML
-    public void OnCancel() {
+    private void OnCancel() {
         data.clear();
 //        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
 //        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);

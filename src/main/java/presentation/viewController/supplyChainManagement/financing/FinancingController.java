@@ -76,6 +76,7 @@ public class FinancingController implements ControlledScreen{
         stockMortgage.setDisable(true);
         advice2.setDisable(true);
         stockNum.setDisable(true);
+
         stockChoice.getItems().addAll(service.InventoryTypes(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getMonth()));
 //        stockChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
 //            @Override

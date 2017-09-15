@@ -118,15 +118,17 @@ public class InquireVoucherController implements Initializable, ControlledScreen
                 });
                 voucherCard.getModify_btn().setOnAction(event -> {
                     StaticFactory.setAmendId(vo.getVoucherId());
+                    parentController.unloadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+                    parentController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
                     parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
-                    try {
+                   /* try {
                         FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.AMEND_VOUCHER_SCREEN_FXML));
                         AnchorPane pane = myLoader.load();
                         AmendVoucherController myScreenController = myLoader.getController();
                         myScreenController.updateTable();
                     } catch (IOException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                 });
             }
         }
@@ -137,15 +139,41 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("导出");
         File file = fileChooser.showSaveDialog(voucher_list.getScene().getWindow());
+        System.out.println(file.getAbsolutePath() + '\n' + file.getPath());
         voucherBl.exportToExcel(voucherIdList, file.getAbsolutePath(), factoryId);
     }
 
     @FXML
     private void OnImport() {
+        voucher_list.getChildren().clear();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("导入");
         File file = fileChooser.showOpenDialog(voucher_list.getScene().getWindow());
         voucherList = voucherBl.importFromExcel(file.getAbsolutePath(), factoryId);
-        updateList();
+        if (!voucherList.isEmpty()) {
+            for (VoucherVo vo: voucherList) {
+                voucherIdList.add(vo.getVoucherId());
+                VoucherCard voucherCard = new VoucherCard(vo);
+                voucher_list.getChildren().add(voucherCard);
+                voucherCard.getDelete_btn().setOnAction(event -> {
+                    voucherBl.deleteOneVoucher(vo.getVoucherId(), factoryId);
+                    updateList();
+                });
+                voucherCard.getModify_btn().setOnAction(event -> {
+                    StaticFactory.setAmendId(vo.getVoucherId());
+                    parentController.unloadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+                    parentController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
+                    parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+                   /* try {
+                        FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.AMEND_VOUCHER_SCREEN_FXML));
+                        AnchorPane pane = myLoader.load();
+                        AmendVoucherController myScreenController = myLoader.getController();
+                        myScreenController.updateTable();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }*/
+                });
+            }
+        }
     }
 }

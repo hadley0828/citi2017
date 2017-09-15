@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -13,7 +14,11 @@
             <Button fx:id="supply_btn" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
             <Button fx:id="signOut_btn" layoutX="946.0" layoutY="23.0" mnemonicParsing="false" text="登出" />
             <Button fx:id="settings_btn" layoutX="1014.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
-            <Button fx:id="logo_btn" layoutY="-2.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="75.0" prefWidth="80.0" text="LOGO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1118.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fx:id="logo" fitHeight="75.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../images/logo.png" />
+                </image>
+            </ImageView>
          </children></AnchorPane>
       <StackPane fx:id="rootStack" prefHeight="351.0" prefWidth="811.0" />
   </items>
