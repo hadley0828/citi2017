@@ -74,7 +74,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     private CreditItemService creditItemService = new CreditItemImpl();
     private String factoryId;
     private String jugder;
-        
+    private boolean bool;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         aid_btn.setVisible(false);
@@ -126,8 +127,11 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                     if (jugder.equals("材料采购") || jugder.equals("在途物资") || jugder.equals("原材料") || jugder.equals("库存商品")
                             || jugder.equals("委托加工物资、工程物资") || jugder.equals("工程物资") || jugder.equals("应付账款") || jugder.equals("应收账款")) {
                         aid_btn.setVisible(true);
-                    }else
+                        bool = true;
+                    }else {
+                        bool = false;
                         aid_btn.setVisible(false);
+                    }
                 }
         );
 
@@ -212,8 +216,10 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             System.out.println("yeah");
         }
 
-        ArrayList<CreditItemVo> arrayList = StaticFactory.getAidVos();
-        creditItemService.SaveCreditItem(arrayList, factoryId, type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText());
+        if (bool) {
+            ArrayList<CreditItemVo> arrayList = StaticFactory.getAidVos();
+            creditItemService.SaveCreditItem(arrayList, factoryId, type_combo.getSelectionModel().getSelectedItem() + "-" + number_field.getText());
+        }
         Reset();
     }
 
