@@ -310,11 +310,16 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
         for(int count=0;count<allSubjectTotal.size();count++){
             TotalAccountVo oneAccountVo=allSubjectTotal.get(count);
             String oneSubjectId=oneAccountVo.getSubjectId();
+
             ArrayList<TotalAccountAmountVo> amountVoList=oneAccountVo.getAmountVoArrayList();
 
             BalanceTableOneClause oneResultClause=new BalanceTableOneClause();
             oneResultClause.setSubjectId(oneAccountVo.getSubjectId());
             oneResultClause.setSubjectName(oneAccountVo.getSubjectName());
+
+            if(amountVoList.size()==0){
+                continue;
+            }
 
             TotalAccountAmountVo periodBeginVo=amountVoList.get(0);
             oneResultClause.setBeginDebit(periodBeginVo.getDebitAmount());
