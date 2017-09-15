@@ -16,10 +16,10 @@ import java.util.ArrayList;
 /**
  * Created by Chris on 2017/9/14.
  */
-public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
+public class debitCell extends TableCell<SubjectsVO,Boolean> {
     final TextField cellText = new TextField();
 
-    ButtonCell(){
+    debitCell(){
 //        cellButton.setOnAction(new EventHandler<ActionEvent>(){
 //            @Override
 //            public void handle(ActionEvent t) {
@@ -47,7 +47,8 @@ public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 SubjectsVO vo=getTableView().getItems().get(getIndex());
-                vo.setQC(cellText.getText());
+                vo.setDebit(cellText.getText());
+
                 if(vo.getCredit().isEmpty()){
                     vo.setCredit("0");
 
@@ -104,13 +105,6 @@ public class ButtonCell extends TableCell<SubjectsVO,Boolean> {
                     rw.SetWarning("上传失败！");
                     rw.start(new Stage());
                 }
-
-
-
-
-
-
-
 
 
 
