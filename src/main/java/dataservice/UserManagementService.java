@@ -57,7 +57,7 @@ public interface UserManagementService {
      * @param po
      * @return
      */
-    public ResultMessage insertOneAccountSet(AccountSetPO po);
+    public ArrayList<String> insertOneAccountSet(AccountSetPO po);
 
     /**
      * 修改一个账套PO
@@ -119,4 +119,7 @@ public interface UserManagementService {
      * @return
      */
     public ArrayList<UserVO> getAllUserVoByAccountId(String account_id);
+
+
+    public void updateUserInfo(String user_id, String account_id,String company_id);
 }

@@ -37,8 +37,15 @@ public class AccountSetVO {
 
     public AccountSetVO() {
     }
-    public AccountSetVO(String company_name, String location, String industry, String chainPlace, String date, String creditCode, String contact){
 
+    public AccountSetVO(String company_name, String location, String industry, String chainPlace, String date, String creditCode, String contact) {
+        this.company_name = company_name;
+        this.location = location;
+        this.industry = industry;
+        this.chainPlace = chainPlace;
+        this.date = date;
+        this.creditCode = creditCode;
+        this.contact = contact;
     }
 
     public AccountSetVO(String company_name, String location, String industry, String date, String creditCode, String contact) {
