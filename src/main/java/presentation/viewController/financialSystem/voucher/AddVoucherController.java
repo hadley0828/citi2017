@@ -266,7 +266,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                 dialog.show();
             } else if (str.equals("分销商")) {
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("../../../../git view/financialSystem/stockInfo/DistributionInfo.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("../../../../view/financialSystem/stockInfo/DistributionInfo.fxml"));
                     Scene scene = new Scene(root);
                     dialog.setScene(scene);
                 } catch (IOException e) {
