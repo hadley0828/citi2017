@@ -15,7 +15,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import businesslogicservice.CashFlowTableService;
 import data.ProfitAndCashServiceImpl;
+import data.SupplyChainDataServiceImpl;
 import dataservice.ProfitAndCashService;
+import dataservice.SupplyChainDataService;
 import po.VoucherAmountPO;
 import vo.CashFlowVo;
 
@@ -28,10 +30,12 @@ public class CashFlowImpl implements CashFlowTableService{
 	
 	ProfitAndCashService DATA;
 	TableCalHelper helper;
+	SupplyChainDataService SC;
 	
 	public CashFlowImpl(){
 		DATA=new ProfitAndCashServiceImpl();
 		helper=new TableCalHelper();
+		SC=new SupplyChainDataServiceImpl();
 	}
 
 	public CashFlowVo CashFlowTable_month(String time,String id) {	
@@ -348,7 +352,7 @@ public class CashFlowImpl implements CashFlowTableService{
 		res[1]=v1.getOperating_activities()[2]+v1.getOperating_activities()[3]+v1.getOperating_activities()[4]+v1.getOperating_activities()[5]+
 				v1.getInvestment_activities()[3]+v1.getInvestment_activities()[4]+
 				v1.getFinancing_activities()[2]+v1.getFinancing_activities()[3]+v1.getFinancing_activities()[4];
-		res[2]=v1.getNet_cash_increase()[1];
+		res[2]=v1.getNet_cash_increase()[1]+SC.GetInitial("1001", company_id)+SC.GetInitial("1002", company_id)+SC.GetInitial("1012", company_id);
 		return res;
 	}
 
