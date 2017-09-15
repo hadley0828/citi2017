@@ -5,14 +5,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.cashManagement.CashPoolController">
+<BorderPane prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.cashManagement.CashPoolController">
    <left>
-      <Pane prefHeight="400.0" prefWidth="241.0">
+      <VBox fx:id="layoutPane" prefHeight="725.0" prefWidth="658.0" spacing="150.0">
          <children>
-            <Label layoutX="47.0" layoutY="213.0" text="小船儿荡起双桨" BorderPane.alignment="CENTER" />
-            <DatePicker fx:id="datePicker" layoutX="47.0" layoutY="86.0" prefHeight="23.0" prefWidth="135.0" />
+            <DatePicker fx:id="datePicker" layoutX="30.0" layoutY="25.0" prefHeight="23.0" prefWidth="135.0" />
          </children>
-      </Pane>
+      </VBox>
    </left>
    <center>
       <GridPane prefHeight="400.0" prefWidth="361.0" BorderPane.alignment="CENTER">
