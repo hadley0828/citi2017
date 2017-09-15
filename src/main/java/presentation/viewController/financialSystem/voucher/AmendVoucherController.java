@@ -29,6 +29,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.FutureTask;
 
 public class AmendVoucherController implements Initializable, ControlledScreen {
     @FXML
@@ -70,6 +71,8 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
 
         maker_label.setText(factoryId);
         initialTable();
+
+
     }
 
     @Override
@@ -78,7 +81,6 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     }
 
     public void initialTable() {
-
 
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
@@ -136,7 +138,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         number_field.setText(strings[1]);
         maker_label.setText(voucher.getVoucherMaker());
         String dateStr = voucher.getDate();
-        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+        DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateStr, formatter);
         date_picker.setValue(localDate);
 
@@ -173,8 +175,6 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
 
     @FXML
     public void OnSave() {
-        ObservableList<VoucherModel> aid_data = voucherTable.getItems();
-
         AmountTotalVo amountTotalVo = new AmountTotalVo();
         VoucherModel total = data.get(data.size() - 1);
         amountTotalVo.setChineseTotal(total.getSubject());
@@ -213,6 +213,29 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
             warning.SetWarning("保存成功！");
             warning.start(new Stage());
         }
+
+        StaticFactory.setIfUpdated(true);
+        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
+        parentController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+    }
+
+
+    @FXML
+    private void OnDelete() {
+        voucherBl.deleteOneVoucher(amendId, factoryId);
+        StaticFactory.setIfUpdated(true);
+        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
+        parentController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
+    }
+
+    @FXML
+    private void OnCancel() {
+        data.clear();
+        StaticFactory.setIfUpdated(false);
+        parentController.unloadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
+        parentController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
     }
 
     @FXML
@@ -227,19 +250,5 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
     private void OnDeleteRow() {
         if (data.size() > 1)
             data.remove(data.size() - 2);
-    }
-
-    @FXML
-    private void OnDelete() {
-        voucherBl.deleteOneVoucher(amendId, factoryId);
-        OnCancel();
-    }
-
-    @FXML
-    private void OnCancel() {
-        data.clear();
-//        parentController.unloadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
-//        parentController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
-        parentController.setScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN);
     }
 }

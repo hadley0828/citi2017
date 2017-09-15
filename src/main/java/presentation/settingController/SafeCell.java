@@ -14,7 +14,7 @@ import vo.userManagement.SubjectsVO;
 
 import java.util.ArrayList;
 
-import static presentation.settingController.QCController.isSet;
+//import static presentation.settingController.QCController.isSet;
 
 /**
  * Created by Chris on 2017/9/14.

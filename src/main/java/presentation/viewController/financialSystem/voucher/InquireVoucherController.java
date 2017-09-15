@@ -88,8 +88,10 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         searchVo.setSortOrder(1);
         updateList();*/
 
-       if (StaticFactory.getIfUpdated())
+       if (StaticFactory.getIfUpdated()) {
+           searchVo = StaticFactory.getVoucherSearchVo();
            updateList();
+       }
 
     }
 
@@ -106,32 +108,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         voucher_list.getChildren().clear();
         voucherIdList.clear();
         voucherList = voucherBl.getSearchedVoucher(searchVo, factoryId);
-
-        if (!voucherList.isEmpty()) {
-            for (VoucherVo vo: voucherList) {
-                voucherIdList.add(vo.getVoucherId());
-                VoucherCard voucherCard = new VoucherCard(vo);
-                voucher_list.getChildren().add(voucherCard);
-                voucherCard.getDelete_btn().setOnAction(event -> {
-                    voucherBl.deleteOneVoucher(vo.getVoucherId(), factoryId);
-                    updateList();
-                });
-                voucherCard.getModify_btn().setOnAction(event -> {
-                    StaticFactory.setAmendId(vo.getVoucherId());
-                    parentController.unloadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
-                    parentController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
-                    parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
-                   /* try {
-                        FXMLLoader myLoader = new FXMLLoader(getClass().getResource(ScreensFramework.AMEND_VOUCHER_SCREEN_FXML));
-                        AnchorPane pane = myLoader.load();
-                        AmendVoucherController myScreenController = myLoader.getController();
-                        myScreenController.updateTable();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }*/
-                });
-            }
-        }
+        SimpleUpdate();
     }
 
     @FXML
@@ -150,6 +127,10 @@ public class InquireVoucherController implements Initializable, ControlledScreen
         fileChooser.setTitle("导入");
         File file = fileChooser.showOpenDialog(voucher_list.getScene().getWindow());
         voucherList = voucherBl.importFromExcel(file.getAbsolutePath(), factoryId);
+        SimpleUpdate();
+    }
+
+    private void SimpleUpdate() {
         if (!voucherList.isEmpty()) {
             for (VoucherVo vo: voucherList) {
                 voucherIdList.add(vo.getVoucherId());
@@ -161,6 +142,7 @@ public class InquireVoucherController implements Initializable, ControlledScreen
                 });
                 voucherCard.getModify_btn().setOnAction(event -> {
                     StaticFactory.setAmendId(vo.getVoucherId());
+                    StaticFactory.setVoucherSearchVo(searchVo);
                     parentController.unloadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
                     parentController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
                     parentController.setScreen(ScreensFramework.AMEND_VOUCHER_SCREEN);
