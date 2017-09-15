@@ -95,6 +95,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     }
 
     private void initialTable() {
+        type_combo.getSelectionModel().select("记");
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
