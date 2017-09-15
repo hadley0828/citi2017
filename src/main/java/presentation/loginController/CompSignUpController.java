@@ -136,9 +136,7 @@ public class CompSignUpController {
                 runWarning.start(new Stage());
 
             } else if (UserRM == ResultMessage.SUCCESS && AccRM == ResultMessage.SUCCESS) {
-                RunWarning runWarning = new RunWarning();
-                runWarning.SetWarning("注册成功");
-                runWarning.start(new Stage());
+
 
                 Entrance entrance=new Entrance();
                 try {
@@ -146,6 +144,9 @@ public class CompSignUpController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                RunWarning runWarning = new RunWarning();
+                runWarning.SetWarning("注册成功");
+                runWarning.start(new Stage());
 
                 //返回登陆界面
 

@@ -1,9 +1,18 @@
 package presentation.settingController;
 
+import businesslogic.SettingImpl;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import presentation.StaticFactory;
+import presentation.warningController.RunWarning;
 import vo.Inventory.SafeInventoryVo;
+import vo.userManagement.SubjectsInitialVO;
 import vo.userManagement.SubjectsVO;
+
+import java.util.ArrayList;
 
 import static presentation.settingController.QCController.isSet;
 
@@ -35,7 +44,19 @@ public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
 //                }
 //            }
 //        });
+
+        cellText.setText("");
+        cellText.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                SafeInventoryVo vo = getTableView().getItems().get(getIndex());
+//                getTableView().getColumns().get(0).getCellFactory().call();
+            }
+
+
+    });
     }
+
 
     //Display button if the row is not empty
     @Override

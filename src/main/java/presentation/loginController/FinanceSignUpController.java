@@ -84,9 +84,7 @@ public class FinanceSignUpController {
                     runWarning.start(new Stage());
 
                 } else if (rm == ResultMessage.SUCCESS) {
-                    RunWarning runWarning = new RunWarning();
-                    runWarning.SetWarning("注册成功");
-                    runWarning.start(new Stage());
+
 
                     //返回登陆界面
                     try {
@@ -95,6 +93,9 @@ public class FinanceSignUpController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    RunWarning runWarning = new RunWarning();
+                    runWarning.SetWarning("注册成功");
+                    runWarning.start(new Stage());
 
                 }
             }
