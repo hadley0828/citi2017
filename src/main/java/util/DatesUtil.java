@@ -18,6 +18,8 @@ public class DatesUtil {
         String[] datelist = date.split("-");
         Map<String,String> map = new HashMap<>();
         map.put("year",datelist[0]);
+
+        System.out.print("时间"+date);
         map.put("month",datelist[1].charAt(0)=='0'? datelist[1].substring(1):datelist[1]);
 
         return map;

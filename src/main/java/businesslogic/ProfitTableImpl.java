@@ -33,7 +33,7 @@ public class ProfitTableImpl implements ProfitTableService{
 		helper=new TableCalHelper();
 	}
 
-	public ProfitTableVo BusinessIncome_period(String id,String time) {
+	public ProfitTableVo BusinessIncome_period(String time,String id) {
 		List<VoucherAmountPO> list=DATA.getVourchersByPeriod(time, id);
 		return BusinessIncome(list);
 	}
