@@ -10,6 +10,7 @@ import vo.userManagement.SubjectsVO;
  */
 public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
     final TextField cellText = new TextField();
+    static Boolean isSet=false;
 
     SafeCell(){
 //        cellButton.setOnAction(new EventHandler<ActionEvent>(){
@@ -37,10 +38,12 @@ public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
     //Display button if the row is not empty
     @Override
     protected void updateItem(Boolean t, boolean empty) {
-        super.updateItem(t, empty);
-        if(!empty){
-            setGraphic(cellText);
 
+        super.updateItem(t, empty);
+
+        if(isSet==false){
+            setGraphic(cellText);
+            isSet=true;
         }
     }
 }
