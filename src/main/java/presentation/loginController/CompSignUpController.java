@@ -7,6 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import presentation.Entrance;
 import presentation.warningController.RunWarning;
 import util.EnumPackage.ResultMessage;
 import vo.userManagement.AccountSetVO;
@@ -150,6 +151,7 @@ public class CompSignUpController {
         /**
          * 跳转
          */
+
     }
 
 
