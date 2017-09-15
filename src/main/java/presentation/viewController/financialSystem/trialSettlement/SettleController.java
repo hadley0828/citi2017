@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import presentation.StaticFactory;
 import vo.userManagement.UserVO;
 
+import java.time.LocalDate;
+
 
 /**
  * Created by 费慧通 on 2017/9/11.
@@ -22,21 +24,28 @@ public class SettleController {
 
     @FXML
     private void initialize(){
-        label1.setText("2017年第6期");
-        label2.setText("2017年第7期");
-        label3.setText("2017年第8期");
-        label4.setText("2017年第9期");
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        label1.setText(getTime(year,month-3));
+        label2.setText(getTime(year,month-2));
+        label3.setText(getTime(year,month-1));
+        label4.setText(getTime(year,month));
         UserVO vo = StaticFactory.getUserVO();
         if(vo.getType().equals("admin")){
             label1.setDisable(true);
             label2.setDisable(true);
             label3.setDisable(true);
             label4.setCursor(Cursor.CLOSED_HAND);
-        }else{
+        }else if(vo.getType().equals("normal")){
             label1.setDisable(true);
             label2.setDisable(true);
             label3.setDisable(true);
             label4.setDisable(true);
         }
+    }
+
+    private String getTime(int year, int month){
+        return year+"年第"+month+"期";
     }
 }

@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import presentation.StaticFactory;
 import vo.TrialTableItemVo;
+import vo.userManagement.UserVO;
 
 import java.util.ArrayList;
 
@@ -30,9 +32,11 @@ public class TrialSheetController {
     @FXML
     private void initialize(){
         TrialSettlementService service = new TrialSettlementImpl();
-        //此处要修改
-        ArrayList<TrialTableItemVo> list = service.getTrialTable("001");
+
+        UserVO vo = StaticFactory.getUserVO();
+        ArrayList<TrialTableItemVo> list = service.getTrialTable(vo.getCompanyID());
         ObservableList<TrialTableItemVo> data = FXCollections.observableArrayList(list);
+        tableView.setItems(data);
         course_id.setCellValueFactory(new PropertyValueFactory("id"));
         course_name.setCellValueFactory(new PropertyValueFactory("name"));
         debit.setCellValueFactory(new PropertyValueFactory("debit"));
