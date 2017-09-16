@@ -111,7 +111,6 @@ public class LoginController {
          */
         RunCSignUp c=new RunCSignUp();
         try {
-
             c.start(new StaticStage().GetStage());
         } catch (Exception e) {
             e.printStackTrace();

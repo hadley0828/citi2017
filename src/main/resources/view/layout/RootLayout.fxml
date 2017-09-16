@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -7,21 +14,71 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
+<SplitPane dividerPositions="0.1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../css/root.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.RootLayoutController">
   <items>
-    <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="0.0" prefHeight="75.0" prefWidth="160.0">
+      <GridPane maxHeight="50.0" maxWidth="1.7976931348623157E308" prefHeight="66.0" prefWidth="1198.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Button fx:id="financial_btn" layoutX="208.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="财务系统" />
-            <Button fx:id="supply_btn" layoutX="328.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="供应链" />
-            <Button fx:id="signOut_btn" layoutX="946.0" layoutY="23.0" mnemonicParsing="false" text="登出" />
-            <Button fx:id="settings_btn" layoutX="1014.0" layoutY="23.0" mnemonicParsing="false" onAction="#missionSwitch" text="设置" />
-            <ImageView fx:id="logo" fitHeight="75.0" fitWidth="150.0" layoutX="39">
-                <image>
-                    <Image url="@../../images/logo.png" />
-                </image>
-            </ImageView>
+            <HBox alignment="CENTER" spacing="100.0" GridPane.columnIndex="1" GridPane.columnSpan="3">
+               <children>
+                  <Button id="financial_btn" fx:id="financial_btn" mnemonicParsing="false" onAction="#missionSwitch" styleClass="text-button" text="财务系统" GridPane.columnIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                           <image>
+                              <Image url="@../../icons/finance.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button id="chain_btn" fx:id="supply_btn" mnemonicParsing="false" onAction="#missionSwitch" styleClass="text-button" text="供应链" GridPane.columnIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true" styleClass="image">
+                           <image>
+                              <Image url="@../../icons/chians.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" spacing="16.0" GridPane.columnIndex="5" GridPane.columnSpan="2">
+               <children>
+                  <Button id="signOut_btn" fx:id="signOut_btn" graphicTextGap="8.0" mnemonicParsing="false" onAction="#missionSwitch" styleClass="text-button" text="登出">
+                     <graphic>
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="31.0" styleClass="tag" />
+                     </graphic>
+                  </Button>
+                  <Button id="settings_btn" fx:id="settings_btn" mnemonicParsing="false" onAction="#missionSwitch" styleClass="text-button" text="设置" GridPane.columnIndex="5">
+                     <graphic>
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="31.0" styleClass="tag" />
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator id="gap" orientation="VERTICAL" prefHeight="200.0" />
+                  <Button id="minus_btn" fx:id="minus_btn" maxWidth="156.0" minHeight="0.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="0.0" prefWidth="18.0" styleClass="icon-button" text="最小化" />
+                  <Button id="max_btn" fx:id="max_btn" mnemonicParsing="false" onAction="#missionSwitch" styleClass="icon-button" text="最大化" />
+                  <Button id="close_btn" fx:id="close_btn" mnemonicParsing="false" onAction="#missionSwitch" styleClass="icon-button" text="设置" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" text="LOGO">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Button>
          </children>
-    </AnchorPane>
+      </GridPane>
       <StackPane fx:id="rootStack" prefHeight="351.0" prefWidth="811.0" />
   </items>
 </SplitPane>
