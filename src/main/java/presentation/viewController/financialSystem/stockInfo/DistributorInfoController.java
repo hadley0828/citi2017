@@ -167,5 +167,8 @@ public class DistributorInfoController {
         alert.setContentText("录入成功！");
         alert.showAndWait();
 
+//      close the window
+        distributor_product.getScene().getWindow().hide();
+
     }
 }
