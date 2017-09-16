@@ -4,12 +4,16 @@ import businesslogic.SupplyChainImpl;
 import businesslogicservice.SupplyChainService;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
+
+import javax.security.auth.callback.Callback;
 
 /**
  * Created by YZ on 2017/9/9.
@@ -34,12 +38,13 @@ public class FinancingController implements ControlledScreen{
 
     SupplyChainService service=new SupplyChainImpl();
     @FXML
-    public void initialize(){
+    public void initialize() {
         getDebtMortgage.setDisable(true);
         advice.setDisable(true);
         getDebtNum.setDisable(true);
 
-        getDebtChoice.getItems().addAll(service.AcountReceivable(StaticFactory.getUserVO().getCompanyID(),StaticFactory.getDay()));
+        System.out.print(service.AcountReceivable(StaticFactory.getUserVO().getCompanyID(), StaticFactory.getDay()));
+        getDebtChoice.getItems().addAll(service.AcountReceivable(StaticFactory.getUserVO().getCompanyID(), StaticFactory.getDay()));
 
 //        getDebtChoice.getSelectionModel().select(0);
         getDebtChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -48,7 +53,7 @@ public class FinancingController implements ControlledScreen{
                 getDebtMortgage.setDisable(false);
 //                System.out.println(newValue);
 //                System.out.print((service.getNetReceivables("001",newValue,"2017-09-15")+""));
-                getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(),newValue,StaticFactory.getDay())+""));
+                getDebtNum.setText((service.getNetReceivables(StaticFactory.getUserVO().getCompanyID(), newValue, StaticFactory.getDay()) + ""));
             }
         });
 //        getDebtChoice.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
@@ -62,16 +67,15 @@ public class FinancingController implements ControlledScreen{
 //        });
 
 
-
-        getDebtMortgage.textProperty().addListener(new ChangeListener<String>() {
+        getDebtMortgage.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                advice.setText((service.ReceivableFinacing(Double.parseDouble(getDebtMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),StaticFactory.getDay()))+"");
+            public void handle(MouseEvent event) {
+                advice.setText((service.ReceivableFinacing(Double.parseDouble(getDebtMortgage.getText()), StaticFactory.getUserVO().getCompanyID(), StaticFactory.getDay())) + "");
             }
+
         });
         setSecond();
     }
-
     public void setSecond(){
         stockMortgage.setDisable(true);
         advice2.setDisable(true);
@@ -93,9 +97,9 @@ public class FinancingController implements ControlledScreen{
             }
         });
 //        stockNum.setText(service.getNetInventory(StaticFactory.getUserVO().getCompanyID(),stockChoice.getSelectionModel().getSelectedItem(),StaticFactory.getMonth())+"");
-        stockMortgage.textProperty().addListener(new ChangeListener<String>() {
+        stockMortgage.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void handle(MouseEvent event) {
                 advice2.setText((service.PledgeMovables(Double.parseDouble(stockMortgage.getText()),StaticFactory.getUserVO().getCompanyID(),StaticFactory.getDay()))+"");
             }
         });
