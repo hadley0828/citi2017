@@ -9,16 +9,28 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.RootSettingAddUserController">
    <children>
-      <Label layoutX="452.0" layoutY="20.0" text="权限设置">
+      <Label layoutX="352.0" layoutY="72.0" text="权限设置">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="162.0" text="账户" />
-      <Label layoutX="137.0" layoutY="300.0" text="密码" />
-      <Button fx:id="closeButton" layoutX="475.0" layoutY="487.0" mnemonicParsing="false" onAction="#CloseClicked" text="注册" />
-      <TextField fx:id="id" layoutX="424.0" layoutY="157.0" />
-      <PasswordField fx:id="password" layoutX="424.0" layoutY="295.0" />
-      <Button layoutX="34.0" layoutY="25.0" mnemonicParsing="false" onAction="#OnBack" text="返回" />
+      <Label layoutX="303.0" layoutY="163.0" text="账户">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="303.0" layoutY="273.0" text="密码">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Button fx:id="closeButton" layoutX="378.0" layoutY="358.0" mnemonicParsing="false" onAction="#CloseClicked" text="注册">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <TextField fx:id="id" layoutX="414.0" layoutY="160.0" />
+      <PasswordField fx:id="password" layoutX="414.0" layoutY="271.0" />
+      <Button layoutX="34.0" layoutY="25.0" mnemonicParsing="false" onAction="#OnBack" text="返回">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>

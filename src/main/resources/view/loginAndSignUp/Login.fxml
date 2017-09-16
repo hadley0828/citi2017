@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
@@ -14,9 +15,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="300.0">
                      <children>
-                        <Button fx:id="compLoginButton" layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#CompLoginClicked" prefHeight="33.0" prefWidth="64.0" text="登录" />
-                        <Button fx:id="compSignUpButton" layoutX="274.0" layoutY="300.0" mnemonicParsing="false" onAction="#CompSignupClicked" prefHeight="33.0" prefWidth="64.0" text="注册" />
-                        <GridPane layoutX="131.0" layoutY="49.0" prefHeight="226.0" prefWidth="251.0">
+                        <Button fx:id="compLoginButton" layoutX="149.0" layoutY="350.0" mnemonicParsing="false" onAction="#CompLoginClicked" prefHeight="33.0" prefWidth="64.0" text="登录" />
+                        <Button fx:id="compSignUpButton" layoutX="277.0" layoutY="350.0" mnemonicParsing="false" onAction="#CompSignupClicked" prefHeight="33.0" prefWidth="64.0" text="注册" />
+                        <GridPane layoutX="131.0" layoutY="152.0" prefHeight="170.0" prefWidth="241.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="173.0" />
@@ -42,6 +43,11 @@
                                  </stylesheets></PasswordField>
                            </children>
                         </GridPane>
+                        <ImageView fitHeight="99.0" fitWidth="141.0" layoutX="181.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/logo.png" />
+                            </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>
@@ -50,9 +56,9 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="392.0" prefWidth="456.0">
                      <children>
-                        <Button fx:id="FinanceLoginButton" layoutX="152.0" layoutY="300.0" mnemonicParsing="false" onAction="#FinanceLoginClicked" prefHeight="33.0" prefWidth="64.0" text="登录" />
-                        <Button fx:id="FinanceSignupButton" layoutX="274.0" layoutY="300.0" mnemonicParsing="false" onAction="#FinanceSignupClicked" prefHeight="33.0" prefWidth="64.0" text="注册" />
-                        <GridPane layoutX="130.0" layoutY="45.0" prefHeight="226.0" prefWidth="251.0">
+                        <Button fx:id="FinanceLoginButton" layoutX="152.0" layoutY="350.0" mnemonicParsing="false" onAction="#FinanceLoginClicked" prefHeight="33.0" prefWidth="64.0" text="登录" />
+                        <Button fx:id="FinanceSignupButton" layoutX="274.0" layoutY="350.0" mnemonicParsing="false" onAction="#FinanceSignupClicked" prefHeight="33.0" prefWidth="64.0" text="注册" />
+                        <GridPane layoutX="131.0" layoutY="152.0" prefHeight="172.0" prefWidth="240.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="0.0" prefWidth="98.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="273.0" minWidth="0.0" prefWidth="175.0" />
@@ -74,6 +80,11 @@
                               <PasswordField fx:id="FinancePassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
+                        <ImageView fitHeight="99.0" fitWidth="141.0" layoutX="181.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/logo.png" />
+                            </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
             </content>

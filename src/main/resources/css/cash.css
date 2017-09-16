@@ -15,7 +15,7 @@
 }
 
 .breadCrumb:selected {
-    -fx-text-fill: #004d40;
+    -fx-background-color: #e6e6e6;
 }
 
 .cutter {

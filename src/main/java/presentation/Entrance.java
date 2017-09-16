@@ -19,6 +19,7 @@ public class Entrance extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(getClass().getResource("../view/loginAndSignUp/Login.fxml"));
         Scene scene = new Scene(root);
 
@@ -28,9 +29,9 @@ public class Entrance extends Application {
 
 
         new StaticStage().SetStage(this.primaryStage);
-//
-//        this.primaryStage.setMinWidth(439);
-//        this.primaryStage.setMinHeight(485);
+
+        this.primaryStage.setMinWidth(439);
+        this.primaryStage.setMinHeight(460);
         this.primaryStage.setScene(scene);
 
         this.primaryStage.show();
