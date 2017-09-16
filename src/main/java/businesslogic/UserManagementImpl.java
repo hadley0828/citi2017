@@ -1,8 +1,10 @@
 package businesslogic;
 
 import businesslogicservice.UserManagementService;
+import data.SettingDataServiceImpl;
 import data.SubjectDataServiceImpl;
 import data.UserManagementServiceImpl;
+import dataservice.SettingDataService;
 import dataservice.SubjectDataService;
 import po.AccountSetPO;
 import po.UserCompanyPO;
@@ -23,10 +25,12 @@ public class UserManagementImpl implements UserManagementService{
 
     private dataservice.UserManagementService dataservice;
     private SubjectDataService subjectDataService;
+    private SettingDataService settingDataService;
 
     public UserManagementImpl() {
         dataservice = new UserManagementServiceImpl();
         subjectDataService = new SubjectDataServiceImpl();
+        settingDataService = new SettingDataServiceImpl();
     }
 
 
@@ -92,6 +96,7 @@ public class UserManagementImpl implements UserManagementService{
         }
         dataservice.updateUserInfo(userID,list.get(0),list.get(1));
         subjectDataService.initialSubjectsInitial(list.get(1));
+        settingDataService.setSupplyChain(list.get(1),vo.getChainPlace(),"","");
         return ResultMessage.SUCCESS;
     }
 
