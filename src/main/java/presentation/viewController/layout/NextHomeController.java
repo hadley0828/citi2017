@@ -1,5 +1,6 @@
 package presentation.viewController.layout;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,9 +14,9 @@ import java.util.ResourceBundle;
 
 public class NextHomeController implements Initializable, ControlledScreen {
     @FXML
-    private Button entrance_btn;
+    private JFXButton entrance_btn;
     @FXML
-    private Button next_btn;
+    private JFXButton next_btn;
 
     private ScreensController parentController;
     @Override
@@ -30,8 +31,8 @@ public class NextHomeController implements Initializable, ControlledScreen {
     @FXML
     private void missionSwitch(ActionEvent event) {
         if (event.getSource().equals(entrance_btn))
-            parentController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
-        else
-            parentController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
+            parentController.setAnimatedScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
+        else if (event.getSource().equals(next_btn))
+            parentController.setAnimatedScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
     }
 }

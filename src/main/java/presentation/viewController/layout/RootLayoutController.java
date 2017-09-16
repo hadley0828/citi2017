@@ -80,7 +80,7 @@ public class RootLayoutController implements Initializable {
         rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
 
         rootController.loadScreen(ScreensFramework.HOME_LAYOUT_SCREEN, ScreensFramework.HOME_LAYOUT_SCREEN_FXML);
-        rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
+        rootController.setAnimatedScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
 
         rootStack.getChildren().add(rootController);
 
@@ -107,17 +107,20 @@ public class RootLayoutController implements Initializable {
     @FXML
     private void missionSwitch(ActionEvent event) {
         if (event.getSource().equals(logo_btn)) {
-            rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
+            financial_btn.setSelected(false);
+            settings_btn.setSelected(false);
+            supply_btn.setSelected(false);
+            rootController.setAnimatedScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
         }
         else if (event.getSource().equals(financial_btn)) {
-            rootController.setScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
+            rootController.setAnimatedScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
         }
         else if (event.getSource().equals(supply_btn)) {
-            rootController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
+            rootController.setAnimatedScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
         }
         else if (event.getSource().equals(settings_btn)) {
             rootController.loadScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN, ScreensFramework.SETTINGS_LAYOUT_SCREEN_FXML);
-            rootController.setScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);
+            rootController.setAnimatedScreen(ScreensFramework.SETTINGS_LAYOUT_SCREEN);
         }
     }
 

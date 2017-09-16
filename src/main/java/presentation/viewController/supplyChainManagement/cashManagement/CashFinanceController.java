@@ -41,6 +41,7 @@ public class CashFinanceController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+/*
         guarantee_bar = getBulletChart("盈余现金保障倍数", "10.2倍", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
                 new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
 
@@ -51,6 +52,19 @@ public class CashFinanceController implements Initializable, ControlledScreen {
                 new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
 
         gravity_bar = getBulletChart("两金占流动资产比重", "14.5%", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
+                new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
+*/
+
+        guarantee_bar = getBulletChart("盈余现金保障倍数", "倍", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
+                new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
+
+        recycle_bar = getBulletChart("全部资产现金回收率", "%", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
+                new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
+
+        cashFlow_bar = getBulletChart("现金流动负债率", "%", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
+                new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
+
+        gravity_bar = getBulletChart("两金占流动资产比重", "%", 30, 30, new Section(0, 5, Color.web("#cc6230")), new Section(5, 10, Color.web("#e18c2f")), new Section(10, 15, Color.web("#f0c051")),
                 new Section(15, 20, Color.web("#bdd156")), new Section(20, 25, Color.web("#89b84e")), new Section(25, 30, Color.web("#5ca151")));
 
         vBox.getChildren().add(guarantee_bar);
@@ -69,10 +83,10 @@ public class CashFinanceController implements Initializable, ControlledScreen {
             String date = datePicker.getValue().format(formatter);
             String company_id = StaticFactory.getUserVO().getCompanyID();
 
-//            double[] quota = cashPool.getFinancialIndex(company_id, date);
-//            for (double num : quota){
-//                System.out.println(num);
-//            }
+            double[] quota = cashPool.getFinancialIndex(company_id, date);
+            for (double num : quota){
+                System.out.println(num);
+            }
 
             lastTimerCall = System.nanoTime();
             timer = new AnimationTimer() {
@@ -80,10 +94,14 @@ public class CashFinanceController implements Initializable, ControlledScreen {
                 public void handle(long now) {
                     if (now > lastTimerCall + 800_000_000L) {
                         {
-                            guarantee_bar.setValue(10.2);
+/*                            guarantee_bar.setValue(10.2);
                             recycle_bar.setValue(17.5);
                             cashFlow_bar.setValue(17.9);
-                            gravity_bar.setValue(14.5);
+                            gravity_bar.setValue(14.5);*/
+                            guarantee_bar.setValue(quota[0]);
+                            recycle_bar.setValue(quota[1] * 100);
+                            cashFlow_bar.setValue(quota[2] * 100);
+                            gravity_bar.setValue(quota[3] * 100);
                             lastTimerCall = now;
                         }
                     }

@@ -47,15 +47,13 @@ public class FinancialWarningController implements Initializable, ControlledScre
         String company_id = StaticFactory.getUserVO().getCompanyID();
 
         FinancialWarningService warning = new FinancialWarningImpl();
-        double warningLevel = 123;
-        String warningMessage = "低度风险";
-//        String warningMessage = warning.getWarningMessage2(company_id, date);
-//        double warningLevel = warning.getWarningMessage(company_id, date);
-//
-//        message.setText(warningMessage);
-//        number.setText(String.valueOf(warningLevel));
-//        System.out.println(warningMessage);
-//        System.out.println(warningLevel);
+//        double warningLevel = 123;
+//        String warningMessage = "低度风险";
+        String warningMessage = warning.getWarningMessage2(company_id, date);
+        double warningLevel = warning.getWarningMessage(company_id, date);
+
+        System.out.println(warningMessage);
+        System.out.println(warningLevel);
 
 //        gauge here
         if (warningLevel <= 150 && warningLevel >= 120) {
