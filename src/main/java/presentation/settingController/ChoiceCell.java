@@ -27,32 +27,32 @@ public class ChoiceCell extends TableCell<SafeInventoryVo,Boolean> {
     final ChoiceBox<String> cellBox = new ChoiceBox<>();
 
     ChoiceCell() {
-        
+//
 
         ArrayList<String> list = new ArrayList<>();
         list.add("原材料");
         list.add("产品");
         cellBox.getItems().addAll(list);
-        cellBox.getSelectionModel().selectedIndexProperty().addListener(
-                new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                        SafeInventoryVo vo=getTableView().getItems().get(getIndex());
-                        vo.setName(cellBox.getSelectionModel().getSelectedItem());
-                        if(vo.getVariety().isEmpty()||vo.getName().isEmpty()){
-
-                    }else{
-
-                        SettingImpl impl=new SettingImpl();
-                        ArrayList<SafeInventoryVo> list=new ArrayList<>();
-                        list.add(vo);
-                        impl.setSafetyInventory(list,StaticFactory.getUserVO().getCompanyID());
-
-
-                    }
-                }
-                }
-        );
+//        cellBox.getSelectionModel().selectedIndexProperty().addListener(
+//                new ChangeListener<Number>() {
+//                    @Override
+//                    public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//                        SafeInventoryVo vo=getTableView().getItems().get(getIndex());
+//                        vo.setName(cellBox.getSelectionModel().getSelectedItem());
+//                        if(vo.getVariety().isEmpty()||vo.getName().isEmpty()){
+//
+//                    }else{
+//
+//                        SettingImpl impl=new SettingImpl();
+//                        ArrayList<SafeInventoryVo> list=new ArrayList<>();
+//                        list.add(vo);
+//                        impl.setSafetyInventory(list,StaticFactory.getUserVO().getCompanyID());
+//
+//
+//                    }
+//                }
+//                }
+//        );
 
 
     }

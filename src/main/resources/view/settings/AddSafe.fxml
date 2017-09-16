@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.AddSafeController">
+   <children>
+      <Label layoutX="34.0" layoutY="21.0" text="种类" />
+      <Label layoutX="34.0" layoutY="68.0" text="名称" />
+      <Label layoutX="27.0" layoutY="120.0" text="库存量" />
+      <ChoiceBox fx:id="name" layoutX="232.0" layoutY="16.0" prefWidth="150.0" />
+      <TextField fx:id="variety" layoutX="232.0" layoutY="63.0" prefHeight="30.0" prefWidth="150.0" />
+      <TextField fx:id="sum" layoutX="232.0" layoutY="115.0" prefHeight="30.0" prefWidth="150.0" />
+      <Button fx:id="save" layoutX="112.0" layoutY="156.0" mnemonicParsing="false" onAction="#saveClicked" text="保存" />
+      <Button fx:id="cancel" layoutX="257.0" layoutY="156.0" mnemonicParsing="false" onAction="#cancelClicked" text="取消" />
+      <Label layoutX="5.0" layoutY="90.0" text="*库存名称相同视为修改" />
+   </children>
+</AnchorPane>

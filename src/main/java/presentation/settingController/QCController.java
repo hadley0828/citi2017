@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.Callback;
+import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import vo.Inventory.SafeInventoryVo;
@@ -22,7 +24,15 @@ import java.util.ArrayList;
 public class QCController implements ControlledScreen{
     public static Boolean isSet=false;
 
-    private ObservableList<SafeInventoryVo> list;
+    public static ObservableList<SafeInventoryVo> getList() {
+
+        return list;
+    }
+
+    private static ObservableList<SafeInventoryVo> list;
+
+
+
 
 
 
@@ -456,53 +466,39 @@ public class QCController implements ControlledScreen{
 
 
 
-        ArrayList<SafeInventoryVo> safelist=new ArrayList<>();
+        ArrayList<SafeInventoryVo> safelist=new SettingImpl().getSafeInventory(StaticFactory.getUserVO().getCompanyID());
+
 
         ObservableList<SafeInventoryVo> safedata = FXCollections.observableArrayList(safelist);
         this.list=safedata;
         safeTable.setItems(this.list);
 
-        safeName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
+        safeName.setCellValueFactory(new PropertyValueFactory("name"));
 //
-        safeName.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new ChoiceCell();
-            }
-        });
+//        safeName.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
+//            @Override
+//            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
+//                return new ChoiceCell();
+//            }
+//        });
 
-        safeVariety.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
+        safeVariety.setCellValueFactory(new PropertyValueFactory("variety"));
 //
-        safeVariety.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new SafeCell();
-            }
-        });
+//        safeVariety.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
+//            @Override
+//            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
+//                return new SafeCell();
+//            }
+//        });
 
-        safeSum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
+        safeSum.setCellValueFactory(new PropertyValueFactory("safe_inventory"));
 //
-        safeSum.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new SafeCell();
-            }
-        });
+//        safeSum.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
+//            @Override
+//            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
+//                return new SafeCell();
+//            }
+//        });
 
 
 
@@ -520,53 +516,12 @@ public class QCController implements ControlledScreen{
     }
 
     public void addClicked(){
-        SafeInventoryVo vo=new SafeInventoryVo("","",0);
-
-        this.list.add(vo);
-
-
-
-        safeName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
-//
-        safeName.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new ChoiceCell();
-            }
-        });
-
-        safeVariety.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
-//
-        safeVariety.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new SafeCell();
-            }
-        });
-
-        safeSum.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<SafeInventoryVo, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<SafeInventoryVo, Boolean> p) {
-                return new SimpleBooleanProperty(p.getValue()!=null);
-            }
-        });
-//
-        safeSum.setCellFactory(new Callback<TableColumn<SafeInventoryVo, Boolean>, TableCell<SafeInventoryVo, Boolean>>() {
-            @Override
-            public TableCell<SafeInventoryVo, Boolean> call(TableColumn<SafeInventoryVo, Boolean> p) {
-                return new SafeCell();
-            }
-        });
+         RunAddSafe as=new RunAddSafe();
+        try {
+            as.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
