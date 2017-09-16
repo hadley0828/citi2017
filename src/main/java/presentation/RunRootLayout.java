@@ -20,6 +20,7 @@ public class RunRootLayout extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         ResizeHelper.addResizeListener(primaryStage);
         Parent root = FXMLLoader.load(getClass().getResource("../view/layout/RootLayout.fxml"));
         Scene scene = new Scene(root);
