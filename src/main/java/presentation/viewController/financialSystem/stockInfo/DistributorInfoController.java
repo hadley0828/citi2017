@@ -11,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import presentation.StaticFactory;
 import vo.Inventory.ProductInventoryItemVo;
 
 import java.sql.Timestamp;
@@ -150,13 +151,12 @@ public class DistributorInfoController {
                 double out_price = Double.parseDouble(vo.getOut_price());
                 double out_account = Double.parseDouble(vo.getOut_account());
 
-//            int balance_num;
-                int balance_num = 0;
-//            if (vo.getInput_num()==""){
-//                balance_num=service.getProductInventory(StaticFactory.getUserVO().getCompanyID(),voucher_id,rawMaterial_variety,(-1)*out_num);
-//            }else{
-//                balance_num=service.getProductInventory(StaticFactory.getUserVO().getCompanyID(),voucher_id,rawMaterial_variety,input_num);
-//            }
+            int balance_num;
+            if (vo.getInput_num()==""){
+                balance_num=service.getProductInventory(StaticFactory.getUserVO().getCompanyID(),voucher_id,product_variety,(-1)*out_num);
+            }else{
+                balance_num=service.getProductInventory(StaticFactory.getUserVO().getCompanyID(),voucher_id,product_variety,input_num);
+            }
                 proAddVOs.add(new ProductInventoryItemVo(product_variety, voucher_id, datetime, is_delivery_ontime, is_return, input_num, input_price, input_account, out_num, out_price, out_account, balance_num));
             }
             //        System.out.print(toAddVOs.get(0).getDatetime());
