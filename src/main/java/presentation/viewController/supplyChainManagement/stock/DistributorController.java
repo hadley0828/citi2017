@@ -84,6 +84,7 @@ public class DistributorController implements ControlledScreen{
         dis_bar.getData().add(series2);
     }
     public void setTable(){
+        product_monitor.getItems().clear();
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {

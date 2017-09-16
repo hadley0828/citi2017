@@ -107,6 +107,7 @@ public class SupplierController implements ControlledScreen {
 
 
     public void setTable(){
+        stock_monitor.getItems().clear();
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {

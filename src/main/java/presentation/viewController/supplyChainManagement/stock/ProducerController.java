@@ -116,6 +116,8 @@ public class ProducerController implements ControlledScreen {
     }
 
     public void setTable(){
+        raw_monitor_table.getItems().clear();
+        product_monitor_table.getItems().clear();
         raw_date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
