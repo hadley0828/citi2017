@@ -5,10 +5,8 @@ import po.SubjectNumberPO;
 import po.SubjectsPO;
 import util.DatesUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by zhangzy on 2017/9/9 下午1:14
@@ -204,6 +202,37 @@ public class SubjectDataServiceImpl implements SubjectDataService{
 
         sqlManager.releaseAll();
         return list;
+    }
+
+    @Override
+    public void initialSubjectsInitial(String company_id) {
+        sqlManager.getConnection();
+        String getsql = "select * from subjects";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(getsql,new Object[]{});
+        ArrayList<String> list = new ArrayList<>();
+        for (Map<String,Object> map : maps){
+            list.add(map.get("subjects_id").toString());
+        }
+
+        for (String id : list){
+            List<Object> params = new ArrayList<>();
+            params.add(id);
+
+            Date date = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String dateNow = sdf.format(date);
+            params.add(dateNow);
+
+            params.add(0);
+            params.add(0);
+            params.add(0);
+            params.add(company_id);
+            params.add("default");
+            String sql = sqlManager.appendSQL("insert into subjects_balance values",params.size());
+            sqlManager.executeUpdateByList(sql,params);
+        }
+
+        sqlManager.releaseAll();
     }
 
     private SubjectsPO getSubjectsPOByMap(Map<String,Object> map){

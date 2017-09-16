@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import presentation.componentController.ResizeHelper;
 import presentation.loginController.LoginController;
 import presentation.loginController.StaticStage;
 
@@ -24,7 +25,9 @@ public class Entrance extends Application {
 
 
 
-        this.primaryStage=primaryStage;
+        this.primaryStage = primaryStage;
+
+
         new StaticStage().SetStage(this.primaryStage);
 
         this.primaryStage.setMinWidth(439);

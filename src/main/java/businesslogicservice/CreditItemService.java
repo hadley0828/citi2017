@@ -1,6 +1,5 @@
 package businesslogicservice;
 
-import po.CreditItemPO;
 import vo.CreditItemVo;
 
 import java.util.ArrayList;
@@ -40,4 +39,18 @@ public interface CreditItemService {
      * @return
      */
     public boolean IsExpire(String company_id,String voucher_id);
+
+    /**
+     * 得到企业的所有应收账款的凭证字
+     * @param company_id
+     * @return
+     */
+    public ArrayList<String> getInputCredit(String company_id);
+
+    /**
+     * 得到企业的所有应付账款的凭证字
+     * @param company_id
+     * @return
+     */
+    public ArrayList<String> getOutputCredit(String company_id);
 }
