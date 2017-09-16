@@ -163,12 +163,14 @@ public class DistributorInfoController {
         }
 //        System.out.print(proAddVOs.size());
 //        service.ProducerProductInformationEntry(StaticFactory.getUserVO().getCompanyID(), proAddVOs);
+
+        distributor_product.getScene().getWindow().hide();
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("录入成功！");
         alert.showAndWait();
 
 //      close the window
-        distributor_product.getScene().getWindow().hide();
+
 
     }
 }

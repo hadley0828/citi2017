@@ -249,7 +249,10 @@ public class ProducerInfoController {
             //        System.out.print(toAddVOs.get(0).getDatetime());
         }
 //        System.out.print(toAddVOs.size());
+//        System.out.print(StaticFactory.getUserVO().getCompanyID());
         service.SupplierInformationEntry(StaticFactory.getUserVO().getCompanyID(), toAddVOs);
+        producer_product.getScene().getWindow().hide();
+
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("录入成功！");
         alert.showAndWait();
@@ -304,6 +307,9 @@ public class ProducerInfoController {
         }
 //        System.out.print(proAddVOs.size());
         service.ProducerProductInformationEntry(StaticFactory.getUserVO().getCompanyID(), proAddVOs);
+
+        producer_product.getScene().getWindow().hide();
+
         Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("录入成功！");
         alert.showAndWait();
