@@ -8,7 +8,7 @@ package vo.Inventory;
 public class SafeInventoryVo {
     private String name;    //只有两个值："原材料"和"产品"
     private String variety;       //种类
-    private int safe_inventory;     //安全库存量
+    private int safe_inventory=0;     //安全库存量
 
     public SafeInventoryVo(String name, String variety, int safe_inventory){
         this.name = name;

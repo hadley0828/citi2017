@@ -55,6 +55,38 @@ public class CreditItemServiceImpl implements CreditItemService{
         return list;
     }
 
+    @Override
+    public ArrayList<String> getInputCredit(String company_id) {
+        sqlManager.getConnection();
+        ArrayList<String> list = new ArrayList<>();
+
+        String sql = "select voucher_id from credit_item where company_id=? and type=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id,"应收账款"});
+
+        for (Map<String,Object> map : maps){
+            list.add(map.get("voucher_id").toString());
+        }
+
+        sqlManager.releaseAll();
+        return list;
+    }
+
+    @Override
+    public ArrayList<String> getOutputCredit(String company_id) {
+        sqlManager.getConnection();
+        ArrayList<String> list = new ArrayList<>();
+
+        String sql = "select voucher_id from credit_item where company_id=? and type=?";
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti(sql,new Object[]{company_id,"应付账款"});
+
+        for (Map<String,Object> map : maps){
+            list.add(map.get("voucher_id").toString());
+        }
+
+        sqlManager.releaseAll();
+        return list;
+    }
+
 
     private void insertOneCreditItemPO(CreditItemPO po,String company_id){
         List<Object> params = new ArrayList<>();
