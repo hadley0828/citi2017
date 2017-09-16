@@ -3,7 +3,8 @@ package presentation.viewController.layout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -18,25 +19,25 @@ import java.util.ResourceBundle;
  */
 public class FinancialLayoutController implements Initializable, ControlledScreen {
     @FXML
-    private Button add_voucher;
+    private ToggleButton add_voucher;
     @FXML
-    private Button inquire_voucher;
+    private ToggleButton inquire_voucher;
     @FXML
-    private Button detail_bill;
+    private ToggleButton detail_bill;
     @FXML
-    private Button general_bill;
+    private ToggleButton general_bill;
     @FXML
-    private Button subject_balance;
+    private ToggleButton subject_balance;
     @FXML
-    private Button subject_summary;
+    private ToggleButton subject_summary;
     @FXML
-    private Button pro_debt;
+    private ToggleButton pro_debt;
     @FXML
-    private Button warning_btn;
+    private ToggleButton warning_btn;
     @FXML
-    private Button cashflow_btn;
+    private ToggleButton cashflow_btn;
     @FXML
-    private Button profit_btn;
+    private ToggleButton profit_btn;
 
     @FXML
     private StackPane missionPane;
@@ -46,12 +47,15 @@ public class FinancialLayoutController implements Initializable, ControlledScree
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ToggleGroup group = new ToggleGroup();
+        group.getToggles().addAll(add_voucher, inquire_voucher, detail_bill, general_bill, subject_balance, subject_summary, pro_debt, warning_btn, cashflow_btn, profit_btn);
 //        financialController.loadScreen(ScreensFramework.AMEND_VOUCHER_SCREEN, ScreensFramework.AMEND_VOUCHER_SCREEN_FXML);
 
 //        financialController.loadScreen(ScreensFramework.FINANCIAL_SETTING_SCREEN, ScreensFramework.FINANCIAL_SETTING_SCREEN_FXML);
         financialController.loadScreen(ScreensFramework.INQUIRE_VOUCHER_SCREEN, ScreensFramework.INQUIRE_VOUCHER_SCREEN_FXML);
 
         missionPane.getChildren().add(financialController);
+        
     }
 
     @Override

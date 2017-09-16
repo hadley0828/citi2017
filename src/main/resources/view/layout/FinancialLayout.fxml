@@ -3,7 +3,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -12,16 +12,19 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="-Infinity" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <Button fx:id="add_voucher" layoutX="44.0" layoutY="67.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="新增凭证" />
-            <Button fx:id="inquire_voucher" layoutX="44.0" layoutY="110.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="查询凭证" />
-            <Button fx:id="detail_bill" layoutX="44.0" layoutY="152.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="明细账" />
-            <Button fx:id="general_bill" layoutX="44.0" layoutY="197.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="总账" />
-            <Button fx:id="subject_balance" layoutX="44.0" layoutY="243.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="科目余额表" />
-            <Button fx:id="subject_summary" layoutX="44.0" layoutY="288.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="科目汇总表" />
-            <Button fx:id="pro_debt" layoutX="43.0" layoutY="334.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="资产负债表" />
-            <Button fx:id="warning_btn" layoutX="43.0" layoutY="468.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="财务预警" />
-            <Button fx:id="profit_btn" layoutX="43.0" layoutY="381.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="利润表" />
-            <Button fx:id="cashflow_btn" layoutX="43.0" layoutY="425.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="现金流量表" />
+            <ToggleButton fx:id="add_voucher" layoutX="44.0" layoutY="67.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="新增凭证" />
+            <ToggleButton fx:id="inquire_voucher" layoutX="44.0" layoutY="110.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="查询凭证" />
+            <ToggleButton fx:id="detail_bill" layoutX="44.0" layoutY="160.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="明细账" />
+            <ToggleButton fx:id="general_bill" layoutX="44.0" layoutY="197.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="总账" />
+            <ToggleButton fx:id="subject_balance" layoutX="44.0" layoutY="243.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="科目余额表" />
+            <ToggleButton fx:id="subject_summary" layoutX="44.0" layoutY="288.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="科目汇总表" />
+            <ToggleButton fx:id="pro_debt" layoutX="43.0" layoutY="334.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="资产负债表" />
+            <ToggleButton fx:id="warning_btn" layoutX="43.0" layoutY="468.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="财务预警" />
+            <ToggleButton fx:id="profit_btn" layoutX="43.0" layoutY="381.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="利润表" />
+            <ToggleButton fx:id="cashflow_btn" layoutX="43.0" layoutY="425.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" text="现金流量表" />
+            <Label layoutX="28.0" layoutY="41.0" text="凭证" />
+            <Label layoutX="16.0" layoutY="145.0" text="账簿" />
+            <Label layoutX="16.0" layoutY="315.0" text="报表" />
          </children></AnchorPane>
       <StackPane fx:id="missionPane" prefHeight="598.0" prefWidth="775.0" />
   </items>
