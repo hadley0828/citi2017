@@ -27,7 +27,13 @@ public class InventoryServiceImpl implements InventoryService{
         String sql = "select * from inventory_material as t where t.datetime = (select max(datetime) from inventory_material where company_id=? and voucher_id=? and material_variety=?) and company_id=? and voucher_id=? and material_variety=?";
         Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id,voucher_id,raw_material_name,company_id,voucher_id,raw_material_name});
 
-        int remain = Integer.parseInt(map.get("balance_num").toString());
+        int remain = 0;
+        try{
+            remain = Integer.parseInt(map.get("balance_num").toString());
+        }catch (Exception e){
+
+        }
+
 
         sqlManager.releaseAll();
         return remain;
@@ -41,7 +47,12 @@ public class InventoryServiceImpl implements InventoryService{
         String sql = "select * from inventory_product as t where t.datetime = (select max(datetime) from inventory_product where company_id=? and voucher_id=? and product_variety=?) and company_id=? and voucher_id=? and product_variety=?";
         Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id,voucher_id,product_name,company_id,voucher_id,product_name});
 
-        int remain = Integer.parseInt(map.get("balance_num").toString());
+        int remain = 0;
+        try{
+            remain = Integer.parseInt(map.get("balance_num").toString());
+        }catch (Exception e){
+
+        }
 
         sqlManager.releaseAll();
         return remain;
