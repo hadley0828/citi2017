@@ -148,6 +148,10 @@ public class ObjectManageController implements ControlledScreen {
                 }
             }
 
+            Balance.setStyle("-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.30), 6.0, 0.3, 0,\n" +
+                    "\t\t1);\n" +
+                    "\t-fx-background-color: rgb(250, 250, 250);");
+
             ObservableList<SubjectsVO> data1 = FXCollections.observableArrayList(list1);
             ObservableList<SubjectsVO> data2 = FXCollections.observableArrayList(list2);
             ObservableList<SubjectsVO> data3 = FXCollections.observableArrayList(list3);
@@ -155,6 +159,8 @@ public class ObjectManageController implements ControlledScreen {
             ObservableList<SubjectsVO> data5 = FXCollections.observableArrayList(list5);
             ObservableList<SubjectsVO> data6 = FXCollections.observableArrayList(list6);
             BalanceTable.setItems(data1);
+            BalanceTable.getStylesheets().add(getClass().getResource("/view/settings/TableCss.css").toExternalForm());
+//            BalanceTable.setStyle("-fx-background-color: yellow;-fx-border-width: 0px;");
             code1.setCellValueFactory(new PropertyValueFactory("subjectsID"));
             name1.setCellValueFactory(new PropertyValueFactory("subjectsName"));
             direction1.setCellValueFactory(new PropertyValueFactory("direction"));

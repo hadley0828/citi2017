@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.QCController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" stylesheets="@TableCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.settingController.QCController">
     <children>
         <Label layoutX="441.0" layoutY="26.0" prefHeight="20.0" prefWidth="119.0" text="期初设置">
             <font>
@@ -20,7 +20,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="BalanceTable" layoutY="1.0" prefHeight="502.0" prefWidth="1000.0">
+                        <TableView fx:id="BalanceTable" layoutY="1.0" prefHeight="502.0" prefWidth="1000.0" styleClass="background" stylesheets="@TableCss.css">
                           <columns>
                             <TableColumn fx:id="code1" prefWidth="140.0" text="科目编码" />
                             <TableColumn fx:id="name1" prefWidth="126.0" text="科目名称" />
