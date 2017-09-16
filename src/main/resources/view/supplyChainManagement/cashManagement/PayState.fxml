@@ -4,9 +4,9 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="725.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.cashManagement.PayStateController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.cashManagement.PayStateController">
    <children>
-      <TableView fx:id="table" layoutX="26.0" layoutY="63.0" prefHeight="614.0" prefWidth="949.0">
+      <TableView fx:id="table" layoutX="26.0" layoutY="14.0" prefHeight="494.0" prefWidth="949.0">
          <columns>
             <TableColumn fx:id="name_col" prefWidth="133.0" text="公司名称" />
             <TableColumn fx:id="debit_col" prefWidth="103.0" text="借款时间" />

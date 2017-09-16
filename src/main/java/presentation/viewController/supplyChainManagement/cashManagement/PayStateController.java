@@ -60,10 +60,10 @@ public class PayStateController implements Initializable, ControlledScreen {
 
         creditItemService = new CreditItemImpl();
         company_id = StaticFactory.getUserVO().getCompanyID();
-        voucher_id = "1001";
+        data.add(new DealStateModel("","","","","","",""));
 
-        for (String str: creditItemService.getOutputCredit(company_id)) {
-            itemVoArrayList = creditItemService.getReceivables(company_id, str);
+        for (String str: creditItemService.getInputCredit(company_id)) {
+            itemVoArrayList = creditItemService.getAccountsPayable(company_id, str);
             for (CreditItemVo vo: itemVoArrayList) {
                 data.add(new DealStateModel(vo.getCompany_name(), vo.getBorrow_time(), vo.getDeadline(), String.valueOf(vo.getPolicy() * 100) + "%", String.valueOf(vo.getMoney()), vo.getDiscount_deadline(), vo.getRemark()));
             }

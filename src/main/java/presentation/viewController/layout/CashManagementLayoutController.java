@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.StackPane;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -33,6 +34,8 @@ public class CashManagementLayoutController implements Initializable, Controlled
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ToggleGroup group = new ToggleGroup();
+        group.getToggles().addAll(pay_btn, pool_btn, finance_btn, charge_btn);
         cashManagementController.setScreen(ScreensFramework.CASH_POOL_SCREEN);
         cashStack.getChildren().add(cashManagementController);
     }
