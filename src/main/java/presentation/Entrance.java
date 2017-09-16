@@ -31,7 +31,7 @@ public class Entrance extends Application {
         new StaticStage().SetStage(this.primaryStage);
 
         this.primaryStage.setMinWidth(439);
-        this.primaryStage.setMinHeight(485);
+        this.primaryStage.setMinHeight(460);
         this.primaryStage.setScene(scene);
 
         this.primaryStage.show();
