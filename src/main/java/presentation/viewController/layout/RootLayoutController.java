@@ -1,6 +1,7 @@
 package presentation.viewController.layout;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.SVGPath;
@@ -60,7 +62,10 @@ public class RootLayoutController implements Initializable {
         Region icon_1 = new Region();
         icon_1.getStyleClass().add("icon");
         max_btn.setGraphic(icon_1);
-
+//        max_btn.setOnAction(event -> {
+//            Stage stage=(Stage) max_btn.getScene().getWindow();
+//            stage.setFullScreen(true);
+//        });
 
         Region icon_2 = new Region();
         icon_2.getStyleClass().add("icon");
@@ -101,7 +106,7 @@ public class RootLayoutController implements Initializable {
         btn.setMaxSize(30, 30);
         btn.setMinSize(30, 30);
         btn.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);*/
-
+        signOut_btn.setOnAction(event -> System.exit(0));
     }
 
     @FXML
