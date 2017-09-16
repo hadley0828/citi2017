@@ -228,8 +228,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
 
     @FXML
     private void OnAddRow() {
-        if (data.size() > 1)
-            data.add(data.size() - 2, new VoucherModel("提现", "", "", ""));
+        if (data.size() > 0)
+            data.add(data.size() - 1, new VoucherModel("提现", "", "", ""));
         else
             data.add(0, new VoucherModel("提现", "", "", ""));
 
