@@ -8,25 +8,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1180.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.financialInstitutions.FinancialInstitutionsController">
+<AnchorPane prefHeight="700.0" prefWidth="852.0" stylesheets="@../../../css/Stock.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.supplyChainManagement.financialInstitutions.FinancialInstitutionsController">
    <children>
-      <Label layoutX="281.0" layoutY="103.0" text="供应链融资需求信息库">
+      <Label layoutX="107.0" layoutY="103.0" text="供应链融资需求信息库">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="694.0" layoutY="103.0" text="搜索公司">
+      <Label layoutX="500.0" layoutY="103.0" text="搜索公司">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField id="search_company" fx:id="company_search" layoutX="796.0" layoutY="101.0" prefHeight="27.0" prefWidth="129.0" />
-      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="796.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+      <TextField id="search_company" fx:id="company_search" layoutX="590.0" layoutY="101.0" prefHeight="27.0" prefWidth="129.0" />
+      <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="590.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
        <image>
            <Image url="@../../../images/search.png" />
        </image>
       </ImageView>
-      <TableView fx:id="financing_table" layoutX="281.0" layoutY="162.0" prefHeight="416.0" prefWidth="650.0">
+      <TableView fx:id="financing_table" layoutX="107.0" layoutY="166.0" prefHeight="416.0" prefWidth="650.0">
         <columns>
           <TableColumn fx:id="company_name" prefWidth="100.63003540039062" text="企业名称" />
           <TableColumn fx:id="financing_style" minWidth="0.0" prefWidth="103.54605102539062" text="融资方式" />
@@ -35,5 +35,15 @@
             <TableColumn fx:id="stylesheet" prefWidth="120.12603759765625" text="报表" />
         </columns>
       </TableView>
+      <Label layoutX="382.0" layoutY="39.0" text="金融机构">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="exitt" fitHeight="37.0" fitWidth="39.0" layoutX="794.0" layoutY="14.0" onMouseClicked="#exitt" pickOnBounds="true" preserveRatio="true">
+          <image>
+          <Image url="@../../../images/exit.png" />
+      </image>
+      </ImageView>
    </children>
 </AnchorPane>

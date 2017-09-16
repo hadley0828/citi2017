@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -44,6 +45,8 @@ public class FinancialInstitutionsController {
     private TableColumn stylesheet;
     @FXML
     private TableView financing_table;
+    @FXML
+    private ImageView exitt;
 
     static Stage chartStage;
     public String com_name;
@@ -105,6 +108,10 @@ public class FinancialInstitutionsController {
         chartStage.show();
     }
 
+    @FXML
+    public void exitt(){
+        System.exit(0);
+    }
     public CompanyVo getCompany(){
         return service.getCompanyInfo(StaticFactory.getCompany_name());
     }
