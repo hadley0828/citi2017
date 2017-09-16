@@ -62,7 +62,7 @@ public class ChargeStateController implements Initializable, ControlledScreen {
 
         creditItemService = new CreditItemImpl();
         company_id = StaticFactory.getUserVO().getCompanyID();
-        voucher_id = "1001";
+
 
         itemVoArrayList = creditItemService.getReceivables(company_id, voucher_id);
         for (CreditItemVo vo: itemVoArrayList) {
