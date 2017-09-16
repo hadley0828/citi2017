@@ -6,7 +6,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.voucher.AddVoucherController">
    <children>
-      <TableView fx:id="voucherTable" layoutX="100.0" layoutY="131.0" prefHeight="414.0" prefWidth="800.0">
+      <TableView fx:id="voucherTable" layoutX="134.0" layoutY="97.0" prefHeight="414.0" prefWidth="800.0">
         <columns>
             <TableColumn fx:id="abstractsCol" prefWidth="200.0" text="摘要" />
             <TableColumn fx:id="subjectCol" prefWidth="200.0" text="会计科目" />
@@ -14,16 +14,16 @@
             <TableColumn fx:id="creditCol" prefWidth="200.0" text="贷方金额" />
         </columns>
       </TableView>
-      <Button fx:id="addRow_btn" layoutX="32.0" layoutY="131.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
-      <Button fx:id="deleteRow_btn" layoutX="32.0" layoutY="171.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
-      <Button fx:id="saveAndAdd_btn" layoutX="96.0" layoutY="53.0" mnemonicParsing="false" onAction="#OnSaveAndAdd" prefHeight="33.0" prefWidth="76.0" text="保存" />
-      <ComboBox fx:id="type_combo" layoutX="100.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" />
-      <TextField fx:id="number_field" layoutX="177.0" layoutY="98.0" prefHeight="23.0" prefWidth="67.0" />
-      <Label layoutX="251.0" layoutY="102.0" text="号" />
-      <Label layoutX="351.0" layoutY="102.0" text="日期：" />
-      <DatePicker fx:id="date_picker" layoutX="387.0" layoutY="98.0" />
-      <Label layoutX="100.0" layoutY="558.0" text="制单人：" />
-      <Label fx:id="maker_label" layoutX="148.0" layoutY="558.0" />
-      <Button fx:id="aid_btn" layoutX="739.0" layoutY="86.0" mnemonicParsing="false" onAction="#OnAid" prefHeight="33.0" prefWidth="161.0" text="辅助信息录入" />
+      <Button fx:id="addRow_btn" layoutX="66.0" layoutY="97.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
+      <Button fx:id="deleteRow_btn" layoutX="66.0" layoutY="141.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
+      <Button fx:id="saveAndAdd_btn" layoutX="894.0" layoutY="62.0" mnemonicParsing="false" onAction="#OnSaveAndAdd" text="保存" />
+      <ComboBox fx:id="type_combo" layoutX="134.0" layoutY="64.0" prefHeight="23.0" prefWidth="67.0" />
+      <TextField fx:id="number_field" layoutX="211.0" layoutY="64.0" prefHeight="23.0" prefWidth="67.0" />
+      <Label layoutX="285.0" layoutY="68.0" text="号" />
+      <Label layoutX="329.0" layoutY="68.0" text="日期：" />
+      <DatePicker fx:id="date_picker" layoutX="365.0" layoutY="64.0" />
+      <Label layoutX="134.0" layoutY="524.0" text="制单人：" />
+      <Label fx:id="maker_label" layoutX="187.0" layoutY="524.0" prefHeight="15.0" prefWidth="28.0" />
+      <Button fx:id="aid_btn" layoutX="778.0" layoutY="62.0" mnemonicParsing="false" onAction="#OnAid" text="辅助信息录入" />
    </children>
 </AnchorPane>

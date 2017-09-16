@@ -70,7 +70,7 @@ public class VoucherCard extends BorderPane {
         cardTable.getColumns().add(debitCol);
         cardTable.getColumns().add(creditCol);
 
-        cardTable.setMaxSize(800, 150);
+        cardTable.setMaxSize(1000, 400);
 
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());

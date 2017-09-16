@@ -74,6 +74,7 @@
                         <ToggleButton fx:id="general_bill" alignment="TOP_LEFT" layoutX="44.0" layoutY="197.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" styleClass="list-btn" text="总账" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <ToggleButton fx:id="subject_balance" alignment="TOP_LEFT" layoutX="44.0" layoutY="243.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="34.0" prefWidth="104.0" styleClass="list-btn" text="科目余额表" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <ToggleButton fx:id="subject_summary" alignment="TOP_LEFT" layoutX="44.0" layoutY="288.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="34.0" prefWidth="107.0" styleClass="list-btn" text="科目汇总表" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <ToggleButton fx:id="deal_btn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="34.0" prefWidth="107.0" styleClass="list-btn" text="结账" />
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
