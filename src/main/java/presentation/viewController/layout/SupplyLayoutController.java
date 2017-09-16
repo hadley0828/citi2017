@@ -1,10 +1,13 @@
 package presentation.viewController.layout;
 
+import businesslogic.SettingImpl;
+import businesslogic.UserManagementImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import presentation.StaticFactory;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
 import presentation.screenController.ScreensFramework;
@@ -48,9 +51,19 @@ public class SupplyLayoutController implements Initializable, ControlledScreen {
 
     @FXML
     private void missionSwitch(ActionEvent event) {
+        UserManagementImpl impl=new UserManagementImpl();
+        String chain=impl.getAccountSetByCompanyID(StaticFactory.getUserVO().getCompanyID()).getChainPlace();
         if (event.getSource().equals(inventory_btn)) {
-            supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN, ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML);
-            supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN);
+            if(chain.equals("供应商")) {
+                supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN, ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN_FXML);
+                supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_SUPPLIER_SCREEN);
+            }else if (chain.equals("生产商")){
+                supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN, ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN_FXML);
+                supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_PRODUCER_SCREEN);
+            }else if (chain.equals("分销商")){
+                supplyController.loadScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN, ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN_FXML);
+                supplyController.setScreen(ScreensFramework.STOCK_MANAGEMENT_DISTRIBUTOR_SCREEN);
+            }
         }
         else if (event.getSource().equals(cash_btn)) {
             supplyController.loadScreen(ScreensFramework.CASH_LAYOUT_SCREEN, ScreensFramework.CASH_LAYOUT_SCREEN_FXML);
