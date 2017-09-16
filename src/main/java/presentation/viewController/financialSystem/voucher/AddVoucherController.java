@@ -129,9 +129,11 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                             || jugder.equals("委托加工物资、工程物资") || jugder.equals("工程物资") || jugder.equals("应付账款") || jugder.equals("应收账款")) {
                         aid_btn.setVisible(true);
                         bool = true;
+                        OnAid();
                     }else {
                         bool = false;
                         aid_btn.setVisible(false);
+                        OnAid();
                     }
                 }
         );
@@ -266,7 +268,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
             }
             dialog.show();
         } else if (jugder.equals("材料采购") || jugder.equals("在途物资") || jugder.equals("原材料") || jugder.equals("库存商品") || jugder.equals("委托加工物资") || jugder.equals("工程物资")) {
-            String compayId = StaticFactory.getUserVO().getUserID();
+            String compayId = StaticFactory.getUserVO().getCompanyID();
             UserManagementService userManagementService = new UserManagementImpl();
             AccountSetVO accountSetVO = userManagementService.getAccountSetByCompanyID(compayId);
             String str = accountSetVO.getChainPlace();

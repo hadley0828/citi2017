@@ -23,12 +23,13 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="57.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="1.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
@@ -67,7 +68,7 @@
                         </Separator>
                      </children>
                   </VBox>
-                  <VBox prefHeight="45.0" prefWidth="110.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                  <VBox prefHeight="13.0" prefWidth="130.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2">
                      <children>
                         <ToggleButton fx:id="detail_bill" alignment="TOP_LEFT" layoutX="44.0" layoutY="160.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" styleClass="list-btn" text="明细账" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ToggleButton fx:id="general_bill" alignment="TOP_LEFT" layoutX="44.0" layoutY="197.0" mnemonicParsing="false" onAction="#missionSwitch" prefHeight="27.0" prefWidth="95.0" styleClass="list-btn" text="总账" GridPane.columnIndex="1" GridPane.rowIndex="4" />
