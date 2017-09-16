@@ -1,6 +1,7 @@
 .root {
     -fx-font-size: 14px;
     -fx-background-color: #ffffff;
+    -fx-border-color: #e6e6e6;
 }
 
 .split-pane *.split-pane-divider {
