@@ -47,4 +47,11 @@ public interface SettingService {
     public boolean setSafetyInventory(ArrayList<SafeInventoryVo> list,String company_id);
 
     public boolean setSupplyChain(String company_id,String chainindex,String upper,String down);
+
+    /**
+     * 得到公司原材料/产品的安全库存量
+     * @param company_id
+     * @return
+     */
+    public ArrayList<SafeInventoryVo> getSafeInventory(String company_id);
 }
