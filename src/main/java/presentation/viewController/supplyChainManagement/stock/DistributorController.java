@@ -71,6 +71,7 @@ public class DistributorController implements ControlledScreen{
     }
 
     public void setBar(){
+        dis_bar.getData().clear();
         ArrayList<ProductSafeInventoryRateVo> l=service.getProductInventoryRate("001");
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
@@ -84,6 +85,7 @@ public class DistributorController implements ControlledScreen{
         dis_bar.getData().add(series2);
     }
     public void setTable(){
+        product_monitor.getItems().clear();
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {

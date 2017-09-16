@@ -88,6 +88,8 @@ public class ProducerController implements ControlledScreen {
     }
 
     public void setBar(){
+        product_bar.getData().clear();
+        raw_bar.getData().clear();
         ArrayList<ProductSafeInventoryRateVo> p=service.getProductInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
@@ -116,6 +118,8 @@ public class ProducerController implements ControlledScreen {
     }
 
     public void setTable(){
+        raw_monitor_table.getItems().clear();
+        product_monitor_table.getItems().clear();
         raw_date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {

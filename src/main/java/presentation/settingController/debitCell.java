@@ -3,8 +3,10 @@ package presentation.settingController;
 import businesslogic.SettingImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import presentation.StaticFactory;
 import presentation.warningController.RunWarning;
@@ -43,12 +45,11 @@ public class debitCell extends TableCell<SubjectsVO,Boolean> {
 
 
         cellText.setText("0");
-        cellText.textProperty().addListener(new ChangeListener<String>() {
+        cellText.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+            public void handle(MouseEvent mouseEvent) {
                 SubjectsVO vo=getTableView().getItems().get(getIndex());
                 vo.setDebit(cellText.getText());
-
                 if(vo.getCredit().isEmpty()){
                     vo.setCredit("0");
 
@@ -107,8 +108,6 @@ public class debitCell extends TableCell<SubjectsVO,Boolean> {
                 }
 
 
-
-                //调用接口
 
             }
         });

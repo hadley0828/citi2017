@@ -66,7 +66,7 @@ public class InventoryManagementImpl implements InventoryManagementService {
         int sheet_id = service.getMaxSheetId(company_id)+1;
         ArrayList<InventoryRawMaterialItemPO> result = new ArrayList<>();
         for(int i=1;i<=list.size();i++){
-            RawMaterialInventoryItemVo vo = list.get(i);
+            RawMaterialInventoryItemVo vo = list.get(i-1);
             result.add(new InventoryRawMaterialItemPO(sheet_id, i, company_id, vo.getRawMaterial_variety(), vo.getVoucher_id(), vo.getDatetime(), vo.isIs_delivery_ontime(),
                     vo.isIs_return(),vo.getInput_num(),vo.getInput_price(), vo.getInput_account(), vo.getOut_num(),vo.getOut_price(),vo.getOut_account(),vo.getBalance_num()));
         }
@@ -97,7 +97,7 @@ public class InventoryManagementImpl implements InventoryManagementService {
         int sheet_id = service.getMaxSheetId(company_id)+1;
         ArrayList<InventoryProductItemPO> result = new ArrayList<>();
         for(int i=1;i<=list.size();i++){
-            ProductInventoryItemVo vo = list.get(i);
+            ProductInventoryItemVo vo = list.get(i-1);
             result.add(new InventoryProductItemPO(sheet_id, i, company_id, vo.getProduct_variety(), vo.getVoucher_id(), vo.getDatetime(), vo.isIs_delivery_ontime(),
                     vo.isIs_return(),vo.getInput_num(),vo.getInput_price(), vo.getInput_account(), vo.getOut_num(),vo.getOut_price(),vo.getOut_account(),vo.getBalance_num()));
         }

@@ -143,4 +143,8 @@ public interface ScreensFramework {
     String FINANCIALINSTITUTIONS_SCREEN="FinancialInstitutions";
     String FINANCIALINSTITUTIONS_SCREEN_FXML="/view/supplyChainManagement/financialInstitutions/FinancialInstitutions.fxml";
 
+    /*试算与结账*/
+    String DEAL_SCREEN="Settle";
+    String DEAL_SCREEN_FXML="/view/financialSystem/trialSettlement/Settle.fxml";
+
 }

@@ -75,6 +75,7 @@ public class SupplierController implements ControlledScreen {
     }
 
     public void setBar(){
+        barChart.getData().clear();
         ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
@@ -107,6 +108,7 @@ public class SupplierController implements ControlledScreen {
 
 
     public void setTable(){
+        stock_monitor.getItems().clear();
         date.valueProperty().addListener(new ChangeListener<LocalDate>() {
             @Override
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
