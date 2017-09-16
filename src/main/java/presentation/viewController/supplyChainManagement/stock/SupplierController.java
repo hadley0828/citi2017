@@ -75,6 +75,7 @@ public class SupplierController implements ControlledScreen {
     }
 
     public void setBar(){
+        barChart.getData().clear();
         ArrayList<RawSafeInventoryRateVo> l=service.getRawSafeInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();

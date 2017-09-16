@@ -71,6 +71,7 @@ public class DistributorController implements ControlledScreen{
     }
 
     public void setBar(){
+        dis_bar.getData().clear();
         ArrayList<ProductSafeInventoryRateVo> l=service.getProductInventoryRate("001");
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();

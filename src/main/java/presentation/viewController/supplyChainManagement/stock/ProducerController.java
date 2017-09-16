@@ -88,6 +88,8 @@ public class ProducerController implements ControlledScreen {
     }
 
     public void setBar(){
+        product_bar.getData().clear();
+        raw_bar.getData().clear();
         ArrayList<ProductSafeInventoryRateVo> p=service.getProductInventoryRate(StaticFactory.getUserVO().getCompanyID());
         XYChart.Series series1=new XYChart.Series();
         XYChart.Series series2=new XYChart.Series();
