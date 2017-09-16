@@ -38,6 +38,8 @@ public class FinancialLayoutController implements Initializable, ControlledScree
     private ToggleButton cashflow_btn;
     @FXML
     private ToggleButton profit_btn;
+    @FXML
+    private ToggleButton deal_btn;
 
     @FXML
     private StackPane missionPane;
@@ -77,6 +79,10 @@ public class FinancialLayoutController implements Initializable, ControlledScree
             System.out.println("aaa");
             financialController.loadScreen(ScreensFramework.DETAIL_BILL_SCREEN, ScreensFramework.DETAIL_BILL_SCREEN_FXML);
             financialController.setScreen(ScreensFramework.DETAIL_BILL_SCREEN);
+        }
+        else if (event.getSource().equals(deal_btn)) {
+            financialController.loadScreen(ScreensFramework.DEAL_SCREEN, ScreensFramework.DEAL_SCREEN_FXML);
+            financialController.setScreen(ScreensFramework.DEAL_SCREEN);
         }
         else if (event.getSource().equals(general_bill)) {
             financialController.loadScreen(ScreensFramework.GENERAL_BILL_SCREEN, ScreensFramework.GENERAL_BILL_SCREEN_FXML);
