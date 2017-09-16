@@ -94,8 +94,3 @@
 #settings_btn:hover, #signOut_btn:hover, #financial_btn:hover, #chain_btn:hover {
     -fx-background-color: #e6e6e6;
 }
-
-#logo_btn {
-    -fx-graphic: url("../images/logo.png");
-    -fx-background-color: transparent;
-}
