@@ -87,4 +87,5 @@ public interface SubjectDataService {
      */
     public ArrayList<SubjectsPO> getOneSubjectAllRecords(String subjectId,String factoryId);
 
+    public void initialSubjectsInitial(String company_id);
 }

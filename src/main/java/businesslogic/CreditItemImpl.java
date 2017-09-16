@@ -5,7 +5,6 @@ import data.CreditItemServiceImpl;
 import po.CreditItemPO;
 import vo.CreditItemVo;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -76,6 +75,18 @@ public class CreditItemImpl implements CreditItemService {
             }
         }
         return result;
+    }
+
+    @Override
+    public ArrayList<String> getInputCredit(String company_id) {
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        return service.getInputCredit(company_id);
+    }
+
+    @Override
+    public ArrayList<String> getOutputCredit(String company_id) {
+        dataservice.CreditItemService service = new CreditItemServiceImpl();
+        return service.getOutputCredit(company_id);
     }
 
     private ArrayList<CreditItemVo> getList(ArrayList<CreditItemPO> list){

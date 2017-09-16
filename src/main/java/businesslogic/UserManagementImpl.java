@@ -1,7 +1,9 @@
 package businesslogic;
 
 import businesslogicservice.UserManagementService;
+import data.SubjectDataServiceImpl;
 import data.UserManagementServiceImpl;
+import dataservice.SubjectDataService;
 import po.AccountSetPO;
 import po.UserCompanyPO;
 import po.UserFinancialPO;
@@ -20,9 +22,11 @@ import java.util.ArrayList;
 public class UserManagementImpl implements UserManagementService{
 
     private dataservice.UserManagementService dataservice;
+    private SubjectDataService subjectDataService;
 
     public UserManagementImpl() {
         dataservice = new UserManagementServiceImpl();
+        subjectDataService = new SubjectDataServiceImpl();
     }
 
 
@@ -87,6 +91,7 @@ public class UserManagementImpl implements UserManagementService{
             return ResultMessage.FAIL;
         }
         dataservice.updateUserInfo(userID,list.get(0),list.get(1));
+        subjectDataService.initialSubjectsInitial(list.get(1));
         return ResultMessage.SUCCESS;
     }
 
