@@ -1,3 +1,21 @@
 .root {
     -fx-background-color: #FFFFFF;
 }
+
+.list-btn {
+    -fx-font-size: 16px;
+    -fx-background-color: transparent;
+    -fx-graphic-text-gap: 8px;
+}
+
+.label {
+    -fx-font-size: 14px;
+}
+
+.list-btn:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+.list-btn:pressed {
+    -fx-background-color: #828282;
+}
