@@ -25,12 +25,23 @@ public class SafeCell extends TableCell<SafeInventoryVo,Boolean> {
 
     SafeCell(){
 
-        SafeInventoryVo vo = getTableView().getItems().get(getIndex());
 
-        cellText.setText(vo.getVariety());
         cellText.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                SafeInventoryVo vo=getTableView().getItems().get(getIndex());
+                vo.setVariety(cellText.getText());
+                if(vo.getVariety().isEmpty()||vo.getName().isEmpty()){
+
+                }else{
+
+                    SettingImpl impl=new SettingImpl();
+                    ArrayList<SafeInventoryVo> list=new ArrayList<>();
+                    list.add(vo);
+                    impl.setSafetyInventory(list,StaticFactory.getUserVO().getCompanyID());
+
+
+                }
 
             }
 

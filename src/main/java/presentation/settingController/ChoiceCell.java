@@ -27,8 +27,7 @@ public class ChoiceCell extends TableCell<SafeInventoryVo,Boolean> {
     final ChoiceBox<String> cellBox = new ChoiceBox<>();
 
     ChoiceCell() {
-        SafeInventoryVo svo=getTableView().getItems().get(getIndex());
-        cellBox.setValue(svo.getName());
+        
 
         ArrayList<String> list = new ArrayList<>();
         list.add("原材料");
@@ -42,16 +41,16 @@ public class ChoiceCell extends TableCell<SafeInventoryVo,Boolean> {
                         vo.setName(cellBox.getSelectionModel().getSelectedItem());
                         if(vo.getVariety().isEmpty()||vo.getName().isEmpty()){
 
-                        }else{
+                    }else{
 
-                            SettingImpl impl=new SettingImpl();
-                            ArrayList<SafeInventoryVo> list=new ArrayList<>();
-                            list.add(vo);
-                            impl.setSafetyInventory(list,StaticFactory.getUserVO().getCompanyID());
+                        SettingImpl impl=new SettingImpl();
+                        ArrayList<SafeInventoryVo> list=new ArrayList<>();
+                        list.add(vo);
+                        impl.setSafetyInventory(list,StaticFactory.getUserVO().getCompanyID());
 
 
-                        }
                     }
+                }
                 }
         );
 
