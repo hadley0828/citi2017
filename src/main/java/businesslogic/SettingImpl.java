@@ -2,10 +2,14 @@ package businesslogic;
 
 import businesslogicservice.InventoryManagementService;
 import businesslogicservice.SettingService;
+import data.InventoryServiceImpl;
 import data.SettingDataServiceImpl;
 import data.UserManagementServiceImpl;
+import dataservice.InventoryService;
 import dataservice.SettingDataService;
 import dataservice.UserManagementService;
+import po.Inventory.ProductSafeInventoryPo;
+import po.Inventory.RawMaterialSafeInventoryPo;
 import vo.Inventory.SafeInventoryVo;
 import vo.userManagement.SubjectsInitialVO;
 import vo.userManagement.SubjectsVO;
@@ -67,5 +71,23 @@ public class SettingImpl implements SettingService{
     @Override
     public boolean setSupplyChain(String company_id, String chainindex, String upper, String down) {
         return settingDataService.setSupplyChain(company_id,chainindex,upper,down);
+    }
+
+    @Override
+    public ArrayList<SafeInventoryVo> getSafeInventory(String company_id) {
+        InventoryService service = new InventoryServiceImpl();
+        ArrayList<RawMaterialSafeInventoryPo> list1 = service.getAllRawMaterialSafeInventory(company_id);
+        ArrayList<ProductSafeInventoryPo> list2 = service.getAllProductSafeInventory(company_id);
+
+        ArrayList<SafeInventoryVo> result = new ArrayList<>();
+        for(int i=0;i<list1.size();i++){
+            RawMaterialSafeInventoryPo po = list1.get(i);
+            result.add(new SafeInventoryVo("原材料", po.getRaw_material_variety(), po.getSafe_inventory()));
+        }
+        for(int i=0;i<list2.size();i++){
+            ProductSafeInventoryPo po = list2.get(i);
+            result.add(new SafeInventoryVo("产品", po.getProduct_variety(), po.getSafe_inventory()));
+        }
+        return result;
     }
 }
