@@ -3,7 +3,7 @@ package presentation.viewController.layout;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.StackPane;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -18,13 +18,13 @@ import java.util.ResourceBundle;
  */
 public class CashManagementLayoutController implements Initializable, ControlledScreen {
     @FXML
-    private Button pool_btn;
+    private ToggleButton pool_btn;
     @FXML
-    private Button finance_btn;
+    private ToggleButton finance_btn;
     @FXML
-    private Button pay_btn;
+    private ToggleButton pay_btn;
     @FXML
-    private Button charge_btn;
+    private ToggleButton charge_btn;
     @FXML
     private StackPane cashStack;
 

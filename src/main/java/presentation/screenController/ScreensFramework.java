@@ -11,6 +11,10 @@ public interface ScreensFramework {
     String HOME_LAYOUT_SCREEN = "HomeLayout";
     String HOME_LAYOUT_SCREEN_FXML = "/view/layout/HomeLayout.fxml";
 
+    /*还有一个主界面*/
+    String NEXT_HOME_SCREEN = "NextHome";
+    String NEXT_HOME_SCREEN_FXML = "/view/layout/NextHome.fxml";
+
     /*财务系统界面*/
     String FINANCIAL_LAYOUT_SCREEN = "FinancialLayout";
     String FINANCIAL_LAYOUT_SCREEN_FXML = "/view/layout/FinancialLayout.fxml";

@@ -8,6 +8,8 @@ import javafx.geometry.Bounds;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -28,11 +30,11 @@ public class RootLayoutController implements Initializable {
     @FXML
     private Button logo_btn;
     @FXML
-    private Button financial_btn;
+    private ToggleButton financial_btn;
     @FXML
-    private Button supply_btn;
+    private ToggleButton supply_btn;
     @FXML
-    private Button settings_btn;
+    private ToggleButton settings_btn;
     @FXML
     private Button signOut_btn;
 
@@ -52,6 +54,8 @@ public class RootLayoutController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ToggleGroup group = new ToggleGroup();
+        group.getToggles().addAll(financial_btn, supply_btn, settings_btn);
 
         Region icon_1 = new Region();
         icon_1.getStyleClass().add("icon");
@@ -71,8 +75,9 @@ public class RootLayoutController implements Initializable {
         close_btn.setGraphic(icon_3);
         close_btn.setOnAction(event -> System.exit(0));
 
-
+        rootController.loadScreen(ScreensFramework.NEXT_HOME_SCREEN, ScreensFramework.NEXT_HOME_SCREEN_FXML);
         rootController.loadScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN, ScreensFramework.FINANCIAL_LAYOUT_SCREEN_FXML);
+        rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
 
         rootController.loadScreen(ScreensFramework.HOME_LAYOUT_SCREEN, ScreensFramework.HOME_LAYOUT_SCREEN_FXML);
         rootController.setScreen(ScreensFramework.HOME_LAYOUT_SCREEN);
@@ -108,7 +113,6 @@ public class RootLayoutController implements Initializable {
             rootController.setScreen(ScreensFramework.FINANCIAL_LAYOUT_SCREEN);
         }
         else if (event.getSource().equals(supply_btn)) {
-            rootController.loadScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN, ScreensFramework.SUPPLY_LAYOUT_SCREEN_FXML);
             rootController.setScreen(ScreensFramework.SUPPLY_LAYOUT_SCREEN);
         }
         else if (event.getSource().equals(settings_btn)) {

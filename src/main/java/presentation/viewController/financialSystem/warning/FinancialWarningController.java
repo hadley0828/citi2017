@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import presentation.screenController.ControlledScreen;
@@ -28,11 +29,11 @@ import java.util.ResourceBundle;
  */
 public class FinancialWarningController implements Initializable, ControlledScreen {
     @FXML
-    private Pane layPane;
+    private GridPane layPane;
     @FXML
     private Label message;
     @FXML
-    private Label number;
+    private Label tip;
 
     private Gauge gauge;
     private AnimationTimer timer;
@@ -46,20 +47,45 @@ public class FinancialWarningController implements Initializable, ControlledScre
         String company_id = StaticFactory.getUserVO().getCompanyID();
 
         FinancialWarningService warning = new FinancialWarningImpl();
-
-        String warningMessage = warning.getWarningMessage2(company_id, date);
-        double warningLevel = warning.getWarningMessage(company_id, date);
-
-        message.setText(warningMessage);
-        number.setText(String.valueOf(warningLevel));
-        System.out.println(warningMessage);
-        System.out.println(warningLevel);
+        double warningLevel = 123;
+        String warningMessage = "低度风险";
+//        String warningMessage = warning.getWarningMessage2(company_id, date);
+//        double warningLevel = warning.getWarningMessage(company_id, date);
+//
+//        message.setText(warningMessage);
+//        number.setText(String.valueOf(warningLevel));
+//        System.out.println(warningMessage);
+//        System.out.println(warningLevel);
 
 //        gauge here
+        if (warningLevel <= 150 && warningLevel >= 120) {
+            message.setText("A+");
+            warningMessage = "低度风险";
+        }
+        else if (warningLevel <= 120 && warningLevel >= 101) {
+            message.setText("A");
+            warningMessage = "中低风险";
+        }
+        else if (warningLevel <= 100 && warningLevel >= 81) {
+            message.setText("B");
+            warningMessage = "中度风险";
+        }
+        else if (warningLevel <= 80 && warningLevel > 51) {
+            warningMessage = "中高风险";
+            message.setText("C");
+        }
+        else if (warningLevel <= 50) {
+            message.setText("D");
+            warningMessage = "高度风险";
+        }
+
+        message.setStyle("-fx-font-size: 144px;");
+        tip.setStyle("-fx-font-size: 32px;");
         gauge = GaugeBuilder.create()
                 .skinType(Gauge.SkinType.SIMPLE_SECTION)
                 .titleColor(Color.WHITE)
-                .unitColor(Color.WHITE)
+                .unit(warningMessage)
+                .unitColor(Color.DARKGRAY)
                 .animated(true)
                 .valueColor(Color.WHITE)
                 .minValue(0)
@@ -76,7 +102,8 @@ public class FinancialWarningController implements Initializable, ControlledScre
                 .build();
 
         gauge.setValue(0);
-
+        gauge.setMinHeight(500);
+        gauge.setMinWidth(500);
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
@@ -92,7 +119,7 @@ public class FinancialWarningController implements Initializable, ControlledScre
         };
         timer.start();
 
-        layPane.getChildren().add(gauge);
+        layPane.add(gauge, 3, 2);
     }
 
     @Override

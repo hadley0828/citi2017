@@ -6,9 +6,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.financialSystem.voucher.AidPayController">
    <children>
-      <Button layoutX="25.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnSave" text="保存" />
-      <Button layoutX="88.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnCancel" text="取消" />
-      <TableView fx:id="table" layoutX="24.0" layoutY="95.0" prefHeight="274.0" prefWidth="571.0">
+      <Button layoutX="16.0" layoutY="34.0" mnemonicParsing="false" onAction="#OnSave" text="保存" />
+      <Button layoutX="79.0" layoutY="34.0" mnemonicParsing="false" onAction="#OnCancel" text="取消" />
+      <TableView fx:id="table" layoutX="15.0" layoutY="92.0" prefHeight="274.0" prefWidth="571.0">
          <columns>
             <TableColumn fx:id="name_col" prefWidth="75.0" text="公司名称" />
             <TableColumn fx:id="debit_col" prefWidth="75.0" text="借款时间" />
@@ -19,7 +19,7 @@
             <TableColumn fx:id="remark_col" prefWidth="74.0" text="备注" />
          </columns>
       </TableView>
-      <Button layoutX="502.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="-1s" />
-      <Button layoutX="419.0" layoutY="37.0" mnemonicParsing="false" onAction="#OnAddRow" text="+1s" />
+      <Button layoutX="518.0" layoutY="34.0" mnemonicParsing="false" onAction="#OnDeleteRow" text="删除行" />
+      <Button layoutX="454.0" layoutY="34.0" mnemonicParsing="false" onAction="#OnAddRow" text="新增行" />
    </children>
 </AnchorPane>

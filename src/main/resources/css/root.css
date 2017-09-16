@@ -1,6 +1,5 @@
 .root {
     -fx-font-size: 14px;
-    -fx-background-color: #ffffff;
     -fx-border-color: #e6e6e6;
 }
 
@@ -93,6 +92,14 @@
 }
 
 #settings_btn:hover, #signOut_btn:hover, #financial_btn:hover, #chain_btn:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+#settings_btn:pressed, #signOut_btn:pressed, #financial_btn:pressed, #chain_btn:pressed {
+    -fx-background-color: #828282;
+}
+
+#settings_btn:selected, #financial_btn:selected, #chain_btn:selected {
     -fx-background-color: #e6e6e6;
 }
 
