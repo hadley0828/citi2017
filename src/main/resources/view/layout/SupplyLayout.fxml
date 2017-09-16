@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<SplitPane dividerPositions="0.2" prefHeight="725.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.SupplyLayoutController">
+<SplitPane dividerPositions="0.2" prefHeight="725.0" prefWidth="1200.0" stylesheets="@../../css/stack.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.viewController.layout.SupplyLayoutController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+    <AnchorPane maxWidth="-Infinity" minHeight="0.0" minWidth="-Infinity" prefHeight="160.0" prefWidth="140.0">
          <children>
-            <Button fx:id="inventory_btn" layoutX="91.0" layoutY="89.0" mnemonicParsing="false" onAction="#missionSwitch" text="库存管理" />
-            <Button fx:id="cash_btn" layoutX="91.0" layoutY="169.0" mnemonicParsing="false" onAction="#missionSwitch" text="现金管理" />
-            <Button fx:id="financing_btn" layoutX="91.0" layoutY="247.0" mnemonicParsing="false" onAction="#missionSwitch" text="融资服务" />
-            <Button fx:id="performance_btn" layoutX="91.0" layoutY="339.0" mnemonicParsing="false" onAction="#missionSwitch" text="绩效评价" />
+            <GridPane prefHeight="723.0" prefWidth="140.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="inventory_btn" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#missionSwitch" styleClass="list-btn" text="库存管理" />
+                        <Button fx:id="cash_btn" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#missionSwitch" styleClass="list-btn" text="现金管理" />
+                        <Button fx:id="financing_btn" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#missionSwitch" styleClass="list-btn" text="融资服务" />
+                        <Button fx:id="performance_btn" alignment="TOP_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#missionSwitch" styleClass="list-btn" text="绩效评价" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1">
+                     <children>
+                        <Label layoutX="28.0" layoutY="41.0" text="设置" GridPane.columnIndex="1" />
+                        <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </Separator>
+                     </children>
+                  </VBox>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" valignment="BOTTOM" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="40.0" minHeight="1.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
          </children></AnchorPane>
       <StackPane fx:id="supplyStack" prefHeight="150.0" prefWidth="200.0" />
   </items>
