@@ -51,10 +51,16 @@ public class InventoryServiceImpl implements InventoryService{
     @Override
     public int getMaxSheetId(String company_id) {
         sqlManager.getConnection();
+        int maxSheetID = 0;
 
         String sql = "select sheet_id from(select sheet_id from inventory_material where company_id = ? union select sheet_id from inventory_product where company_id=?) alias group by sheet_id order by sheet_id desc limit 1";
         Map<String,Object> map = sqlManager.querySimple(sql,new Object[]{company_id,company_id});
-        int maxSheetID = Integer.parseInt(map.get("sheet_id").toString());
+        try{
+            maxSheetID = Integer.parseInt(map.get("sheet_id").toString());
+        }catch (NullPointerException e){
+
+        }
+
 
         sqlManager.releaseAll();
         return maxSheetID;
