@@ -68,7 +68,7 @@ public class AmendVoucherController implements Initializable, ControlledScreen {
         voucherBl = new VoucherBlImpl();
 
         type_combo.getItems().addAll("记", "收", "付", "转");
-
+        type_combo.setEditable(false);
         maker_label.setText(factoryId);
         initialTable();
 

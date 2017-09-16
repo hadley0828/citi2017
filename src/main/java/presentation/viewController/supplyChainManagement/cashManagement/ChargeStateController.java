@@ -47,7 +47,6 @@ public class ChargeStateController implements Initializable, ControlledScreen {
     private ObservableList<DealStateModel> data = FXCollections.observableArrayList();
     private ArrayList<CreditItemVo> itemVoArrayList;
     private String company_id;
-    private String voucher_id;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,12 +62,12 @@ public class ChargeStateController implements Initializable, ControlledScreen {
         creditItemService = new CreditItemImpl();
         company_id = StaticFactory.getUserVO().getCompanyID();
 
-
-        itemVoArrayList = creditItemService.getReceivables(company_id, voucher_id);
-        for (CreditItemVo vo: itemVoArrayList) {
-            data.add(new DealStateModel(vo.getCompany_name(), vo.getBorrow_time(), vo.getDeadline(), String.valueOf(vo.getPolicy() * 100) + "%", String.valueOf(vo.getMoney()), vo.getDiscount_deadline(), vo.getRemark()));
+        for (String str: creditItemService.getInputCredit(company_id)) {
+            itemVoArrayList = creditItemService.getReceivables(company_id, str);
+            for (CreditItemVo vo: itemVoArrayList) {
+                data.add(new DealStateModel(vo.getCompany_name(), vo.getBorrow_time(), vo.getDeadline(), String.valueOf(vo.getPolicy() * 100) + "%", String.valueOf(vo.getMoney()), vo.getDiscount_deadline(), vo.getRemark()));
+            }
         }
-
     }
 
     @Override

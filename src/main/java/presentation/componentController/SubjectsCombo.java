@@ -1,22 +1,25 @@
 package presentation.componentController;
 
+import businesslogic.SettingImpl;
 import businesslogic.VoucherBlImpl;
+import businesslogicservice.SettingService;
 import businesslogicservice.VoucherBlService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import presentation.StaticFactory;
+import vo.userManagement.SubjectsVO;
 import vo.voucher.SubjectBasicVo;
 
 import java.util.ArrayList;
 
 public class SubjectsCombo extends ComboBox<String> {
 
-    private ArrayList<SubjectBasicVo> subjectArray;
-
     public SubjectsCombo() {
-        VoucherBlService voucherBl = new VoucherBlImpl();
-        subjectArray = voucherBl.getAllSubjectBasics(StaticFactory.getUserVO().getCompanyID());
-        for (SubjectBasicVo vo: subjectArray) {
-            getItems().add(vo.getSubjectId() + " " + vo.getSubjectName());
+        SettingService settingService = new SettingImpl();
+        ArrayList<SubjectsVO> subjectArray = settingService.getAllSubjects();
+        for (SubjectsVO vo: subjectArray) {
+            getItems().add(vo.getSubjectsID() + " " + vo.getSubjectsName());
         }
     }
 

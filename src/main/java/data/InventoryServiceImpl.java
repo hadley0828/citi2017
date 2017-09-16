@@ -352,14 +352,32 @@ public class InventoryServiceImpl implements InventoryService{
      * @param po
      */
     private void insertOneRawMaterialSafeInventoryPo(RawMaterialSafeInventoryPo po){
-        List<Object> params = new ArrayList<>();
 
-        params.add(po.getCompany_id());
-        params.add(po.getRaw_material_variety());
-        params.add(po.getSafe_inventory());
+        String company_id = po.getCompany_id();
+        ArrayList<String> varietyList = new ArrayList<>();
 
-        String sql = sqlManager.appendSQL("insert into safe_inventory_material values",params.size());
-        sqlManager.executeUpdateByList(sql,params);
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti("select * from safe_inventory_material where company_id=?",new Object[]{company_id});
+        for (Map<String,Object> map : maps){
+            varietyList.add(map.get("variety").toString());
+        }
+        if (!varietyList.contains(po.getRaw_material_variety())){
+            List<Object> params = new ArrayList<>();
+
+            params.add(po.getCompany_id());
+            params.add(po.getRaw_material_variety());
+            params.add(po.getSafe_inventory());
+
+            String sql = sqlManager.appendSQL("insert into safe_inventory_material values",params.size());
+            sqlManager.executeUpdateByList(sql,params);
+        }else {
+            List<Object> params = new ArrayList<>();
+
+            params.add(po.getSafe_inventory());
+            params.add(company_id);
+            params.add(po.getRaw_material_variety());
+            String sql = "update safe_inventory_material set safety_stock=? where company_id=? and variety=?";
+            sqlManager.executeUpdateByList(sql,params);
+        }
     }
 
     /**
@@ -367,14 +385,32 @@ public class InventoryServiceImpl implements InventoryService{
      * @param po
      */
     private void insertOneProductSafeInventoryPo(ProductSafeInventoryPo po){
-        List<Object> params = new ArrayList<>();
+        String company_id = po.getCompany_id();
+        ArrayList<String> varietyList = new ArrayList<>();
 
-        params.add(po.getCompany_id());
-        params.add(po.getProduct_variety());
-        params.add(po.getSafe_inventory());
+        ArrayList<Map<String,Object>> maps = sqlManager.queryMulti("select * from safe_inventory_product where company_id=?",new Object[]{company_id});
+        for (Map<String,Object> map : maps){
+            varietyList.add(map.get("variety").toString());
+        }
+        if (!varietyList.contains(po.getProduct_variety())){
+            List<Object> params = new ArrayList<>();
 
-        String sql = sqlManager.appendSQL("insert into safe_inventory_product values",params.size());
-        sqlManager.executeUpdateByList(sql,params);
+            params.add(po.getCompany_id());
+            params.add(po.getProduct_variety());
+            params.add(po.getSafe_inventory());
+
+            String sql = sqlManager.appendSQL("insert into safe_inventory_product values",params.size());
+            sqlManager.executeUpdateByList(sql,params);
+        }else {
+            List<Object> params = new ArrayList<>();
+
+            params.add(po.getSafe_inventory());
+            params.add(company_id);
+            params.add(po.getProduct_variety());
+            String sql = "update safe_inventory_product set safety_stock=? where company_id=? and variety=?";
+            sqlManager.executeUpdateByList(sql,params);
+        }
+
     }
 
     /**

@@ -85,6 +85,8 @@ public class AddVoucherController implements Initializable, ControlledScreen {
         voucherBl = new VoucherBlImpl();
         voucher = new VoucherVo();
         type_combo.getItems().addAll("记", "收", "付", "转");
+        type_combo.setEditable(false);
+
         initialTable();
 
         maker_label.setText(factoryId);
@@ -96,7 +98,7 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     }
 
     private void initialTable() {
-        type_combo.getSelectionModel().select("记");
+        type_combo.getSelectionModel().selectFirst();
         abstractsCol.setCellValueFactory(cellData -> cellData.getValue().abstractsProperty());
         subjectCol.setCellValueFactory(cellData -> cellData.getValue().subjectProperty());
         debitCol.setCellValueFactory(cellData -> cellData.getValue().debitProperty());
@@ -302,7 +304,6 @@ public class AddVoucherController implements Initializable, ControlledScreen {
     }
 
     private void Reset() {
-        type_combo.getSelectionModel().clearSelection();
         number_field.setText("");
         data.clear();
         data.add(new VoucherModel("合计：", "", "0", "0"));
