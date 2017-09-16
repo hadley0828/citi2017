@@ -20,6 +20,7 @@ import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import presentation.dataModel.VoucherModel;
 import presentation.screenController.ControlledScreen;
 import presentation.screenController.ScreensController;
@@ -129,10 +130,12 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                     if (jugder.equals("材料采购") || jugder.equals("在途物资") || jugder.equals("原材料") || jugder.equals("库存商品")
                             || jugder.equals("委托加工物资、工程物资") || jugder.equals("工程物资") || jugder.equals("应付账款") || jugder.equals("应收账款")) {
                         aid_btn.setVisible(true);
+                        OnAid();
                         bool = true;
                     }else {
                         bool = false;
                         aid_btn.setVisible(false);
+                        OnAid();
                     }
                 }
         );
@@ -145,6 +148,12 @@ public class AddVoucherController implements Initializable, ControlledScreen {
                     updateSum();
                 }
         );
+        debitCol.setCellFactory(new Callback<TableColumn<VoucherModel, String>, TableCell<VoucherModel, String>>() {
+            @Override
+            public TableCell<VoucherModel, String> call(TableColumn<VoucherModel, String> param) {
+                return null;
+            }
+        });
 
         creditCol.setCellFactory(TextFieldTableCell.forTableColumn());
         creditCol.setOnEditCommit(
