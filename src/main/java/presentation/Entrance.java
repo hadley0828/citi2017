@@ -19,7 +19,7 @@ public class Entrance extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+//        primaryStage.initStyle(StageStyle.UNDECORATED);
         Parent root = FXMLLoader.load(getClass().getResource("../view/loginAndSignUp/Login.fxml"));
         Scene scene = new Scene(root);
 

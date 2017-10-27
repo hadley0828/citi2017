@@ -141,7 +141,7 @@ public class VoucherBlServiceImplTest {
 
     @Test
     public void testGetOneVoucher(){
-        System.out.println(voucherBlService.getOneVoucher("记-10","001").toString());
+        System.out.println(voucherBlService.getOneVoucher("记-12","001").toString());
     }
 
     @Test

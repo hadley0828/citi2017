@@ -47,7 +47,12 @@ public class AccountBooksBlImpl implements AccountBooksBlService {
 
         java.lang.String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
         java.lang.String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
-        ArrayList<String> betweenMonthList=DateConvert.getBetweenMonthList(startMonth,endMonth);
+        ArrayList<String> betweenMonthList= null;
+        try {
+            betweenMonthList = DateConvert.getBetweenMonthList(startMonth,endMonth);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
         HashSet<String> betweenMonthSet=new HashSet<>();

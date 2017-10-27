@@ -11,6 +11,7 @@ import vo.voucher.*;
 
 
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -798,7 +799,12 @@ public class VoucherBlImpl implements VoucherBlService {
         }else{
             String startMonth=DateConvert.periodToMonth(searchVo.getStartPeriod());
             String endMonth=DateConvert.periodToMonth(searchVo.getEndPeriod());
-            HashSet<String> betweenMonthSet=DateConvert.getBetweenMonth(startMonth,endMonth);
+            HashSet<String> betweenMonthSet= null;
+            try {
+                betweenMonthSet = DateConvert.getBetweenMonth(startMonth,endMonth);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             String currentMonth=vo.getDate().substring(0,vo.getDate().lastIndexOf("-"));
 

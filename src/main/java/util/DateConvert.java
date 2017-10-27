@@ -1,11 +1,9 @@
 package util;
 
 
-
-import po.SubjectsPO;
-
 import java.lang.*;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,12 +21,12 @@ public class DateConvert {
      * @param accountingPeriod
      * @return
      */
-    public static java.lang.String periodToMonth(java.lang.String accountingPeriod){
-        java.lang.String str=accountingPeriod.substring(0,accountingPeriod.length()-1);
+    public static String periodToMonth(String accountingPeriod){
+        String str=accountingPeriod.substring(0,accountingPeriod.length()-1);
 
-        java.lang.String[] yearAndMonth=str.split("年第");
-        java.lang.String year=yearAndMonth[0];
-        java.lang.String month=yearAndMonth[1];
+        String[] yearAndMonth=str.split("年第");
+        String year=yearAndMonth[0];
+        String month=yearAndMonth[1];
 
         if(month.length()==1){
             month="0"+month;
@@ -44,10 +42,10 @@ public class DateConvert {
      * @param yearMonth
      * @return
      */
-    public static java.lang.String monthToPeriod(java.lang.String yearMonth){
-        java.lang.String[] yearAndMonth=yearMonth.split("-");
-        java.lang.String year=yearAndMonth[0];
-        java.lang.String month=yearAndMonth[1];
+    public static String monthToPeriod(String yearMonth){
+        String[] yearAndMonth=yearMonth.split("-");
+        String year=yearAndMonth[0];
+        String month=yearAndMonth[1];
 
         if(month.charAt(0)=='0'){
             month=month.substring(1);
@@ -57,44 +55,49 @@ public class DateConvert {
     }
 
 
-    public static ArrayList<String> getBetweenMonthList(java.lang.String startMonth, java.lang.String endMonth){
-        ArrayList<String> resultList=new ArrayList<>();
-
-
-        DateFormat aa = DateFormat.getDateInstance();
-        Date date1 = null; // 开始日期
-        Date date2 = null; // 结束日期
-        try {
-            date1 = aa.parse(startMonth+"-01");
-            date2 = aa.parse(endMonth+"-01");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar c1 = Calendar.getInstance();
-        Calendar c2 = Calendar.getInstance();
-        //定义集合存放月份
-        List list = new ArrayList();
-        //添加第一个月，即开始时间
-        list.add(startMonth);
-        c1.setTime(date1);
-        c2.setTime(date2);
-        while (c1.compareTo(c2) < 0) {
-            c1.add(Calendar.MONTH, 1);// 开始日期加一个月直到等于结束日期为止
-            Date ss = c1.getTime();
-            java.lang.String str = aa.format(ss);
-            str = str.substring(0, str.lastIndexOf("-"));
-
-            if(str.length()!=7){
-                str=str.split("-")[0]+"-0"+str.split("-")[1];
-            }
-            list.add(str);
-        }
-
-        for (int i = 0; i < list.size(); i++) {
-            resultList.add((String) list.get(i));
-        }
-
-        return resultList;
+    public static ArrayList<String> getBetweenMonthList(String startMonth, String endMonth) throws ParseException {
+//        ArrayList<String> resultList=new ArrayList<>();
+//
+//
+//        DateFormat aa = DateFormat.getDateInstance();
+//        Date date1 = null; // 开始日期
+//        Date date2 = null; // 结束日期
+//        Date date3 = null;
+//        try {
+//            System.out.println(startMonth);
+//
+//
+//            date2 = aa.parse(endMonth+"-01");
+//
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Calendar c1 = Calendar.getInstance();
+//        Calendar c2 = Calendar.getInstance();
+//        //定义集合存放月份
+//        List list = new ArrayList();
+//        //添加第一个月，即开始时间
+//        list.add(startMonth);
+//        c1.setTime(date1);
+//        c2.setTime(date2);
+//        while (c1.compareTo(c2) < 0) {
+//            c1.add(Calendar.MONTH, 1);// 开始日期加一个月直到等于结束日期为止
+//            Date ss = c1.getTime();
+//            java.lang.String str = aa.format(ss);
+//            str = str.substring(0, str.lastIndexOf("-"));
+//
+//            if(str.length()!=7){
+//                str=str.split("-")[0]+"-0"+str.split("-")[1];
+//            }
+//            list.add(str);
+//        }
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            resultList.add((String) list.get(i));
+//        }
+//
+//        return resultList;
+        return getMonthBetween(startMonth,endMonth);
     }
 
 
@@ -104,7 +107,7 @@ public class DateConvert {
      * @param endMonth
      * @return
      */
-    public static HashSet<String> getBetweenMonth(java.lang.String startMonth, java.lang.String endMonth){
+    public static HashSet<String> getBetweenMonth(String startMonth, String endMonth) throws ParseException {
         HashSet<String> resultSet=new HashSet<>();
 
         ArrayList<String> betweenMonthList=getBetweenMonthList(startMonth,endMonth);
@@ -119,7 +122,7 @@ public class DateConvert {
 
 
 
-    public static java.lang.String getCurrentMonth(){
+    public static String getCurrentMonth(){
         SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         return format.format(new Date());
     }
@@ -374,17 +377,38 @@ public class DateConvert {
         return resultList;
     }
 
+    public static ArrayList<String> getMonthBetween(String minDate, String maxDate) throws ParseException {
+        ArrayList<String> result = new ArrayList<String>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");//格式化为年月
+
+        Calendar min = Calendar.getInstance();
+        Calendar max = Calendar.getInstance();
+
+        min.setTime(sdf.parse(minDate));
+        min.set(min.get(Calendar.YEAR), min.get(Calendar.MONTH), 1);
+
+        max.setTime(sdf.parse(maxDate));
+        max.set(max.get(Calendar.YEAR), max.get(Calendar.MONTH), 2);
+
+        Calendar curr = min;
+        while (curr.before(max)) {
+            result.add(sdf.format(curr.getTime()));
+            curr.add(Calendar.MONTH, 1);
+        }
+
+        return result;
+    }
 
 
     public static void main(String[] args) throws ParseException {
 //        System.out.println(monthToPeriod("2017-12"));
 //        System.out.println(periodToMonth("2017年第8期"));
-//        System.out.println(getBetweenMonth("2017-04","2017-04").size());
-//
-//        ArrayList<String> monthList=getBetweenMonthList("2016-04","2017-04");
-//        for(int count=0;count<monthList.size();count++){
-//            System.out.println(monthList.get(count));
-//        }
+        System.out.println(getBetweenMonth("2016-04","2017-04").size());
+
+        ArrayList<String> monthList=getBetweenMonthList("2016-04","2017-04");
+        for(int count=0;count<monthList.size();count++){
+            System.out.println(monthList.get(count));
+        }
 
 //        String date="2010-04-10";
 //        System.out.println(date.substring(0,date.lastIndexOf("-")));
@@ -408,7 +432,7 @@ public class DateConvert {
 //        System.out.println(minusOneMonth("2017-07"));
 //        System.out.println(minusNMonth("2018-05",10));
 
-        System.out.println(isCurrentMonthBeforeMonth("2017-10","2017-10"));
+//        System.out.println(isCurrentMonthBeforeMonth("2017-10","2017-10"));
 
 //        ArrayList<String> monthList=new ArrayList<>();
 //        monthList.add("2017-10");
@@ -422,9 +446,12 @@ public class DateConvert {
 //        System.out.println(resultList);
 
 
-        System.out.println(getThisYearBeforeMonths("2009-08"));
+//        System.out.println(getThisYearBeforeMonths("2009-08"));
+//
+//        SubjectsPO onePo=new SubjectsPO();
+//        System.out.println(onePo.getVoucher_id());
 
-        SubjectsPO onePo=new SubjectsPO();
-        System.out.println(onePo.getVoucher_id());
+//        System.out.println(getMonthBetween("2008-10","2009-09"));
+
     }
 }
